@@ -1,0 +1,3 @@
+.text_color_inactive {
+  color: var(--text-inactive-color);
+}

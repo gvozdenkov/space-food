@@ -1,0 +1,5 @@
+.page {
+  font-family: 'Jet Brains Mono', monospace;
+  background-color: var(--color-background);
+  color: var(--color-content-primary);
+}

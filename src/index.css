@@ -1,13 +1,27 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import url(./vendor/normalize.css);
+@import url(./fonts/fonts.css);
+@import url(./styles/variables.css);
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+@import url(./styles/blocks/page/page.css);
+@import url(./styles/blocks/page/__section/page__section.css);
+
+@import url(./styles/blocks/nav/nav.css);
+@import url(./styles/blocks/nav/__item/nav__item.css);
+@import url(./styles/blocks/nav/__item/_type/nav__item_type_profile.css);
+@import url(./styles/blocks/nav/__item/_type/nav__item_type_list.css);
+
+@import url(./styles/blocks/flex-row/flex-row.css);
+
+@import './styles/blocks/text/text.css';
+@import './styles/blocks/text/_type/text_type_main-default.css';
+@import './styles/blocks/text/_type/text_type_main-large.css';
+@import './styles/blocks/text/_type/text_type_main-medium.css';
+@import './styles/blocks/text/_type/text_type_main-small.css';
+@import './styles/blocks/text/_type/text_type_digits-default.css';
+@import './styles/blocks/text/_type/text_type_digits-medium.css';
+@import './styles/blocks/text/_type/text_type_digits-large.css';
+@import './styles/blocks/text/_color/text_color_primary.css';
+@import './styles/blocks/text/_color/text_color_inactive.css';
+@import './styles/blocks/text/_color/text_color_accent.css';
+@import './styles/blocks/text/_color/text_color_error.css';
+@import './styles/blocks/text/_color/text_color_success.css';

@@ -1,0 +1,14 @@
+:root {
+  --color-background: #131316;
+  --color-background-modal: #1c1c21;
+  --color-content-primary: #f2f2f3;
+  --color-content-inactive: #8585ad;
+
+  --text-primary-color: white;
+  --text-inactive-color: #8585ad;
+  --colors-interface-accent: #4c4cff;
+  --colors-interface-error: #e52b1a;
+  --colors-interface-success: #00cccc;
+
+  --common-transition: all 0.3s ease-in;
+}
