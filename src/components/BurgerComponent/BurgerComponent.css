@@ -1,0 +1,6 @@
+.BurgerComponent {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 12px;
+  align-items: center;
+}
