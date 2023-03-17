@@ -1,10 +1,9 @@
-import cn from 'classnames';
 import { BurgerComponent } from '../burger-component';
 import s from './burger-components.module.css';
 
 export const BurgerComponents = (props) => {
   return (
-    <div className={cn(s.burgerComponents)}>
+    <div className={s.burgerComponents}>
       <BurgerComponent
         withDrag={false}
         type="top"

@@ -1,5 +1,5 @@
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
-import cn from 'classnames';
+import cn from 'clsx';
 import React from 'react';
 import s from './burger-ingredients.module.css';
 

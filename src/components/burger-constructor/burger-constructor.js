@@ -1,4 +1,4 @@
-import cn from 'classnames';
+import cn from 'clsx';
 import { BurgerComponents } from '../burger-components';
 import { BurgerConstructorTotal } from '../burger-constructor-total';
 import s from './burger-constructor.module.css';
