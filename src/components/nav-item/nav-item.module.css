@@ -1,0 +1,21 @@
+.navItem {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 8px;
+}
+
+.navItem:first-of-type {
+  padding-left: 0;
+}
+
+.navItem:last-of-type {
+  padding-right: 0;
+}
+
+.navItem_align_right {
+  margin-left: auto;
+}
+
+.navItem_align_left {
+  margin-right: auto;
+}

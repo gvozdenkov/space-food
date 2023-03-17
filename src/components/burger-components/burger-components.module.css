@@ -1,0 +1,6 @@
+.burgerComponents {
+  display: flex;
+  flex-flow: column;
+  align-items: end;
+  gap: 16px;
+}

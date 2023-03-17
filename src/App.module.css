@@ -1,9 +1,0 @@
-.App {
-  min-width: 375px;
-  margin: auto;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  min-height: 100vh;
-  box-sizing: border-box;
-}
