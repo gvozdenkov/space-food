@@ -4,9 +4,10 @@ import { BurgerIngredients } from '../burger-ingredients';
 import { ingredientTypes } from '../../utils/data';
 
 export const Main = (props) => {
+  const {ingredients} = props
   return (
     <main className={s.main}>
-      <BurgerIngredients ingredientTypes={ingredientTypes} />
+      <BurgerIngredients ingredients={ingredients} />
       <BurgerConstructor />
     </main>
   );

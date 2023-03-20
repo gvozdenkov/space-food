@@ -5,10 +5,16 @@ export const Nav = () => {
   return (
     <nav>
       <ul className={s.nav}>
-        <NavItem iconName="burger" text="Конструктор" isActive={true} />
-        <NavItem iconName="list" text="Лента заказов" isActive={false} />
+        <NavItem iconName="burger" isActive={true}>
+          Конструктор
+        </NavItem>
+        <NavItem iconName="list" isActive={false}>
+          Лента заказов
+        </NavItem>
         <NavItem iconName="logo" isCentered="true" />
-        <NavItem iconName="profile" text="Личный кабинет" isActive={false} />
+        <NavItem iconName="profile" isActive={false}>
+          Личный кабинет
+        </NavItem>
       </ul>
     </nav>
   );

@@ -1,0 +1,24 @@
+.ingredientItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-flow: column;
+  padding: 0 16px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.ingredientItem__price {
+  display: flex;
+  gap: 9px;
+}
+
+.ingredientItem__title {
+  text-align: center;
+}
+
+.ingredientItem__counter {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

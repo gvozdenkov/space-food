@@ -4,11 +4,13 @@
   --color-content-primary: #f2f2f3;
   --color-content-inactive: #8585ad;
 
-  --text-primary-color: white;
-  --text-inactive-color: #8585ad;
   --colors-interface-accent: #4c4cff;
   --colors-interface-error: #e52b1a;
   --colors-interface-success: #00cccc;
+
+  --color-scroll-thumb: #8585ad;
+  --color-scroll-track: #2f2f37;
+  --scroll-width: 8px;
 
   --common-transition: all 0.3s ease-in;
 

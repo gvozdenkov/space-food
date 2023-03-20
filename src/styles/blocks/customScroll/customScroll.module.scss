@@ -1,0 +1,15 @@
+.customScroll {
+  scrollbar-color: red blue;
+
+  &::-webkit-scrollbar {
+    width: var(--scroll-width);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-scroll-thumb);
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--color-scroll-track);
+  }
+}

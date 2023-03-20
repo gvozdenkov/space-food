@@ -4,12 +4,12 @@ import { Main } from './components/main';
 import { burgerIngredientsData } from './utils/data';
 
 export const App = () => {
-  const data = burgerIngredientsData;
+  const ingredients = burgerIngredientsData;
 
   return (
     <div className={s.app}>
       <AppHeader />
-      <Main />
+      <Main ingredients={ingredients} />
     </div>
   );
 };
