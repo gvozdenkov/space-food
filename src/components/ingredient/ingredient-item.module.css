@@ -15,6 +15,7 @@
 
 .ingredientItem__title {
   text-align: center;
+  min-height: 48px;
 }
 
 .ingredientItem__counter {

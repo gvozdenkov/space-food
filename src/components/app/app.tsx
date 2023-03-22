@@ -1,7 +1,7 @@
 import s from './app.module.css';
-import { AppHeader } from './components/app-header';
-import { Main } from './components/main';
-import { burgerIngredientsData } from './utils/data';
+import { AppHeader } from '../app-header';
+import { Main } from '../main';
+import { burgerIngredientsData } from '../../utils/data';
 
 export const App = () => {
   const ingredients = burgerIngredientsData;

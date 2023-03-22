@@ -2,6 +2,7 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState } from 'react';
 import s from './tab-list.module.css';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 
 export const TabList = ({ tabs }) => {
   const defaultTab = tabs[0]['type'];
@@ -24,4 +25,13 @@ export const TabList = ({ tabs }) => {
       })}
     </div>
   );
+};
+
+TabList.propTypes = {
+  tabs: PropTypes.arrayOf(
+    PropTypes.shape({
+      type: PropTypes.oneOf(['bun', 'main', 'sauce']),
+      text: PropTypes.string,
+    })
+  ).isRequired,
 };

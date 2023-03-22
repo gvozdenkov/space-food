@@ -11,7 +11,7 @@ export const Nav = () => {
         <NavItem iconName="list" isActive={false}>
           Лента заказов
         </NavItem>
-        <NavItem iconName="logo" isCentered="true" />
+        <NavItem iconName="logo" extraClass="ml-auto mr-auto" />
         <NavItem iconName="profile" isActive={false}>
           Личный кабинет
         </NavItem>
