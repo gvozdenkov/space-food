@@ -1,6 +1,8 @@
 :root {
   --color-background: #131316;
   --color-background-modal: #1c1c21;
+  --color-overlay-modal: rgba(0 0 0 / 0.6);
+  --color-modal-edge: rgba(76 76 76 / 0.2);
   --color-content-primary: #f2f2f3;
   --color-content-inactive: #8585ad;
 
@@ -16,6 +18,8 @@
 
   --gutter: 40px;
 }
+
+$radius: 40px;
 
 @media (max-width: 992px) {
   :root {

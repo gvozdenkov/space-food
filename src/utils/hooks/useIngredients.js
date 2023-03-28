@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { api } from '../../components/api/api';
+import { api } from '../../components/api';
 
 export const useIngredients = () => {
   const [data, setData] = useState([]);
