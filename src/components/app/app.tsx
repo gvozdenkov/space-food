@@ -1,15 +1,16 @@
 import s from './app.module.css';
 import { AppHeader } from '../app-header';
 import { Main } from '../main';
-import { burgerIngredientsData } from '../../utils/data';
+import { useIngredients } from '../../utils/hooks/useIngredients';
 
 export const App = () => {
-  const ingredients = burgerIngredientsData;
+  const { data, error, loading } = useIngredients();
+  console.log(data);
 
   return (
     <div className={s.app}>
       <AppHeader />
-      <Main ingredients={ingredients} />
+      <Main ingredients={data} />
     </div>
   );
 };

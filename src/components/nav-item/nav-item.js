@@ -17,10 +17,8 @@ export const NavItem = (props) => {
 
   return (
     <li className={liStyle}>
-      <a className={clsx(s.NavItem)} href="https://www.google.com/">
-        {iconName && getIcons(iconType)[iconName]}
-        {children && <p className={textStyle}>{children}</p>}
-      </a>
+      {iconName && getIcons(iconType)[iconName]}
+      {children && <p className={textStyle}>{children}</p>}
     </li>
   );
 };
