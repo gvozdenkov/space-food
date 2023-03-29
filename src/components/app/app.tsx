@@ -3,6 +3,7 @@ import { AppHeader } from '../app-header';
 import { Main } from '../main';
 import { useIngredients } from '../../utils/hooks/useIngredients';
 import { Modal } from '../modal';
+import { OrderDetails } from '../order-details';
 
 export const App = () => {
   const { data, error, loading } = useIngredients();
@@ -12,8 +13,8 @@ export const App = () => {
     <div className={s.app}>
       <AppHeader />
       <Main ingredients={data} />
-      <Modal>
-        <p>hello</p>
+      <Modal tytle="Детали ингредиента">
+        <OrderDetails orderNumber={34543} />
       </Modal>
     </div>
   );

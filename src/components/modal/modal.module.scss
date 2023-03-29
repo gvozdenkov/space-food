@@ -10,8 +10,6 @@
   border-radius: $radius;
   padding: 40px 40px 60px 40px;
   box-sizing: border-box;
-  display: flex;
-  justify-content: center;
   translate: 0 100px;
   opacity: 0;
   visibility: hidden;
@@ -28,12 +26,8 @@
 
 .modal__closeBtn {
   border: 0;
-  margin: 0;
   padding: 3px;
   background-color: transparent;
-  position: absolute;
-  right: 40px;
-  top: 60px;
   transition: opacity 0.3s ease-out;
 
   &:hover {
