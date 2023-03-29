@@ -5,11 +5,17 @@ import clsx from 'clsx';
 import { Price } from '../price';
 import PropTypes from 'prop-types';
 
-export const BurgerConstructorTotal = ({ totalPrice }) => {
+export const BurgerConstructorTotal = ({ totalPrice, createOrder }) => {
   return (
     <div className={clsx(s.burgerConstructorTotal, 'mt-10')}>
       {<Price amount={totalPrice} size="medium" />}
-      <Button type="primary" size="medium" htmlType="submit" extraClass="ml-10">
+      <Button
+        type="primary"
+        size="medium"
+        htmlType="submit"
+        extraClass="ml-10"
+        onClick={createOrder}
+      >
         Оформить заказ
       </Button>
     </div>

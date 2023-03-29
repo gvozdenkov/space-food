@@ -1,31 +1,29 @@
 import { BurgerComponent } from '../burger-component';
 import s from './burger-components.module.css';
 
-export const BurgerComponents = () => {
+export const BurgerComponents = ({ components }) => {
   return (
-    <div className={s.burgerComponents}>
-      <BurgerComponent
-        withDrag={false}
-        type="top"
-        isLocked={true}
-        text="Краторная булка N-200i (верх)"
-        price={200}
-        thumbnail={'https://code.s3.yandex.net/react/code/meat-04.png'}
-      />
-      <BurgerComponent
-        withDrag={true}
-        text="Краторная булка N-200i (верх)"
-        price={200}
-        thumbnail={'https://code.s3.yandex.net/react/code/meat-04.png'}
-      />
-      <BurgerComponent
-        withDrag={false}
-        type="bottom"
-        isLocked={true}
-        text="Краторная булка N-200i (верх)"
-        price={200}
-        thumbnail={'https://code.s3.yandex.net/react/code/meat-04.png'}
-      />
-    </div>
+    <ul className={s.burgerComponents}>
+      {components.map((component, index, array) => {
+        let pos;
+        if (index === 0) {
+          pos = 'top';
+        } else if (index === array.length - 1) {
+          pos = 'bottom';
+        }
+        return (
+          <li key={index}>
+            <BurgerComponent
+              withDrag={index !== 0 && index !== array.length - 1}
+              type={pos}
+              isLocked={index === 0 || index === array.length - 1}
+              text={component.name}
+              price={component.price}
+              thumbnail={component.image_mobile}
+            />
+          </li>
+        );
+      })}
+    </ul>
   );
 };

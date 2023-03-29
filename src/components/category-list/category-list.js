@@ -31,7 +31,7 @@ CategoryList.propTypes = {
       text: PropTypes.string,
     })
   ).isRequired,
-  
+
   ingredients: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string,
