@@ -3,13 +3,10 @@ import s from './modal.module.scss';
 import clsx from 'clsx';
 import { getIcons } from '../../utils';
 import { ModalOverlay } from '../modal-overlay';
+import PropTypes from 'prop-types';
 
-export const Modal = ({ tytle, children }) => {
-  const [isOpen, setOpen] = useState(true);
-
-  const openModal = () => {
-    setOpen(true);
-  };
+export const Modal = ({ title, children, open = false }) => {
+  const [isOpen, setOpen] = useState(open);
 
   const closeModal = () => {
     setOpen(false);
@@ -25,19 +22,27 @@ export const Modal = ({ tytle, children }) => {
             aria-labelledby="edit-profile-form-title"
             aria-modal="true"
           >
-            <span className="text text_type_main-large">{tytle}</span>
-            <button
-              className={clsx(s.modal__closeBtn, 'ml-9')}
-              aria-label="Закрыть попап"
-              type="button"
-              onClick={closeModal}
-            >
-              {getIcons('primary')['close']}
-            </button>
+            <div className={clsx(s.modal__header)}>
+              <h3 className={clsx(s.modal__title, 'text text_type_main-large')}>{title}</h3>
+              <button
+                className={clsx(s.modal__closeBtn, 'ml-9')}
+                aria-label="Закрыть попап"
+                type="button"
+                onClick={closeModal}
+              >
+                {getIcons('primary')['close']}
+              </button>
+            </div>
             {children}
           </div>
         </ModalOverlay>
       }
     </>
   );
+};
+
+Modal.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.any,
+  open: PropTypes.bool,
 };

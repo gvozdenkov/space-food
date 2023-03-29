@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { React } from 'react';
-import { ingredientTypes } from '../../utils/data';
+import { ingredientTypes } from '../../utils/config';
 import { CategoryList } from '../category-list/category-list';
 import { TabList } from '../tab-list';
 import s from './burger-ingredients.module.css';

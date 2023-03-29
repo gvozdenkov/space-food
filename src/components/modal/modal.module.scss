@@ -2,7 +2,7 @@
 
 .modal {
   max-width: 720px;
-  min-width: 320px;
+  min-width: 720px;
   min-height: 300px;
   background-color: var(--color-background-modal);
   position: relative;
@@ -24,11 +24,23 @@
   visibility: visible;
 }
 
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+}
+
+.modal__title {
+  grid-area: title;
+}
+
 .modal__closeBtn {
   border: 0;
   padding: 3px;
   background-color: transparent;
   transition: opacity 0.3s ease-out;
+  grid-area: close;
 
   &:hover {
     cursor: pointer;

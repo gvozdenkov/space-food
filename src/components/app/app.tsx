@@ -7,14 +7,13 @@ import { OrderDetails } from '../order-details';
 
 export const App = () => {
   const { data, error, loading } = useIngredients();
-  console.log(data);
 
   return (
     <div className={s.app}>
       <AppHeader />
       <Main ingredients={data} />
-      <Modal tytle="Детали ингредиента">
-        <OrderDetails orderNumber={34543} />
+      <Modal open={false}>
+        <OrderDetails orderNumber={345436} />
       </Modal>
     </div>
   );
