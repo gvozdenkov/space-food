@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { React } from 'react';
-import { ingredientTypes } from '../../utils/config';
+import { ingredientPropTypes, ingredientTypes } from '../../utils/config';
 import { CategoryList } from '../category-list/category-list';
 import { TabList } from '../tab-list';
 import s from './burger-ingredients.module.css';
@@ -17,20 +17,5 @@ export const BurgerIngredients = ({ ingredients }) => {
 };
 
 BurgerIngredients.propTypes = {
-  ingredients: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string,
-      name: PropTypes.string,
-      type: PropTypes.string,
-      proteins: PropTypes.number,
-      fat: PropTypes.number,
-      carbohydrates: PropTypes.number,
-      calories: PropTypes.number,
-      price: PropTypes.number,
-      image: PropTypes.string,
-      image_mobile: PropTypes.string,
-      image_large: PropTypes.string,
-      __v: PropTypes.number,
-    })
-  ),
+  ingredients: PropTypes.arrayOf(ingredientPropTypes),
 };
