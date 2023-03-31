@@ -1,26 +1,26 @@
-import { BurgerComponent } from '../burger-component';
+import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
+import clsx from 'clsx';
+import { getIcons } from '../../utils';
 import s from './burger-components.module.css';
+import { useBurgerComponents } from './useBurgerComponents';
 
 export const BurgerComponents = ({ components }) => {
+  const componentProps = useBurgerComponents({ components });
+
   return (
-    <ul className={s.burgerComponents}>
-      {components.map((component, index, array) => {
-        let pos;
-        if (index === 0) {
-          pos = 'top';
-        } else if (index === array.length - 1) {
-          pos = 'bottom';
-        }
+    <ul className={clsx(s.burgerComponents)}>
+      {components.map((_, index) => {
+        const withDrag = componentProps[index].withDrag;
         return (
-          <li key={index}>
-            <BurgerComponent
-              withDrag={index !== 0 && index !== array.length - 1}
-              type={pos}
-              isLocked={index === 0 || index === array.length - 1}
-              text={component.name}
-              price={component.price}
-              thumbnail={component.image_mobile}
-            />
+          <li
+            className={clsx(
+              { [s.burgerComponents__item_withDrag]: withDrag },
+              { 'ml-15': !withDrag }
+            )}
+            key={index}
+          >
+            {withDrag && getIcons('primary')['drag']}
+            <ConstructorElement {...componentProps[index]} />
           </li>
         );
       })}
