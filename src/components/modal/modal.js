@@ -1,34 +1,38 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import s from './modal.module.scss';
 import clsx from 'clsx';
 import { getIcons } from '../../utils';
 import { ModalOverlay } from '../modal-overlay';
 import PropTypes from 'prop-types';
+import { MODAL_PORTAL_EL } from '../../utils/config';
 
-export const Modal = ({ title, children, open = false }) => {
-  const [isOpen, setOpen] = useState(open);
-
-  const closeModal = () => {
-    setOpen(false);
-  };
-
-  return (
+export const Modal = ({ title, ariaTitle, children, open, setOpen }) => {
+  return createPortal(
     <>
       {
-        <ModalOverlay opened={isOpen}>
+        <ModalOverlay open={open} setOpen={setOpen}>
           <div
-            className={clsx(s.modal, { [s.modal_opened]: isOpen })}
+            className={clsx(s.modal, { [s.modal_opened]: open })}
             role="dialog"
-            aria-labelledby="edit-profile-form-title"
-            aria-modal="true"
+            aria-labelledby="modal-title"
+            aria-modal={open ? 'true' : 'false'}
+            onClick={(e) => e.stopPropagation()}
           >
             <div className={clsx(s.modal__header)}>
-              <h3 className={clsx(s.modal__title, 'text text_type_main-large')}>{title}</h3>
+              {!title && (
+                <h3 className="sr-only" id="modal-title">
+                  {ariaTitle}
+                </h3>
+              )}
+              <h3 className={clsx(s.modal__title, 'text text_type_main-large')} id="modal-title">
+                {title}
+              </h3>
               <button
                 className={clsx(s.modal__closeBtn, 'ml-9')}
                 aria-label="Закрыть попап"
                 type="button"
-                onClick={closeModal}
+                onClick={() => setOpen(false)}
               >
                 {getIcons('primary')['close']}
               </button>
@@ -37,12 +41,15 @@ export const Modal = ({ title, children, open = false }) => {
           </div>
         </ModalOverlay>
       }
-    </>
+    </>,
+    MODAL_PORTAL_EL
   );
 };
 
 Modal.propTypes = {
   title: PropTypes.string,
+  ariaTitle: PropTypes.string,
   children: PropTypes.any,
-  open: PropTypes.bool,
+  open: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func.isRequired,
 };

@@ -2,6 +2,7 @@
 @import url(./styles/variables.scss);
 
 @import url(./styles/blocks/common/common.scss);
+@import url(./styles/blocks/sr-only/sr-only.scss);
 
 @import url(./styles/blocks/page/page.css);
 @import url(./styles/blocks/page/__section/page__section.css);

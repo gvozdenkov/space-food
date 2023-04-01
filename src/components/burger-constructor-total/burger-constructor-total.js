@@ -1,11 +1,15 @@
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import React from 'react';
+import React, { useState } from 'react';
 import s from './burger-constructor-total.module.css';
 import clsx from 'clsx';
 import { Price } from '../price';
 import PropTypes from 'prop-types';
+import { Modal } from '../modal';
+import { OrderDetails } from '../order-details';
 
-export const BurgerConstructorTotal = ({ totalPrice, createOrder }) => {
+export const BurgerConstructorTotal = ({ totalPrice }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className={clsx(s.burgerConstructorTotal, 'mt-10')}>
       {<Price amount={totalPrice} size="medium" />}
@@ -14,10 +18,13 @@ export const BurgerConstructorTotal = ({ totalPrice, createOrder }) => {
         size="medium"
         htmlType="submit"
         extraClass="ml-10"
-        onClick={createOrder}
+        onClick={() => setIsOpen(true)}
       >
         Оформить заказ
       </Button>
+      <Modal ariaTitle="Идентификатор заказа" open={isOpen} setOpen={setIsOpen}>
+        <OrderDetails orderNumber={345436} />
+      </Modal>
     </div>
   );
 };

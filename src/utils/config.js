@@ -28,3 +28,5 @@ export const ingredientPropTypes = PropTypes.shape({
   image_large: PropTypes.string,
   __v: PropTypes.number,
 });
+
+export const MODAL_PORTAL_EL = document.querySelector('#modal-portal');

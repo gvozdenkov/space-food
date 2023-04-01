@@ -4,8 +4,6 @@ import { BurgerConstructorTotal } from '../burger-constructor-total';
 import s from './burger-constructor.module.css';
 import ProopTypes from 'prop-types';
 import { useState } from 'react';
-import { Modal } from '../modal';
-import { OrderDetails } from '../order-details';
 
 export const BurgerConstructor = () => {
   const [components, setComponents] = useState([
@@ -80,21 +78,13 @@ export const BurgerConstructor = () => {
       __v: 0,
     },
   ]);
-  const [modalOpen, setModalOpen] = useState(false);
 
   const total = components.reduce((sum, component) => sum + component.price, 0);
-
-  const createOrder = () => {
-    setModalOpen(true);
-  };
 
   return (
     <section className={clsx(s.burgerConstructor, 'pt-25')}>
       <BurgerComponents components={components} />
-      <BurgerConstructorTotal totalPrice={total} createOrder={createOrder} />
-      <Modal open={modalOpen}>
-        <OrderDetails orderNumber={345436} />
-      </Modal>
+      <BurgerConstructorTotal totalPrice={total} />
     </section>
   );
 };
