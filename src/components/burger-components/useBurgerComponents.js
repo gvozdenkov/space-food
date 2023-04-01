@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const useBurgerComponents = ({ components }) => {
   let componentProps = [];
 

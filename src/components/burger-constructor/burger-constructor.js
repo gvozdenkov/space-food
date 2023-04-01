@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import { BurgerComponents } from '../burger-components';
 import { BurgerConstructorTotal } from '../burger-constructor-total';
 import s from './burger-constructor.module.css';
-import ProopTypes from 'prop-types';
 import { useState } from 'react';
 
 export const BurgerConstructor = () => {

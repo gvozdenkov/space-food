@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
-import { IngredientItem } from '../ingredient/ingredient-item';
+import { IngredientItem } from '../ingredient-item/ingredient-item';
 import s from './ingredient-list.module.scss';
 import PropTypes from 'prop-types';
 import { ingredientPropTypes } from '../../utils/config';
@@ -11,7 +11,7 @@ export const IngredientList = ({ ingredients }) => {
       {ingredients.map((ingredient) => {
         return (
           <li key={ingredient._id}>
-            <IngredientItem ingredientData={ingredient} />
+            <IngredientItem ingredient={ingredient} />
           </li>
         );
       })}

@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import s from './modal.module.scss';
 import clsx from 'clsx';
@@ -15,13 +14,13 @@ export const Modal = ({ title, ariaTitle, children, open, setOpen }) => {
           <div
             className={clsx(s.modal, { [s.modal_opened]: open })}
             role="dialog"
-            aria-labelledby="modal-title"
+            aria-labelledby={title ? 'modal-title' : 'modal-title-aria'}
             aria-modal={open ? 'true' : 'false'}
             onClick={(e) => e.stopPropagation()}
           >
             <div className={clsx(s.modal__header)}>
               {!title && (
-                <h3 className="sr-only" id="modal-title">
+                <h3 className="sr-only" id="modal-title-aria">
                   {ariaTitle}
                 </h3>
               )}

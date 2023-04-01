@@ -4,7 +4,7 @@
   margin: 0;
   display: flex;
   flex-flow: column;
-  align-items: end;
+  align-items: flex-end;
   gap: 16px;
 }
 
