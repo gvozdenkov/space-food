@@ -2,7 +2,6 @@ export const useBurgerComponents = ({ components }) => {
   let componentProps = [];
 
   components.forEach((component, index, array) => {
-    const withDrag = index !== 0 && index !== array.length - 1;
     const isLocked = index === 0 || index === array.length - 1;
     const price = component.price;
     const thumbnail = component.image_mobile;
@@ -18,8 +17,12 @@ export const useBurgerComponents = ({ components }) => {
       text = `${component.name} (низ)`;
     }
 
-    componentProps.push({ withDrag, isLocked, type, text, price, thumbnail });
+    componentProps.push({ isLocked, type, text, price, thumbnail });
   });
 
-  return componentProps;
+  const topComponent = componentProps[0];
+  const bottomComponent = componentProps[componentProps.length - 1];
+  const middleComponet = componentProps.slice(1, -1);
+
+  return { topComponent, middleComponet, bottomComponent };
 };

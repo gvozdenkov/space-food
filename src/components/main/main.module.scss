@@ -3,7 +3,7 @@
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   gap: 40px;
-  padding: 0 40px;
+  padding: 0 var(--gutter);
   box-sizing: border-box;
   max-width: calc(1240px + var(--gutter) * 2);
   width: 100%;

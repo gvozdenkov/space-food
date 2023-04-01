@@ -1,9 +1,8 @@
 import clsx from 'clsx';
-import { React } from 'react';
 import { ingredientPropTypes, ingredientTypes } from '../../utils/config';
 import { CategoryList } from '../category-list/category-list';
 import { TabList } from '../tab-list';
-import s from './burger-ingredients.module.css';
+import s from './burger-ingredients.module.scss';
 import PropTypes from 'prop-types';
 
 export const BurgerIngredients = ({ ingredients }) => {

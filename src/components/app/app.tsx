@@ -1,9 +1,7 @@
-import s from './app.module.css';
+import s from './app.module.scss';
 import { AppHeader } from '../app-header';
 import { Main } from '../main';
 import { useIngredients } from '../../utils/hooks/useIngredients';
-import { Modal } from '../modal';
-import { IngredientDetails } from '../IngredientDetails';
 
 export const App = () => {
   const { data, error, loading } = useIngredients();

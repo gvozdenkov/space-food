@@ -1,4 +1,4 @@
-import s from './main.module.css';
+import s from './main.module.scss';
 import { BurgerConstructor } from '../burger-constructor';
 import { BurgerIngredients } from '../burger-ingredients';
 import PropTypes from 'prop-types';

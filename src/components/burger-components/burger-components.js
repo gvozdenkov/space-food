@@ -1,29 +1,39 @@
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import clsx from 'clsx';
 import { getIcons } from '../../utils';
-import s from './burger-components.module.css';
+import s from './burger-components.module.scss';
 import { useBurgerComponents } from './useBurgerComponents';
 
 export const BurgerComponents = ({ components }) => {
-  const componentProps = useBurgerComponents({ components });
+  const { topComponent, middleComponet, bottomComponent } = useBurgerComponents({
+    components,
+  });
 
   return (
     <ul className={clsx(s.burgerComponents)}>
-      {components.map((_, index) => {
-        const withDrag = componentProps[index].withDrag;
-        return (
-          <li
-            className={clsx(
-              { [s.burgerComponents__item_withDrag]: withDrag },
-              { 'ml-15': !withDrag }
-            )}
-            key={index}
-          >
-            {withDrag && getIcons('primary')['drag']}
-            <ConstructorElement {...componentProps[index]} />
-          </li>
-        );
-      })}
+      <li key="top" className={clsx(s.burgerComponent__topBottom)}>
+        <ConstructorElement {...topComponent} />
+      </li>
+
+      <li
+        className={clsx(s.burgerComponents, s.burgerComponents_middle, 'custom-scroll')}
+        key="middle"
+      >
+        <ul className={clsx(s.burgerComponents)}>
+          {middleComponet.map((component, index) => {
+            return (
+              <li className={clsx(s.burgerComponent_withDrag)} key={index}>
+                {getIcons('primary')['drag']}
+                <ConstructorElement {...component} />
+              </li>
+            );
+          })}
+        </ul>
+      </li>
+
+      <li key="bottom" className={clsx(s.burgerComponent__topBottom)}>
+        <ConstructorElement {...bottomComponent} />
+      </li>
     </ul>
   );
 };

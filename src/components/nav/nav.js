@@ -1,5 +1,5 @@
 import { NavItem } from '../nav-item';
-import s from './nav.module.css';
+import s from './nav.module.scss';
 
 export const Nav = () => {
   return (

@@ -1,6 +1,6 @@
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import React, { useState } from 'react';
-import s from './burger-constructor-total.module.css';
+import s from './burger-constructor-total.module.scss';
 import clsx from 'clsx';
 import { Price } from '../price';
 import PropTypes from 'prop-types';
@@ -11,7 +11,7 @@ export const BurgerConstructorTotal = ({ totalPrice }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={clsx(s.burgerConstructorTotal, 'mt-10')}>
+    <div className={clsx(s.burgerConstructorTotal, 'mt-10 pr-4')}>
       {<Price amount={totalPrice} size="medium" />}
       <Button
         type="primary"

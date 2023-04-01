@@ -12,17 +12,22 @@
 
   --color-scroll-thumb: #8585ad;
   --color-scroll-track: #2f2f37;
-  --scroll-width: 8px;
 
   --common-transition: all 0.3s ease-in;
 
-  --gutter: 40px;
+  --gutter: 20px;
+  --header-height: 88px;
 }
 
 $radius: 40px;
+$scrollWidth: 8px;
+
+$burgerIngredientHeight: 80px;
+$burgerIngredientsGap: 16px;
+$burgerIngredientsMax: 5;
 
 @media (max-width: 992px) {
   :root {
-    --gutter: 20px;
+    --gutter: 10px;
   }
 }

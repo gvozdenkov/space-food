@@ -1,6 +1,6 @@
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState } from 'react';
-import s from './tab-list.module.css';
+import s from './tab-list.module.scss';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 

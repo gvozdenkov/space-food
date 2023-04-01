@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import { IngredientList } from '../ingredient-list';
 import s from './category-list.module.scss';
-import scroll from '../../styles/blocks/customScroll/customScroll.module.scss';
 import PropTypes from 'prop-types';
 import { ingredientPropTypes } from '../../utils/config';
 import { useCategoryList } from './useCategoryList';
@@ -11,14 +10,12 @@ export const CategoryList = ({ ingredients, types }) => {
 
   return (
     <>
-      <ul className={clsx(s.categoryList, scroll.customScroll)}>
+      <ul className={clsx(s.categoryList, 'custom-scroll')}>
         {types.map((type, index) => {
           return (
             <li key={index}>
               <h2 className="text text_type_main-medium mb-6">{type.text}</h2>
-              <IngredientList
-                ingredients={filterByType(ingredients, type.type)}
-              />
+              <IngredientList ingredients={filterByType(ingredients, type.type)} />
             </li>
           );
         })}

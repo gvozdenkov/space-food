@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { getIcons } from '../../utils/utils';
-import s from './nav-item.module.css';
+import s from './nav-item.module.scss';
 
 export const NavItem = (props) => {
   const { children, iconName, isActive, extraClass } = props;

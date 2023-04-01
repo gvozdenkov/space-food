@@ -2,7 +2,7 @@ import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 import clsx from 'clsx';
 import { useState } from 'react';
 import { Price } from '../price';
-import s from './ingredient-item.module.css';
+import s from './ingredient-item.module.scss';
 import { ingredientPropTypes } from '../../utils/config';
 import { Modal } from '../modal';
 import { IngredientDetails } from '../IngredientDetails';
