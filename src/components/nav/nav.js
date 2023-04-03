@@ -1,20 +1,14 @@
-import { NavItem } from '../nav-item';
+import { menuItems } from '../../utils/config';
 import s from './nav.module.scss';
+import { NavItem } from '../nav-item';
 
 export const Nav = () => {
   return (
     <nav>
       <ul className={s.nav}>
-        <NavItem iconName="burger" isActive={true}>
-          Конструктор
-        </NavItem>
-        <NavItem iconName="list" isActive={false}>
-          Лента заказов
-        </NavItem>
-        <NavItem iconName="logo" extraClass="ml-auto mr-auto" />
-        <NavItem iconName="profile" isActive={false}>
-          Личный кабинет
-        </NavItem>
+        {menuItems.map((menu, index) => {
+          return <NavItem item={menu} key={index} />;
+        })}
       </ul>
     </nav>
   );

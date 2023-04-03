@@ -19,5 +19,5 @@ export const IngredientList = ({ ingredients }) => {
 };
 
 IngredientList.propTypes = {
-  ingredients: PropTypes.arrayOf(ingredientPropTypes),
+  ingredients: PropTypes.arrayOf(ingredientPropTypes).isRequired,
 };

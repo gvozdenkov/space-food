@@ -1,8 +1,10 @@
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { getIcons } from '../../utils';
 import s from './burger-components.module.scss';
 import { useBurgerComponents } from './useBurgerComponents';
+import { ingredientPropTypes } from '../../utils/config';
 
 export const BurgerComponents = ({ components }) => {
   const { topComponent, middleComponet, bottomComponent } = useBurgerComponents({
@@ -36,4 +38,8 @@ export const BurgerComponents = ({ components }) => {
       </li>
     </ul>
   );
+};
+
+BurgerComponents.propTypes = {
+  components: PropTypes.arrayOf(ingredientPropTypes).isRequired,
 };

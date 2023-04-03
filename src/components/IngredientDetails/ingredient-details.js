@@ -1,7 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import s from './ingredient-details.module.scss';
+import { ingredientPropTypes } from '../../utils/config';
 
 export const IngredientDetails = ({ ingredient }) => {
   return (
@@ -24,4 +23,6 @@ export const IngredientDetails = ({ ingredient }) => {
   );
 };
 
-IngredientDetails.propTypes = {};
+IngredientDetails.propTypes = {
+  ingredient: ingredientPropTypes.isRequired,
+};

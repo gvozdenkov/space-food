@@ -1,5 +1,5 @@
 import s from './app.module.scss';
-import { AppHeader } from '../app-header';
+import { Header } from '../header';
 import { Main } from '../main';
 import { useIngredients } from '../../utils/hooks/useIngredients';
 
@@ -8,7 +8,7 @@ export const App = () => {
 
   return (
     <div className={s.app}>
-      <AppHeader />
+      <Header />
       <Main ingredients={data} />
     </div>
   );

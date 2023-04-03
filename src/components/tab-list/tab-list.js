@@ -30,7 +30,7 @@ export const TabList = ({ tabs }) => {
 TabList.propTypes = {
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
-      type: PropTypes.oneOf(['bun', 'main', 'sauce']),
+      type: PropTypes.string,
       text: PropTypes.string,
     })
   ).isRequired,

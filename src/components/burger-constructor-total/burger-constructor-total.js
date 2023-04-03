@@ -1,5 +1,5 @@
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import s from './burger-constructor-total.module.scss';
 import clsx from 'clsx';
 import { Price } from '../price';
@@ -12,7 +12,7 @@ export const BurgerConstructorTotal = ({ totalPrice }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { data, error, loading } = useCreateOrder();
 
-   return (
+  return (
     <div className={clsx(s.burgerConstructorTotal, 'mt-10 pr-4')}>
       {<Price amount={totalPrice} size="medium" />}
       <Button
@@ -32,5 +32,5 @@ export const BurgerConstructorTotal = ({ totalPrice }) => {
 };
 
 BurgerConstructorTotal.propTypes = {
-  totalPrice: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  totalPrice: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]).isRequired,
 };

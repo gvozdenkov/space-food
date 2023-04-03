@@ -14,6 +14,38 @@ export const ingredientTypes = [
   { type: 'sauce', text: 'Соусы' },
 ];
 
+export const menuItems = [
+  {
+    title: 'Конструктор',
+    icon: 'burger',
+    url: '/',
+  },
+  {
+    title: 'Лента заказов',
+    icon: 'list',
+    url: '/order-list',
+  },
+  {
+    title: 'Личный кабинет',
+    icon: 'profile',
+    url: '/profile',
+    mobileSubmenu: [
+      {
+        title: 'Профиль',
+        url: 'profile',
+      },
+      {
+        title: 'История заказов',
+        url: 'order-history',
+      },
+      {
+        title: 'Выход',
+        url: 'logout',
+      },
+    ],
+  },
+];
+
 export const ingredientPropTypes = PropTypes.shape({
   _id: PropTypes.string,
   name: PropTypes.string,

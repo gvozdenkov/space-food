@@ -27,7 +27,7 @@ export const CategoryList = ({ ingredients, types }) => {
 CategoryList.propTypes = {
   types: PropTypes.arrayOf(
     PropTypes.shape({
-      type: PropTypes.oneOf(['bun', 'main', 'sauce']),
+      type: PropTypes.string,
       text: PropTypes.string,
     })
   ).isRequired,
