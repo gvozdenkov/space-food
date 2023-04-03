@@ -20,11 +20,10 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-right: $scrollWidth;
+  margin-right: 2 * $scrollWidth;
 }
 
 .burgerComponents_middle {
-  overflow-y: scroll;
   max-height: calc(
     ($burgerIngredientsMax * $burgerIngredientHeight) +
       (($burgerIngredientsMax - 1) * $burgerIngredientsGap)

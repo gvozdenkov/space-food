@@ -16,7 +16,7 @@ export const BurgerComponents = ({ components }) => {
       </li>
 
       <li
-        className={clsx(s.burgerComponents, s.burgerComponents_middle, 'custom-scroll')}
+        className={clsx(s.burgerComponents, s.burgerComponents_middle, 'customScroll')}
         key="middle"
       >
         <ul className={clsx(s.burgerComponents)}>

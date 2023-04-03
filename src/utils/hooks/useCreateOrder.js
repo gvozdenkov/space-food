@@ -11,7 +11,7 @@ export const useCreateOrder = () => {
       try {
         setLoading(true);
         const response = await api.createOrder();
-        setData(response.data);
+        setData(123455);
       } catch (err) {
         setError(err);
       } finally {

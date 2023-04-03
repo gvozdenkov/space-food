@@ -10,7 +10,7 @@ export const CategoryList = ({ ingredients, types }) => {
 
   return (
     <>
-      <ul className={clsx(s.categoryList, 'custom-scroll')}>
+      <ul className={clsx(s.categoryList, 'customScroll')}>
         {types.map((type, index) => {
           return (
             <li key={index}>

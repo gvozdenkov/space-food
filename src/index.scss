@@ -1,0 +1,9 @@
+@use './vendor/normalize.scss';
+@use './styles/variables.scss';
+
+@use './styles/blocks/common/common.scss';
+@use './styles/blocks/sr-only/sr-only.scss';
+
+@use './styles/blocks/page/page.scss';
+@use './styles/blocks/page/__section/page__section.scss';
+@use './styles/blocks/custom-scroll/custom-scroll.scss';
