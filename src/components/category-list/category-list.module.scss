@@ -1,0 +1,10 @@
+@use '../../styles/mixins.scss' as *;
+
+.categoryList {
+  @include reset-list;
+  margin: 0;
+  overflow-y: scroll;
+  margin-top: 40px;
+  max-height: 716px;
+  box-sizing: border-box;
+}

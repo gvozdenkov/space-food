@@ -1,0 +1,31 @@
+@use '../../styles/variables.scss' as *;
+
+.burgerComponents {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+  gap: 16px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.burgerComponent__topBottom {
+  padding-right: 2 * $scrollWidth;
+}
+
+.burgerComponent_withDrag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 2 * $scrollWidth;
+}
+
+.burgerComponents_middle {
+  max-height: calc(
+    ($burgerIngredientsMax * $burgerIngredientHeight) +
+      (($burgerIngredientsMax - 1) * $burgerIngredientsGap)
+  );
+}

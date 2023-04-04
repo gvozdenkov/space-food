@@ -1,6 +1,6 @@
 # Stellar Burgers
 
-Fantastic burger shop at the edge of space.  
+Fantastic burger shop at the edge of space.
 [GH-pages site](https://gvozdenkov.github.io/stellar-burgers/)
 
 ![stellar burger main screen](https://i.ibb.co/rtmWNX9/2023-03-11-18-08.png)
@@ -11,23 +11,20 @@ Fantastic burger shop at the edge of space.
 ## Used technics
 
 - React
-- HTML
 - JSX
 - JS
 - SCSS
 
+## Local Dev
+
+```
+yarn
+yarn start
+```
+
 ## Version history
 
-### v1.0.0
-
-- layout of main screen (Burger constructor)
-
-  - AppHeader
-  - BurgerConstructor
-  - BurgerIngredients
-  - Modal
-  - ModalOverlay
-  - IngredientDetail
-  - OrderDetail
-
-- Connect to API to get ingredients
+| 1.0.0                                                            |
+| ---------------------------------------------------------------- |
+| layout of main screen (Header, Burger Ingredients & constructor) |
+| Connect to API to get ingredients                                |

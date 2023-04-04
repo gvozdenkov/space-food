@@ -1,0 +1,34 @@
+:root {
+  --color-background: #131316;
+  --color-background-modal: #1c1c21;
+  --color-overlay-modal: rgba(0 0 0 / 0.6);
+  --color-modal-edge: rgba(76 76 76 / 0.2);
+  --color-content-primary: #f2f2f3;
+  --color-content-inactive: #8585ad;
+
+  --colors-interface-accent: #4c4cff;
+  --colors-interface-error: #e52b1a;
+  --colors-interface-success: #00cccc;
+
+  --color-scroll-thumb: #8585ad;
+  --color-scroll-track: #2f2f37;
+
+  --common-transition: all 0.3s ease-in;
+
+  --gutter: 20px;
+  --header-height: 88px;
+
+  --border-radius: 40px;
+}
+
+$scrollWidth: 8px;
+
+$burgerIngredientHeight: 80px;
+$burgerIngredientsGap: 16px;
+$burgerIngredientsMax: 5;
+
+@media (max-width: 992px) {
+  :root {
+    --gutter: 10px;
+  }
+}
