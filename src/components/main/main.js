@@ -1,18 +1,15 @@
 import s from './main.module.scss';
 import { BurgerConstructor } from '../burger-constructor';
 import { BurgerIngredients } from '../burger-ingredients';
-import PropTypes from 'prop-types';
-import { ingredientPropTypes } from '../../utils/config';
+import { useContext } from 'react';
+import { IngredientContext } from '../../utils/contexts/ingredientsContext';
 
-export const Main = ({ ingredients }) => {
+export const Main = () => {
+  const ingredients = useContext(IngredientContext);
   return (
     <main className={s.main}>
-      <BurgerIngredients ingredients={ingredients} />
+      <BurgerIngredients />
       <BurgerConstructor />
     </main>
   );
-};
-
-Main.propTypes = {
-  ingredients: PropTypes.arrayOf(ingredientPropTypes).isRequired,
 };
