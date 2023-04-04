@@ -2,11 +2,13 @@ import clsx from 'clsx';
 import { IngredientList } from '../ingredient-list';
 import s from './category-list.module.scss';
 import PropTypes from 'prop-types';
-import { ingredientPropTypes } from '../../utils/config';
 import { useCategoryList } from './useCategoryList';
+import { useContext } from 'react';
+import { IngredientContext } from '../../utils/contexts/ingredientsContext';
 
-export const CategoryList = ({ ingredients, types }) => {
+export const CategoryList = ({ types }) => {
   const { filterByType } = useCategoryList();
+  const ingredients = useContext(IngredientContext);
 
   return (
     <>
@@ -31,6 +33,4 @@ CategoryList.propTypes = {
       text: PropTypes.string,
     }),
   ).isRequired,
-
-  ingredients: PropTypes.arrayOf(ingredientPropTypes),
 };
