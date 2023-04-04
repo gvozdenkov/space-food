@@ -7,8 +7,10 @@ import PropTypes from 'prop-types';
 import { Modal } from '../modal';
 import { OrderDetails } from '../order-details';
 import { useCreateOrder } from '../../utils/hooks/useCreateOrder';
+import { useIntl } from 'react-intl';
 
 export const BurgerConstructorTotal = ({ totalPrice }) => {
+  const intl = useIntl();
   const [isOpen, setIsOpen] = useState(false);
   // const { data, error, loading } = useCreateOrder();
 
@@ -21,7 +23,7 @@ export const BurgerConstructorTotal = ({ totalPrice }) => {
         htmlType='submit'
         extraClass='ml-10'
         onClick={() => setIsOpen(true)}>
-        Оформить заказ
+        {intl.formatMessage({ id: 'constructor.createOrder' })}
       </Button>
       <Modal ariaTitle='Идентификатор заказа' open={isOpen} setOpen={setIsOpen}>
         <OrderDetails orderNumber={123456} />
