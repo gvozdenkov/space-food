@@ -3,18 +3,15 @@ import PropTypes from 'prop-types';
 import s from './modal-overlay.module.scss';
 import clsx from 'clsx';
 
-export const ModalOverlay = ({ open, setOpen, children }) => {
+export const ModalOverlay = ({ open, setOpen }) => {
   return (
     <div
       className={clsx(s.modalOverlay, { [s.modalOverlayOpened]: open })}
       onClick={() => setOpen(false)}
-    >
-      {children}
-    </div>
+    ></div>
   );
 };
 
 ModalOverlay.propTypes = {
-  children: PropTypes.any,
   open: PropTypes.bool,
 };
