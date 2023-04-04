@@ -10,7 +10,7 @@ import { useCreateOrder } from '../../utils/hooks/useCreateOrder';
 
 export const BurgerConstructorTotal = ({ totalPrice }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { data, error, loading } = useCreateOrder();
+  // const { data, error, loading } = useCreateOrder();
 
   return (
     <div className={clsx(s.burgerConstructorTotal, 'mt-10 pr-4')}>
@@ -25,12 +25,12 @@ export const BurgerConstructorTotal = ({ totalPrice }) => {
         Оформить заказ
       </Button>
       <Modal ariaTitle="Идентификатор заказа" open={isOpen} setOpen={setIsOpen}>
-        <OrderDetails orderNumber={data} />
+        <OrderDetails orderNumber={123456} />
       </Modal>
     </div>
   );
 };
 
 BurgerConstructorTotal.propTypes = {
-  totalPrice: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]).isRequired,
+  totalPrice: PropTypes.number.isRequired,
 };
