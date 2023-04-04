@@ -1,4 +1,7 @@
+import { useIntl } from 'react-intl';
+
 export const useBurgerComponents = ({ components }) => {
+  const intl = useIntl();
   let componentProps = [];
 
   components.forEach((component, index, array) => {
@@ -11,10 +14,10 @@ export const useBurgerComponents = ({ components }) => {
 
     if (index === 0) {
       type = 'top';
-      text = `${component.name} (верх)`;
+      text = `${component.name} (${intl.formatMessage({ id: 'constructor.top.intredient' })})`;
     } else if (index === array.length - 1) {
       type = 'bottom';
-      text = `${component.name} (низ)`;
+      text = `${component.name} (${intl.formatMessage({ id: 'constructor.bottom.intredient' })})`;
     }
 
     componentProps.push({ isLocked, type, text, price, thumbnail });

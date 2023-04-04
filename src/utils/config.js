@@ -9,37 +9,37 @@ export const serverConfig = {
 };
 
 export const ingredientTypes = [
-  { type: 'bun', text: 'Булки' },
-  { type: 'main', text: 'Начинки' },
-  { type: 'sauce', text: 'Соусы' },
+  { type: 'bun', text: 'ingredient.type.bun' },
+  { type: 'main', text: 'ingredient.type.main' },
+  { type: 'sauce', text: 'ingredient.type.sauce' },
 ];
 
 export const menuItems = [
   {
-    title: 'Конструктор',
+    title: 'nav.item.constructor',
     icon: 'burger',
     url: '/',
   },
   {
-    title: 'Лента заказов',
+    title: 'nav.item.orderList',
     icon: 'list',
     url: '/order-list',
   },
   {
-    title: 'Личный кабинет',
+    title: 'nav.item.profile',
     icon: 'profile',
     url: '/profile',
     mobileSubmenu: [
       {
-        title: 'Профиль',
+        title: 'nav.item.profile.profile',
         url: 'profile',
       },
       {
-        title: 'История заказов',
+        title: 'nav.item.profile.history',
         url: 'order-history',
       },
       {
-        title: 'Выход',
+        title: 'nav.item.profile.logout',
         url: 'logout',
       },
     ],
