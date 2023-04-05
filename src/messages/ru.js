@@ -13,7 +13,7 @@ export const messagesRu = {
   'checkout.popup.text1': 'Ваш заказ начали готовить',
   'checkout.popup.text2': 'Дождитесь готовности на орбитальной станции',
   'ingredients.detail.popup.title': 'Детали ингредиента',
-  'ingredients.detail.popup.calories': 'Калории, ккал',
+  'ingredients.detail.popup.calories': 'Кал, ккал',
   'ingredients.detail.popup.proteins': 'Белки, г',
   'ingredients.detail.popup.fat': 'Жиры, г',
   'ingredients.detail.popup.carbohydrates': 'Углеводы, г',

@@ -12,7 +12,7 @@ export const IngredientDetails = ({ ingredient }) => {
         src={ingredient.image_large}
         alt={ingredient.name}
         className={clsx(s.image, 'pl-5 pr-5')}></img>
-      <h4 className='text text_type_main-medium mt-4 mb-8'>{ingredient.name}</h4>
+      <h4 className={clsx(s.title, 'text text_type_main-medium mt-4 mb-8')}>{ingredient.name}</h4>
       <div className={clsx(s.nutrition)}>
         <p className='text text_type_main-default text_color_inactive mb-4'>
           {intl.formatMessage({ id: 'ingredients.detail.popup.calories' })}
