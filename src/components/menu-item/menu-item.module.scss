@@ -1,0 +1,28 @@
+.menuItem {
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--color-content-inactive);
+  transition: all 0.4s ease-out;
+
+  &:hover {
+    color: var(--color-content-primary);
+  }
+
+  > svg {
+    fill: var(--color-content-inactive);
+    transition: all 0.4s ease-out;
+  }
+
+  &:hover > svg {
+    fill: var(--color-content-primary);
+  }
+}
+
+.active {
+  color: var(--color-content-primary);
+
+  > svg {
+    fill: var(--color-content-primary);
+  }
+}
