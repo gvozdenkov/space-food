@@ -16,7 +16,9 @@ export const CategoryList = ({ types }) => {
         {types.map((type, index) => {
           return (
             <li key={index}>
-              <h2 className='text text_type_main-medium mb-6'>{type.text}</h2>
+              <h2 className='text text_type_main-medium mb-6' id={`${type.type}-category`}>
+                {type.text}
+              </h2>
               <IngredientList ingredients={filterByType(ingredients, type.type)} />
             </li>
           );

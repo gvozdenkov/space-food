@@ -24,7 +24,7 @@ export const NavItem = ({ item }) => {
           <Dropdown submenu={submenu} />
         </>
       ) : (
-        <a href={item.url} className={clsx(navLink.navLink)}>
+        <a href={item.url} className={clsx(navLink.navLink, 'reset-link')}>
           <MenuItem iconName={item.icon} title={item.title} isActive={true} />
         </a>
       )}

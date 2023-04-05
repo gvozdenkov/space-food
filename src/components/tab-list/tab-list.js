@@ -9,20 +9,29 @@ export const TabList = ({ tabs }) => {
 
   const [current, setCurrent] = useState(defaultTab);
 
+  const handleTabClick = (current) => {
+    setCurrent(current);
+    const linkEl = document.querySelector(`#${current}-tab`);
+    window.location.href = linkEl.href;
+  };
+
   return (
-    <div className={clsx(s.tabList, 'mt-5')}>
+    <ul className={clsx(s.tabList, 'mt-5 mb-10')}>
       {tabs.map((ingredient, index) => {
         return (
-          <Tab
-            key={index}
-            value={ingredient.type}
-            active={current === ingredient.type}
-            onClick={setCurrent}>
-            {ingredient.text}
-          </Tab>
+          <li key={index}>
+            <a href={`#${ingredient.type}-category`} id={`${ingredient.type}-tab`} className='reset-link'>
+              <Tab
+                value={ingredient.type}
+                active={current === ingredient.type}
+                onClick={(current) => handleTabClick(current)}>
+                {ingredient.text}
+              </Tab>
+            </a>
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 };
 
