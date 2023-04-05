@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import s from '../nav-item/nav-item.module.scss';
-import navLink from '../../styles/blocks/nav-link/nav-link.module.scss';
 import clsx from 'clsx';
 import { Dropdown } from '../Dropdown';
 import { MenuItem } from '../menu-item/menu-item';
@@ -15,17 +14,14 @@ export const NavItem = ({ item }) => {
     <li className={clsx(s.navItem)}>
       {submenu ? (
         <>
-          <button
-            className={clsx(s.navItem__button, navLink.navLink)}
-            type='button'
-            aria-haspopup='menu'>
-            <MenuItem iconName={item.icon} title={item.title} isActive={true} />
+          <button className={clsx(s.navItem__button)} type='button' aria-haspopup='menu'>
+            <MenuItem iconName={item.icon} title={item.title} />
           </button>
           <Dropdown submenu={submenu} />
         </>
       ) : (
-        <a href={item.url} className={clsx(navLink.navLink, 'reset-link')}>
-          <MenuItem iconName={item.icon} title={item.title} isActive={true} />
+        <a href={item.url} className='reset-link'>
+          <MenuItem iconName={item.icon} title={item.title} />
         </a>
       )}
     </li>
@@ -38,4 +34,5 @@ NavItem.propTypes = {
     icon: PropTypes.string,
     url: PropTypes.string.isRequired,
   }),
+  active: PropTypes.bool,
 };

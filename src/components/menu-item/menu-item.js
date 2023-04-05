@@ -1,21 +1,14 @@
 import clsx from 'clsx';
 import { getIcons } from '../../utils/utils';
 import PropTypes from 'prop-types';
+import s from './menu-item.module.scss';
 
-export const MenuItem = ({ iconName, title, isActive = false }) => {
-  const iconType = isActive ? 'primary' : 'secondary';
-
-  const textStyle = clsx(
-    'text text_type_main-default',
-    { text_color_primary: isActive },
-    { text_color_inactive: !isActive },
-  );
-
+export const MenuItem = ({ iconName, title, isActive }) => {
   return (
-    <>
-      {iconName && getIcons(iconType)[iconName]}
-      {title && <p className={textStyle}>{title}</p>}
-    </>
+    <div className={clsx(s.menuItem)}>
+      {iconName && getIcons()[iconName]}
+      {title && <p className='text text_type_main-default'>{title}</p>}
+    </div>
   );
 };
 
