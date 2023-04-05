@@ -49,3 +49,5 @@ export const IntlConvert = (arr, param) => {
     [param]: intl.formatMessage({ id: item[param] }),
   }));
 };
+
+export const findBy = (arr, param) => (value) => arr.find((item) => item[param] === value);

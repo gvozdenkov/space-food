@@ -1,8 +1,10 @@
 import clsx from 'clsx';
-import { IngredientItem } from '../ingredient-item/ingredient-item';
+import { IngredientCard } from '../ingredient-card/ingredient-card';
 import s from './ingredient-list.module.scss';
 import PropTypes from 'prop-types';
 import { ingredientPropTypes } from '../../utils/config';
+import { IngredeintImage } from '../ingredient-card/ingredeint-image';
+import { IngredientInfo } from '../ingredient-card/ingredient-info';
 
 export const IngredientList = ({ ingredients }) => {
   return (
@@ -10,7 +12,11 @@ export const IngredientList = ({ ingredients }) => {
       {ingredients.map((ingredient) => {
         return (
           <li key={ingredient._id}>
-            <IngredientItem ingredient={ingredient} />
+            <IngredientCard
+              _id={ingredient._id}
+              image={<IngredeintImage image={ingredient.image} />}
+              info={<IngredientInfo price={ingredient.price} name={ingredient.name} />}
+            />
           </li>
         );
       })}

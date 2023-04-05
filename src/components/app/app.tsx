@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import s from './app.module.scss';
 import { Header } from '../header';
 import { Main } from '../main';
@@ -12,7 +11,7 @@ export const App = () => {
     <div className={s.app}>
       <Header />
       <IngredientContext.Provider value={data}>
-        <Main />
+          <Main />
       </IngredientContext.Provider>
     </div>
   );
