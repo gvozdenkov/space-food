@@ -1,4 +1,8 @@
 export const messagesRu = {
+  'loading.title': 'Загрузка',
+  'loading.subTitle': 'Спешим к вам с самого края вселенной!',
+  'popup.error.ingrdientsLoading.title': 'Ошибка загрузки',
+  'popup.error.ingrdientsLoading.message': 'Ой, что-то пошло не так и все ингредиенты засосало в чёрную дыру. Уже возвращаем!',
   'nav.item.constructor': 'Конструктор',
   'nav.item.orderList': 'Лента заказов',
   'nav.item.profile': 'Личный кабинет',

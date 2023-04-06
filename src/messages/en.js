@@ -1,4 +1,9 @@
 export const messagesEn = {
+  'loading.title': 'Loading',
+  'loading.subTitle': 'We hurry to you from the very edge of the universe!',
+  'popup.error.ingrdientsLoading.title': 'Loading error',
+  'popup.error.ingrdientsLoading.message':
+    "Oops, something went wrong and all the ingredients got sucked into the black hole. We're already back!",
   'nav.item.constructor': 'Constructor',
   'nav.item.orderList': 'Order List',
   'nav.item.profile': 'Profile',

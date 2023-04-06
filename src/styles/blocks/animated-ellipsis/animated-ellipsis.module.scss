@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+}
+
+.ellipsis_animate {
+  overflow: hidden;
+
+  &::after {
+    display: inline-block;
+    content: '...';
+    animation: animate 1.2s steps(4, jump-none) infinite;
+  }
+}
+
+@keyframes animate {
+  0% {
+    translate: -100%;
+  }
+}
