@@ -4,9 +4,9 @@ import s from './price.module.scss';
 import { getIcons } from '../../utils';
 import clsx from 'clsx';
 
-export const Price = ({ amount, size = 'default' }) => {
+export const Price = ({ amount, size = 'default', extraClass }) => {
   return (
-    <span className={clsx(s.price, `text text_type_digits-${size}`)}>
+    <span className={clsx(s.price, `text text_type_digits-${size} ${extraClass}`)}>
       {amount}
       {getIcons('primary')['currency']}
     </span>

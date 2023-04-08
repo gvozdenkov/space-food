@@ -1,3 +1,3 @@
-import { Card } from './card';
+import { IngredientCard } from './ingredient-card';
 
-export { Card };
+export { IngredientCard };

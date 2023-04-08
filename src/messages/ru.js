@@ -16,6 +16,7 @@ export const messagesRu = {
   'checkout.popup.title': 'идентификатор заказ',
   'checkout.popup.text1': 'Ваш заказ начали готовить',
   'checkout.popup.text2': 'Дождитесь готовности на орбитальной станции',
+  'ingredientCard.addButton': 'Добавить',
   'ingredients.detail.popup.title': 'Детали ингредиента',
   'ingredients.detail.popup.calories': 'Кал, ккал',
   'ingredients.detail.popup.proteins': 'Белки, г',

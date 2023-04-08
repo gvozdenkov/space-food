@@ -17,6 +17,7 @@ export const messagesEn = {
   'checkout.popup.title': 'order ID',
   'checkout.popup.text1': 'Your order has started',
   'checkout.popup.text2': 'Wait for readiness at the orbital station',
+  'ingredientCard.addButton': 'Add',
   'ingredients.detail.popup.title': 'Ingredient details',
   'ingredients.detail.popup.calories': 'Cal, kcal',
   'ingredients.detail.popup.proteins': 'Proteins, g',
