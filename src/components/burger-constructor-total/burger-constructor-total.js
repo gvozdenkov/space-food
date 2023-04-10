@@ -6,7 +6,6 @@ import { Price } from '../price';
 import PropTypes from 'prop-types';
 import { Modal } from '../modal';
 import { OrderDetails } from '../order-details';
-import { useCreateOrder } from '../../utils/hooks/useCreateOrder';
 import { useIntl } from 'react-intl';
 
 export const BurgerConstructorTotal = ({ totalPrice }) => {

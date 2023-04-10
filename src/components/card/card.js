@@ -9,10 +9,12 @@ import { Price } from './price';
 import { ingredientPropTypes } from '../../utils/config';
 import { Button } from './button';
 
-const Card = ({ product, children }) => {
+const Card = ({ product, onClick, children }) => {
   return (
     <CardContext.Provider value={product}>
-      <article className={clsx(s.card, 'pl-4 pr-4')}>{children}</article>
+      <article className={clsx(s.card, 'pl-4 pr-4')} onClick={onClick}>
+        {children}
+      </article>
     </CardContext.Provider>
   );
 };

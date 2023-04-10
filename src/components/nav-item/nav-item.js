@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import s from '../nav-item/nav-item.module.scss';
 import clsx from 'clsx';
