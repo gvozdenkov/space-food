@@ -3,16 +3,16 @@ import { BurgerComponents } from '../burger-components';
 import { BurgerConstructorTotal } from '../burger-constructor-total';
 import s from './burger-constructor.module.scss';
 import { useContext } from 'react';
-import { BurgerConstructorContext } from '../../utils/contexts/burgerConstructorContext';
+import { ConstructorContext } from '../../utils/contexts/ConstructorContext';
 
 export const BurgerConstructor = () => {
-  const { burgerConstructorItems } = useContext(BurgerConstructorContext);
+  const { constructorIngredients } = useContext(ConstructorContext);
 
-  const total = burgerConstructorItems.reduce((sum, component) => sum + component.price, 0);
+  const total = constructorIngredients.reduce((sum, component) => sum + component.price, 0);
 
   return (
     <section className={clsx(s.burgerConstructor, 'pt-25 pl-4')}>
-      <BurgerComponents components={burgerConstructorItems} />
+      <BurgerComponents components={constructorIngredients} />
       <BurgerConstructorTotal totalPrice={total} />
     </section>
   );

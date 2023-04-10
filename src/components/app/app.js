@@ -7,7 +7,7 @@ import { Modal } from '../modal';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { withLoading } from '../../utils/hoc/withLoading';
-import { BurgerConstructorContext } from '../../utils/contexts/burgerConstructorContext';
+import { ConstructorContext } from '../../utils/contexts/ConstructorContext';
 
 export const App = () => {
   const { data, error, loading } = useIngredients();
@@ -66,15 +66,16 @@ export const App = () => {
   return (
     <div className={s.app}>
       <Header />
-      <BurgerConstructorContext.Provider
-        value={{ burgerConstructorItems, setBurgerConstructorItems }}>
-        <IngredientContext.Provider value={data}>
-          <MainWithLoading
-            isLoading={loading}
-            text={intl.formatMessage({ id: 'loading.subTitle' })}
-          />
-        </IngredientContext.Provider>
-      </BurgerConstructorContext.Provider>
+      <main className={s.main}>
+        <ConstructorContext.Provider value={{ burgerConstructorItems, setBurgerConstructorItems }}>
+          <IngredientContext.Provider value={data}>
+            <MainWithLoading
+              isLoading={loading}
+              text={intl.formatMessage({ id: 'loading.subTitle' })}
+            />
+          </IngredientContext.Provider>
+        </ConstructorContext.Provider>
+      </main>
 
       <Modal
         title={intl.formatMessage({ id: 'popup.error.ingrdientsLoading.title' })}

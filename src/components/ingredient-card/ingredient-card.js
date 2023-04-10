@@ -2,12 +2,11 @@ import { Card } from '../card/card';
 import { ingredientPropTypes } from '../../utils/config';
 import { useContext } from 'react';
 import { IngredientSelectedContext } from '../../utils/contexts/IngredientSelectedContext';
-import { BurgerConstructorContext } from '../../utils/contexts/burgerConstructorContext';
+import { ConstructorContext } from '../../utils/contexts/ConstructorContext';
 
 export const IngredientCard = ({ ingredient }) => {
   const { setIsOpen, setSelectedIngredient } = useContext(IngredientSelectedContext);
-  const { burgerConstructorItems, setBurgerConstructorItems } =
-    useContext(BurgerConstructorContext);
+  const { burgerConstructorItems, setBurgerConstructorItems } = useContext(ConstructorContext);
 
   const handleCardClick = () => {
     setSelectedIngredient(ingredient);
