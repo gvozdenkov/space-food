@@ -19,6 +19,6 @@ export const Loading = ({ title, text = '' }) => {
 };
 
 Loading.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   text: PropTypes.string,
 };

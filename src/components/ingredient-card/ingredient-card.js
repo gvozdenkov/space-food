@@ -1,49 +1,40 @@
-import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
-import clsx from 'clsx';
-import { useContext, useState } from 'react';
-import s from './ingredient-card.module.scss';
-import { Modal } from '../modal';
-import { IngredientDetails } from '../IngredientDetails';
-import { useIntl } from 'react-intl';
-import { IngredientContext } from '../../utils/contexts/ingredientsContext';
-import { findBy } from '../../utils/utils';
-import PropTypes from 'prop-types';
+import { Card } from '../card/card';
+import { ingredientPropTypes } from '../../utils/config';
+import { useContext } from 'react';
 import { IngredientSelectedContext } from '../../utils/contexts/IngredientSelectedContext';
+import { BurgerConstructorContext } from '../../utils/contexts/burgerConstructorContext';
 
-export const IngredientCard = ({ _id, image, info }) => {
-  const intl = useIntl();
-  const selected = useContext(IngredientSelectedContext);
-  const ingredients = useContext(IngredientContext);
-  const [isOpen, setIsOpen] = useState(false);
+export const IngredientCard = ({ ingredient }) => {
+  const { setIsOpen, setSelectedIngredient } = useContext(IngredientSelectedContext);
+  const { burgerConstructorItems, setBurgerConstructorItems } =
+    useContext(BurgerConstructorContext);
 
-  const findIngredientById = findBy(ingredients, '_id');
-
-  const handleIngredientCardClick = (id) => {
-    const selectedIngredient = findIngredientById(id);
-    selected.setIngredient(selectedIngredient);
+  const handleCardClick = () => {
+    setSelectedIngredient(ingredient);
     setIsOpen(true);
   };
 
-  return (
-    <>
-      <article className={s.ingredientItem} onClick={() => handleIngredientCardClick(_id)}>
-        {true && <Counter count={2} size='default' extraClass={clsx(s.ingredientItem__counter)} />}
-        {image}
-        {info}
-      </article>
+  const handleAddClick = (e) => {
+    e.stopPropagation();
+    setBurgerConstructorItems([
+      ...burgerConstructorItems.slice(0, -1),
+      ingredient,
+      ...burgerConstructorItems.slice(-1),
+    ]);
+  };
 
-      <Modal
-        title={intl.formatMessage({ id: 'ingredients.detail.popup.title' })}
-        open={isOpen}
-        setOpen={setIsOpen}>
-        <IngredientDetails ingredient={selected.ingredient} />
-      </Modal>
-    </>
+  return (
+    <Card product={ingredient} onClick={handleCardClick}>
+      <Card.Image />
+      <Card.Info>
+        <Card.Price />
+        <Card.Heading />
+        <Card.Button onClick={handleAddClick} />
+      </Card.Info>
+    </Card>
   );
 };
 
 IngredientCard.propTypes = {
-  _id: PropTypes.string.isRequired,
-  image: PropTypes.element,
-  price: PropTypes.element,
+  ingredient: ingredientPropTypes.isRequired,
 };
