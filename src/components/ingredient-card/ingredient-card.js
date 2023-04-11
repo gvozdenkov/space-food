@@ -6,29 +6,24 @@ import { ConstructorContext } from '../../utils/contexts/ConstructorContext';
 
 export const IngredientCard = ({ ingredient }) => {
   const { setIsOpen, setSelectedIngredient } = useContext(IngredientSelectedContext);
-  const { burgerConstructorItems, setBurgerConstructorItems } = useContext(ConstructorContext);
+  const { ingredients, addIngredient } = useContext(ConstructorContext);
 
   const handleCardClick = () => {
     setSelectedIngredient(ingredient);
     setIsOpen(true);
   };
 
-  const handleAddClick = (e) => {
-    e.stopPropagation();
-    setBurgerConstructorItems([
-      ...burgerConstructorItems.slice(0, -1),
-      ingredient,
-      ...burgerConstructorItems.slice(-1),
-    ]);
-  };
-
-  return (
-    <Card product={ingredient} onClick={handleCardClick}>
+   return (
+    <Card product={ingredient}>
       <Card.Image />
       <Card.Info>
         <Card.Price />
         <Card.Heading />
-        <Card.Button onClick={handleAddClick} />
+        <Card.Button
+          onClick={() => {
+            addIngredient(ingredient);
+          }}
+        />
       </Card.Info>
     </Card>
   );

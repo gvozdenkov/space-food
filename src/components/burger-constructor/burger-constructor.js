@@ -6,14 +6,12 @@ import { useContext } from 'react';
 import { ConstructorContext } from '../../utils/contexts/ConstructorContext';
 
 export const BurgerConstructor = () => {
-  const { constructorIngredients } = useContext(ConstructorContext);
-
-  const total = constructorIngredients.reduce((sum, component) => sum + component.price, 0);
+  const { ingredients, getTotalPrice } = useContext(ConstructorContext);
 
   return (
     <section className={clsx(s.burgerConstructor, 'pt-25 pl-4')}>
-      <BurgerComponents components={constructorIngredients} />
-      <BurgerConstructorTotal totalPrice={total} />
+      <BurgerComponents components={ingredients} />
+      <BurgerConstructorTotal totalPrice={getTotalPrice()} />
     </section>
   );
 };
