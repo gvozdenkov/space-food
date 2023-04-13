@@ -1,10 +1,10 @@
 import { useIntl } from 'react-intl';
 
-export const useBurgerComponents = ({ components }) => {
+export const useBurgerComponents = ({ ingredients }) => {
   const intl = useIntl();
   let componentProps = [];
 
-  components.forEach((component, index, array) => {
+  ingredients.forEach((component, index, array) => {
     const isLocked = index === 0 || index === array.length - 1;
     const price = component.price;
     const thumbnail = component.image_mobile;
@@ -25,7 +25,7 @@ export const useBurgerComponents = ({ components }) => {
 
   const topComponent = componentProps[0];
   const bottomComponent = componentProps[componentProps.length - 1];
-  const middleComponet = componentProps.slice(1, -1);
+  const middleComponets = componentProps.slice(1, -1);
 
-  return { topComponent, middleComponet, bottomComponent };
+  return { topComponent, middleComponets, bottomComponent };
 };
