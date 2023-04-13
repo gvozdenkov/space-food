@@ -3,11 +3,10 @@ import clsx from 'clsx';
 import { getIcons } from '../../utils';
 import s from './burger-components.module.scss';
 import { useBurgerComponents } from './useBurgerComponents';
-import { useContext } from 'react';
-import { ConstructorContext } from '../../utils/contexts/ConstructorContext';
+import { useCartContext } from '../../utils/contexts/CartContext/CartContext';
 
 export const BurgerComponents = () => {
-  const { ingredients } = useContext(ConstructorContext);
+  const { ingredients } = useCartContext();
 
   const { topComponent, middleComponets, bottomComponent } = useBurgerComponents({
     ingredients,

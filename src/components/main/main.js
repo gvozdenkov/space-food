@@ -1,12 +1,12 @@
 import s from './main.module.scss';
 import { BurgerConstructor } from '../burger-constructor';
 import { BurgerIngredients } from '../burger-ingredients';
-import { ConstructorProvider } from '../../utils/contexts/ConstructorContext';
 import { useIngredientContext } from '../../utils/contexts/IngredientContext';
 import { Loading } from '../Loading';
 import { useIntl } from 'react-intl';
 import { Modal } from '../modal';
 import { useEffect, useState } from 'react';
+import { CartContextProvider } from '../../utils/contexts/CartContext/CartContext';
 
 export const Main = () => {
   const intl = useIntl();
@@ -18,7 +18,7 @@ export const Main = () => {
   }, [error]);
 
   if (isLoading) return <Loading text={intl.formatMessage({ id: 'loading.subTitle' })} />;
-  
+
   if (error)
     return (
       <Modal
@@ -34,10 +34,10 @@ export const Main = () => {
   return (
     <>
       <section className={s.main}>
-        <ConstructorProvider>
+        <CartContextProvider>
           <BurgerIngredients />
           <BurgerConstructor />
-        </ConstructorProvider>
+        </CartContextProvider>
       </section>
     </>
   );

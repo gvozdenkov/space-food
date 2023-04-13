@@ -1,18 +1,17 @@
 import { Card } from '../card/card';
 import { ingredientPropTypes } from '../../utils/config';
-import { useContext } from 'react';
-import { ConstructorContext } from '../../utils/contexts/ConstructorContext';
+import { useCartContext } from '../../utils/contexts/CartContext/CartContext';
 
 export const IngredientCard = ({ ingredient }) => {
   // const { setIsOpen, setSelectedIngredient } = useContext(IngredientSelectedContext);
-  const { addIngredient } = useContext(ConstructorContext);
+  const { addIngredient } = useCartContext();
 
   // const handleCardClick = () => {
   //   setSelectedIngredient(ingredient);
   //   setIsOpen(true);
   // };
 
-   return (
+  return (
     <Card product={ingredient}>
       <Card.Image />
       <Card.Info>
