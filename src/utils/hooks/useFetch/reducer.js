@@ -22,6 +22,6 @@ export const reducer = (state, action) => {
       };
 
     default:
-      return state;
+      throw new Error(`Unknown action type: ${action.type}`);
   }
 };

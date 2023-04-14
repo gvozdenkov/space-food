@@ -5,7 +5,7 @@ import { useIngredientContext } from '../../utils/contexts/IngredientContext';
 import { Loading } from '../Loading';
 import { useIntl } from 'react-intl';
 import { Modal } from '../modal';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { CartContextProvider } from '../../utils/contexts/CartContext/CartContext';
 
 export const Main = () => {
@@ -17,10 +17,10 @@ export const Main = () => {
     if (error) setIsOpen(true);
   }, [error]);
 
-  if (isLoading) return <Loading text={intl.formatMessage({ id: 'loading.subTitle' })} />;
-
-  if (error)
-    return (
+  const content = useMemo(() => {
+    return isLoading ? (
+      <Loading text={intl.formatMessage({ id: 'loading.subTitle' })} />
+    ) : error ? (
       <Modal
         title={intl.formatMessage({ id: 'popup.error.ingrdientsLoading.title' })}
         open={isOpen}
@@ -29,16 +29,15 @@ export const Main = () => {
           {intl.formatMessage({ id: 'popup.error.ingrdientsLoading.message' })}
         </p>
       </Modal>
-    );
-
-  return (
-    <>
+    ) : (
       <section className={s.main}>
         <CartContextProvider>
           <BurgerIngredients />
           <BurgerConstructor />
         </CartContextProvider>
       </section>
-    </>
-  );
+    );
+  }, [isLoading, error, isOpen, intl]);
+
+  return <>{content}</>;
 };

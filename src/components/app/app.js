@@ -6,12 +6,12 @@ import { IngredientContextProvider } from '../../utils/contexts/IngredientContex
 export const App = () => {
   return (
     <div className={s.app}>
-      <Header />
-      <main className={s.main}>
-        <IngredientContextProvider>
+      <IngredientContextProvider>
+        <Header />
+        <main className={s.main}>
           <Main />
-        </IngredientContextProvider>
-      </main>
+        </main>
+      </IngredientContextProvider>
     </div>
   );
 };
