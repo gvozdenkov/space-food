@@ -30,7 +30,7 @@ export const CartContextProvider = ({ children }) => {
     ingredients: state.ingredients,
 
     getTotalPrice: () => {
-      return [...state.ingredients].reduce((sum, ingredient) => sum + ingredient.price, 0);
+      return state.ingredients.reduce((sum, ingredient) => sum + ingredient.price, 0);
     },
 
     addIngredient: (ingredient) => {

@@ -17,7 +17,7 @@ export const Main = () => {
     if (error) setIsOpen(true);
   }, [error]);
 
-  const content = useMemo(() => {
+  return useMemo(() => {
     return isLoading ? (
       <Loading text={intl.formatMessage({ id: 'loading.subTitle' })} />
     ) : error ? (
@@ -38,6 +38,4 @@ export const Main = () => {
       </section>
     );
   }, [isLoading, error, isOpen, intl]);
-
-  return <>{content}</>;
 };
