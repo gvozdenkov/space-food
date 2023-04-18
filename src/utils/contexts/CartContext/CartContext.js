@@ -4,6 +4,7 @@ import { addIngredient } from './actions';
 import { reducer } from './reducer';
 
 const CartContext = createContext();
+const CartDispatchContext = createContext();
 
 export const useCartContext = () => {
   const context = useContext(CartContext);
@@ -15,28 +16,42 @@ export const useCartContext = () => {
   return context;
 };
 
+export const useCartDispatchContext = () => {
+  const context = useContext(CartDispatchContext);
+
+  if (context === undefined) {
+    throw new Error('You try to use useCartDispatchContext outside of its provider!');
+  }
+
+  return context;
+};
+
 export const CartContextProvider = ({ children }) => {
   const { ingredients } = useIngredientContext();
 
   const buns = ingredients.filter((ingredient) => ingredient.type === 'bun');
   const randomBun = buns[Math.floor(Math.random() * buns.length)];
   const initialState = {
-    ingredients: [randomBun, randomBun],
+    cartItems: [randomBun, randomBun],
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const value = {
-    ingredients: state.ingredients,
-
+  const dispatchMethods = {
     getTotalPrice: () => {
-      return state.ingredients.reduce((sum, ingredient) => sum + ingredient.price, 0);
+      return state.cartItems.reduce((sum, ingredient) => sum + ingredient.price, 0);
     },
 
     addIngredient: (ingredient) => {
-      dispatch(addIngredient({ ingredient }));
+      dispatch(addIngredient(ingredient));
     },
   };
 
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+  return (
+    <CartContext.Provider value={state}>
+      <CartDispatchContext.Provider value={dispatchMethods}>
+        {children}
+      </CartDispatchContext.Provider>
+    </CartContext.Provider>
+  );
 };

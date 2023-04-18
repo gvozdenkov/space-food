@@ -1,10 +1,10 @@
 import { Card } from '../card/card';
 import { ingredientPropTypes } from '../../utils/config';
-import { useCartContext } from '../../utils/contexts/CartContext/CartContext';
+import { useCartDispatchContext } from '../../utils/contexts/CartContext/CartContext';
 
 export const IngredientCard = ({ ingredient }) => {
   // const { setIsOpen, setSelectedIngredient } = useContext(IngredientSelectedContext);
-  const { addIngredient } = useCartContext();
+  const { addIngredient } = useCartDispatchContext();
 
   // const handleCardClick = () => {
   //   setSelectedIngredient(ingredient);
@@ -19,7 +19,7 @@ export const IngredientCard = ({ ingredient }) => {
         <Card.Heading />
         <Card.Button
           onClick={() => {
-            addIngredient(ingredient);
+            addIngredient({ ingredient });
           }}
         />
       </Card.Info>

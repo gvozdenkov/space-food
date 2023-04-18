@@ -6,11 +6,9 @@ import { useBurgerComponents } from './useBurgerComponents';
 import { useCartContext } from '../../utils/contexts/CartContext/CartContext';
 
 export const BurgerComponents = () => {
-  const { ingredients } = useCartContext();
+  const { cartItems } = useCartContext();
 
-  const { topComponent, middleComponets, bottomComponent } = useBurgerComponents({
-    ingredients,
-  });
+  const { topComponent, middleComponets, bottomComponent } = useBurgerComponents({ cartItems });
 
   return (
     <ul className={clsx(s.burgerComponents)}>
@@ -18,7 +16,7 @@ export const BurgerComponents = () => {
         <ConstructorElement {...topComponent} />
       </li>
 
-      {ingredients.length > 2 && (
+      {cartItems.length > 2 && (
         <li
           className={clsx(s.burgerComponents, s.burgerComponents_middle, 'customScroll')}
           key='middle'>

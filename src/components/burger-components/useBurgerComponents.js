@@ -1,10 +1,10 @@
 import { useIntl } from 'react-intl';
 
-export const useBurgerComponents = ({ ingredients }) => {
+export const useBurgerComponents = ({ cartItems }) => {
   const intl = useIntl();
   let componentProps = [];
 
-  ingredients.forEach((component, index, array) => {
+  cartItems.forEach((component, index, array) => {
     const isLocked = index === 0 || index === array.length - 1;
     const price = component.price;
     const thumbnail = component.image_mobile;

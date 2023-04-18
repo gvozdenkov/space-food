@@ -30,12 +30,12 @@ export const Main = () => {
         </p>
       </Modal>
     ) : (
-      <section className={s.main}>
+      <div className={s.main}>
         <CartContextProvider>
           <BurgerIngredients />
           <BurgerConstructor />
         </CartContextProvider>
-      </section>
+      </div>
     );
   }, [isLoading, error, isOpen, intl]);
 };
