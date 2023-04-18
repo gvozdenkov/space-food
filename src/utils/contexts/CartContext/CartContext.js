@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from 'react';
-import { useIngredientContext } from '../IngredientContext';
+import { useIngredientContext } from '../IngredientContext/IngredientContext';
 import { addIngredient } from './actions';
 import { reducer } from './reducer';
 

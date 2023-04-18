@@ -3,7 +3,7 @@ import { IngredientList } from '../ingredient-list';
 import s from './category-list.module.scss';
 import PropTypes from 'prop-types';
 import { useCategoryList } from './useCategoryList';
-import { useIngredientContext } from '../../utils/contexts/IngredientContext';
+import { useIngredientContext } from '../../utils/contexts/IngredientContext/IngredientContext';
 
 export const CategoryList = ({ types }) => {
   const { filterByType } = useCategoryList();

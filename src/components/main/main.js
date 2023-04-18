@@ -1,7 +1,7 @@
 import s from './main.module.scss';
 import { BurgerConstructor } from '../burger-constructor';
 import { BurgerIngredients } from '../burger-ingredients';
-import { useIngredientContext } from '../../utils/contexts/IngredientContext';
+import { useIngredientContext } from '../../utils/contexts/IngredientContext/IngredientContext';
 import { Loading } from '../Loading';
 import { useIntl } from 'react-intl';
 import { Modal } from '../modal';
