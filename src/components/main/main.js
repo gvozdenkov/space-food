@@ -7,6 +7,7 @@ import { useIntl } from 'react-intl';
 import { Modal } from '../modal';
 import { useEffect, useMemo, useState } from 'react';
 import { CartContextProvider } from '../../utils/contexts/CartContext/CartContext';
+import { IngredientSelectedContextProvider } from '../../utils/contexts/IngredientSelectedContext/IngredientSelectedContext';
 
 export const Main = () => {
   const intl = useIntl();
@@ -31,10 +32,12 @@ export const Main = () => {
       </Modal>
     ) : (
       <div className={s.main}>
-        <CartContextProvider>
-          <BurgerIngredients />
-          <BurgerConstructor />
-        </CartContextProvider>
+        <IngredientSelectedContextProvider>
+          <CartContextProvider>
+            <BurgerIngredients />
+            <BurgerConstructor />
+          </CartContextProvider>
+        </IngredientSelectedContextProvider>
       </div>
     );
   }, [isLoading, error, isOpen, intl]);

@@ -1,24 +1,26 @@
 import { Card } from '../card/card';
 import { ingredientPropTypes } from '../../utils/config';
 import { useCartDispatchContext } from '../../utils/contexts/CartContext/CartContext';
+import { useIngredientSelectedContext } from '../../utils/contexts/IngredientSelectedContext/IngredientSelectedContext';
+import { useCallback } from 'react';
 
 export const IngredientCard = ({ ingredient }) => {
-  // const { setIsOpen, setSelectedIngredient } = useContext(IngredientSelectedContext);
   const { addIngredient } = useCartDispatchContext();
+  const { setSelectedId, setIsOpen } = useIngredientSelectedContext();
 
-  // const handleCardClick = () => {
-  //   setSelectedIngredient(ingredient);
-  //   setIsOpen(true);
-  // };
+  const handleImageClick = useCallback(() => {
+    setSelectedId(ingredient._id);
+    setIsOpen(true);
+  }, [setSelectedId, setIsOpen, ingredient._id]);
 
   return (
     <Card product={ingredient}>
-      <Card.Image />
+      <Card.Image onClick={handleImageClick} />
       <Card.Info>
         <Card.Price />
         <Card.Heading />
         <Card.Button
-          onClick={() => {
+          onClick={(e) => {
             addIngredient({ ingredient });
           }}
         />
