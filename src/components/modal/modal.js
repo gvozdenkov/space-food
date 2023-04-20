@@ -36,7 +36,7 @@ export const Modal = ({ title, ariaTitle, children, open, setOpen }) => {
             {getIcons('primary')['close']}
           </button>
         </div>
-        {children}
+        <div className={clsx(s.content, 'mt-4')}>{children}</div>
       </div>
     </>,
     MODAL_PORTAL_EL,

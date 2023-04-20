@@ -2,7 +2,10 @@ export const messagesRu = {
   'loading.title': 'Загрузка',
   'loading.subTitle': 'Спешим к вам с самого края вселенной!',
   'popup.error.ingrdientsLoading.title': 'Ошибка загрузки',
-  'popup.error.ingrdientsLoading.message': 'Ой, что-то пошло не так и все ингредиенты засосало в чёрную дыру. Уже возвращаем!',
+  'popup.error.ingrdientsLoading.message':
+    'Ой, что-то пошло не так и все ингредиенты засосало в чёрную дыру. Уже возвращаем!',
+  'popup.error.orderCreate.message':
+    'Ой, что-то пошло не так и заказ засосало в чёрную дыру. Пытаемся вернуть :(',
   'nav.item.constructor': 'Конструктор',
   'nav.item.orderList': 'Лента заказов',
   'nav.item.profile': 'Личный кабинет',
@@ -13,7 +16,9 @@ export const messagesRu = {
   'constructor.top.intredient': 'верх',
   'constructor.bottom.intredient': 'низ',
   'constructor.createOrder': 'Оформить заказ',
-  'checkout.popup.title': 'идентификатор заказ',
+  'constructor.createOrder.loading': 'Оформление заказа',
+  'constructor.createOrder.modal.loading.text': 'Заказ улетает на край космоса',
+  'checkout.popup.title': 'идентификатор заказа',
   'checkout.popup.text1': 'Ваш заказ начали готовить',
   'checkout.popup.text2': 'Дождитесь готовности на орбитальной станции',
   'ingredientCard.addButton': 'Добавить',

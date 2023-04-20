@@ -4,6 +4,8 @@ export const messagesEn = {
   'popup.error.ingrdientsLoading.title': 'Loading error',
   'popup.error.ingrdientsLoading.message':
     "Oops, something went wrong and all the ingredients got sucked into the black hole. We're already back!",
+  'popup.error.orderCreate.message':
+    'Oops, something went wrong and the order got sucked into a black hole. We are trying to return :(',
   'nav.item.constructor': 'Constructor',
   'nav.item.orderList': 'Order List',
   'nav.item.profile': 'Profile',
@@ -14,6 +16,8 @@ export const messagesEn = {
   'constructor.top.intredient': 'top',
   'constructor.bottom.intredient': 'bottom',
   'constructor.createOrder': 'Checkout',
+  'constructor.createOrder.loading': 'Checkout',
+  'constructor.createOrder.modal.loading.text': 'The order flies to the edge of space',
   'checkout.popup.title': 'order ID',
   'checkout.popup.text1': 'Your order has started',
   'checkout.popup.text2': 'Wait for readiness at the orbital station',

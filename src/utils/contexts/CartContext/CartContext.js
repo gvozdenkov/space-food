@@ -1,6 +1,6 @@
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useCallback, useContext, useMemo, useReducer } from 'react';
 import { useIngredientContext } from '../IngredientContext/IngredientContext';
-import { addIngredient } from './actions';
+import { addIngredientAction } from './actions';
 import { reducer } from './reducer';
 
 const CartContext = createContext();
@@ -37,15 +37,19 @@ export const CartContextProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const dispatchMethods = {
-    getTotalPrice: () => {
-      return state.cartItems.reduce((sum, ingredient) => sum + ingredient.price, 0);
-    },
+  const getTotalPrice = useCallback(() => {
+    return state.cartItems.reduce((sum, ingredient) => sum + ingredient.price, 0);
+  }, [state.cartItems]);
 
-    addIngredient: (ingredient) => {
-      dispatch(addIngredient(ingredient));
-    },
-  };
+  const addIngredient = useCallback((ingredient) => dispatch(addIngredientAction(ingredient)), []);
+
+  const dispatchMethods = useMemo(
+    () => ({
+      getTotalPrice,
+      addIngredient,
+    }),
+    [getTotalPrice, addIngredient],
+  );
 
   return (
     <CartContext.Provider value={state}>
