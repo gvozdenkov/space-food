@@ -51,11 +51,11 @@ export const useFetchReducer = (initialData = null) => {
       }
 
       const data = await res.json();
+
+      // Temp for loading preview
       setTimeout(() => {
         dispatch(resolved(data));
-
-      }, 2000)
-
+      }, 2000);
     } catch (err) {
       if (!abortController.signal.aborted) {
         dispatch(rejected(err));

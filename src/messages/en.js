@@ -17,6 +17,7 @@ export const messagesEn = {
   'constructor.bottom.intredient': 'bottom',
   'constructor.createOrder': 'Checkout',
   'constructor.createOrder.loading': 'Checkout',
+  'constructor.emptyIngredint.text': 'Add Ingredients for More Taste',
   'constructor.createOrder.modal.loading.text': 'The order flies to the edge of space',
   'checkout.popup.title': 'order ID',
   'checkout.popup.text1': 'Your order has started',

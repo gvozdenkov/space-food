@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo, useState } from 'react';
-import { useIngredientContext } from '../IngredientContext/IngredientContext';
+import { useIngredientContext } from '../IngredientContext';
 
 const IngredientSelectedContext = createContext();
 

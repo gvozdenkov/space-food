@@ -4,8 +4,10 @@ import { getIcons } from '../../utils';
 import s from './burger-components.module.scss';
 import { useBurgerComponents } from './useBurgerComponents';
 import { useCartContext } from '../../utils/contexts/CartContext/CartContext';
+import { useIntl } from 'react-intl';
 
 export const BurgerComponents = () => {
+  const intl = useIntl();
   const { cartItems } = useCartContext();
 
   const { topComponent, middleComponets, bottomComponent } = useBurgerComponents({ cartItems });
@@ -16,7 +18,7 @@ export const BurgerComponents = () => {
         <ConstructorElement {...topComponent} />
       </li>
 
-      {cartItems.length > 2 && (
+      {cartItems.length > 2 ? (
         <li
           className={clsx(s.burgerComponents, s.burgerComponents_middle, 'customScroll')}
           key='middle'>
@@ -31,6 +33,8 @@ export const BurgerComponents = () => {
             })}
           </ul>
         </li>
+      ) : (
+        <p>{intl.formatMessage({ id: 'constructor.emptyIngredint.text' })}</p>
       )}
 
       <li key='bottom' className={clsx(s.burgerComponent__topBottom)}>

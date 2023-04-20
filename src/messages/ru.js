@@ -17,6 +17,7 @@ export const messagesRu = {
   'constructor.bottom.intredient': 'низ',
   'constructor.createOrder': 'Оформить заказ',
   'constructor.createOrder.loading': 'Оформление заказа',
+  'constructor.emptyIngredint.text': 'Добавьте ингредиенты, так будет вкуснее',
   'constructor.createOrder.modal.loading.text': 'Заказ улетает на край космоса',
   'checkout.popup.title': 'идентификатор заказа',
   'checkout.popup.text1': 'Ваш заказ начали готовить',

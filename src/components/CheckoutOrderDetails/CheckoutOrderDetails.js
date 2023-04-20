@@ -1,5 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import s from './checkout-order-details.module.scss';
 import { LoaderShape } from '../LoaderShape';
 import clsx from 'clsx';
@@ -17,5 +15,3 @@ export const CheckoutOrderDetails = () => {
     </div>
   );
 };
-
-CheckoutOrderDetails.propTypes = {};

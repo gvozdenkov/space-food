@@ -10,38 +10,47 @@ import { useIntl } from 'react-intl';
 import { useFetchReducer } from '../../utils/hooks/useFetchReducer/useFetchReducer';
 import { CheckoutOrderDetails } from '../CheckoutOrderDetails';
 import { ErrorModalDetails } from '../ErrorModalDetails';
+import { useCartContext } from '../../utils/contexts/CartContext/CartContext';
+import { useOrderDispatchContext } from '../../utils/contexts/OrderContext';
 
 export const BurgerConstructorTotal = ({ totalPrice }) => {
   const intl = useIntl();
   const [isOpen, setIsOpen] = useState(false);
   const { state, dispatch, fetchData } = useFetchReducer();
 
+  const isLoading = state.status === 'loading';
+  const isSuccess = state.status === 'success';
+  const isFail = state.status === 'fail';
+
+  const { addOrder } = useOrderDispatchContext();
+
+  const cart = useCartContext();
+  const ingredients = cart.cartItems.map((item) => item._id);
+
   const handleCreateOrder = () => {
     fetchData({
       endpoint: 'orders',
       options: {
         method: 'POST',
-        body: JSON.stringify(tmpBody),
+        body: JSON.stringify({ ingredients }),
       },
       dispatch,
     });
   };
 
   useEffect(() => {
-    if (state.error) setIsOpen(true);
-  }, [state.error]);
+    if (isFail) setIsOpen(true);
+  }, [isFail]);
 
   useEffect(() => {
-    if (state.status === 'loading') setIsOpen(true);
-  }, [state.status]);
+    if (isLoading) setIsOpen(true);
+  }, [isLoading]);
 
-  const tmpBody = {
-    ingredients: ['643d69a5c3f7b9001cfa093c', '643d69a5c3f7b9001cfa093c'],
-  };
-
-  const isLoading = state.status === 'loading';
-  const isSuccess = state.status === 'success';
-  const isFail = state.status === 'fail';
+  useEffect(() => {
+    if (isSuccess) {
+      addOrder(state.data.order.number);
+    }
+  }, [isSuccess]);
 
   return (
     <div className={clsx(s.burgerConstructorTotal, 'mt-10 pr-4')}>
