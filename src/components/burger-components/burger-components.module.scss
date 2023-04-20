@@ -6,7 +6,6 @@
   margin: 0;
   display: flex;
   flex-flow: column;
-  align-items: center;
   gap: 16px;
   box-sizing: border-box;
   width: 100%;
@@ -14,6 +13,7 @@
 
 .burgerComponent__topBottom {
   padding-right: 2 * $scrollWidth;
+  align-self: flex-end;
 }
 
 .burgerComponent_withDrag {
@@ -28,4 +28,13 @@
     ($burgerIngredientsMax * $burgerIngredientHeight) +
       (($burgerIngredientsMax - 1) * $burgerIngredientsGap)
   );
+}
+
+.emptyText {
+  padding: 20px;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }

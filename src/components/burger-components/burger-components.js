@@ -34,7 +34,9 @@ export const BurgerComponents = () => {
           </ul>
         </li>
       ) : (
-        <p>{intl.formatMessage({ id: 'constructor.emptyIngredint.text' })}</p>
+        <p className={clsx(s.emptyText, 'text text_type_main-default')}>
+          {intl.formatMessage({ id: 'constructor.emptyIngredint.text' })}
+        </p>
       )}
 
       <li key='bottom' className={clsx(s.burgerComponent__topBottom)}>
