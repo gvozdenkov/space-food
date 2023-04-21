@@ -1,10 +1,11 @@
 import { useReducer } from 'react';
 import { serverConfig } from '../../config';
 import { actions, fetched, rejected, resolved } from './actions';
+import { FETCH_STATUS } from '../../constants';
 
 export const useFetchReducer = (initialData = null) => {
   const initialState = {
-    status: 'idle',
+    status: FETCH_STATUS.IDLE,
     data: initialData,
     error: null,
   };
@@ -14,18 +15,18 @@ export const useFetchReducer = (initialData = null) => {
       case actions.FETCHED:
         return {
           ...state,
-          status: 'loading',
+          status: FETCH_STATUS.LOADING,
         };
       case actions.RESOLVED:
         return {
-          status: 'success',
+          status: FETCH_STATUS.SUCCESS,
           data: action.data,
           error: null,
         };
       case actions.REJECTED:
         return {
           data: null,
-          status: 'fail',
+          status: FETCH_STATUS.FAIL,
           error: action.error,
         };
       default:

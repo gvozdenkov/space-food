@@ -1,11 +1,12 @@
+import { INGREDIENT } from '../../constants';
 import { actions } from './actions';
 
 export const reducer = ({ cartItems }, { type, ingredient }) => {
   switch (type) {
     case actions.ADD_INGREDIENT: {
       // User can only replace buns on top and bottom
-      const newBuns = ingredient.type === 'bun' ? [ingredient, ingredient] : [];
-      const currentBuns = cartItems.filter((ingredient) => ingredient.type === 'bun');
+      const newBuns = ingredient.type === INGREDIENT.BUN ? [ingredient, ingredient] : [];
+      const currentBuns = cartItems.filter((ingredient) => ingredient.type === INGREDIENT.BUN);
 
       if (
         newBuns.length === currentBuns.length &&

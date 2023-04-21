@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { getIcons } from '../../utils';
 import { ModalOverlay } from '../modal-overlay';
 import PropTypes from 'prop-types';
-import { MODAL_PORTAL_EL } from '../../utils/config';
+import { MODAL_PORTAL_EL } from '../../utils/constants';
 import { useEscKey } from './useEscKey';
 
 export const Modal = ({ title, ariaTitle, children, open, setOpen }) => {

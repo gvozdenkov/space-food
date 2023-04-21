@@ -14,6 +14,7 @@ import {
   useCartDispatchContext,
 } from '../../utils/contexts/CartContext/CartContext';
 import { useOrderDispatchContext } from '../../utils/contexts/OrderContext';
+import { FETCH_STATUS } from '../../utils/constants';
 
 export const BurgerConstructorTotal = () => {
   const intl = useIntl();
@@ -25,9 +26,9 @@ export const BurgerConstructorTotal = () => {
   const cart = useCartContext();
 
   const ingredients = cart.cartItems.map((item) => item._id);
-  const isLoading = state.status === 'loading';
-  const isSuccess = state.status === 'success';
-  const isFail = state.status === 'fail';
+  const isLoading = state.status === FETCH_STATUS.LOADING;
+  const isSuccess = state.status === FETCH_STATUS.SUCCESS;
+  const isFail = state.status === FETCH_STATUS.FAIL;
 
   const handleCreateOrder = () => {
     fetchData({
