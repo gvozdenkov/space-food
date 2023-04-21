@@ -11,7 +11,6 @@ export const useFetch = ({ endpoint, options = {} }) => {
   });
 
   useEffect(() => {
-    let isSubscribed = true;
     const abortController = new AbortController();
     dispatch(requestStarted());
 
@@ -29,7 +28,7 @@ export const useFetch = ({ endpoint, options = {} }) => {
         }
 
         const data = await res.json();
-        if (isSubscribed) {
+        if (!abortController.signal.aborted) {
           dispatch(requestSuccessful({ data }));
         }
       } catch (e) {
@@ -42,7 +41,6 @@ export const useFetch = ({ endpoint, options = {} }) => {
     fetchData();
 
     return () => {
-      isSubscribed = false;
       abortController.abort();
     };
   }, []);
