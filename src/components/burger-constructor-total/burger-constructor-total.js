@@ -3,29 +3,31 @@ import { useEffect, useState } from 'react';
 import s from './burger-constructor-total.module.scss';
 import clsx from 'clsx';
 import { Price } from '../price';
-import PropTypes from 'prop-types';
 import { Modal } from '../modal';
 import { OrderDetails } from '../order-details';
 import { useIntl } from 'react-intl';
 import { useFetchReducer } from '../../utils/hooks/useFetchReducer/useFetchReducer';
 import { CheckoutOrderDetails } from '../CheckoutOrderDetails';
 import { ErrorModalDetails } from '../ErrorModalDetails';
-import { useCartContext } from '../../utils/contexts/CartContext/CartContext';
+import {
+  useCartContext,
+  useCartDispatchContext,
+} from '../../utils/contexts/CartContext/CartContext';
 import { useOrderDispatchContext } from '../../utils/contexts/OrderContext';
 
-export const BurgerConstructorTotal = ({ totalPrice }) => {
+export const BurgerConstructorTotal = () => {
   const intl = useIntl();
   const [isOpen, setIsOpen] = useState(false);
   const { state, dispatch, fetchData } = useFetchReducer();
 
+  const { addOrder } = useOrderDispatchContext();
+  const { getTotalPrice } = useCartDispatchContext();
+  const cart = useCartContext();
+
+  const ingredients = cart.cartItems.map((item) => item._id);
   const isLoading = state.status === 'loading';
   const isSuccess = state.status === 'success';
   const isFail = state.status === 'fail';
-
-  const { addOrder } = useOrderDispatchContext();
-
-  const cart = useCartContext();
-  const ingredients = cart.cartItems.map((item) => item._id);
 
   const handleCreateOrder = () => {
     fetchData({
@@ -54,7 +56,7 @@ export const BurgerConstructorTotal = ({ totalPrice }) => {
 
   return (
     <div className={clsx(s.burgerConstructorTotal, 'mt-10 pr-4')}>
-      {<Price amount={totalPrice} size='medium' />}
+      {<Price amount={getTotalPrice()} size='medium' />}
       <Button
         type='primary'
         size='medium'
@@ -95,8 +97,4 @@ export const BurgerConstructorTotal = ({ totalPrice }) => {
       )}
     </div>
   );
-};
-
-BurgerConstructorTotal.propTypes = {
-  totalPrice: PropTypes.number.isRequired,
 };
