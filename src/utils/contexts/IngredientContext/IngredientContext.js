@@ -15,12 +15,11 @@ export const useIngredientContext = () => {
 
 export const IngredientContextProvider = ({ children }) => {
   const { data, error, isLoading } = useFetch({ endpoint: 'ingredients' });
-  const ingredients = data ? data.data : null;
+  const ingredients = data ? data.data : [];
 
-  const contextValue = useMemo(
-    () => ({ ingredients, error, isLoading }),
-    [ingredients, error, isLoading],
+  return (
+    <IngredientContext.Provider value={{ ingredients, error, isLoading }}>
+      {children}
+    </IngredientContext.Provider>
   );
-
-  return <IngredientContext.Provider value={contextValue}>{children}</IngredientContext.Provider>;
 };
