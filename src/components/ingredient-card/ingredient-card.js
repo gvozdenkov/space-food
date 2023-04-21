@@ -6,12 +6,11 @@ import { useCallback } from 'react';
 
 export const IngredientCard = ({ ingredient }) => {
   const { addIngredient } = useCartDispatchContext();
-  const { setSelectedId, setIsOpen } = useIngredientSelectedContext();
+  const { setSelectedId } = useIngredientSelectedContext();
 
   const handleImageClick = useCallback(() => {
     setSelectedId(ingredient._id);
-    setIsOpen(true);
-  }, [setSelectedId, setIsOpen, ingredient._id]);
+  }, [setSelectedId, ingredient._id]);
 
   return (
     <Card product={ingredient}>

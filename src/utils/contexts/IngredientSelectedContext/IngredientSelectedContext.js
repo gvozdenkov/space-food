@@ -1,5 +1,4 @@
-import { createContext, useContext, useMemo, useState } from 'react';
-import { useIngredientContext } from '../IngredientContext';
+import { createContext, useContext, useState } from 'react';
 
 const IngredientSelectedContext = createContext();
 
@@ -14,17 +13,10 @@ export const useIngredientSelectedContext = () => {
 };
 
 export const IngredientSelectedContextProvider = ({ children }) => {
-  const { ingredients } = useIngredientContext();
-  const [selectedId, setSelectedId] = useState(ingredients[0]._id);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const contextValue = useMemo(
-    () => ({ selectedId, setSelectedId, isOpen, setIsOpen }),
-    [selectedId, setSelectedId, isOpen, setIsOpen],
-  );
+  const [selectedId, setSelectedId] = useState(null);
 
   return (
-    <IngredientSelectedContext.Provider value={contextValue}>
+    <IngredientSelectedContext.Provider value={{ selectedId, setSelectedId }}>
       {children}
     </IngredientSelectedContext.Provider>
   );

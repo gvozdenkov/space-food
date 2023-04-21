@@ -6,19 +6,48 @@ import { ModalOverlay } from '../modal-overlay';
 import PropTypes from 'prop-types';
 import { MODAL_PORTAL_EL } from '../../utils/constants';
 import { useEscKey } from './useEscKey';
+import { motion } from 'framer-motion';
 
-export const Modal = ({ title, ariaTitle, children, open, setOpen }) => {
-  useEscKey(setOpen);
+const dropIn = {
+  hidden: {
+    y: '-80px',
+    opacity: 0,
+  },
+  visible: {
+    y: '0',
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+      type: 'spring',
+      damping: 28,
+      stiffness: 400,
+    },
+  },
+  exit: {
+    y: '80px',
+    opacity: 0,
+    transition: {
+      duration: 0.3,
+      ease: 'easeOut',
+    },
+  },
+};
+
+export const Modal = ({ title, ariaTitle, children, handleClose }) => {
+  useEscKey(handleClose);
 
   return createPortal(
-    <>
-      <ModalOverlay open={open} setOpen={setOpen} />
-      <div
-        className={clsx(s.modal, { [s.modal_opened]: open })}
+    <ModalOverlay onClick={handleClose}>
+      <motion.div
+        className={clsx(s.modal)}
         role='dialog'
         aria-labelledby={title ? 'modal-title' : 'modal-title-aria'}
-        aria-modal={open ? 'true' : 'false'}
-        onClick={(e) => e.stopPropagation()}>
+        aria-modal='true'
+        onClick={(e) => e.stopPropagation()}
+        variants={dropIn}
+        initial='hidden'
+        animate='visible'
+        exit='exit'>
         <div className={clsx(s.modal__header)}>
           {!title && (
             <h3 className='sr-only' id='modal-title-aria'>
@@ -32,13 +61,13 @@ export const Modal = ({ title, ariaTitle, children, open, setOpen }) => {
             className={clsx(s.modal__closeBtn, 'ml-9')}
             aria-label='Закрыть попап'
             type='button'
-            onClick={() => setOpen(false)}>
+            onClick={handleClose}>
             {getIcons('primary')['close']}
           </button>
         </div>
         <div className={clsx(s.content, 'mt-4')}>{children}</div>
-      </div>
-    </>,
+      </motion.div>
+    </ModalOverlay>,
     MODAL_PORTAL_EL,
   );
 };
@@ -46,7 +75,6 @@ export const Modal = ({ title, ariaTitle, children, open, setOpen }) => {
 Modal.propTypes = {
   title: PropTypes.string,
   ariaTitle: PropTypes.string,
-  children: PropTypes.any,
-  open: PropTypes.bool.isRequired,
-  setOpen: PropTypes.func.isRequired,
+  children: PropTypes.node,
+  handleClose: PropTypes.func.isRequired,
 };
