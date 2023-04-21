@@ -34,9 +34,13 @@ export const BurgerComponents = () => {
           </ul>
         </li>
       ) : (
-        <p className={clsx(s.emptyText, 'text text_type_main-default')}>
-          {intl.formatMessage({ id: 'constructor.emptyIngredint.text' })}
-        </p>
+        <li className={clsx(s.emptyList)}>
+          <p className={clsx(s.emptyDrag)}></p>
+          <span
+            className={clsx(s.emptyText, 'text text_type_main-default text_color_inactive mr-4')}>
+            {intl.formatMessage({ id: 'constructor.emptyIngredint.text' })}
+          </span>
+        </li>
       )}
 
       <li key='bottom' className={clsx(s.burgerComponent__topBottom)}>
