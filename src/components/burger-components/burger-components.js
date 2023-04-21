@@ -8,9 +8,9 @@ import { useIntl } from 'react-intl';
 
 export const BurgerComponents = () => {
   const intl = useIntl();
-  const { cartItems } = useCartContext();
+  const { cart } = useCartContext();
 
-  const { topComponent, middleComponets, bottomComponent } = useBurgerComponents({ cartItems });
+  const { topComponent, middleComponets, bottomComponent } = useBurgerComponents(cart);
 
   return (
     <ul className={clsx(s.burgerComponents)}>
@@ -18,7 +18,7 @@ export const BurgerComponents = () => {
         <ConstructorElement {...topComponent} />
       </li>
 
-      {cartItems.length > 2 ? (
+      {cart.cartItems.length > 2 ? (
         <li
           className={clsx(s.burgerComponents, s.burgerComponents_middle, 'customScroll')}
           key='middle'>

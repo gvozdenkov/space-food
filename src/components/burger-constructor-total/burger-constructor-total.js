@@ -6,13 +6,10 @@ import { Price } from '../price';
 import { Modal } from '../modal';
 import { OrderDetails } from '../order-details';
 import { useIntl } from 'react-intl';
-import { useFetchReducer } from '../../utils/hooks/useFetchReducer/useFetchReducer';
+import { useFetchReducer } from '../../utils/hooks/useFetchReducer';
 import { CheckoutOrderDetails } from '../CheckoutOrderDetails';
 import { ErrorModalDetails } from '../ErrorModalDetails';
-import {
-  useCartContext,
-  useCartDispatchContext,
-} from '../../utils/contexts/CartContext/CartContext';
+import { useCartContext } from '../../utils/contexts/CartContext/CartContext';
 import { useOrderDispatchContext } from '../../utils/contexts/OrderContext';
 import { FETCH_STATUS } from '../../utils/constants';
 
@@ -22,8 +19,7 @@ export const BurgerConstructorTotal = () => {
   const { state, dispatch, fetchData } = useFetchReducer();
 
   const { addOrder } = useOrderDispatchContext();
-  const { getTotalPrice } = useCartDispatchContext();
-  const cart = useCartContext();
+  const { cart, totalPrice } = useCartContext();
 
   const ingredients = cart.cartItems.map((item) => item._id);
   const isLoading = state.status === FETCH_STATUS.LOADING;
@@ -57,7 +53,7 @@ export const BurgerConstructorTotal = () => {
 
   return (
     <div className={clsx(s.burgerConstructorTotal, 'mt-10 pr-4')}>
-      {<Price amount={getTotalPrice()} size='medium' />}
+      {<Price amount={totalPrice} size='medium' />}
       <Button
         type='primary'
         size='medium'

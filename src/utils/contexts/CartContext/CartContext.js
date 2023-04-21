@@ -30,30 +30,27 @@ export const useCartDispatchContext = () => {
 export const CartContextProvider = ({ children }) => {
   const { ingredients } = useIngredientContext();
 
-  const buns = ingredients.filter((ingredient) => ingredient.type === INGREDIENT.BUN);
-  const randomBun = buns[Math.floor(Math.random() * buns.length)];
+  const randomBun = useMemo(() => {
+    const buns = ingredients.filter((ingredient) => ingredient.type === INGREDIENT.BUN);
+    return buns[Math.floor(Math.random() * buns.length)];
+  }, [ingredients]);
+  
   const initialState = {
     cartItems: [randomBun, randomBun],
   };
 
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [cart, dispatch] = useReducer(reducer, initialState);
 
-  const getTotalPrice = useCallback(() => {
-    return state.cartItems.reduce((sum, ingredient) => sum + ingredient.price, 0);
-  }, [state.cartItems]);
+  const totalPrice = useMemo(() => {
+    return cart.cartItems.reduce((sum, ingredient) => sum + ingredient.price, 0);
+  }, [cart.cartItems]);
 
-  const addIngredient = useCallback((ingredient) => dispatch(addIngredientAction(ingredient)), []);
-
-  const dispatchMethods = useMemo(
-    () => ({
-      getTotalPrice,
-      addIngredient,
-    }),
-    [getTotalPrice, addIngredient],
-  );
+  const dispatchMethods = {
+    addIngredient: (ingredient) => dispatch(addIngredientAction(ingredient)),
+  };
 
   return (
-    <CartContext.Provider value={state}>
+    <CartContext.Provider value={{ cart, totalPrice }}>
       <CartDispatchContext.Provider value={dispatchMethods}>
         {children}
       </CartDispatchContext.Provider>
