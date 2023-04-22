@@ -12,17 +12,18 @@ export const IngredientCard = ({ ingredient }) => {
     setSelectedId(ingredient._id);
   }, [setSelectedId, ingredient._id]);
 
+  const handleAddClick = useCallback(() => {
+    addIngredient({ ingredient });
+  }, [addIngredient, ingredient]);
+
   return (
     <Card product={ingredient}>
+      <Card.Counter />
       <Card.Image onClick={handleImageClick} />
       <Card.Info>
         <Card.Price />
         <Card.Heading />
-        <Card.Button
-          onClick={(e) => {
-            addIngredient({ ingredient });
-          }}
-        />
+        <Card.Button onClick={handleAddClick} />
       </Card.Info>
     </Card>
   );

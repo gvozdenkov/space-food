@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useMemo, useReducer } from 'react';
+import { createContext, useContext, useMemo, useReducer } from 'react';
 import { useIngredientContext } from '../IngredientContext/IngredientContext';
 import { addIngredientAction } from './actions';
 import { reducer } from './reducer';
@@ -34,7 +34,7 @@ export const CartContextProvider = ({ children }) => {
     const buns = ingredients.filter((ingredient) => ingredient.type === INGREDIENT.BUN);
     return buns[Math.floor(Math.random() * buns.length)];
   }, [ingredients]);
-  
+
   const initialState = {
     cartItems: [randomBun, randomBun],
   };

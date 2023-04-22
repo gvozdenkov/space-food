@@ -31,10 +31,6 @@ export const reducer = ({ cartItems }, { type, ingredient }) => {
       }
     }
 
-    case actions.GET_TOTAL_PRICE: {
-      return cartItems.reduce((sum, ingredient) => sum + ingredient.price, 0);
-    }
-
     default:
       throw new Error(`Unknown action type: ${type}`);
   }

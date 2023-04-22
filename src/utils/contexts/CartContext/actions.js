@@ -8,7 +8,3 @@ export const addIngredientAction = ({ ingredient }) => ({
   type: actions.ADD_INGREDIENT,
   ingredient,
 });
-
-export const getTotalPrice = () => ({
-  type: actions.GET_TOTAL_PRICE,
-});
