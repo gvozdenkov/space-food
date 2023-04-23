@@ -36,14 +36,20 @@ export const CartContextProvider = ({ children }) => {
   }, [ingredients]);
 
   const initialState = {
-    cartItems: [randomBun, randomBun],
+    buns: [randomBun, randomBun],
+    ingredients: [],
   };
 
   const [cart, dispatch] = useReducer(reducer, initialState);
 
   const totalPrice = useMemo(() => {
-    return cart.cartItems.reduce((sum, ingredient) => sum + ingredient.price, 0);
-  }, [cart.cartItems]);
+    const bunsPrice = cart.buns.reduce((sum, ingredient) => sum + ingredient.price, 0);
+    const ingredientsPrice = cart.ingredients.reduce(
+      (sum, ingredient) => sum + ingredient.price,
+      0,
+    );
+    return bunsPrice + ingredientsPrice;
+  }, [cart.buns, cart.ingredients]);
 
   const dispatchMethods = {
     addIngredient: (ingredient) => dispatch(addIngredientAction(ingredient)),

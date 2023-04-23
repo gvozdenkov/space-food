@@ -21,7 +21,7 @@ export const BurgerConstructorTotal = () => {
   const { addOrder } = useOrderDispatchContext();
   const { cart, totalPrice } = useCartContext();
 
-  const ingredients = cart.cartItems.map((item) => item._id);
+  const ingredients = [cart.buns[0], ...cart.ingredients, cart.buns[1]].map((item) => item._id);
 
   const isLoading = state.status === FETCH_STATUS.LOADING;
   const isSuccess = state.status === FETCH_STATUS.SUCCESS;

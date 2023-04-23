@@ -18,7 +18,7 @@ export const BurgerComponents = () => {
         <ConstructorElement {...topComponent} />
       </li>
 
-      {cart.cartItems.length > 2 ? (
+      {cart.ingredients.length > 2 ? (
         <li
           className={clsx(s.burgerComponents, s.burgerComponents_middle, 'customScroll')}
           key='middle'>

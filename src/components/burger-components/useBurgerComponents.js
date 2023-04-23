@@ -1,8 +1,9 @@
 import { useIntl } from 'react-intl';
 
-export const useBurgerComponents = ({ cartItems }) => {
+export const useBurgerComponents = ({ buns, ingredients }) => {
   const intl = useIntl();
   let componentProps = [];
+  const cartItems = [buns[0], ...ingredients, buns[1]];
 
   cartItems.forEach((component, index, array) => {
     const isLocked = index === 0 || index === array.length - 1;
