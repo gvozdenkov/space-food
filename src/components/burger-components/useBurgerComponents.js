@@ -1,32 +1,41 @@
+import { useMemo } from 'react';
 import { useIntl } from 'react-intl';
+import { useCartContext } from '../../utils/contexts/CartContext';
 
-export const useBurgerComponents = ({ buns, ingredients }) => {
+export const useBurgerComponents = () => {
   const intl = useIntl();
-  let componentProps = [];
-  const cartItems = [buns[0], ...ingredients, buns[1]];
+  const { cart } = useCartContext();
 
-  cartItems.forEach((component, index, array) => {
-    const isLocked = index === 0 || index === array.length - 1;
-    const price = component.price;
-    const thumbnail = component.image_mobile;
+  // construct props for <ConstructorElement />
+  const burgerComponentProps = useMemo(() => {
+    const cartItems = [cart.buns[0], ...cart.ingredients, cart.buns[1]];
+    let componentProps = [];
 
-    let type;
-    let text = component.name;
+    cartItems.forEach((component, index, array) => {
+      const isLocked = index === 0 || index === array.length - 1;
+      const price = component.price;
+      const thumbnail = component.image_mobile;
 
-    if (index === 0) {
-      type = 'top';
-      text = `${component.name} (${intl.formatMessage({ id: 'constructor.top.intredient' })})`;
-    } else if (index === array.length - 1) {
-      type = 'bottom';
-      text = `${component.name} (${intl.formatMessage({ id: 'constructor.bottom.intredient' })})`;
-    }
+      let type;
+      let text = component.name;
 
-    componentProps.push({ isLocked, type, text, price, thumbnail });
-  });
+      if (index === 0) {
+        type = 'top';
+        text = `${component.name} (${intl.formatMessage({ id: 'constructor.top.intredient' })})`;
+      } else if (index === array.length - 1) {
+        type = 'bottom';
+        text = `${component.name} (${intl.formatMessage({ id: 'constructor.bottom.intredient' })})`;
+      }
 
-  const topComponent = componentProps[0];
-  const bottomComponent = componentProps[componentProps.length - 1];
-  const middleComponets = componentProps.slice(1, -1);
+      componentProps.push({ isLocked, type, text, price, thumbnail });
+    });
 
-  return { topComponent, middleComponets, bottomComponent };
+    const topComponentProps = componentProps[0];
+    const bottomComponentProps = componentProps[componentProps.length - 1];
+    const middleComponetsProps = componentProps.slice(1, -1);
+
+    return { topComponentProps, middleComponetsProps, bottomComponentProps };
+  }, [cart.buns, cart.ingredients, intl]);
+
+  return burgerComponentProps;
 };
