@@ -3,22 +3,20 @@ import { IngredientList } from '../ingredient-list';
 import s from './category-list.module.scss';
 import PropTypes from 'prop-types';
 import { useCategoryList } from './useCategoryList';
-import { useIngredientContext } from '../../utils/contexts/IngredientContext/IngredientContext';
 
 export const CategoryList = ({ types }) => {
-  const { filterByType } = useCategoryList();
-  const { ingredients } = useIngredientContext();
+  const { categorys } = useCategoryList({ types });
 
   return (
     <>
       <ul className={clsx(s.categoryList, 'customScroll')}>
-        {types.map((type, index) => {
+        {categorys.map((category, index) => {
           return (
             <li key={index}>
-              <h2 className='text text_type_main-medium mb-6' id={`${type.type}-category`}>
-                {type.text}
+              <h2 className='text text_type_main-medium mb-6' id={`${category.type}-category`}>
+                {category.text}
               </h2>
-              <IngredientList ingredients={filterByType(ingredients, type.type)} />
+              <IngredientList ingredients={category.ingredients} />
             </li>
           );
         })}
