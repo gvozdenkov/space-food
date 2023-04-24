@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import { useIngredientContext } from '../IngredientContext';
 
 const IngredientSelectedContext = createContext();
 
@@ -14,9 +15,14 @@ export const useIngredientSelectedContext = () => {
 
 export const IngredientSelectedContextProvider = ({ children }) => {
   const [selectedId, setSelectedId] = useState(null);
+  const { ingredients } = useIngredientContext();
+
+  const selectedIngredient = selectedId ? ingredients.find((ingr) => ingr._id === selectedId) : {};
+  const closeModal = () => setSelectedId(null);
 
   return (
-    <IngredientSelectedContext.Provider value={{ selectedId, setSelectedId }}>
+    <IngredientSelectedContext.Provider
+      value={{ selectedId, setSelectedId, selectedIngredient, closeModal }}>
       {children}
     </IngredientSelectedContext.Provider>
   );
