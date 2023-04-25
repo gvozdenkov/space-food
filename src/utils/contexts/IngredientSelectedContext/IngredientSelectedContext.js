@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useCallback, useContext, useState } from 'react';
 import { useIngredientContext } from '../IngredientContext';
 
 const IngredientSelectedContext = createContext();
@@ -18,7 +18,7 @@ export const IngredientSelectedContextProvider = ({ children }) => {
   const { ingredients } = useIngredientContext();
 
   const selectedIngredient = selectedId ? ingredients.find((ingr) => ingr._id === selectedId) : {};
-  const closeModal = () => setSelectedId(null);
+  const closeModal = useCallback(() => setSelectedId(null), []);
 
   return (
     <IngredientSelectedContext.Provider

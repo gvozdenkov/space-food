@@ -4,8 +4,9 @@ import s from './category-list.module.scss';
 import { useCategoryList } from './useCategoryList';
 import { useTabContext } from '../../utils/contexts/tab-context';
 import { InView } from 'react-intersection-observer';
+import { memo } from 'react';
 
-export const CategoryList = () => {
+export const CategoryList = memo(() => {
   const { tabs, getRefs, setCurrentTab } = useTabContext();
   const { categorys } = useCategoryList({ tabs });
 
@@ -35,4 +36,4 @@ export const CategoryList = () => {
       })}
     </ul>
   );
-};
+});

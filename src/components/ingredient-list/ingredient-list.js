@@ -3,8 +3,9 @@ import s from './ingredient-list.module.scss';
 import PropTypes from 'prop-types';
 import { ingredientPropTypes } from '../../utils/config';
 import { IngredientCard } from '../ingredient-card';
+import { memo } from 'react';
 
-export const IngredientList = ({ ingredients }) => {
+export const IngredientList = memo(({ ingredients }) => {
   return (
     <ul className={clsx(s.ingredientList, 'mb-10')}>
       {ingredients.map((ingredient) => {
@@ -16,7 +17,7 @@ export const IngredientList = ({ ingredients }) => {
       })}
     </ul>
   );
-};
+});
 
 IngredientList.propTypes = {
   ingredients: PropTypes.arrayOf(ingredientPropTypes).isRequired,

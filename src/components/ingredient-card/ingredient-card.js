@@ -2,9 +2,9 @@ import { Card } from '../card/card';
 import { ingredientPropTypes } from '../../utils/config';
 import { useCartDispatchContext } from '../../utils/contexts/CartContext/CartContext';
 import { useIngredientSelectedContext } from '../../utils/contexts/IngredientSelectedContext/IngredientSelectedContext';
-import { useCallback } from 'react';
+import { memo, useCallback } from 'react';
 
-export const IngredientCard = ({ ingredient }) => {
+export const IngredientCard = memo(({ ingredient }) => {
   const { addIngredient } = useCartDispatchContext();
   const { setSelectedId } = useIngredientSelectedContext();
 
@@ -27,7 +27,7 @@ export const IngredientCard = ({ ingredient }) => {
       </Card.Info>
     </Card>
   );
-};
+});
 
 IngredientCard.propTypes = {
   ingredient: ingredientPropTypes.isRequired,

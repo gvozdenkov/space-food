@@ -8,8 +8,9 @@ import { TabList } from '../tab-list';
 import s from './burger-ingredients.module.scss';
 import { AnimatePresence } from 'framer-motion';
 import { TabContextProvider } from '../../utils/contexts/tab-context/tab-context';
+import { memo } from 'react';
 
-export const BurgerIngredients = () => {
+export const BurgerIngredients = memo(() => {
   const intl = useIntl();
   const { selectedId, selectedIngredient, closeModal } = useIngredientSelectedContext();
 
@@ -34,4 +35,4 @@ export const BurgerIngredients = () => {
       </AnimatePresence>
     </section>
   );
-};
+});
