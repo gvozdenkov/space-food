@@ -1,35 +1,38 @@
 import clsx from 'clsx';
 import { IngredientList } from '../ingredient-list';
 import s from './category-list.module.scss';
-import PropTypes from 'prop-types';
 import { useCategoryList } from './useCategoryList';
+import { useTabContext } from '../../utils/contexts/tab-context';
+import { InView } from 'react-intersection-observer';
 
-export const CategoryList = ({ types }) => {
-  const { categorys } = useCategoryList({ types });
+export const CategoryList = () => {
+  const { tabs, getRefs, setCurrentTab } = useTabContext();
+  const { categorys } = useCategoryList({ tabs });
 
   return (
-    <>
-      <ul className={clsx(s.categoryList, 'customScroll')}>
-        {categorys.map((category, index) => {
-          return (
-            <li key={index}>
-              <h2 className='text text_type_main-medium mb-6' id={`${category.type}-category`}>
-                {category.text}
-              </h2>
-              <IngredientList ingredients={category.ingredients} />
-            </li>
-          );
-        })}
-      </ul>
-    </>
-  );
-};
+    <ul className={clsx(s.categoryList, 'customScroll')}>
+      {categorys.map((category, index) => {
+        return (
+          <InView
+            as='li'
+            key={index}
+            data-type={category.type}
+            onChange={(inView, entry) => {
+              const refs = getRefs();
+              refs.set(index, entry.target);
 
-CategoryList.propTypes = {
-  types: PropTypes.arrayOf(
-    PropTypes.shape({
-      type: PropTypes.string,
-      text: PropTypes.string,
-    }),
-  ).isRequired,
+              if (inView) {
+                setCurrentTab(entry.target.dataset.type);
+              }
+            }}
+            threshold={0.4}
+            delay={500}>
+            <h2 className='text text_type_main-medium mb-6'>{category.text}</h2>
+
+            <IngredientList ingredients={category.ingredients} />
+          </InView>
+        );
+      })}
+    </ul>
+  );
 };

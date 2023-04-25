@@ -15,7 +15,7 @@ export const BurgerComponents = () => {
         <ConstructorElement {...topComponentProps} />
       </li>
 
-      {middleComponetsProps.length > 2 ? (
+      {middleComponetsProps.length > 0 ? (
         <li
           className={clsx(s.burgerComponents, s.burgerComponents_middle, 'customScroll')}
           key='middle'>

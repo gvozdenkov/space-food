@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useIngredientContext } from '../../utils/contexts/IngredientContext';
 
-export const useCategoryList = ({ types }) => {
+export const useCategoryList = ({ tabs }) => {
   const { ingredients } = useIngredientContext();
 
   // Return array of objects with this shape:
@@ -12,7 +12,7 @@ export const useCategoryList = ({ types }) => {
   // ]
   const categorys = useMemo(
     () =>
-      types.reduce(
+      tabs.reduce(
         (o, type) => [
           ...o,
           {
@@ -23,7 +23,7 @@ export const useCategoryList = ({ types }) => {
         ],
         [],
       ),
-    [ingredients, types],
+    [ingredients, tabs],
   );
 
   return { categorys };

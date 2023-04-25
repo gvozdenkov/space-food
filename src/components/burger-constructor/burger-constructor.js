@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import { BurgerComponents } from '../burger-components';
 import { BurgerConstructorTotal } from '../burger-constructor-total';
 import s from './burger-constructor.module.scss';
-import { useCartDispatchContext } from '../../utils/contexts/CartContext/CartContext';
 
 export const BurgerConstructor = () => {
   return (

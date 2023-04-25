@@ -1,26 +1,27 @@
 import clsx from 'clsx';
 import { useIntl } from 'react-intl';
 import { useIngredientSelectedContext } from '../../utils/contexts/IngredientSelectedContext';
-import { CategoryList } from '../category-list/category-list';
+import { CategoryList } from '../category-list';
 import { IngredientDetails } from '../IngredientDetails';
 import { Modal } from '../modal';
 import { TabList } from '../tab-list';
 import s from './burger-ingredients.module.scss';
 import { AnimatePresence } from 'framer-motion';
-import { useBurgerIngredients } from './useBurgerIngredients';
+import { TabContextProvider } from '../../utils/contexts/tab-context/tab-context';
 
 export const BurgerIngredients = () => {
   const intl = useIntl();
   const { selectedId, selectedIngredient, closeModal } = useIngredientSelectedContext();
-  const { tabs } = useBurgerIngredients();
 
   return (
     <section className={clsx(s.burgerIngridients, 'pt-10')}>
       <h1 className='text text_type_main-large'>
         {intl.formatMessage({ id: 'constructor.title' })}
       </h1>
-      <TabList tabs={tabs} />
-      <CategoryList types={tabs} />
+      <TabContextProvider>
+        <TabList />
+        <CategoryList />
+      </TabContextProvider>
 
       <AnimatePresence initial={false} mode='wait' onExitComplete={() => null}>
         {selectedId && (
