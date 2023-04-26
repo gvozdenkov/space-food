@@ -8,6 +8,7 @@ import { CardContext } from './context/card-context';
 import { Price } from './price';
 import { ingredientPropTypes } from '../../utils/config';
 import { Button } from './button';
+import { Counter } from './counter';
 
 const Card = ({ product, onClick, children }) => {
   return (
@@ -29,5 +30,6 @@ Card.Price = Price;
 Card.Info = Info;
 Card.Heading = Heading;
 Card.Button = Button;
+Card.Counter = Counter;
 
 export { Card };

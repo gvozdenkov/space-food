@@ -1,0 +1,27 @@
+.ellipsis::after {
+  content: '.';
+  position: absolute;
+  animation: countdown 1.3s infinite linear forwards;
+}
+
+@keyframes countdown {
+  0% {
+    content: '.';
+  }
+
+  25% {
+    content: '.';
+  }
+
+  50% {
+    content: '..';
+  }
+
+  80% {
+    content: '...';
+  }
+
+  100% {
+    content: '...';
+  }
+}

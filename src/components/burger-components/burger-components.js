@@ -1,44 +1,48 @@
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { getIcons } from '../../utils';
 import s from './burger-components.module.scss';
 import { useBurgerComponents } from './useBurgerComponents';
-import { ingredientPropTypes } from '../../utils/config';
+import { useIntl } from 'react-intl';
 
-export const BurgerComponents = ({ components }) => {
-  const { topComponent, middleComponet, bottomComponent } = useBurgerComponents({
-    components,
-  });
+export const BurgerComponents = () => {
+  const intl = useIntl();
+  const { topComponentProps, middleComponetsProps, bottomComponentProps } = useBurgerComponents();
 
   return (
     <ul className={clsx(s.burgerComponents)}>
       <li key='top' className={clsx(s.burgerComponent__topBottom)}>
-        <ConstructorElement {...topComponent} />
+        <ConstructorElement {...topComponentProps} />
       </li>
 
-      <li
-        className={clsx(s.burgerComponents, s.burgerComponents_middle, 'customScroll')}
-        key='middle'>
-        <ul className={clsx(s.burgerComponents)}>
-          {middleComponet.map((component, index) => {
-            return (
-              <li className={clsx(s.burgerComponent_withDrag)} key={index}>
-                {getIcons('primary')['drag']}
-                <ConstructorElement {...component} />
-              </li>
-            );
-          })}
-        </ul>
-      </li>
+      {middleComponetsProps.length > 0 ? (
+        <li
+          className={clsx(s.burgerComponents, s.burgerComponents_middle, 'customScroll')}
+          key='middle'>
+          <ul className={clsx(s.burgerComponents)}>
+            {middleComponetsProps.map((component, index) => {
+              return (
+                <li className={clsx(s.burgerComponent_withDrag)} key={index}>
+                  {getIcons('primary')['drag']}
+                  <ConstructorElement {...component} />
+                </li>
+              );
+            })}
+          </ul>
+        </li>
+      ) : (
+        <li className={clsx(s.emptyList)}>
+          <p className={clsx(s.emptyDrag)}></p>
+          <span
+            className={clsx(s.emptyText, 'text text_type_main-default text_color_inactive mr-4')}>
+            {intl.formatMessage({ id: 'constructor.emptyIngredint.text' })}
+          </span>
+        </li>
+      )}
 
       <li key='bottom' className={clsx(s.burgerComponent__topBottom)}>
-        <ConstructorElement {...bottomComponent} />
+        <ConstructorElement {...bottomComponentProps} />
       </li>
     </ul>
   );
-};
-
-BurgerComponents.propTypes = {
-  components: PropTypes.arrayOf(ingredientPropTypes).isRequired,
 };

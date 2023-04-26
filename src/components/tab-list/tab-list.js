@@ -1,18 +1,14 @@
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useState } from 'react';
 import s from './tab-list.module.scss';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
+import { useTabContext } from '../../utils/contexts/tab-context';
 
-export const TabList = ({ tabs }) => {
-  const defaultTab = tabs[0]['type'];
+export const TabList = () => {
+  const { tabs, scrollToId, currentTab, setCurrentTab } = useTabContext();
 
-  const [current, setCurrent] = useState(defaultTab);
-
-  const handleTabClick = (current) => {
-    setCurrent(current);
-    const linkEl = document.querySelector(`#${current}-tab`);
-    window.location.href = linkEl.href;
+  const handleTabClick = (current, index) => {
+    setCurrentTab(current);
+    scrollToId(index);
   };
 
   return (
@@ -20,26 +16,15 @@ export const TabList = ({ tabs }) => {
       {tabs.map((ingredient, index) => {
         return (
           <li key={index}>
-            <a href={`#${ingredient.type}-category`} id={`${ingredient.type}-tab`} className='reset-link'>
-              <Tab
-                value={ingredient.type}
-                active={current === ingredient.type}
-                onClick={(current) => handleTabClick(current)}>
-                {ingredient.text}
-              </Tab>
-            </a>
+            <Tab
+              value={ingredient.type}
+              active={currentTab === ingredient.type}
+              onClick={(current) => handleTabClick(current, index)}>
+              {ingredient.text}
+            </Tab>
           </li>
         );
       })}
     </ul>
   );
-};
-
-TabList.propTypes = {
-  tabs: PropTypes.arrayOf(
-    PropTypes.shape({
-      type: PropTypes.string,
-      text: PropTypes.string,
-    }),
-  ).isRequired,
 };

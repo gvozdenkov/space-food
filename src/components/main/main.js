@@ -1,32 +1,44 @@
 import s from './main.module.scss';
 import { BurgerConstructor } from '../burger-constructor';
 import { BurgerIngredients } from '../burger-ingredients';
-import { useState } from 'react';
-import { IngredientSelectedContext } from '../../utils/contexts/IngredientSelectedContext';
-import { Modal } from '../modal';
+import { useIngredientContext } from '../../utils/contexts/IngredientContext/IngredientContext';
+import { Loading } from '../Loading';
 import { useIntl } from 'react-intl';
-import { IngredientDetails } from '../IngredientDetails';
+import { Modal } from '../modal';
+import { useEffect, useMemo, useState } from 'react';
+import { CartContextProvider } from '../../utils/contexts/CartContext/CartContext';
+import { IngredientSelectedContextProvider } from '../../utils/contexts/IngredientSelectedContext/IngredientSelectedContext';
 
 export const Main = () => {
   const intl = useIntl();
+  const { isLoading, error } = useIngredientContext();
   const [isOpen, setIsOpen] = useState(false);
 
-  const [selectedIngredient, setSelectedIngredient] = useState({});
+  useEffect(() => {
+    if (error) setIsOpen(true);
+  }, [error]);
 
-  return (
-    <IngredientSelectedContext.Provider
-      value={{ isOpen, setIsOpen, selectedIngredient, setSelectedIngredient }}>
-      <main className={s.main}>
-        <BurgerIngredients />
-        <BurgerConstructor />
-
-        <Modal
-          title={intl.formatMessage({ id: 'ingredients.detail.popup.title' })}
-          open={isOpen}
-          setOpen={setIsOpen}>
-          <IngredientDetails ingredient={selectedIngredient} />
-        </Modal>
-      </main>
-    </IngredientSelectedContext.Provider>
-  );
+  return useMemo(() => {
+    return isLoading ? (
+      <Loading text={intl.formatMessage({ id: 'loading.subTitle' })} />
+    ) : error ? (
+      <Modal
+        title={intl.formatMessage({ id: 'popup.error.ingrdientsLoading.title' })}
+        open={isOpen}
+        setOpen={setIsOpen}>
+        <p className='text text_type_main-medium mt-8'>
+          {intl.formatMessage({ id: 'popup.error.ingrdientsLoading.message' })}
+        </p>
+      </Modal>
+    ) : (
+      <div className={s.main}>
+        <IngredientSelectedContextProvider>
+          <CartContextProvider>
+            <BurgerIngredients />
+            <BurgerConstructor />
+          </CartContextProvider>
+        </IngredientSelectedContextProvider>
+      </div>
+    );
+  }, [isLoading, error, isOpen, intl]);
 };

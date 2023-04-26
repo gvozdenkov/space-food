@@ -1,31 +1,25 @@
 import { Card } from '../card/card';
 import { ingredientPropTypes } from '../../utils/config';
-import { useContext } from 'react';
-import { IngredientSelectedContext } from '../../utils/contexts/IngredientSelectedContext';
-import { BurgerConstructorContext } from '../../utils/contexts/burgerConstructorContext';
+import { useCartDispatchContext } from '../../utils/contexts/CartContext/CartContext';
+import { useIngredientSelectedContext } from '../../utils/contexts/IngredientSelectedContext/IngredientSelectedContext';
+import { memo, useCallback } from 'react';
 
-export const IngredientCard = ({ ingredient }) => {
-  const { setIsOpen, setSelectedIngredient } = useContext(IngredientSelectedContext);
-  const { burgerConstructorItems, setBurgerConstructorItems } =
-    useContext(BurgerConstructorContext);
+export const IngredientCard = memo(({ ingredient }) => {
+  const { addIngredient } = useCartDispatchContext();
+  const { setSelectedId } = useIngredientSelectedContext();
 
-  const handleCardClick = () => {
-    setSelectedIngredient(ingredient);
-    setIsOpen(true);
-  };
+  const handleImageClick = useCallback(() => {
+    setSelectedId(ingredient._id);
+  }, [setSelectedId, ingredient._id]);
 
-  const handleAddClick = (e) => {
-    e.stopPropagation();
-    setBurgerConstructorItems([
-      ...burgerConstructorItems.slice(0, -1),
-      ingredient,
-      ...burgerConstructorItems.slice(-1),
-    ]);
-  };
+  const handleAddClick = useCallback(() => {
+    addIngredient({ ingredient });
+  }, [addIngredient, ingredient]);
 
   return (
-    <Card product={ingredient} onClick={handleCardClick}>
-      <Card.Image />
+    <Card product={ingredient}>
+      <Card.Counter />
+      <Card.Image onClick={handleImageClick} />
       <Card.Info>
         <Card.Price />
         <Card.Heading />
@@ -33,7 +27,7 @@ export const IngredientCard = ({ ingredient }) => {
       </Card.Info>
     </Card>
   );
-};
+});
 
 IngredientCard.propTypes = {
   ingredient: ingredientPropTypes.isRequired,

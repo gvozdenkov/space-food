@@ -51,3 +51,10 @@ export const IntlConvert = (arr, param) => {
 };
 
 export const findBy = (arr, param) => (value) => arr.find((item) => item[param] === value);
+
+export const log = (msg) => (param) => {
+  console.log(msg);
+  if (param) {
+    console.log(param);
+  }
+};

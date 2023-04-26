@@ -1,38 +1,39 @@
 import clsx from 'clsx';
 import { IngredientList } from '../ingredient-list';
 import s from './category-list.module.scss';
-import PropTypes from 'prop-types';
 import { useCategoryList } from './useCategoryList';
-import { useContext } from 'react';
-import { IngredientContext } from '../../utils/contexts/ingredientsContext';
+import { useTabContext } from '../../utils/contexts/tab-context';
+import { InView } from 'react-intersection-observer';
+import { memo } from 'react';
 
-export const CategoryList = ({ types }) => {
-  const { filterByType } = useCategoryList();
-  const ingredients = useContext(IngredientContext);
+export const CategoryList = memo(() => {
+  const { tabs, getRefs, setCurrentTab } = useTabContext();
+  const { categorys } = useCategoryList({ tabs });
 
   return (
-    <>
-      <ul className={clsx(s.categoryList, 'customScroll')}>
-        {types.map((type, index) => {
-          return (
-            <li key={index}>
-              <h2 className='text text_type_main-medium mb-6' id={`${type.type}-category`}>
-                {type.text}
-              </h2>
-              <IngredientList ingredients={filterByType(ingredients, type.type)} />
-            </li>
-          );
-        })}
-      </ul>
-    </>
-  );
-};
+    <ul className={clsx(s.categoryList, 'customScroll')}>
+      {categorys.map((category, index) => {
+        return (
+          <InView
+            as='li'
+            key={index}
+            data-type={category.type}
+            onChange={(inView, entry) => {
+              const refs = getRefs();
+              refs.set(index, entry.target);
 
-CategoryList.propTypes = {
-  types: PropTypes.arrayOf(
-    PropTypes.shape({
-      type: PropTypes.string,
-      text: PropTypes.string,
-    }),
-  ).isRequired,
-};
+              if (inView) {
+                setCurrentTab(entry.target.dataset.type);
+              }
+            }}
+            threshold={0.4}
+            delay={500}>
+            <h2 className='text text_type_main-medium mb-6'>{category.text}</h2>
+
+            <IngredientList ingredients={category.ingredients} />
+          </InView>
+        );
+      })}
+    </ul>
+  );
+});
