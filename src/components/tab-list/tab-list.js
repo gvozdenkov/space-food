@@ -1,7 +1,7 @@
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import s from './tab-list.module.scss';
 import clsx from 'clsx';
-import { useTabContext } from '../../utils/contexts/tab-context';
+import { useTabContext } from '../../common/contexts/tab-context';
 
 export const TabList = () => {
   const { tabs, scrollToId, currentTab, setCurrentTab } = useTabContext();

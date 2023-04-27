@@ -6,13 +6,13 @@ import { Price } from '../price';
 import { Modal } from '../modal';
 import { OrderDetails } from '../order-details';
 import { useIntl } from 'react-intl';
-import { useFetchReducer } from '../../utils/hooks/useFetchReducer';
 import { CheckoutOrderDetails } from '../CheckoutOrderDetails';
 import { ErrorModalDetails } from '../ErrorModalDetails';
-import { useCartContext } from '../../utils/contexts/CartContext/CartContext';
-import { useOrderDispatchContext } from '../../utils/contexts/OrderContext';
+import { useCartContext } from '../../common/contexts/CartContext/CartContext';
+import { useOrderDispatchContext } from '../../common/contexts/OrderContext';
 import { FETCH_STATUS } from '../../utils/constants';
 import { AnimatePresence } from 'framer-motion';
+import { useFetchReducer } from '../../common/hooks/useFetchReducer';
 
 export const BurgerConstructorTotal = () => {
   const intl = useIntl();

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useCartContext } from '../../../utils/contexts/CartContext';
+import { useCartContext } from '../../../common/contexts/CartContext';
 import { useCardContext } from './useCardContext';
 
 export const useCounter = () => {
