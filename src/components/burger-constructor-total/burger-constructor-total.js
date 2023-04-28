@@ -24,8 +24,8 @@ export const BurgerConstructorTotal = () => {
   const ingredients = [cart.buns[0], ...cart.ingredients, cart.buns[1]].map((item) => item._id);
 
   const isLoading = state.status === FETCH_STATUS.LOADING;
-  const isSuccess = state.status === FETCH_STATUS.SUCCESS;
-  const isFail = state.status === FETCH_STATUS.FAIL;
+  const isSuccess = state.status === FETCH_STATUS.SUCCESSED;
+  const isFail = state.status === FETCH_STATUS.FAILED;
 
   const [openModal, setOpenModal] = useState(null);
 
@@ -43,10 +43,10 @@ export const BurgerConstructorTotal = () => {
   };
 
   useEffect(() => {
-    if (isFail) setOpenModal(FETCH_STATUS.FAIL);
+    if (isFail) setOpenModal(FETCH_STATUS.FAILED);
     if (isLoading) setOpenModal(FETCH_STATUS.LOADING);
     if (isSuccess) {
-      setOpenModal(FETCH_STATUS.SUCCESS);
+      setOpenModal(FETCH_STATUS.SUCCESSED);
       addOrder(state.data.order.number);
     }
   }, [isFail, isLoading, isSuccess]);
@@ -75,7 +75,7 @@ export const BurgerConstructorTotal = () => {
           </Modal>
         )}
 
-        {openModal === FETCH_STATUS.FAIL && (
+        {openModal === FETCH_STATUS.FAILED && (
           <Modal
             title={intl.formatMessage({ id: 'popup.error.ingrdientsLoading.title' })}
             handleClose={close}>
@@ -86,7 +86,7 @@ export const BurgerConstructorTotal = () => {
           </Modal>
         )}
 
-        {openModal === FETCH_STATUS.SUCCESS && (
+        {openModal === FETCH_STATUS.SUCCESSED && (
           <Modal ariaTitle='Идентификатор заказа' handleClose={close}>
             <OrderDetails orderNumber={state.data.order.number} />
           </Modal>

@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useTabContext } from '../../../common/contexts/tab-context';
-import { selectIngredients } from '../ingredients-slice';
+import { selectAllIngredients } from '../ingredients-slice';
 
 export const useIngredientsList = () => {
-  const ingredients = useSelector(selectIngredients);
+  const ingredients = useSelector(selectAllIngredients);
   const { tabs } = useTabContext();
 
   // Return array of objects with this shape:

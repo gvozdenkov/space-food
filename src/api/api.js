@@ -1,20 +1,32 @@
 import { serverConfig } from '../utils/config';
 
-const request = async ({ endpoint, options = {} }) => {
-  const abortController = new AbortController();
-
+export const api = async ({ endpoint, options = {} }) => {
   const url = `${serverConfig.baseUrl}/${endpoint}`;
-  const res = await fetch(url, {
-    headers: serverConfig.headers,
-    ...options,
-    signal: abortController.signal,
-  });
+  let data;
 
-  const json = await res.json();
+  try {
+    const res = await fetch(url, {
+      headers: serverConfig.headers,
+      ...options,
+    });
 
-  return res.ok ? json : Promise.reject(JSON.parse(JSON.stringify(json)));
+    const json = await res.json();
+
+    if (res.ok) {
+      return {
+        status: res.status,
+        data: json.data,
+        headers: res.headers,
+        url: res.url,
+      };
+    }
+
+    throw new Error(res.statusText);
+  } catch (err) {
+    return Promise.reject(err.message ? err.message : data);
+  }
 };
 
-export const getIngredients = () => {
-  return request({ endpoint: 'ingredients' });
+api.getIngredients = () => {
+  return api({ endpoint: 'ingredients' });
 };

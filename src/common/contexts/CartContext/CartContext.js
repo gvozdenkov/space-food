@@ -1,10 +1,9 @@
 import { createContext, useContext, useMemo, useReducer } from 'react';
-import { useIngredientContext } from '../IngredientContext/IngredientContext';
 import { addIngredientAction } from './actions';
 import { reducer } from './reducer';
 import { INGREDIENT } from '../../../utils/constants';
 import { useSelector } from 'react-redux';
-import { selectIngredients } from '../../../features/ingredients/ingredients-slice';
+import { selectAllIngredients } from '../../../features/ingredients/ingredients-slice';
 
 const CartContext = createContext();
 const CartDispatchContext = createContext();
@@ -30,7 +29,7 @@ export const useCartDispatchContext = () => {
 };
 
 export const CartContextProvider = ({ children }) => {
-  const ingredients = useSelector(selectIngredients);
+  const ingredients = useSelector(selectAllIngredients);
 
   const randomBun = useMemo(() => {
     const buns = ingredients.filter((ingredient) => ingredient.type === INGREDIENT.BUN);

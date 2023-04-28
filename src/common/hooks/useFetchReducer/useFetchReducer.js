@@ -19,14 +19,14 @@ export const useFetchReducer = (initialData = null) => {
         };
       case actions.RESOLVED:
         return {
-          status: FETCH_STATUS.SUCCESS,
+          status: FETCH_STATUS.SUCCESSED,
           data: action.data,
           error: null,
         };
       case actions.REJECTED:
         return {
           data: null,
-          status: FETCH_STATUS.FAIL,
+          status: FETCH_STATUS.FAILED,
           error: action.error,
         };
       default:
