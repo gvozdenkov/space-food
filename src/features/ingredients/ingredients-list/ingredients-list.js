@@ -10,17 +10,19 @@ export const IngredientsList = memo(() => {
   const { getRefs, setCurrentTab } = useTabContext();
   const { categorys } = useIngredientsList();
 
-  const ingredientsList = (ingredients) => (
-    <ul className={clsx(s.ingredientList, 'mb-10')}>
-      {ingredients.map((ingredient) => {
-        return (
-          <li key={ingredient._id}>
-            <IngredientCard ingredient={ingredient} />
-          </li>
-        );
-      })}
-    </ul>
-  );
+  const List = ({ ingredients }) => {
+    return (
+      <ul className={clsx(s.ingredientList, 'mb-10')}>
+        {ingredients.map((ingredient) => {
+          return (
+            <li key={ingredient._id}>
+              <IngredientCard ingredient={ingredient} />
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
 
   return (
     <ul className={clsx(s.categoryList, 'customScroll')}>
@@ -41,8 +43,7 @@ export const IngredientsList = memo(() => {
             threshold={0.4}
             delay={500}>
             <h2 className='text text_type_main-medium mb-6'>{category.text}</h2>
-
-            {ingredientsList(category.ingredients)}
+            <List ingredients={category.ingredients} />
           </InView>
         );
       })}

@@ -1,10 +1,9 @@
 import { useMemo } from 'react';
-import { useSelector } from 'react-redux';
 import { useTabContext } from '../../../common/contexts/tab-context';
-import { selectAllIngredients } from '../ingredients-slice';
+import { useGetIngredientsQuery } from '../../api/api-slice';
 
 export const useIngredientsList = () => {
-  const ingredients = useSelector(selectAllIngredients);
+  const { data: ingredients } = useGetIngredientsQuery();
   const { tabs } = useTabContext();
 
   // Return array of objects with this shape:
@@ -19,7 +18,7 @@ export const useIngredientsList = () => {
         (o, tab) => [
           ...o,
           {
-            ingredients: ingredients.filter((ingredient) => ingredient.type === tab.type),
+            ingredients: ingredients.data.filter((ingredient) => ingredient.type === tab.type),
             text: tab.text,
             type: tab.type,
           },

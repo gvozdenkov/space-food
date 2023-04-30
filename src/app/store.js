@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { burgerConstructorReducer } from '../features/burger-constructor/burger-constructor-slice';
 import { ingredientDetailsReducer } from '../features/ingredient-details/ingredient-details-slice';
-import { ingredientsReducer } from '../features/ingredients/ingredients-slice';
+import { apiSlice } from '../features/api/api-slice';
 
 export const store = configureStore({
   reducer: {
-    ingredients: ingredientsReducer,
     ingredientDetails: ingredientDetailsReducer,
     burgerConstructor: burgerConstructorReducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
   },
+
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
 });
