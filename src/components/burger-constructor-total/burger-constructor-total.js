@@ -8,52 +8,54 @@ import { OrderDetails } from '../order-details';
 import { useIntl } from 'react-intl';
 import { CheckoutOrderDetails } from '../CheckoutOrderDetails';
 import { ErrorModalDetails } from '../ErrorModalDetails';
-import { useCartContext } from '../../common/contexts/CartContext/CartContext';
-import { useOrderDispatchContext } from '../../common/contexts/OrderContext';
 import { FETCH_STATUS } from '../../utils/constants';
 import { AnimatePresence } from 'framer-motion';
-import { useFetchReducer } from '../../common/hooks/useFetchReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTotalPrice } from '../../features/burger-constructor/burger-constructor-slice';
+import { useCreateOrderMutation } from '../../features/api/api-slice';
+import { orderCreated } from '../../features/order/order-slice';
 
 export const BurgerConstructorTotal = () => {
   const intl = useIntl();
-  const { state, dispatch, fetchData } = useFetchReducer();
+  const dispatch = useDispatch();
 
-  const { addOrder } = useOrderDispatchContext();
-  const { cart, totalPrice } = useCartContext();
+  const [createOrder, { isLoading, isFetching, isSuccess, isError, error, data: order }] =
+    useCreateOrderMutation();
 
-  const ingredients = [cart.buns[0], ...cart.ingredients, cart.buns[1]].map((item) => item._id);
+  const { bun, ingredients, totalPrice } = useSelector((state) => state.burgerConstructor);
+  const cart = [bun, ...ingredients, bun];
+  const cartIngredients = cart.map((item) => item._id);
 
-  const isLoading = state.status === FETCH_STATUS.LOADING;
-  const isSuccess = state.status === FETCH_STATUS.SUCCESSED;
-  const isFail = state.status === FETCH_STATUS.FAILED;
+  useEffect(() => {
+    dispatch(getTotalPrice());
+  }, [bun, ingredients, dispatch]);
 
   const [openModal, setOpenModal] = useState(null);
-
   const close = () => setOpenModal(null);
 
-  const handleCreateOrder = () => {
-    fetchData({
-      endpoint: 'orders',
-      options: {
-        method: 'POST',
-        body: JSON.stringify({ ingredients }),
-      },
-      dispatch,
-    });
+  const handleCreateOrder = async () => {
+    if (!isLoading && !isFetching) {
+      try {
+        await createOrder({ ingredients: cartIngredients }).unwrap();
+      } catch (err) {
+        console.error('Failed to create the order: ', err);
+      }
+    }
   };
 
   useEffect(() => {
-    if (isFail) setOpenModal(FETCH_STATUS.FAILED);
+    if (isError) setOpenModal(FETCH_STATUS.FAILED);
     if (isLoading) setOpenModal(FETCH_STATUS.LOADING);
     if (isSuccess) {
+      dispatch(orderCreated(order));
       setOpenModal(FETCH_STATUS.SUCCESSED);
-      addOrder(state.data.order.number);
     }
-  }, [isFail, isLoading, isSuccess]);
+  }, [isError, isLoading, isSuccess, dispatch, order]);
 
   return (
     <div className={clsx(s.burgerConstructorTotal, 'mt-10 pr-4')}>
       {<Price amount={totalPrice} size='medium' />}
+
       <Button
         type='primary'
         size='medium'
@@ -80,7 +82,7 @@ export const BurgerConstructorTotal = () => {
             title={intl.formatMessage({ id: 'popup.error.ingrdientsLoading.title' })}
             handleClose={close}>
             <ErrorModalDetails
-              error={state.error.message}
+              error={error}
               message={intl.formatMessage({ id: 'popup.error.orderCreate.message' })}
             />
           </Modal>
@@ -88,7 +90,7 @@ export const BurgerConstructorTotal = () => {
 
         {openModal === FETCH_STATUS.SUCCESSED && (
           <Modal ariaTitle='Идентификатор заказа' handleClose={close}>
-            <OrderDetails orderNumber={state.data.order.number} />
+            <OrderDetails orderNumber={order.order.number} />
           </Modal>
         )}
       </AnimatePresence>

@@ -1,12 +1,11 @@
 import { Card } from '../../../components/card/card';
 import { ingredientPropTypes } from '../../../utils/config';
-import { useCartDispatchContext } from '../../../common/contexts/CartContext/CartContext';
 import { memo, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { selected } from '../../ingredient-details/ingredient-details-slice';
+import { ingredientAdded } from '../../burger-constructor/burger-constructor-slice';
 
 export const IngredientCard = memo(({ ingredient }) => {
-  const { addIngredient } = useCartDispatchContext();
   const dispatch = useDispatch();
 
   const handleImageClick = useCallback(() => {
@@ -14,8 +13,8 @@ export const IngredientCard = memo(({ ingredient }) => {
   }, [dispatch, ingredient]);
 
   const handleAddClick = useCallback(() => {
-    addIngredient({ ingredient });
-  }, [addIngredient, ingredient]);
+    dispatch(ingredientAdded(ingredient));
+  }, [ingredient, dispatch]);
 
   return (
     <Card product={ingredient}>

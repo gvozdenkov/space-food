@@ -60,3 +60,8 @@ export const ingredientPropTypes = PropTypes.shape({
   image_large: PropTypes.string,
   __v: PropTypes.number,
 });
+
+export const LOCAL_STORAGE = {
+  CART_BUN: 'cartBun',
+  CART_INGREDIENTS: 'cartIngredients',
+};

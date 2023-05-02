@@ -1,20 +1,23 @@
 import { useMemo } from 'react';
 import { useIntl } from 'react-intl';
-import { useCartContext } from '../../common/contexts/CartContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { ingredientRemoved } from '../../features/burger-constructor/burger-constructor-slice';
 
 export const useBurgerComponents = () => {
   const intl = useIntl();
-  const { cart } = useCartContext();
+  const { bun, ingredients } = useSelector((state) => state.burgerConstructor);
+  const dispatch = useDispatch();
 
   // construct props for <ConstructorElement />
   const burgerComponentProps = useMemo(() => {
-    const cartItems = [cart.buns[0], ...cart.ingredients, cart.buns[1]];
+    const cartItems = [bun, ...ingredients, bun];
     let componentProps = [];
 
     cartItems.forEach((component, index, array) => {
       const isLocked = index === 0 || index === array.length - 1;
       const price = component.price;
       const thumbnail = component.image_mobile;
+      const constructorItemId = component.constructorItemId;
 
       let type;
       let text = component.name;
@@ -27,7 +30,7 @@ export const useBurgerComponents = () => {
         text = `${component.name} (${intl.formatMessage({ id: 'constructor.bottom.intredient' })})`;
       }
 
-      componentProps.push({ isLocked, type, text, price, thumbnail });
+      componentProps.push({ isLocked, type, text, price, thumbnail, constructorItemId });
     });
 
     const topComponentProps = componentProps[0];
@@ -35,7 +38,11 @@ export const useBurgerComponents = () => {
     const middleComponetsProps = componentProps.slice(1, -1);
 
     return { topComponentProps, middleComponetsProps, bottomComponentProps };
-  }, [cart.buns, cart.ingredients, intl]);
+  }, [bun, ingredients, intl]);
 
-  return burgerComponentProps;
+  const handleRemoveFromConstructor = (item) => {
+    dispatch(ingredientRemoved(item));
+  };
+
+  return { ...burgerComponentProps, handleRemoveFromConstructor };
 };

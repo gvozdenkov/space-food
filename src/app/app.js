@@ -1,7 +1,6 @@
 import s from './app.module.scss';
 import { Header } from '../components/header';
 import { Main } from '../components/main';
-import { OrderContextProvider } from '../common/contexts/OrderContext';
 import { useIntl } from 'react-intl';
 import { Loading } from '../components/Loading';
 import { Modal } from '../components/modal';
@@ -15,12 +14,12 @@ export const App = () => {
   const content = isLoading ? (
     <Loading text={intl.formatMessage({ id: 'loading.subTitle' })} />
   ) : isSuccess ? (
-    <OrderContextProvider>
+    <>
       <Header />
       <main className={s.main}>
         <Main />
       </main>
-    </OrderContextProvider>
+    </>
   ) : (
     isOpenErrorModal && (
       <Modal

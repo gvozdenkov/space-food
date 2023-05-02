@@ -10,7 +10,15 @@ export const apiSlice = createApi({
     getIngredients: builder.query({
       query: () => 'ingredients',
     }),
+
+    createOrder: builder.mutation({
+      query: (initialOrder) => ({
+        url: '/orders',
+        method: 'POST',
+        body: initialOrder,
+      }),
+    }),
   }),
 });
 
-export const { useGetIngredientsQuery } = apiSlice;
+export const { useGetIngredientsQuery, useCreateOrderMutation } = apiSlice;
