@@ -2,13 +2,20 @@ import { createSlice, nanoid } from '@reduxjs/toolkit';
 import { INGREDIENT } from '../../utils/constants';
 import { LOCAL_STORAGE } from '../../utils/config';
 
+const bun = localStorage.getItem(LOCAL_STORAGE.CART_BUN)
+  ? JSON.parse(localStorage.getItem(LOCAL_STORAGE.CART_BUN))
+  : {};
+
+const ingredients = localStorage.getItem(LOCAL_STORAGE.CART_INGREDIENTS)
+  ? JSON.parse(localStorage.getItem(LOCAL_STORAGE.CART_INGREDIENTS))
+  : [];
+
+const constructorItems = [bun, ...ingredients, bun];
+
 const initialState = {
-  bun: localStorage.getItem(LOCAL_STORAGE.CART_BUN)
-    ? JSON.parse(localStorage.getItem(LOCAL_STORAGE.CART_BUN))
-    : {},
-  ingredients: localStorage.getItem(LOCAL_STORAGE.CART_INGREDIENTS)
-    ? JSON.parse(localStorage.getItem(LOCAL_STORAGE.CART_INGREDIENTS))
-    : [],
+  bun,
+  ingredients,
+  constructorItems,
   totalPrice: 0,
 };
 
@@ -25,6 +32,8 @@ export const burgerConstructorSlice = createSlice({
           state.ingredients.push(action.payload);
           localStorage.setItem(LOCAL_STORAGE.CART_INGREDIENTS, JSON.stringify(state.ingredients));
         }
+
+        state.constructorItems = [state.bun, ...state.ingredients, state.bun];
       },
 
       prepare({
@@ -65,10 +74,13 @@ export const burgerConstructorSlice = createSlice({
       state.ingredients = state.ingredients.filter(
         (item) => item.constructorItemId !== action.payload.constructorItemId,
       );
+
+      state.constructorItems = [state.bun, ...state.ingredients, state.bun];
+
       localStorage.setItem(LOCAL_STORAGE.CART_INGREDIENTS, JSON.stringify(state.ingredients));
     },
 
-    getTotalPrice(state, action) {
+    totalPriceCaluclated(state, action) {
       const ingredientsPrice = state.ingredients.reduce((total, item) => (total += item.price), 0);
 
       const bunPrice = state.bun.price * 2;
@@ -78,7 +90,8 @@ export const burgerConstructorSlice = createSlice({
   },
 });
 
-export const { ingredientAdded, ingredientRemoved, getTotalPrice } = burgerConstructorSlice.actions;
+export const { ingredientAdded, ingredientRemoved, totalPriceCaluclated } =
+  burgerConstructorSlice.actions;
 
 const burgerConstructorReducer = burgerConstructorSlice.reducer;
 

@@ -11,7 +11,7 @@ import { ErrorModalDetails } from '../ErrorModalDetails';
 import { FETCH_STATUS } from '../../utils/constants';
 import { AnimatePresence } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTotalPrice } from '../../features/burger-constructor/burger-constructor-slice';
+import { totalPriceCaluclated } from '../../features/burger-constructor/burger-constructor-slice';
 import { useCreateOrderMutation } from '../../features/api/api-slice';
 import { orderCreated } from '../../features/order/order-slice';
 
@@ -22,13 +22,12 @@ export const BurgerConstructorTotal = () => {
   const [createOrder, { isLoading, isFetching, isSuccess, isError, error, data: order }] =
     useCreateOrderMutation();
 
-  const { bun, ingredients, totalPrice } = useSelector((state) => state.burgerConstructor);
-  const cart = [bun, ...ingredients, bun];
-  const cartIngredients = cart.map((item) => item._id);
+  const { constructorItems, totalPrice } = useSelector((state) => state.burgerConstructor);
+  const cartIngredients = constructorItems.map((item) => item._id);
 
   useEffect(() => {
-    dispatch(getTotalPrice());
-  }, [bun, ingredients, dispatch]);
+    dispatch(totalPriceCaluclated());
+  }, [constructorItems, dispatch]);
 
   const [openModal, setOpenModal] = useState(null);
   const close = () => setOpenModal(null);

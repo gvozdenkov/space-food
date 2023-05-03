@@ -5,15 +5,14 @@ import { ingredientRemoved } from '../../features/burger-constructor/burger-cons
 
 export const useBurgerComponents = () => {
   const intl = useIntl();
-  const { bun, ingredients } = useSelector((state) => state.burgerConstructor);
+  const { constructorItems } = useSelector((state) => state.burgerConstructor);
   const dispatch = useDispatch();
 
   // construct props for <ConstructorElement />
   const burgerComponentProps = useMemo(() => {
-    const cartItems = [bun, ...ingredients, bun];
     let componentProps = [];
 
-    cartItems.forEach((component, index, array) => {
+    constructorItems.forEach((component, index, array) => {
       const isLocked = index === 0 || index === array.length - 1;
       const price = component.price;
       const thumbnail = component.image_mobile;
@@ -38,7 +37,7 @@ export const useBurgerComponents = () => {
     const middleComponetsProps = componentProps.slice(1, -1);
 
     return { topComponentProps, middleComponetsProps, bottomComponentProps };
-  }, [bun, ingredients, intl]);
+  }, [constructorItems, intl]);
 
   const handleRemoveFromConstructor = (item) => {
     dispatch(ingredientRemoved(item));
