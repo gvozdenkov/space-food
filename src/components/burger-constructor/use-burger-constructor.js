@@ -9,11 +9,11 @@ export const useBurgerConstructor = () => {
   const { data: ingredients } = useGetIngredientsQuery();
 
   // if no bun in local storage - select random bun from ingredients and dispatch it
-  if (!localStorage.getItem(LOCAL_STORAGE.CART_BUN)) {
+  if (!localStorage.getItem(LOCAL_STORAGE.CONSTRUCTOR_BUN)) {
     const buns = ingredients.data.filter((ingredient) => ingredient.type === INGREDIENT.BUN);
     const randomBun = buns[Math.floor(Math.random() * buns.length)];
 
-    localStorage.setItem(LOCAL_STORAGE.CART_BUN, JSON.stringify(randomBun));
+    localStorage.setItem(LOCAL_STORAGE.CONSTRUCTOR_BUN, JSON.stringify(randomBun));
 
     dispatch(ingredientAdded(randomBun));
   }

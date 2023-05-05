@@ -3,12 +3,12 @@ import { INGREDIENT } from '../../utils/constants';
 import { LOCAL_STORAGE } from '../../utils/config';
 import { findConstructorIngredient } from '../../utils/utils';
 
-const bun = localStorage.getItem(LOCAL_STORAGE.CART_BUN)
-  ? JSON.parse(localStorage.getItem(LOCAL_STORAGE.CART_BUN))
+const bun = localStorage.getItem(LOCAL_STORAGE.CONSTRUCTOR_BUN)
+  ? JSON.parse(localStorage.getItem(LOCAL_STORAGE.CONSTRUCTOR_BUN))
   : {};
 
-const ingredients = localStorage.getItem(LOCAL_STORAGE.CART_INGREDIENTS)
-  ? JSON.parse(localStorage.getItem(LOCAL_STORAGE.CART_INGREDIENTS))
+const ingredients = localStorage.getItem(LOCAL_STORAGE.CONSTRUCTOR_INGREDIENTS)
+  ? JSON.parse(localStorage.getItem(LOCAL_STORAGE.CONSTRUCTOR_INGREDIENTS))
   : [];
 
 const constructorItems = [bun, ...ingredients, bun];
@@ -20,6 +20,14 @@ const initialState = {
   totalPrice: 0,
 };
 
+const setConstructorItems = (state) => {
+  return [state.bun, ...state.ingredients, state.bun];
+};
+
+const setLocalStorageIngredients = (state) => {
+  localStorage.setItem(LOCAL_STORAGE.CONSTRUCTOR_INGREDIENTS, JSON.stringify(state.ingredients));
+};
+
 export const burgerConstructorSlice = createSlice({
   name: 'burgerConstructor',
   initialState,
@@ -28,13 +36,13 @@ export const burgerConstructorSlice = createSlice({
       reducer(state, action) {
         if (action.payload.type === INGREDIENT.BUN && action.payload._id !== state.bun._id) {
           state.bun = action.payload;
-          localStorage.setItem(LOCAL_STORAGE.CART_BUN, JSON.stringify(state.bun));
+          localStorage.setItem(LOCAL_STORAGE.CONSTRUCTOR_BUN, JSON.stringify(state.bun));
         } else if (action.payload.type !== INGREDIENT.BUN) {
           state.ingredients.push(action.payload);
-          localStorage.setItem(LOCAL_STORAGE.CART_INGREDIENTS, JSON.stringify(state.ingredients));
+          setLocalStorageIngredients(state);
         }
 
-        state.constructorItems = [state.bun, ...state.ingredients, state.bun];
+        state.constructorItems = setConstructorItems(state);
       },
 
       prepare({
@@ -76,9 +84,9 @@ export const burgerConstructorSlice = createSlice({
         (item) => item._itemId !== action.payload._itemId,
       );
 
-      state.constructorItems = [state.bun, ...state.ingredients, state.bun];
+      state.constructorItems = setConstructorItems(state);
 
-      localStorage.setItem(LOCAL_STORAGE.CART_INGREDIENTS, JSON.stringify(state.ingredients));
+      setLocalStorageIngredients(state);
     },
 
     totalPriceCaluclated(state, action) {
@@ -92,13 +100,13 @@ export const burgerConstructorSlice = createSlice({
     ingredientMoved(state, action) {
       const { id, toIndex } = action.payload;
       const { card, index: fromIndex } = findConstructorIngredient(state.ingredients, id);
-      let rearrangedIngredients = [...state.ingredients];
+      let rearrangedIngredients = state.ingredients;
       rearrangedIngredients.splice(fromIndex, 1);
       rearrangedIngredients.splice(toIndex, 0, card);
       state.ingredients = rearrangedIngredients;
 
-      state.constructorItems = [state.bun, ...state.ingredients, state.bun];
-      localStorage.setItem(LOCAL_STORAGE.CART_INGREDIENTS, JSON.stringify(state.ingredients));
+      state.constructorItems = setConstructorItems(state);
+      setLocalStorageIngredients(state);
     },
   },
 });

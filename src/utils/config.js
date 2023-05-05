@@ -62,8 +62,8 @@ export const ingredientPropTypes = PropTypes.shape({
 });
 
 export const LOCAL_STORAGE = {
-  CART_BUN: 'cartBun',
-  CART_INGREDIENTS: 'cartIngredients',
+  CONSTRUCTOR_BUN: 'constructortBun',
+  CONSTRUCTOR_INGREDIENTS: 'constructorIngredients',
 };
 
 export const DragTypes = {
