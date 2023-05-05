@@ -1,7 +1,7 @@
-import { useGetIngredientsQuery } from '../../features/api/api-slice';
+import { useGetIngredientsQuery } from '../../services/api-slice';
 import { INGREDIENT } from '../../utils/constants';
 import { useDispatch } from 'react-redux';
-import { ingredientAdded } from '../../features/burger-constructor/burger-constructor-slice';
+import { ingredientAdded } from '../../services/burger-constructor-slice';
 import { LOCAL_STORAGE } from '../../utils/config';
 
 export const useBurgerConstructor = () => {

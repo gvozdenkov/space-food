@@ -1,6 +1,6 @@
 import s from './main.module.scss';
 import { BurgerConstructor } from '../burger-constructor';
-import { BurgerIngredients } from '../../features/ingredient-details/burger-ingredients';
+import { BurgerIngredients } from '../burger-ingredients';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 

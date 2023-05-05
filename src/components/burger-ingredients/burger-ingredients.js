@@ -1,15 +1,16 @@
 import clsx from 'clsx';
 import { useIntl } from 'react-intl';
-import { IngredientDetails } from '../../ingredients/ingredient-details';
-import { Modal } from '../../../components/modal';
-import { TabList } from '../../../components/tab-list';
+
+import { Modal } from '../modal';
+import { TabList } from '../tab-list';
 import s from './burger-ingredients.module.scss';
 import { AnimatePresence } from 'framer-motion';
-import { TabContextProvider } from '../../../common/contexts/tab-context/tab-context';
+import { TabContextProvider } from '../../common/contexts/tab-context/tab-context';
 import { memo } from 'react';
-import { IngredientsList } from '../../ingredients/ingredients-list';
 import { useDispatch, useSelector } from 'react-redux';
-import { unselected } from '../ingredient-details-slice';
+import { unselected } from '../../services/ingredient-details-slice';
+import { IngredientDetails } from '../ingredient-details';
+import { IngredientsList } from '../ingredients-list';
 
 export const BurgerIngredients = memo(() => {
   const intl = useIntl();

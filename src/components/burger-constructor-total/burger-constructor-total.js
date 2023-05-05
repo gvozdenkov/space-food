@@ -11,9 +11,9 @@ import { ErrorModalDetails } from '../error-modal-details';
 import { FETCH_STATUS } from '../../utils/constants';
 import { AnimatePresence } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
-import { totalPriceCaluclated } from '../../features/burger-constructor/burger-constructor-slice';
-import { useCreateOrderMutation } from '../../features/api/api-slice';
-import { orderCreated } from '../../features/order/order-slice';
+import { totalPriceCaluclated } from '../../services/burger-constructor-slice';
+import { useCreateOrderMutation } from '../../services/api-slice';
+import { orderCreated } from '../../services/order-slice';
 
 export const BurgerConstructorTotal = () => {
   const intl = useIntl();

@@ -2,9 +2,9 @@ import clsx from 'clsx';
 import s from './ingredients-list.module.scss';
 import { IngredientCard } from '../ingredient-card';
 import { useIngredientsList } from './use-ingredients-list';
-import { useTabContext } from '../../../common/contexts/tab-context';
 import { InView } from 'react-intersection-observer';
 import { memo } from 'react';
+import { useTabContext } from '../../common/contexts/tab-context';
 
 export const IngredientsList = memo(() => {
   const { getRefs, setCurrentTab } = useTabContext();

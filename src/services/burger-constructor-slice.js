@@ -1,7 +1,7 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
-import { INGREDIENT } from '../../utils/constants';
-import { LOCAL_STORAGE } from '../../utils/config';
-import { findConstructorIngredient } from '../../utils/utils';
+import { INGREDIENT } from '../utils/constants';
+import { LOCAL_STORAGE } from '../utils/config';
+import { findConstructorIngredient } from '../utils/utils';
 
 const bun = localStorage.getItem(LOCAL_STORAGE.CONSTRUCTOR_BUN)
   ? JSON.parse(localStorage.getItem(LOCAL_STORAGE.CONSTRUCTOR_BUN))

@@ -2,12 +2,9 @@ import { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDrop } from 'react-dnd';
-import {
-  ingredientAdded,
-  ingredientRemoved,
-} from '../../features/burger-constructor/burger-constructor-slice';
+import { ingredientAdded, ingredientRemoved } from '../../services/burger-constructor-slice';
 import { DragTypes } from '../../utils/config';
-import { useGetIngredientsQuery } from '../../features/api/api-slice';
+import { useGetIngredientsQuery } from '../../services/api-slice';
 
 export const useBurgerConstructorList = () => {
   const intl = useIntl();

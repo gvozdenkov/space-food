@@ -1,9 +1,9 @@
-import { Card } from '../../../components/card/card';
-import { DragTypes, ingredientPropTypes } from '../../../utils/config';
+import { Card } from '../card/card';
+import { DragTypes, ingredientPropTypes } from '../../utils/config';
 import { memo, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { selected } from '../../ingredient-details/ingredient-details-slice';
-import { ingredientAdded } from '../../burger-constructor/burger-constructor-slice';
+import { selected } from '../../services/ingredient-details-slice';
+import { ingredientAdded } from '../../services/burger-constructor-slice';
 import { useDrag } from 'react-dnd';
 
 export const IngredientCard = memo(({ ingredient }) => {

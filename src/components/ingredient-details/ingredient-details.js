@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import s from './ingredient-details.module.scss';
-import { ingredientPropTypes } from '../../../utils/config';
 import { useIntl } from 'react-intl';
+import { ingredientPropTypes } from '../../utils/config';
 
 export const IngredientDetails = ({ ingredient }) => {
   const intl = useIntl();

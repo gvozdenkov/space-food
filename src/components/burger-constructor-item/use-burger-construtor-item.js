@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useDrag, useDrop } from 'react-dnd';
 import { findConstructorIngredient } from '../../utils/utils';
 import { DragTypes } from '../../utils/config';
-import { ingredientMoved } from '../../features/burger-constructor/burger-constructor-slice';
+import { ingredientMoved } from '../../services/burger-constructor-slice';
 
 export const useBurgerConstrutorItem = (id) => {
   const { ingredients } = useSelector((state) => state.burgerConstructor);
