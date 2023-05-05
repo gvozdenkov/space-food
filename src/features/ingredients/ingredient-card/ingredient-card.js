@@ -1,9 +1,10 @@
 import { Card } from '../../../components/card/card';
-import { ingredientPropTypes } from '../../../utils/config';
+import { DragTypes, ingredientPropTypes } from '../../../utils/config';
 import { memo, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { selected } from '../../ingredient-details/ingredient-details-slice';
 import { ingredientAdded } from '../../burger-constructor/burger-constructor-slice';
+import { useDrag } from 'react-dnd';
 
 export const IngredientCard = memo(({ ingredient }) => {
   const dispatch = useDispatch();
@@ -16,8 +17,16 @@ export const IngredientCard = memo(({ ingredient }) => {
     dispatch(ingredientAdded(ingredient));
   }, [ingredient, dispatch]);
 
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: DragTypes.INGREDIENT,
+    item: { id: ingredient._id },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  }));
+
   return (
-    <Card product={ingredient}>
+    <Card ref={drag} isDragging={isDragging} product={ingredient}>
       <Card.Counter />
       <Card.Image onClick={handleImageClick} />
       <Card.Info>

@@ -16,13 +16,6 @@
   align-self: flex-end;
 }
 
-.withDrag {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-right: 2 * $scrollWidth;
-}
-
 .ingredients {
   max-height: calc(
     ($burgerIngredientsMax * $burgerIngredientHeight) +
@@ -53,4 +46,10 @@
 .emptyDrag {
   display: block;
   width: 32px;
+}
+
+.dragHover {
+  background-color: var(--color-ingredient-background);
+  color: var(--color-content-primary);
+  border: 1px solid transparent;
 }

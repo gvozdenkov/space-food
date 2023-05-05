@@ -9,16 +9,20 @@ import { Price } from './price';
 import { ingredientPropTypes } from '../../utils/config';
 import { Button } from './button';
 import { Counter } from './counter';
+import { forwardRef } from 'react';
 
-const Card = ({ product, onClick, children }) => {
+const Card = forwardRef(({ product, onClick, isDragging, children }, ref) => {
   return (
     <CardContext.Provider value={product}>
-      <article className={clsx(s.card, 'pl-4 pr-4')} onClick={onClick}>
+      <article
+        ref={ref}
+        className={clsx(s.card, 'pl-4 pr-4', { [s.card_dragging]: isDragging })}
+        onClick={onClick}>
         {children}
       </article>
     </CardContext.Provider>
   );
-};
+});
 
 Card.propTypes = {
   product: ingredientPropTypes.isRequired,

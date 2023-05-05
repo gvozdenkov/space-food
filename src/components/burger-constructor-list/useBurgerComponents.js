@@ -16,20 +16,23 @@ export const useBurgerComponents = () => {
       const isLocked = index === 0 || index === array.length - 1;
       const price = component.price;
       const thumbnail = component.image_mobile;
-      const constructorItemId = component.constructorItemId;
+      const _itemId = component._itemId;
 
       let type;
       let text = component.name;
+      let haveDrag = true;
 
       if (index === 0) {
         type = 'top';
         text = `${component.name} (${intl.formatMessage({ id: 'constructor.top.intredient' })})`;
+        haveDrag = false;
       } else if (index === array.length - 1) {
         type = 'bottom';
         text = `${component.name} (${intl.formatMessage({ id: 'constructor.bottom.intredient' })})`;
+        haveDrag = false;
       }
 
-      componentProps.push({ isLocked, type, text, price, thumbnail, constructorItemId });
+      componentProps.push({ isLocked, haveDrag, type, text, price, thumbnail, _itemId });
     });
 
     const topComponentProps = componentProps[0];

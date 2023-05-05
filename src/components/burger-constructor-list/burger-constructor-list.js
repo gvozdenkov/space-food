@@ -1,11 +1,19 @@
-import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import clsx from 'clsx';
-import { getIcons } from '../../utils';
 import s from './burger-constructor-list.module.scss';
 import { useBurgerComponents } from './useBurgerComponents';
 import { useIntl } from 'react-intl';
+import { BurgerConstructorItem } from '../burger-constructor-item/burger-constructor-item';
+import { useDrop } from 'react-dnd';
+import { DragTypes } from '../../utils/config';
+import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { ingredientAdded } from '../../features/burger-constructor/burger-constructor-slice';
+import { useGetIngredientsQuery } from '../../features/api/api-slice';
 
 export const BurgerConstructorList = () => {
+  const dispatch = useDispatch();
+  const { data: ingredients } = useGetIngredientsQuery();
+
   const intl = useIntl();
   const {
     topComponentProps,
@@ -14,43 +22,64 @@ export const BurgerConstructorList = () => {
     handleRemoveFromConstructor,
   } = useBurgerComponents();
 
-  const IngredientList = () => (
-    <li className={clsx(s.ingredients, 'customScroll')} key='middle'>
+  const IngredientList = () => {
+    return (
       <ul className={clsx(s.list)}>
-        {middleComponetsProps.map((component) => {
+        {middleComponetsProps.map((componentProps) => {
           return (
-            <li className={clsx(s.withDrag)} key={component.constructorItemId}>
-              {getIcons('primary')['drag']}
-              <ConstructorElement
-                {...component}
-                handleClose={() => handleRemoveFromConstructor(component)}
+            <li key={componentProps._itemId}>
+              <BurgerConstructorItem
+                props={componentProps}
+                handleClose={() => handleRemoveFromConstructor(componentProps)}
               />
             </li>
           );
         })}
       </ul>
-    </li>
-  );
+    );
+  };
 
   const EmptyList = () => (
-    <li className={clsx(s.emptyList)}>
+    <div className={clsx(s.emptyList)}>
       <p className={clsx(s.emptyDrag)}></p>
-      <span className={clsx(s.emptyText, 'text text_type_main-default text_color_inactive mr-4')}>
+      <p
+        className={clsx(
+          s.emptyText,
+          { [s.dragHover]: isOver },
+          'text text_type_main-default text_color_inactive mr-4',
+        )}>
         {intl.formatMessage({ id: 'constructor.emptyIngredint.text' })}
-      </span>
-    </li>
+      </p>
+    </div>
   );
 
+  const [{ isOver }, dropFromIngredients] = useDrop(() => ({
+    accept: DragTypes.INGREDIENT,
+    drop: (item, monitor) => {
+      const ingredient = ingredients.data.find((ingredient) => ingredient._id === item.id);
+      dispatch(ingredientAdded(ingredient));
+    },
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+    }),
+  }));
+
+  const [, dropFromConstructor] = useDrop(() => ({
+    accept: DragTypes.CONSTRUCTOR_INGREDIENT,
+  }));
+
   return (
-    <ul className={clsx(s.list)}>
+    <ul ref={dropFromIngredients} className={clsx(s.list)}>
       <li key='top' className={clsx(s.bun)}>
-        <ConstructorElement {...topComponentProps} />
+        <BurgerConstructorItem props={topComponentProps} />
       </li>
 
-      {middleComponetsProps.length > 0 ? <IngredientList /> : <EmptyList />}
+      <li ref={dropFromConstructor} className={clsx(s.ingredients, 'customScroll')} key='middle'>
+        {middleComponetsProps.length > 0 ? <IngredientList /> : <EmptyList />}
+      </li>
 
       <li key='bottom' className={clsx(s.bun)}>
-        <ConstructorElement {...bottomComponentProps} />
+        <BurgerConstructorItem props={bottomComponentProps} />
       </li>
     </ul>
   );

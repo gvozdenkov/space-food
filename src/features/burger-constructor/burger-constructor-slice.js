@@ -1,6 +1,7 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
 import { INGREDIENT } from '../../utils/constants';
 import { LOCAL_STORAGE } from '../../utils/config';
+import { findConstructorIngredient } from '../../utils/utils';
 
 const bun = localStorage.getItem(LOCAL_STORAGE.CART_BUN)
   ? JSON.parse(localStorage.getItem(LOCAL_STORAGE.CART_BUN))
@@ -53,7 +54,7 @@ export const burgerConstructorSlice = createSlice({
         return {
           payload: {
             _id,
-            constructorItemId: nanoid(),
+            _itemId: nanoid(),
             name,
             type,
             proteins,
@@ -72,7 +73,7 @@ export const burgerConstructorSlice = createSlice({
 
     ingredientRemoved(state, action) {
       state.ingredients = state.ingredients.filter(
-        (item) => item.constructorItemId !== action.payload.constructorItemId,
+        (item) => item._itemId !== action.payload._itemId,
       );
 
       state.constructorItems = [state.bun, ...state.ingredients, state.bun];
@@ -87,10 +88,22 @@ export const burgerConstructorSlice = createSlice({
 
       state.totalPrice = ingredientsPrice + bunPrice;
     },
+
+    ingredientMoved(state, action) {
+      const { id, toIndex } = action.payload;
+      const { card, index: fromIndex } = findConstructorIngredient(state.ingredients, id);
+      let rearrangedIngredients = [...state.ingredients];
+      rearrangedIngredients.splice(fromIndex, 1);
+      rearrangedIngredients.splice(toIndex, 0, card);
+      state.ingredients = rearrangedIngredients;
+
+      state.constructorItems = [state.bun, ...state.ingredients, state.bun];
+      localStorage.setItem(LOCAL_STORAGE.CART_INGREDIENTS, JSON.stringify(state.ingredients));
+    },
   },
 });
 
-export const { ingredientAdded, ingredientRemoved, totalPriceCaluclated } =
+export const { ingredientAdded, ingredientRemoved, totalPriceCaluclated, ingredientMoved } =
   burgerConstructorSlice.actions;
 
 const burgerConstructorReducer = burgerConstructorSlice.reducer;

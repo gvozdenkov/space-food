@@ -65,3 +65,8 @@ export const LOCAL_STORAGE = {
   CART_BUN: 'cartBun',
   CART_INGREDIENTS: 'cartIngredients',
 };
+
+export const DragTypes = {
+  INGREDIENT: 'ingredient',
+  CONSTRUCTOR_INGREDIENT: 'constructorIngredient',
+};

@@ -23,9 +23,9 @@ export const TabContextProvider = ({ children }) => {
   const defaultTab = useMemo(() => tabs[0]['type'], [tabs]);
   const [currentTab, setCurrentTab] = useState(defaultTab);
 
-  const scrollToId = useCallback((itemId) => {
+  const scrollToId = useCallback((_itemId) => {
     const refs = getRefs();
-    const node = refs.get(itemId);
+    const node = refs.get(_itemId);
     node.scrollIntoView({
       behavior: 'smooth',
       block: 'start',

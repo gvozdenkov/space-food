@@ -4,4 +4,9 @@
   align-items: center;
   position: relative;
   box-sizing: border-box;
+  transition: opacity 0.4s ease-out;
+}
+
+.card_dragging {
+  opacity: 0.4;
 }
