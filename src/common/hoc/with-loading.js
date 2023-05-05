@@ -1,4 +1,4 @@
-import { Loading } from '../../components/Loading';
+import { Loading } from '../../components/loading';
 import PropTypes from 'prop-types';
 
 export const withLoading = (Component) => {

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useCardContext } from './useCardContext';
+import { useCardContext } from './use-card-context';
 import { useSelector } from 'react-redux';
 
 export const useCounter = () => {

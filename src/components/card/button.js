@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 import { Button as ButtonUI } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useCardContext } from './hook/useCardContext';
+import { useCardContext } from './hook/use-card-context';
 
 export const Button = ({ onClick }) => {
   const intl = useIntl();

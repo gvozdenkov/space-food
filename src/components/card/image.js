@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import s from './image.module.scss';
-import { useCardContext } from './hook/useCardContext';
+import { useCardContext } from './hook/use-card-context';
 
 export const Image = ({ onClick }) => {
   const product = useCardContext();

@@ -2,7 +2,7 @@ import s from './app.module.scss';
 import { Header } from '../components/header';
 import { Main } from '../components/main';
 import { useIntl } from 'react-intl';
-import { Loading } from '../components/Loading';
+import { Loading } from '../components/loading';
 import { Modal } from '../components/modal';
 import { useApp } from './useApp';
 

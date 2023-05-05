@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
-import { LoaderShape } from '../LoaderShape';
+import { LoaderShape } from '../loader-shape';
 
 export const OrderDetails = ({ orderNumber }) => {
   const intl = useIntl();

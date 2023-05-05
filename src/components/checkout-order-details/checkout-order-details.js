@@ -1,5 +1,5 @@
 import s from './checkout-order-details.module.scss';
-import { LoaderShape } from '../LoaderShape';
+import { LoaderShape } from '../loader-shape';
 import clsx from 'clsx';
 import { useIntl } from 'react-intl';
 

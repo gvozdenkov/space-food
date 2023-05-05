@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import s from './heading.module.scss';
-import { useCardContext } from './hook/useCardContext';
+import { useCardContext } from './hook/use-card-context';
 
 export const Heading = () => {
   const product = useCardContext();
