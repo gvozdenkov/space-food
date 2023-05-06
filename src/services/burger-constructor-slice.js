@@ -45,35 +45,11 @@ export const burgerConstructorSlice = createSlice({
         state.constructorItems = setConstructorItems(state);
       },
 
-      prepare({
-        _id,
-        name,
-        type,
-        proteins,
-        fat,
-        carbohydrates,
-        calories,
-        price,
-        image,
-        image_mobile,
-        image_large,
-        __v,
-      }) {
+      prepare(ingredient) {
         return {
           payload: {
-            _id,
+            ...ingredient,
             _itemId: nanoid(),
-            name,
-            type,
-            proteins,
-            fat,
-            carbohydrates,
-            calories,
-            price,
-            image,
-            image_mobile,
-            image_large,
-            __v,
           },
         };
       },

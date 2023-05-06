@@ -10,7 +10,7 @@ export const BurgerConstructorItem = ({ props, handleClose }) => {
 
   return (
     <div
-      ref={(node) => drag(drop(node))}
+      ref={(node) => (haveDrag ? drag(drop(node)) : null)}
       className={clsx({ [s.withDrag]: haveDrag, [s.isDragging]: isDragging })}>
       {haveDrag && getIcons('primary')['drag']}
       <ConstructorElement {...props} handleClose={handleClose} />

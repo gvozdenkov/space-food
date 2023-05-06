@@ -10,38 +10,6 @@ export const ingredientDetailsSlice = createSlice({
       reducer(state, action) {
         return action.payload;
       },
-
-      prepare({
-        _id,
-        name,
-        type,
-        proteins,
-        fat,
-        carbohydrates,
-        calories,
-        price,
-        image,
-        image_mobile,
-        image_large,
-        __v,
-      }) {
-        return {
-          payload: {
-            _id,
-            name,
-            type,
-            proteins,
-            fat,
-            carbohydrates,
-            calories,
-            price,
-            image,
-            image_mobile,
-            image_large,
-            __v: 0,
-          },
-        };
-      },
     },
 
     unselected() {
