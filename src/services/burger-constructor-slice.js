@@ -92,7 +92,7 @@ export const burgerConstructorSlice = createSlice({
     totalPriceCaluclated(state, action) {
       const ingredientsPrice = state.ingredients.reduce((total, item) => (total += item.price), 0);
 
-      const bunPrice = state.bun.price * 2;
+      const bunPrice = Object.keys(state.bun).length !== 0 ? state.bun.price * 2 : 0;
 
       state.totalPrice = ingredientsPrice + bunPrice;
     },

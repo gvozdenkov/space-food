@@ -5,6 +5,7 @@
   position: relative;
   box-sizing: border-box;
   transition: opacity 0.4s ease-out;
+  cursor: grab;
 }
 
 .card_dragging {

@@ -9,8 +9,11 @@ import { useGetIngredientsQuery } from '../../services/api-slice';
 export const useBurgerConstructorList = () => {
   const intl = useIntl();
   const { data: ingredients } = useGetIngredientsQuery();
-  const { constructorItems } = useSelector((state) => state.burgerConstructor);
+  const { constructorItems, bun, ingredients: constructorIngredients } = useSelector((state) => state.burgerConstructor);
   const dispatch = useDispatch();
+
+  const isBun = Object.keys(bun).length !== 0;
+  const isIngredients = constructorIngredients.length > 0;
 
   // construct props for <ConstructorElement />
   const burgerComponentProps = useMemo(() => {
@@ -68,6 +71,8 @@ export const useBurgerConstructorList = () => {
 
   return {
     ...burgerComponentProps,
+    isBun,
+    isIngredients,
     handleRemoveFromConstructor,
     dropFromIngredients,
     dropFromConstructor,

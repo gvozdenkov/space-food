@@ -10,6 +10,8 @@ export const BurgerConstructorList = () => {
     topComponentProps,
     middleComponetsProps,
     bottomComponentProps,
+    isBun,
+    isIngredients,
     handleRemoveFromConstructor,
     dropFromIngredients,
     dropFromConstructor,
@@ -58,15 +60,15 @@ export const BurgerConstructorList = () => {
   return (
     <ul ref={dropFromIngredients} className={clsx(s.list)}>
       <li key='top' className={clsx(s.bun)}>
-        {true ? (
-          <EmptyElement type='top' text={intl.formatMessage({ id: 'constructor.bun.empty' })} />
-        ) : (
+        {isBun ? (
           <BurgerConstructorItem props={topComponentProps} />
+        ) : (
+          <EmptyElement type='top' text={intl.formatMessage({ id: 'constructor.bun.empty' })} />
         )}
       </li>
 
       <li ref={dropFromConstructor} className={clsx(s.ingredients, 'customScroll')} key='middle'>
-        {middleComponetsProps.length > 0 ? (
+        {isIngredients ? (
           <IngredientList />
         ) : (
           <EmptyElement
@@ -77,10 +79,10 @@ export const BurgerConstructorList = () => {
       </li>
 
       <li key='bottom' className={clsx(s.bun)}>
-        {true ? (
-          <EmptyElement type='bottom' text={intl.formatMessage({ id: 'constructor.bun.empty' })} />
-        ) : (
+        {isBun ? (
           <BurgerConstructorItem props={bottomComponentProps} />
+        ) : (
+          <EmptyElement type='bottom' text={intl.formatMessage({ id: 'constructor.bun.empty' })} />
         )}
       </li>
     </ul>
