@@ -33,32 +33,55 @@ export const BurgerConstructorList = () => {
     );
   };
 
-  const EmptyList = () => (
-    <div className={clsx(s.emptyList)}>
-      <p className={clsx(s.emptyDrag)}></p>
-      <p
-        className={clsx(
-          s.emptyText,
-          { [s.dragHover]: isOverConstructor },
-          'text text_type_main-default text_color_inactive mr-4',
-        )}>
-        {intl.formatMessage({ id: 'constructor.emptyIngredint.text' })}
-      </p>
-    </div>
-  );
+  const EmptyElement = ({ type, text, extraClass }) => {
+    const top = type === 'top';
+    const bottom = type === 'bottom';
+
+    const className = clsx(
+      s.emptyElement,
+      `text text_type_main-default text_color_inactive ${extraClass}`,
+      {
+        [s.emptyElement_top]: top,
+        [s.emptyElement_bottom]: bottom,
+      },
+    );
+
+    return (
+      <div className={className}>
+        <span className={clsx(s.emptyElement_row)}>
+          <p className='text text_type_main-default'>{text}</p>
+        </span>
+      </div>
+    );
+  };
 
   return (
     <ul ref={dropFromIngredients} className={clsx(s.list)}>
       <li key='top' className={clsx(s.bun)}>
-        <BurgerConstructorItem props={topComponentProps} />
+        {true ? (
+          <EmptyElement type='top' text={intl.formatMessage({ id: 'constructor.bun.empty' })} />
+        ) : (
+          <BurgerConstructorItem props={topComponentProps} />
+        )}
       </li>
 
       <li ref={dropFromConstructor} className={clsx(s.ingredients, 'customScroll')} key='middle'>
-        {middleComponetsProps.length > 0 ? <IngredientList /> : <EmptyList />}
+        {middleComponetsProps.length > 0 ? (
+          <IngredientList />
+        ) : (
+          <EmptyElement
+            extraClass='ml-8'
+            text={intl.formatMessage({ id: 'constructor.middle.empty' })}
+          />
+        )}
       </li>
 
       <li key='bottom' className={clsx(s.bun)}>
-        <BurgerConstructorItem props={bottomComponentProps} />
+        {true ? (
+          <EmptyElement type='bottom' text={intl.formatMessage({ id: 'constructor.bun.empty' })} />
+        ) : (
+          <BurgerConstructorItem props={bottomComponentProps} />
+        )}
       </li>
     </ul>
   );
