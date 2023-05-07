@@ -36,13 +36,13 @@ export const burgerConstructorSlice = createSlice({
       reducer(state, action) {
         if (action.payload.type === INGREDIENT.BUN && action.payload._id !== state.bun._id) {
           state.bun = action.payload;
+          state.constructorItems = setConstructorItems(state);
           localStorage.setItem(LOCAL_STORAGE.CONSTRUCTOR_BUN, JSON.stringify(state.bun));
         } else if (action.payload.type !== INGREDIENT.BUN) {
           state.ingredients.push(action.payload);
           setLocalStorageIngredients(state);
+          state.constructorItems = setConstructorItems(state);
         }
-
-        state.constructorItems = setConstructorItems(state);
       },
 
       prepare(ingredient) {
