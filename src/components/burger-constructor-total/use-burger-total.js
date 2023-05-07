@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCreateOrderMutation } from '../../services/api-slice';
-import { totalPriceCaluclated } from '../../services/burger-constructor-slice';
+import { constructorReseted, totalPriceCaluclated } from '../../services/burger-constructor-slice';
 import { FETCH_STATUS } from '../../utils/constants';
 import { orderCreated } from '../../services/order-slice';
 
@@ -23,6 +23,12 @@ export const useBurgerTotal = () => {
   useEffect(() => {
     dispatch(totalPriceCaluclated());
   }, [constructorItems, dispatch]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(constructorReseted());
+    }
+  }, [isSuccess, dispatch]);
 
   const [openModal, setOpenModal] = useState(null);
   const closeModal = () => setOpenModal(null);

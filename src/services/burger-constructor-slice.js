@@ -73,22 +73,46 @@ export const burgerConstructorSlice = createSlice({
       state.totalPrice = ingredientsPrice + bunPrice;
     },
 
-    ingredientMoved(state, action) {
-      const { id, toIndex } = action.payload;
-      const { card, index: fromIndex } = findConstructorIngredient(state.ingredients, id);
-      let rearrangedIngredients = state.ingredients;
-      rearrangedIngredients.splice(fromIndex, 1);
-      rearrangedIngredients.splice(toIndex, 0, card);
-      state.ingredients = rearrangedIngredients;
+    ingredientMoved: {
+      reducer(state, action) {
+        const { id, toIndex } = action.payload;
+        const { card, index: fromIndex } = findConstructorIngredient(state.ingredients, id);
+        let rearrangedIngredients = state.ingredients;
+        rearrangedIngredients.splice(fromIndex, 1);
+        rearrangedIngredients.splice(toIndex, 0, card);
+        state.ingredients = rearrangedIngredients;
 
+        state.constructorItems = setConstructorItems(state);
+        setLocalStorageIngredients(state);
+      },
+
+      prepare(id, toIndex) {
+        return {
+          payload: {
+            id,
+            toIndex,
+          },
+        };
+      },
+    },
+
+    constructorReseted(state, action) {
+      state.bun = {};
+      state.ingredients = [];
       state.constructorItems = setConstructorItems(state);
-      setLocalStorageIngredients(state);
+      localStorage.removeItem(LOCAL_STORAGE.CONSTRUCTOR_BUN);
+      localStorage.removeItem(LOCAL_STORAGE.CONSTRUCTOR_INGREDIENTS);
     },
   },
 });
 
-export const { ingredientAdded, ingredientRemoved, totalPriceCaluclated, ingredientMoved } =
-  burgerConstructorSlice.actions;
+export const {
+  ingredientAdded,
+  ingredientRemoved,
+  totalPriceCaluclated,
+  ingredientMoved,
+  constructorReseted,
+} = burgerConstructorSlice.actions;
 
 const burgerConstructorReducer = burgerConstructorSlice.reducer;
 

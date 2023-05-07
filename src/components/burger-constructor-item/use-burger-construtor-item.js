@@ -21,7 +21,7 @@ export const useBurgerConstrutorItem = (id) => {
         const { id: droppedId, originalIndex } = item;
         const didDrop = monitor.didDrop();
         if (!didDrop) {
-          dispatch(ingredientMoved({ id: droppedId, toIndex: originalIndex }));
+          dispatch(ingredientMoved(droppedId, originalIndex));
         }
       },
     }),
@@ -33,7 +33,7 @@ export const useBurgerConstrutorItem = (id) => {
     hover({ id: draggedId }) {
       if (draggedId !== id) {
         const { index: overIndex } = findConstructorIngredient(ingredients, id);
-        dispatch(ingredientMoved({ id: draggedId, toIndex: overIndex }));
+        dispatch(ingredientMoved(draggedId, overIndex));
       }
     },
   }));
