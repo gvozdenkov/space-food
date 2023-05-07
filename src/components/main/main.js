@@ -1,44 +1,16 @@
 import s from './main.module.scss';
 import { BurgerConstructor } from '../burger-constructor';
 import { BurgerIngredients } from '../burger-ingredients';
-import { useIngredientContext } from '../../utils/contexts/IngredientContext/IngredientContext';
-import { Loading } from '../Loading';
-import { useIntl } from 'react-intl';
-import { Modal } from '../modal';
-import { useEffect, useMemo, useState } from 'react';
-import { CartContextProvider } from '../../utils/contexts/CartContext/CartContext';
-import { IngredientSelectedContextProvider } from '../../utils/contexts/IngredientSelectedContext/IngredientSelectedContext';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 export const Main = () => {
-  const intl = useIntl();
-  const { isLoading, error } = useIngredientContext();
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    if (error) setIsOpen(true);
-  }, [error]);
-
-  return useMemo(() => {
-    return isLoading ? (
-      <Loading text={intl.formatMessage({ id: 'loading.subTitle' })} />
-    ) : error ? (
-      <Modal
-        title={intl.formatMessage({ id: 'popup.error.ingrdientsLoading.title' })}
-        open={isOpen}
-        setOpen={setIsOpen}>
-        <p className='text text_type_main-medium mt-8'>
-          {intl.formatMessage({ id: 'popup.error.ingrdientsLoading.message' })}
-        </p>
-      </Modal>
-    ) : (
+  return (
+    <DndProvider backend={HTML5Backend}>
       <div className={s.main}>
-        <IngredientSelectedContextProvider>
-          <CartContextProvider>
-            <BurgerIngredients />
-            <BurgerConstructor />
-          </CartContextProvider>
-        </IngredientSelectedContextProvider>
+        <BurgerIngredients />
+        <BurgerConstructor />
       </div>
-    );
-  }, [isLoading, error, isOpen, intl]);
+    </DndProvider>
+  );
 };

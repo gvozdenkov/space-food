@@ -7,8 +7,8 @@ export const INGREDIENT = {
 export const FETCH_STATUS = {
   IDLE: 'idle',
   LOADING: 'loading',
-  SUCCESS: 'success',
-  FAIL: 'fail',
+  SUCCESSED: 'successed',
+  FAILED: 'failed',
 };
 
 export const MODAL_PORTAL_EL = document.querySelector('#modal-portal');

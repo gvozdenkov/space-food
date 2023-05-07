@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
-import { App } from './components/app';
+import { App } from './app';
 import reportWebVitals from './reportWebVitals';
 import { IntelApp } from './components/intelApp';
+import { Provider } from 'react-redux';
+import { store } from './app/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <IntelApp>
-      <App />
-    </IntelApp>
+    <Provider store={store}>
+      <IntelApp>
+        <App />
+      </IntelApp>
+    </Provider>
   </React.StrictMode>,
 );
 

@@ -15,6 +15,8 @@ export const messagesRu = {
   'constructor.title': 'Собери бургер',
   'constructor.top.intredient': 'верх',
   'constructor.bottom.intredient': 'низ',
+  'constructor.bun.empty': 'Добавь ароматную булочку',
+  'constructor.middle.empty': 'Добавь вкуснейшую начинку',
   'constructor.createOrder': 'Оформить заказ',
   'constructor.createOrder.loading': 'Оформление заказа',
   'constructor.emptyIngredint.text': 'Добавьте ингредиенты, так будет вкуснее',

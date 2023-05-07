@@ -60,3 +60,13 @@ export const ingredientPropTypes = PropTypes.shape({
   image_large: PropTypes.string,
   __v: PropTypes.number,
 });
+
+export const LOCAL_STORAGE = {
+  CONSTRUCTOR_BUN: 'constructortBun',
+  CONSTRUCTOR_INGREDIENTS: 'constructorIngredients',
+};
+
+export const DragTypes = {
+  INGREDIENT: 'ingredient',
+  CONSTRUCTOR_INGREDIENT: 'constructorIngredient',
+};

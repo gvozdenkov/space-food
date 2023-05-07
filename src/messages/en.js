@@ -15,6 +15,8 @@ export const messagesEn = {
   'constructor.title': 'Construct your burger',
   'constructor.top.intredient': 'top',
   'constructor.bottom.intredient': 'bottom',
+  'constructor.bun.empty': 'Add flavored Bun',
+  'constructor.middle.empty': 'Add delicious toppings',
   'constructor.createOrder': 'Checkout',
   'constructor.createOrder.loading': 'Checkout',
   'constructor.emptyIngredint.text': 'Add Ingredients for More Taste',

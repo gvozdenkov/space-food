@@ -1,6 +1,5 @@
-
 import clsx from 'clsx';
-import { useCardContext } from './hook/useCardContext';
+import { useCardContext } from './hook/use-card-context';
 import s from './info.module.scss';
 
 export const Info = ({ children }) => {

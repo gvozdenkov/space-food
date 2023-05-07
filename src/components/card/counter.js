@@ -1,5 +1,5 @@
 import { Counter as CounterUI } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useCounter } from './hook/useCounter';
+import { useCounter } from './hook/use-counter';
 
 export const Counter = () => {
   const { count } = useCounter();

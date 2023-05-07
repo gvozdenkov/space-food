@@ -58,3 +58,12 @@ export const log = (msg) => (param) => {
     console.log(param);
   }
 };
+
+export const findConstructorIngredient = (cards, id) => {
+  const card = cards.find((card) => card._itemId === id);
+
+  return {
+    card,
+    index: cards.indexOf(card),
+  };
+};

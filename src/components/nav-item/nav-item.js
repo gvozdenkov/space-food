@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import s from '../nav-item/nav-item.module.scss';
 import clsx from 'clsx';
-import { Dropdown } from '../Dropdown';
+import { Dropdown } from '../dropdown';
 import { MenuItem } from '../menu-item/menu-item';
 
 export const NavItem = ({ item }) => {

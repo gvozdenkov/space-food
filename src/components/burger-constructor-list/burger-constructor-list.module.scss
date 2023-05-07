@@ -1,0 +1,83 @@
+@use '../../styles/variables.scss' as *;
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-flow: column;
+  gap: 16px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.bun {
+  padding-right: 2 * $scrollWidth;
+  margin-left: 32px;
+}
+
+.ingredients {
+  max-height: calc(
+    ($burgerIngredientsMax * $burgerIngredientHeight) +
+      (($burgerIngredientsMax - 1) * $burgerIngredientsGap)
+  );
+}
+
+.emptyList {
+  min-height: 80px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.emptyText {
+  padding: 30px;
+  max-height: 80px;
+  min-width: 536px;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid var(--color-content-inactive);
+  border-radius: 500px;
+  text-align: center;
+}
+
+.emptyDrag {
+  display: block;
+  width: 32px;
+}
+
+.dragHover {
+  background-color: var(--color-ingredient-background);
+  color: var(--color-content-primary);
+  border: 1px solid transparent;
+}
+
+.emptyElement {
+  padding: 16px 24px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-content-inactive);
+  max-width: 536px;
+  width: 100%;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  box-sizing: border-box;
+}
+
+.emptyElement_row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.emptyElement_top {
+  border-radius: 88px 88px 40px 40px;
+}
+
+.emptyElement_bottom {
+  border-radius: 40px 40px 88px 88px;
+}
