@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
-import { useDrop } from 'react-dnd';
 import { ingredientAdded, ingredientRemoved } from '../../services/burger-constructor-slice';
 import { DragTypes } from '../../utils/config';
 import { useGetIngredientsQuery } from '../../services/api-slice';
@@ -9,7 +8,11 @@ import { useGetIngredientsQuery } from '../../services/api-slice';
 export const useBurgerConstructorList = () => {
   const intl = useIntl();
   const { data: ingredients } = useGetIngredientsQuery();
-  const { constructorItems, bun, ingredients: constructorIngredients } = useSelector((state) => state.burgerConstructor);
+  const {
+    constructorItems,
+    bun,
+    ingredients: constructorIngredients,
+  } = useSelector((state) => state.burgerConstructor);
   const dispatch = useDispatch();
 
   const isBun = Object.keys(bun).length !== 0;
@@ -53,29 +56,10 @@ export const useBurgerConstructorList = () => {
     dispatch(ingredientRemoved(item));
   };
 
-  // DnD
-  const [, dropFromConstructor] = useDrop(() => ({
-    accept: DragTypes.CONSTRUCTOR_INGREDIENT,
-  }));
-
-  const [{ isOverConstructor }, dropFromIngredients] = useDrop(() => ({
-    accept: DragTypes.INGREDIENT,
-    drop: (item, monitor) => {
-      const ingredient = ingredients.data.find((ingredient) => ingredient._id === item.id);
-      dispatch(ingredientAdded(ingredient));
-    },
-    collect: (monitor) => ({
-      isOverConstructor: monitor.isOver(),
-    }),
-  }));
-
   return {
     ...burgerComponentProps,
     isBun,
     isIngredients,
     handleRemoveFromConstructor,
-    dropFromIngredients,
-    dropFromConstructor,
-    isOverConstructor,
   };
 };
