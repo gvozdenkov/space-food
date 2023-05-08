@@ -28,6 +28,11 @@ const setLocalStorageIngredients = (state) => {
   localStorage.setItem(LOCAL_STORAGE.CONSTRUCTOR_INGREDIENTS, JSON.stringify(state.ingredients));
 };
 
+const findIndex = (state, id) => {
+  const element = state.ingredients.find((element) => element._itemId === id);
+  return state.ingredients.indexOf(element);
+};
+
 export const burgerConstructorSlice = createSlice({
   name: 'burgerConstructor',
   initialState,
@@ -79,19 +84,19 @@ export const burgerConstructorSlice = createSlice({
 
     ingredientMoved: {
       reducer(state, action) {
-        const { items, activeIndex, overIndex } = action.payload;
-
-        state.ingredients = arrayMove(items, activeIndex, overIndex);
+        const { activeId, overId } = action.payload;
+        const activeIndex = findIndex(state, activeId);
+        const overIndex = findIndex(state, overId);
+        state.ingredients = arrayMove(state.ingredients, activeIndex, overIndex);
         state.constructorItems = setConstructorItems(state);
         setLocalStorageIngredients(state);
       },
 
-      prepare(items, activeIndex, overIndex) {
+      prepare(activeId, overId) {
         return {
           payload: {
-            items,
-            activeIndex,
-            overIndex,
+            activeId,
+            overId,
           },
         };
       },
