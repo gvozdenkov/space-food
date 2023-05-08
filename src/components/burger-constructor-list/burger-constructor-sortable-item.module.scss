@@ -6,7 +6,10 @@
   gap: 8px;
   opacity: 1;
   transition: opacity 0.2s ease-out, scale 0.35s ease-out;
+  touch-action: pinch-zoom;
+}
 
+.drag {
   &:hover {
     cursor: grab;
   }

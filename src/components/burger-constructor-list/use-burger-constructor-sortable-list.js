@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { MouseSensor, TouchSensor, KeyboardSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { ingredientMoved } from '../../services/burger-constructor-slice';
 import { useCallback, useMemo } from 'react';
 
@@ -30,5 +31,20 @@ export const useBurgerConstructorSortableList = () => {
     [dispatch],
   );
 
-  return { ingredients, sortableItems, handleDragEnd };
+  // DnD Sensors
+  const sensors = useSensors(
+    useSensor(MouseSensor),
+
+    useSensor(TouchSensor, {
+      // Press delay of 250ms, with tolerance of 5px of movement
+      activationConstraint: {
+        delay: 250,
+        tolerance: 5,
+      },
+    }),
+
+    useSensor(KeyboardSensor),
+  );
+
+  return { ingredients, sortableItems, handleDragEnd, sensors };
 };

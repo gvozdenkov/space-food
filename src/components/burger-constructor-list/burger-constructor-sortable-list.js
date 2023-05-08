@@ -7,10 +7,11 @@ import { BurgerConstructorSortableItem } from './burger-constructor-sortable-ite
 import { useBurgerConstructorSortableList } from './use-burger-constructor-sortable-list';
 
 export const BurgerConstructorSortableList = () => {
-  const { ingredients, sortableItems, handleDragEnd } = useBurgerConstructorSortableList();
+  const { ingredients, sortableItems, handleDragEnd, sensors } = useBurgerConstructorSortableList();
 
   return (
     <DndContext
+      sensors={sensors}
       collisionDetection={closestCenter}
       onDragEnd={handleDragEnd}
       modifiers={[restrictToVerticalAxis, restrictToParentElement]}>
