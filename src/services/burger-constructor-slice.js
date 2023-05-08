@@ -1,7 +1,7 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
 import { INGREDIENT } from '../utils/constants';
 import { LOCAL_STORAGE } from '../utils/config';
-import { findConstructorIngredient } from '../utils/utils';
+import { arrayMove } from '@dnd-kit/sortable';
 
 const bun = localStorage.getItem(LOCAL_STORAGE.CONSTRUCTOR_BUN)
   ? JSON.parse(localStorage.getItem(LOCAL_STORAGE.CONSTRUCTOR_BUN))
@@ -48,7 +48,11 @@ export const burgerConstructorSlice = createSlice({
       prepare(ingredient) {
         return {
           payload: {
-            ...ingredient,
+            type: ingredient.type,
+            thumbnail: ingredient.image_mobile,
+            text: ingredient.name,
+            price: ingredient.price,
+            _id: ingredient._id,
             _itemId: nanoid(),
           },
         };
@@ -56,9 +60,9 @@ export const burgerConstructorSlice = createSlice({
     },
 
     ingredientRemoved(state, action) {
-      state.ingredients = state.ingredients.filter(
-        (item) => item._itemId !== action.payload._itemId,
-      );
+      const deletedId = action.payload;
+
+      state.ingredients = state.ingredients.filter((item) => item._itemId !== deletedId);
 
       state.constructorItems = setConstructorItems(state);
 
@@ -75,22 +79,19 @@ export const burgerConstructorSlice = createSlice({
 
     ingredientMoved: {
       reducer(state, action) {
-        const { id, toIndex } = action.payload;
-        const { card, index: fromIndex } = findConstructorIngredient(state.ingredients, id);
-        let rearrangedIngredients = state.ingredients;
-        rearrangedIngredients.splice(fromIndex, 1);
-        rearrangedIngredients.splice(toIndex, 0, card);
-        state.ingredients = rearrangedIngredients;
+        const { items, activeIndex, overIndex } = action.payload;
 
+        state.ingredients = arrayMove(items, activeIndex, overIndex);
         state.constructorItems = setConstructorItems(state);
         setLocalStorageIngredients(state);
       },
 
-      prepare(id, toIndex) {
+      prepare(items, activeIndex, overIndex) {
         return {
           payload: {
-            id,
-            toIndex,
+            items,
+            activeIndex,
+            overIndex,
           },
         };
       },
