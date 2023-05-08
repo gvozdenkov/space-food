@@ -1,4 +1,5 @@
 import { DndContext, closestCenter } from '@dnd-kit/core';
+import { restrictToVerticalAxis, restrictToParentElement } from '@dnd-kit/modifiers';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import clsx from 'clsx';
 import listStyle from './burger-constructor-list.module.scss';
@@ -9,7 +10,10 @@ export const BurgerConstructorSortableList = () => {
   const { ingredients, sortableItems, handleDragEnd } = useBurgerConstructorSortableList();
 
   return (
-    <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+    <DndContext
+      collisionDetection={closestCenter}
+      onDragEnd={handleDragEnd}
+      modifiers={[restrictToVerticalAxis, restrictToParentElement]}>
       <SortableContext items={sortableItems} strategy={verticalListSortingStrategy}>
         <ul className={clsx(listStyle.list)}>
           {ingredients.map((ingredient) => (
