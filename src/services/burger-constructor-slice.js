@@ -1,7 +1,7 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
 import { INGREDIENT } from '../utils/constants';
 import { LOCAL_STORAGE } from '../utils/config';
-import { findConstructorIngredient } from '../utils/utils';
+import { arrayMove } from '@dnd-kit/sortable';
 
 const bun = localStorage.getItem(LOCAL_STORAGE.CONSTRUCTOR_BUN)
   ? JSON.parse(localStorage.getItem(LOCAL_STORAGE.CONSTRUCTOR_BUN))
@@ -28,6 +28,11 @@ const setLocalStorageIngredients = (state) => {
   localStorage.setItem(LOCAL_STORAGE.CONSTRUCTOR_INGREDIENTS, JSON.stringify(state.ingredients));
 };
 
+const findIndex = (state, id) => {
+  const element = state.ingredients.find((element) => element._itemId === id);
+  return state.ingredients.indexOf(element);
+};
+
 export const burgerConstructorSlice = createSlice({
   name: 'burgerConstructor',
   initialState,
@@ -48,7 +53,11 @@ export const burgerConstructorSlice = createSlice({
       prepare(ingredient) {
         return {
           payload: {
-            ...ingredient,
+            type: ingredient.type,
+            thumbnail: ingredient.image_mobile,
+            text: ingredient.name,
+            price: ingredient.price,
+            _id: ingredient._id,
             _itemId: nanoid(),
           },
         };
@@ -56,9 +65,9 @@ export const burgerConstructorSlice = createSlice({
     },
 
     ingredientRemoved(state, action) {
-      state.ingredients = state.ingredients.filter(
-        (item) => item._itemId !== action.payload._itemId,
-      );
+      const deletedId = action.payload;
+
+      state.ingredients = state.ingredients.filter((item) => item._itemId !== deletedId);
 
       state.constructorItems = setConstructorItems(state);
 
@@ -75,22 +84,19 @@ export const burgerConstructorSlice = createSlice({
 
     ingredientMoved: {
       reducer(state, action) {
-        const { id, toIndex } = action.payload;
-        const { card, index: fromIndex } = findConstructorIngredient(state.ingredients, id);
-        let rearrangedIngredients = state.ingredients;
-        rearrangedIngredients.splice(fromIndex, 1);
-        rearrangedIngredients.splice(toIndex, 0, card);
-        state.ingredients = rearrangedIngredients;
-
+        const { activeId, overId } = action.payload;
+        const activeIndex = findIndex(state, activeId);
+        const overIndex = findIndex(state, overId);
+        state.ingredients = arrayMove(state.ingredients, activeIndex, overIndex);
         state.constructorItems = setConstructorItems(state);
         setLocalStorageIngredients(state);
       },
 
-      prepare(id, toIndex) {
+      prepare(activeId, overId) {
         return {
           payload: {
-            id,
-            toIndex,
+            activeId,
+            overId,
           },
         };
       },
