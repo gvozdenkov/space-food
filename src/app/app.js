@@ -5,6 +5,10 @@ import { useIntl } from 'react-intl';
 import { Loading } from '../components/loading';
 import { Modal } from '../components/modal';
 import { useApp } from './useApp';
+import { Login } from '../pages/login';
+import { Register } from '../pages/register';
+import { FogotPassword } from '../pages/fogot-password';
+import { ResetPassword } from '../pages/reset-password';
 
 export const App = () => {
   const intl = useIntl();
@@ -17,7 +21,7 @@ export const App = () => {
     <>
       <Header />
       <main className={s.main}>
-        <Main />
+        <ResetPassword />
       </main>
     </>
   ) : (
