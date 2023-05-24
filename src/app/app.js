@@ -7,7 +7,7 @@ import { Modal } from '../components/modal';
 import { useApp } from './useApp';
 import { Login } from '../pages/login';
 import { Register } from '../pages/register';
-import { FogotPassword } from '../pages/fogot-password';
+import { ForgotPassword } from '../pages/forgot-password';
 import { ResetPassword } from '../pages/reset-password';
 
 export const App = () => {

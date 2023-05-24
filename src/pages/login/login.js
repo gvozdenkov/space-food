@@ -17,8 +17,8 @@ export const Login = () => {
         extraClass='mt-20'
       />
       <TextWithLink
-        text={intl.formatMessage({ id: 'login.form.fogot.password' })}
-        linkText={intl.formatMessage({ id: 'login.form.fogot.password.link' })}
+        text={intl.formatMessage({ id: 'login.form.forgot.password' })}
+        linkText={intl.formatMessage({ id: 'login.form.forgot.password.link' })}
         href='/'
         extraClass='mt-4'
       />

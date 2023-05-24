@@ -11,8 +11,8 @@ export const ResetPassword = () => {
     <FormView>
       <ResetPasswordForm />
       <TextWithLink
-        text={intl.formatMessage({ id: 'fogot-password.remember.password' })}
-        linkText={intl.formatMessage({ id: 'fogot-password.remember.password.link' })}
+        text={intl.formatMessage({ id: 'forgot-password.remember.password' })}
+        linkText={intl.formatMessage({ id: 'forgot-password.remember.password.link' })}
         href='/'
         extraClass='mt-20'
       />

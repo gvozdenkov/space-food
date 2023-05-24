@@ -1,19 +1,19 @@
-import s from './fogot-password.module.scss';
+import s from './forgot-password.module.scss';
 import { useIntl } from 'react-intl';
 import { TextWithLink } from '../../components/text-with-link';
 import { FormView } from '../../components/form/components/form-view';
-import { FogotPasswordForm } from './components/fogot-password-form';
+import { ForgotPasswordForm } from './components/fogot-password-form';
 
-export const FogotPassword = () => {
+export const ForgotPassword = () => {
   const intl = useIntl();
 
   return (
     <FormView>
-      <FogotPasswordForm />
+      <ForgotPasswordForm />
       <TextWithLink
         text={intl.formatMessage({ id: 'fogot-password.remember.password' })}
         linkText={intl.formatMessage({ id: 'fogot-password.remember.password.link' })}
-        href='/'
+        href='/login'
         extraClass='mt-20'
       />
     </FormView>

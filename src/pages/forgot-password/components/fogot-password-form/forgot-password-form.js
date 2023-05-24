@@ -1,4 +1,4 @@
-import s from './fogot-password-form.module.scss';
+import s from './forgot-password-form.module.scss';
 import { useIntl } from 'react-intl';
 import clsx from 'clsx';
 import * as Yup from 'yup';
@@ -7,7 +7,7 @@ import { EmailInput, Input } from '@ya.praktikum/react-developer-burger-ui-compo
 import { FormTitle } from '../../../../components/form/components/form-title';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
 
-export const FogotPasswordForm = () => {
+export const ForgotPasswordForm = () => {
   const intl = useIntl();
 
   const initialValues = {
