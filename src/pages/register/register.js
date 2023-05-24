@@ -13,7 +13,7 @@ export const Register = () => {
       <TextWithLink
         text={intl.formatMessage({ id: 'register.form.alreadyRegister' })}
         linkText={intl.formatMessage({ id: 'register.form.login.link' })}
-        href='/'
+        href='/login'
         extraClass='mt-20'
       />
     </FormView>

@@ -13,13 +13,13 @@ export const Login = () => {
       <TextWithLink
         text={intl.formatMessage({ id: 'login.form.new.register' })}
         linkText={intl.formatMessage({ id: 'login.form.new.register.link' })}
-        href='/'
+        href='/register'
         extraClass='mt-20'
       />
       <TextWithLink
         text={intl.formatMessage({ id: 'login.form.forgot.password' })}
         linkText={intl.formatMessage({ id: 'login.form.forgot.password.link' })}
-        href='/'
+        href='/reset-password'
         extraClass='mt-4'
       />
     </FormView>

@@ -1,40 +1,25 @@
 import s from './app.module.scss';
 import { Header } from '../components/header';
-import { Main } from '../components/main';
-import { useIntl } from 'react-intl';
-import { Loading } from '../components/loading';
-import { Modal } from '../components/modal';
-import { useApp } from './useApp';
+import { Route, Routes } from 'react-router-dom';
+import { Home } from '../pages/home';
 import { Login } from '../pages/login';
 import { Register } from '../pages/register';
 import { ForgotPassword } from '../pages/forgot-password';
 import { ResetPassword } from '../pages/reset-password';
 
 export const App = () => {
-  const intl = useIntl();
-
-  const { isLoading, isSuccess, closeErrorModal, isOpenErrorModal } = useApp();
-
-  const content = isLoading ? (
-    <Loading text={intl.formatMessage({ id: 'loading.subTitle' })} />
-  ) : isSuccess ? (
-    <>
+  return (
+    <div className={s.app}>
       <Header />
       <main className={s.main}>
-        <ResetPassword />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/forgot-password' element={<ForgotPassword />} />
+          <Route path='/reset-password' element={<ResetPassword />} />
+        </Routes>
       </main>
-    </>
-  ) : (
-    isOpenErrorModal && (
-      <Modal
-        title={intl.formatMessage({ id: 'popup.error.ingrdientsLoading.title' })}
-        handleClose={closeErrorModal}>
-        <p className='text text_type_main-medium mt-8'>
-          {intl.formatMessage({ id: 'popup.error.ingrdientsLoading.message' })}
-        </p>
-      </Modal>
-    )
+    </div>
   );
-
-  return <div className={s.app}>{content}</div>;
 };

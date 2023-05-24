@@ -61,6 +61,7 @@ export const RegisterForm = () => {
             name={'password'}
             type={'password'}
             as={Input}
+            icon='ShowIcon'
             placeholder={intl.formatMessage({ id: 'form.placeholder.password' })}
             error={touched.password && !!errors.password}
             errorText={touched.password && errors.password}

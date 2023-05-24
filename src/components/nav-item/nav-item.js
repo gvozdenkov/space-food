@@ -3,6 +3,7 @@ import s from '../nav-item/nav-item.module.scss';
 import clsx from 'clsx';
 import { Dropdown } from '../dropdown';
 import { MenuItem } from '../menu-item/menu-item';
+import { Link } from 'react-router-dom';
 
 export const NavItem = ({ item }) => {
   // in the mobile menu the Profile has drop-down submenus
@@ -19,9 +20,9 @@ export const NavItem = ({ item }) => {
           <Dropdown submenu={submenu} />
         </>
       ) : (
-        <a href={item.url} className='reset-link'>
+        <Link to={item.url} className='reset-link'>
           <MenuItem iconName={item.icon} title={item.title} />
-        </a>
+        </Link>
       )}
     </li>
   );
