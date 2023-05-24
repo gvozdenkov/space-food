@@ -10,3 +10,13 @@
     margin-left: auto;
   }
 }
+
+.link_active {
+  > svg {
+    fill: var(--color-content-primary);
+  }
+
+  > p {
+    color: red;
+  }
+}

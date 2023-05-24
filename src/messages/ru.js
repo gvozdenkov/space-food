@@ -61,4 +61,7 @@ export const messagesRu = {
   'reset-form.placeholder.token': 'Введите код из письма',
   'reset-form.submit': 'Сохранить',
   'reset-form.submit.loading': 'Сохраняем',
+  'not-found.title': 'Ой, тут ничего нет :(',
+  'not-found.subtitle':
+    'Видимо, произошла ошибка в навигации и вы попали в неизвестный сектор галактики',
 };

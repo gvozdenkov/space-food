@@ -61,4 +61,7 @@ export const messagesEn = {
   'reset-form.placeholder.token': 'Enter the code from the letter',
   'reset-form.submit': 'Save',
   'reset-form.submit.loading': 'Saving',
+  'not-found.title': "Oh, there's nothing here :(",
+  'not-found.subtitle':
+    'Apparently, there was an error in navigation and you ended up in an unknown sector of the galaxy.',
 };

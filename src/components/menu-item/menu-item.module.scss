@@ -3,7 +3,7 @@
   gap: 8px;
   cursor: pointer;
   color: var(--color-content-inactive);
-  transition: all 0.4s ease-out;
+  transition: all var(--transition-short) ease-out;
 
   &:hover {
     color: var(--color-content-primary);
@@ -11,7 +11,7 @@
 
   > svg {
     fill: var(--color-content-inactive);
-    transition: all 0.4s ease-out;
+    transition: all var(--transition-short) ease-out;
   }
 
   &:hover > svg {

@@ -6,6 +6,10 @@ import { Login } from '../pages/login';
 import { Register } from '../pages/register';
 import { ForgotPassword } from '../pages/forgot-password';
 import { ResetPassword } from '../pages/reset-password';
+import { NotFound } from '../pages/not-found';
+import { ProfileLayout } from '../pages/profile-layout';
+import { Profile } from '../pages/profile-layout/components/profile';
+import { Orders } from '../pages/profile-layout/components/orders';
 
 export const App = () => {
   return (
@@ -18,6 +22,11 @@ export const App = () => {
           <Route path='/register' element={<Register />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/reset-password' element={<ResetPassword />} />
+          <Route path='/profile' element={<ProfileLayout />}>
+            <Route index element={<Profile />} />
+            <Route path='orders' element={<Orders />} />
+          </Route>
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </main>
     </div>
