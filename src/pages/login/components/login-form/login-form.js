@@ -6,9 +6,13 @@ import { Formik, Form, Field } from 'formik';
 import { EmailInput, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { FormTitle } from '../../../../components/form/components/form-title';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
+import { ButtonLoader } from '../../../../components/button-loader';
+import { useLoginUserMutation } from '../../../../services/api-slice';
 
 export const LoginForm = () => {
   const intl = useIntl();
+  const [loginUser, { isLoading, isFetching, isSuccess, isError, error, data }] =
+    useLoginUserMutation();
 
   const initialValues = {
     email: '',
@@ -22,8 +26,15 @@ export const LoginForm = () => {
     password: Yup.string().required(intl.formatMessage({ id: 'form.errors.input.required' })),
   });
 
-  const handleSubmit = (values, actions) => {
-    console.log(values);
+  const handleSubmit = async (values, actions) => {
+    if (!isLoading && !isFetching) {
+      try {
+        await loginUser(values).unwrap();
+      } catch (err) {
+        console.error('Failed to login: ', err);
+      }
+    }
+
     actions.resetForm();
   };
 
@@ -53,7 +64,7 @@ export const LoginForm = () => {
             errorText={touched.password && errors.password}
           />
           <FormSubmitBtn disabled={!dirty || !isValid}>
-            {intl.formatMessage({ id: 'login.form.submit' })}
+            {isLoading ? <ButtonLoader /> : intl.formatMessage({ id: 'login.form.submit' })}
           </FormSubmitBtn>
         </Form>
       )}

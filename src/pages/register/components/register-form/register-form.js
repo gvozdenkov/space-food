@@ -6,9 +6,13 @@ import { Formik, Form, Field } from 'formik';
 import { EmailInput, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { FormTitle } from '../../../../components/form/components/form-title';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
+import { useCreateUserMutation } from '../../../../services/api-slice';
+import { ButtonLoader } from '../../../../components/button-loader';
 
 export const RegisterForm = () => {
   const intl = useIntl();
+  const [createUser, { isLoading, isFetching, isSuccess, isError, error, data: newUser }] =
+    useCreateUserMutation();
 
   const initialValues = {
     name: '',
@@ -28,8 +32,15 @@ export const RegisterForm = () => {
       .required(intl.formatMessage({ id: 'form.errors.input.required' })),
   });
 
-  const handleSubmit = (values, actions) => {
-    console.log(values);
+  const handleSubmit = async (values, actions) => {
+    if (!isLoading && !isFetching) {
+      try {
+        await createUser(values).unwrap();
+      } catch (err) {
+        console.error('Failed to create the user: ', err);
+      }
+    }
+
     actions.resetForm();
   };
 
@@ -66,8 +77,8 @@ export const RegisterForm = () => {
             error={touched.password && !!errors.password}
             errorText={touched.password && errors.password}
           />
-          <FormSubmitBtn disabled={!dirty || !isValid}>
-            {intl.formatMessage({ id: 'register.form.submit' })}
+          <FormSubmitBtn disabled={!dirty || !isValid || isLoading}>
+            {isLoading ? <ButtonLoader /> : intl.formatMessage({ id: 'register.form.submit' })}
           </FormSubmitBtn>
         </Form>
       )}

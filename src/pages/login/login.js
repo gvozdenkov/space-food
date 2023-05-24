@@ -19,7 +19,7 @@ export const Login = () => {
       <TextWithLink
         text={intl.formatMessage({ id: 'login.form.forgot.password' })}
         linkText={intl.formatMessage({ id: 'login.form.forgot.password.link' })}
-        href='/reset-password'
+        href='/forgot-password'
         extraClass='mt-4'
       />
     </FormView>

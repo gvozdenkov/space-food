@@ -55,8 +55,10 @@ export const messagesEn = {
   'forgot-password.remember.password': 'Remembered the password?',
   'forgot-password.remember.password.link': 'Login',
   'forgot-password.submit': 'Restore',
+  'forgot-password.submit.loading': 'Restoring',
   'reset-password.form.title': 'Password recovery',
   'reset-form.placeholder.password': 'Enter a new password',
-  'reset-form.placeholder.pin': 'Enter the code from the letter',
+  'reset-form.placeholder.token': 'Enter the code from the letter',
   'reset-form.submit': 'Save',
+  'reset-form.submit.loading': 'Saving',
 };

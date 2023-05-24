@@ -55,8 +55,10 @@ export const messagesRu = {
   'forgot-password.remember.password': 'Вспомнили пароль?',
   'forgot-password.remember.password.link': 'Войти',
   'forgot-password.submit': 'Восстановить',
+  'forgot-password.submit.loading': 'Восстанавливаем',
   'reset-password.form.title': 'Восстановление пароля',
   'reset-form.placeholder.password': 'Введите новый пароль',
-  'reset-form.placeholder.pin': 'Введите код из письма',
+  'reset-form.placeholder.token': 'Введите код из письма',
   'reset-form.submit': 'Сохранить',
+  'reset-form.submit.loading': 'Сохраняем',
 };

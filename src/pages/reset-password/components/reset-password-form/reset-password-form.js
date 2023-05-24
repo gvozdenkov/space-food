@@ -6,24 +6,35 @@ import { Formik, Form, Field } from 'formik';
 import { EmailInput, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { FormTitle } from '../../../../components/form/components/form-title';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
+import { useResetPasswordMutation } from '../../../../services/api-slice';
+import { ButtonLoader } from '../../../../components/button-loader';
 
 export const ResetPasswordForm = () => {
   const intl = useIntl();
+  const [resetPassword, { isLoading, isFetching, isSuccess, isError, error, data }] =
+    useResetPasswordMutation();
 
   const initialValues = {
     password: '',
-    pin: '',
+    token: '',
   };
 
   const validationSchema = Yup.object({
     password: Yup.string()
       .min(7, intl.formatMessage({ id: 'form.errors.password.min' }))
       .required(intl.formatMessage({ id: 'form.errors.input.required' })),
-    pin: Yup.string().required(intl.formatMessage({ id: 'form.errors.input.required' })),
+    token: Yup.string().required(intl.formatMessage({ id: 'form.errors.input.required' })),
   });
 
-  const handleSubmit = (values, actions) => {
-    console.log(values);
+  const handleSubmit = async (values, actions) => {
+    if (!isLoading && !isFetching) {
+      try {
+        await resetPassword(values).unwrap();
+      } catch (err) {
+        console.error('Failed to send forgot password request: ', err);
+      }
+    }
+
     actions.resetForm();
   };
 
@@ -45,15 +56,15 @@ export const ResetPasswordForm = () => {
             errorText={touched.password && errors.password}
           />
           <Field
-            name={'pin'}
+            name={'token'}
             type={'text'}
             as={EmailInput}
-            placeholder={intl.formatMessage({ id: 'reset-form.placeholder.pin' })}
+            placeholder={intl.formatMessage({ id: 'reset-form.placeholder.token' })}
             error={touched.email && !!errors.email}
             errorText={touched.email && errors.email}
           />
-          <FormSubmitBtn disabled={!dirty || !isValid}>
-            {intl.formatMessage({ id: 'reset-form.submit' })}
+          <FormSubmitBtn disabled={!dirty || !isValid || isLoading}>
+            {isLoading ? <ButtonLoader /> : intl.formatMessage({ id: 'reset-form.submit' })}
           </FormSubmitBtn>
         </Form>
       )}

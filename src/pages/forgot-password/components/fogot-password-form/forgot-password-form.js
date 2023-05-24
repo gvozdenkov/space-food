@@ -6,9 +6,13 @@ import { Formik, Form, Field } from 'formik';
 import { EmailInput, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { FormTitle } from '../../../../components/form/components/form-title';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
+import { useForgotPasswordMutation } from '../../../../services/api-slice';
+import { ButtonLoader } from '../../../../components/button-loader';
 
 export const ForgotPasswordForm = () => {
   const intl = useIntl();
+  const [forgotPassword, { isLoading, isFetching, isSuccess, isError, error, data }] =
+    useForgotPasswordMutation();
 
   const initialValues = {
     email: '',
@@ -20,8 +24,15 @@ export const ForgotPasswordForm = () => {
       .required(intl.formatMessage({ id: 'form.errors.input.required' })),
   });
 
-  const handleSubmit = (values, actions) => {
-    console.log(values);
+  const handleSubmit = async (values, actions) => {
+    if (!isLoading && !isFetching) {
+      try {
+        await forgotPassword(values).unwrap();
+      } catch (err) {
+        console.error('Failed to send forgot password request: ', err);
+      }
+    }
+
     actions.resetForm();
   };
 
@@ -32,17 +43,17 @@ export const ForgotPasswordForm = () => {
       onSubmit={handleSubmit}>
       {({ errors, isValid, touched, dirty }) => (
         <Form className='form'>
-          <FormTitle>{intl.formatMessage({ id: 'fogot-password.form.title' })}</FormTitle>
+          <FormTitle>{intl.formatMessage({ id: 'forgot-password.form.title' })}</FormTitle>
           <Field
             name={'email'}
             type={'email'}
             as={EmailInput}
-            placeholder={intl.formatMessage({ id: 'fogot-form.placeholder.password' })}
+            placeholder={intl.formatMessage({ id: 'forgot-form.placeholder.password' })}
             error={touched.email && !!errors.email}
             errorText={touched.email && errors.email}
           />
-          <FormSubmitBtn disabled={!dirty || !isValid}>
-            {intl.formatMessage({ id: 'fogot-password.submit' })}
+          <FormSubmitBtn disabled={!dirty || !isValid || isLoading}>
+            {isLoading ? <ButtonLoader /> : intl.formatMessage({ id: 'forgot-password.submit' })}
           </FormSubmitBtn>
         </Form>
       )}
