@@ -62,8 +62,8 @@ export const messagesRu = {
   'reset-form.submit': 'Сохранить',
   'reset-form.submit.loading': 'Сохраняем',
   'not-found.title': 'Ой, тут ничего нет :(',
-  'not-found.subtitle':
-    'Видимо, произошла ошибка в навигации и вы попали в неизвестный сектор галактики',
+  'not-found.subtitle': 'Произошла ошибка в навигации и вы попали в неизвестный сектор галактики',
+  'not-found.back': 'Собрать бургер',
   'profile.form.submit': 'Сохранить',
   'profile.form.cancel': 'Отмена',
   'profile.comment': 'В этом разделе вы можете изменить свои персональные данные',

@@ -63,7 +63,8 @@ export const messagesEn = {
   'reset-form.submit.loading': 'Saving',
   'not-found.title': "Oh, there's nothing here :(",
   'not-found.subtitle':
-    'Apparently, there was an error in navigation and you ended up in an unknown sector of the galaxy.',
+    'There was an error in navigation and you are in an unknown sector of the galaxy',
+  'not-found.back': 'Make a burger',
   'profile.form.submit': 'Save',
   'profile.form.cancel': 'Cancel',
   'profile.comment': 'In this section you can change your personal data',
