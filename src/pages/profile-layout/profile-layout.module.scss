@@ -1,13 +1,21 @@
 .profile {
   display: grid;
-  grid-template-columns: 320px 480px;
-  align-items: start;
+  grid-template:
+    'nav content'
+    '. content' 80px
+    'comment content'
+    / minmax(120px, 320px) 1fr;
+  align-content: start;
   gap: 0 60px;
   padding: 120px var(--gutter) 0;
   box-sizing: border-box;
   max-width: calc(1240px + var(--gutter) * 2);
   width: 100%;
   margin: 0 auto;
+}
+
+.nav {
+  grid-area: nav;
 }
 
 .navList {

@@ -5,7 +5,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 export const ProfileLayout = () => {
   return (
     <div className={clsx(s.profile)}>
-      <nav>
+      <nav className={clsx(s.nav)}>
         <ul className={clsx(s.navList)}>
           <li className={clsx(s.navListItem)}>
             <NavLink
@@ -38,9 +38,7 @@ export const ProfileLayout = () => {
         </ul>
       </nav>
 
-      <section className={clsx(s.profileSection)}>
-        <Outlet />
-      </section>
+      <Outlet />
     </div>
   );
 };

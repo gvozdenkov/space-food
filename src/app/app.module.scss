@@ -9,5 +9,7 @@
 
 .main {
   display: flex;
-  flex: 1;
+  height: calc(100vh - var(--header-height));
+  // align-items: center;
+  // justify-content: center;
 }

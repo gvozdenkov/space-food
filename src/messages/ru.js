@@ -64,4 +64,8 @@ export const messagesRu = {
   'not-found.title': 'Ой, тут ничего нет :(',
   'not-found.subtitle':
     'Видимо, произошла ошибка в навигации и вы попали в неизвестный сектор галактики',
+  'profile.form.submit': 'Сохранить',
+  'profile.form.cancel': 'Отмена',
+  'profile.comment': 'В этом разделе вы можете изменить свои персональные данные',
+  'profile.orders.comment': 'В этом разделе вы можете просмотреть свою историю заказов',
 };

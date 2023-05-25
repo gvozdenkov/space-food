@@ -64,4 +64,8 @@ export const messagesEn = {
   'not-found.title': "Oh, there's nothing here :(",
   'not-found.subtitle':
     'Apparently, there was an error in navigation and you ended up in an unknown sector of the galaxy.',
+  'profile.form.submit': 'Save',
+  'profile.form.cancel': 'Cancel',
+  'profile.comment': 'In this section you can change your personal data',
+  'profile.orders.comment': 'In this section you can view your order history',
 };

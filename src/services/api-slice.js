@@ -35,6 +35,14 @@ export const apiSlice = createApi({
       }),
     }),
 
+    updateUser: builder.mutation({
+      query: (user) => ({
+        url: '/auth/user',
+        method: 'PATCH',
+        body: user,
+      }),
+    }),
+
     forgotPassword: builder.mutation({
       query: (email) => ({
         url: '/password-reset',
@@ -57,6 +65,7 @@ export const {
   useGetIngredientsQuery,
   useCreateOrderMutation,
   useCreateUserMutation,
+  useUpdateUserMutation,
   useForgotPasswordMutation,
   useResetPasswordMutation,
   useLoginUserMutation,
