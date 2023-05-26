@@ -65,6 +65,9 @@ export const messagesEn = {
   'not-found.subtitle':
     'There was an error in navigation and you are in an unknown sector of the galaxy',
   'not-found.back': 'Make a burger',
+  'profile.menu.profile': 'Profile',
+  'profile.menu.orders': 'Order history',
+  'profile.menu.logout': 'Logout',
   'profile.form.submit': 'Save',
   'profile.form.cancel': 'Cancel',
   'profile.comment': 'In this section you can change your personal data',

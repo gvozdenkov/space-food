@@ -46,6 +46,21 @@ export const menuItems = [
   },
 ];
 
+export const profileMenuItems = [
+  {
+    title: 'profile.menu.profile',
+    to: '/profile',
+  },
+  {
+    title: 'profile.menu.orders',
+    to: '/profile/orders',
+  },
+  {
+    title: 'profile.menu.logout',
+    to: '/logout',
+  },
+];
+
 export const ingredientPropTypes = PropTypes.shape({
   _id: PropTypes.string,
   name: PropTypes.string,
