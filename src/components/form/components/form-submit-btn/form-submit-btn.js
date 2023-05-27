@@ -12,6 +12,6 @@ export const FormSubmitBtn = ({ children, disabled = false }) => {
 };
 
 FormSubmitBtn.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   disabled: PropTypes.bool,
 };

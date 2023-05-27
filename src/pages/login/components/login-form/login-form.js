@@ -11,12 +11,20 @@ import { useLoginUserMutation } from '../../../../services/api-slice';
 import { useDispatch } from 'react-redux';
 import { userLogedIn } from '../../../../services/auth-slice';
 import { LOCAL_STORAGE } from '../../../../utils/config';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../../common/hooks/useAuth';
+import { useEffect } from 'react';
 
 export const LoginForm = () => {
   const intl = useIntl();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { isAuth } = useAuth();
   const [loginUser, { isLoading, isFetching, isSuccess, isError, error, data }] =
     useLoginUserMutation();
+
+  const fromPage = location.state?.from?.pathname || '/';
 
   const initialValues = {
     email: '',
@@ -42,9 +50,9 @@ export const LoginForm = () => {
             email: userRaw.user.email,
           },
         };
-        console.log('user', user);
         localStorage.setItem(LOCAL_STORAGE.USER, JSON.stringify(user));
         dispatch(userLogedIn(user));
+        navigate(fromPage);
       } catch (err) {
         console.error('Failed to login: ', err);
       }
@@ -53,7 +61,9 @@ export const LoginForm = () => {
     actions.resetForm();
   };
 
-  return (
+  return isAuth ? (
+    <Navigate to={fromPage} replace={true} />
+  ) : (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}

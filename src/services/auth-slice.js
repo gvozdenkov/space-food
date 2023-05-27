@@ -45,3 +45,4 @@ export { authReducer };
 
 export const selectCurrentUser = (state) => state.auth.user;
 export const selectCurrentUserRefreshToken = (state) => state.auth.refreshToken;
+export const selectCurrentUserAccessTocken = (state) => state.auth.accessToken;

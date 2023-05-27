@@ -8,9 +8,14 @@ import { FormTitle } from '../../../../components/form/components/form-title';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
 import { useCreateUserMutation } from '../../../../services/api-slice';
 import { ButtonLoader } from '../../../../components/button-loader';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useAuth } from '../../../../common/hooks/useAuth';
 
 export const RegisterForm = () => {
   const intl = useIntl();
+  const navigate = useNavigate();
+  const { isAuth } = useAuth();
   const [createUser, { isLoading, isFetching, isSuccess, isError, error, data: newUser }] =
     useCreateUserMutation();
 
@@ -43,6 +48,12 @@ export const RegisterForm = () => {
 
     actions.resetForm();
   };
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate('/', { replace: true });
+    }
+  }, [isAuth, navigate]);
 
   return (
     <Formik

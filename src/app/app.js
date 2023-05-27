@@ -11,6 +11,7 @@ import { NotFound } from '../pages/not-found';
 import { ProfileLayout } from '../pages/profile-layout';
 import { Profile } from '../pages/profile-layout/components/profile';
 import { Orders } from '../pages/profile-layout/components/orders';
+import { ProtectedRoute } from '../components/protected-route/protected-route';
 
 export const App = () => {
   return (
@@ -19,12 +20,46 @@ export const App = () => {
       <main className={s.main}>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/auth/logout' element={<Logout/>} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/forgot-password' element={<ForgotPassword />} />
-          <Route path='/reset-password' element={<ResetPassword />} />
-          <Route path='/profile' element={<ProfileLayout />}>
+          <Route
+            path='/login'
+            element={
+              <ProtectedRoute isUserAuth={true}>
+                <Login />
+              </ProtectedRoute>
+            }
+          />
+          <Route path='/auth/logout' element={<Logout />} />
+          <Route
+            path='/register'
+            element={
+              <ProtectedRoute isUserAuth={true}>
+                <Register />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/forgot-password'
+            element={
+              <ProtectedRoute isUserAuth={true}>
+                <ForgotPassword />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/reset-password'
+            element={
+              <ProtectedRoute isUserAuth={true}>
+                <ResetPassword />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/profile'
+            element={
+              <ProtectedRoute>
+                <ProfileLayout />
+              </ProtectedRoute>
+            }>
             <Route index element={<Profile />} />
             <Route path='orders' element={<Orders />} />
           </Route>
