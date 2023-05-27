@@ -10,21 +10,19 @@ import { ButtonLoader } from '../../../../components/button-loader';
 import { useLoginUserMutation } from '../../../../services/api-slice';
 import { useDispatch } from 'react-redux';
 import { userLogedIn } from '../../../../services/auth-slice';
-import { LOCAL_STORAGE } from '../../../../utils/config';
+import { LOCAL_STORAGE, PATH } from '../../../../utils/config';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../../common/hooks/useAuth';
-import { useEffect } from 'react';
 
 export const LoginForm = () => {
   const intl = useIntl();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { isAuth } = useAuth();
   const [loginUser, { isLoading, isFetching, isSuccess, isError, error, data }] =
     useLoginUserMutation();
 
-  const fromPage = location.state?.from?.pathname || '/';
+  const fromPage = location.state?.from?.pathname || PATH.HOME;
 
   const initialValues = {
     email: '',
@@ -61,9 +59,7 @@ export const LoginForm = () => {
     actions.resetForm();
   };
 
-  return isAuth ? (
-    <Navigate to={fromPage} replace={true} />
-  ) : (
+  return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}

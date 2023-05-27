@@ -10,7 +10,7 @@ export const useAuth = () => {
   const user = useSelector(selectCurrentUser);
   const refreshToken = useSelector(selectCurrentUserRefreshToken);
   const accessToken = useSelector(selectCurrentUserAccessTocken);
-  const isAuth = !!accessToken;
+  const isAuth = !!accessToken && user.name && user.email;
 
   return useMemo(() => ({ user, refreshToken, isAuth }), [user, refreshToken, isAuth]);
 };

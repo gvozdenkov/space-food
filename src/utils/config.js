@@ -14,11 +14,21 @@ export const ingredientTypes = [
   { type: 'sauce', text: 'ingredient.type.sauce' },
 ];
 
+export const PATH = {
+  HOME: '/',
+  LOGIN: '/login',
+  LOGOUT: '/auth/logout',
+  REGISTER: '/register',
+  FORGOT_PASSWORD: '/forgot-password',
+  RESET_PASSWORD: '/reset-password',
+  PROFILE: '/profile',
+};
+
 export const menuItems = [
   {
     title: 'nav.item.constructor',
     icon: 'burger',
-    url: '/',
+    url: PATH.HOME,
   },
   {
     title: 'nav.item.orderList',
@@ -28,7 +38,7 @@ export const menuItems = [
   {
     title: 'nav.item.profile',
     icon: 'profile',
-    url: '/profile',
+    url: PATH.PROFILE,
     mobileSubmenu: [
       {
         title: 'nav.item.profile.profile',
@@ -49,7 +59,7 @@ export const menuItems = [
 export const profileMenuItems = [
   {
     title: 'profile.menu.profile',
-    to: '/profile',
+    to: PATH.PROFILE,
   },
   {
     title: 'profile.menu.orders',
@@ -57,7 +67,7 @@ export const profileMenuItems = [
   },
   {
     title: 'profile.menu.logout',
-    to: '/auth/logout',
+    to: PATH.LOGOUT,
   },
 ];
 

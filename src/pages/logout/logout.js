@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { userLogedOut } from '../../services/auth-slice';
 import { useAuth } from '../../common/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { PATH } from '../../utils/config';
 
 export const Logout = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ export const Logout = () => {
   useEffect(() => {
     if (isSuccess) {
       dispatch(userLogedOut());
-      navigate('/login', { replace: true });
+      navigate(PATH.LOGIN, { replace: true });
     }
   }, [isSuccess]);
 };

@@ -11,6 +11,7 @@ import { ButtonLoader } from '../../../../components/button-loader';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAuth } from '../../../../common/hooks/useAuth';
+import { PATH } from '../../../../utils/config';
 
 export const RegisterForm = () => {
   const intl = useIntl();
@@ -51,7 +52,7 @@ export const RegisterForm = () => {
 
   useEffect(() => {
     if (isAuth) {
-      navigate('/', { replace: true });
+      navigate(PATH.HOME, { replace: true });
     }
   }, [isAuth, navigate]);
 

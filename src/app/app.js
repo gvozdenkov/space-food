@@ -1,6 +1,6 @@
 import s from './app.module.scss';
 import { Header } from '../components/header';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Home } from '../pages/home';
 import { Login } from '../pages/login';
 import { Logout } from '../pages/logout';
@@ -12,49 +12,37 @@ import { ProfileLayout } from '../pages/profile-layout';
 import { Profile } from '../pages/profile-layout/components/profile';
 import { Orders } from '../pages/profile-layout/components/orders';
 import { ProtectedRoute } from '../components/protected-route/protected-route';
+import { PATH } from '../utils/config';
+import { useAuth } from '../common/hooks/useAuth';
 
 export const App = () => {
+  const { isAuth } = useAuth();
+
   return (
     <div className={s.app}>
       <Header />
       <main className={s.main}>
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path={PATH.HOME} element={<Home />} />
           <Route
-            path='/login'
-            element={
-              <ProtectedRoute isUserAuth={true}>
-                <Login />
-              </ProtectedRoute>
-            }
+            path={PATH.LOGIN}
+            element={isAuth ? <Navigate to={PATH.HOME} replace={true} /> : <Login />}
           />
-          <Route path='/auth/logout' element={<Logout />} />
+          <Route path={PATH.LOGOUT} element={<Logout />} />
           <Route
-            path='/register'
-            element={
-              <ProtectedRoute isUserAuth={true}>
-                <Register />
-              </ProtectedRoute>
-            }
+            path={PATH.REGISTER}
+            element={isAuth ? <Navigate to={PATH.HOME} replace={true} /> : <Register />}
           />
           <Route
-            path='/forgot-password'
-            element={
-              <ProtectedRoute isUserAuth={true}>
-                <ForgotPassword />
-              </ProtectedRoute>
-            }
+            path={PATH.FORGOT_PASSWORD}
+            element={isAuth ? <Navigate to={PATH.HOME} replace={true} /> : <ForgotPassword />}
           />
           <Route
-            path='/reset-password'
-            element={
-              <ProtectedRoute isUserAuth={true}>
-                <ResetPassword />
-              </ProtectedRoute>
-            }
+            path={PATH.RESET_PASSWORD}
+            element={isAuth ? <Navigate to={PATH.HOME} replace={true} /> : <ResetPassword />}
           />
           <Route
-            path='/profile'
+            path={PATH.PROFILE}
             element={
               <ProtectedRoute>
                 <ProfileLayout />

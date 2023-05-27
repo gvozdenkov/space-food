@@ -5,13 +5,14 @@ import { FormView } from '../../components/form/components/form-view';
 import { ResetPasswordForm } from './components/reset-password-form';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../common/hooks/useAuth';
+import { PATH } from '../../utils/config';
 
 export const ResetPassword = () => {
   const intl = useIntl();
   const location = useLocation();
   const { isAuth } = useAuth();
 
-  const fromForgotPage = location.state?.from?.pathname === '/forgot-password';
+  const fromForgotPage = location.state?.from?.pathname === PATH.FORGOT_PASSWORD;
 
   return isAuth && fromForgotPage ? (
     <FormView>
@@ -19,13 +20,13 @@ export const ResetPassword = () => {
       <TextWithLink
         text={intl.formatMessage({ id: 'forgot-password.remember.password' })}
         linkText={intl.formatMessage({ id: 'forgot-password.remember.password.link' })}
-        href='/login'
+        href={PATH.LOGIN}
         extraClass='mt-20'
       />
     </FormView>
   ) : isAuth && !fromForgotPage ? (
-    <Navigate to={'/'} state={{ from: location }} />
+    <Navigate to={PATH.HOME} state={{ from: location }} />
   ) : (
-    <Navigate to={'/login'} state={{ from: location }} />
+    <Navigate to={PATH.LOGIN} state={{ from: location }} />
   );
 };
