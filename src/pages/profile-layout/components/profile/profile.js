@@ -8,16 +8,18 @@ import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-component
 import { useRef } from 'react';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
 import { ButtonLoader } from '../../../../components/button-loader';
+import { useAuth } from '../../../../common/hooks/useAuth';
 
 export const Profile = () => {
   const intl = useIntl();
+  const { user } = useAuth();
   const [updateUser, { isLoading, isFetching, isSuccess, isError, error, data: newUser }] =
     useUpdateUserMutation();
 
   const initialValues = {
-    name: 'Марк',
-    email: 'mail@sellar.ru',
-    password: '*******',
+    name: user.name,
+    email: user.email,
+    password: '1234567',
   };
 
   const validationSchema = Yup.object({
@@ -93,7 +95,7 @@ export const Profile = () => {
               />
               <Field
                 name={'password'}
-                type={'text'}
+                type={'password'}
                 as={FocusInputControl}
                 icon={'EditIcon'}
                 innerRef={passwordRef}

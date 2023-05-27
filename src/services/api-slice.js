@@ -6,6 +6,14 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: serverConfig.baseUrl,
   }),
+  prepareHeaders: (headers, { getState }) => {
+    const accessToken = getState().auth.accessToken;
+    console.log('accessToken:', accessToken);
+    if (accessToken) {
+      headers.set('authorization', `Bearer ${accessToken}`);
+    }
+    return headers;
+  },
   endpoints: (builder) => ({
     getIngredients: builder.query({
       query: () => 'ingredients',
@@ -24,6 +32,14 @@ export const apiSlice = createApi({
         url: '/auth/login',
         method: 'POST',
         body: { email, password },
+      }),
+    }),
+
+    logoutUser: builder.mutation({
+      query: (refreshToken) => ({
+        url: '/auth/logout',
+        method: 'POST',
+        body: refreshToken,
       }),
     }),
 
@@ -69,4 +85,5 @@ export const {
   useForgotPasswordMutation,
   useResetPasswordMutation,
   useLoginUserMutation,
+  useLogoutUserMutation,
 } = apiSlice;

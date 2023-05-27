@@ -3,6 +3,7 @@ import { Header } from '../components/header';
 import { Route, Routes } from 'react-router-dom';
 import { Home } from '../pages/home';
 import { Login } from '../pages/login';
+import { Logout } from '../pages/logout';
 import { Register } from '../pages/register';
 import { ForgotPassword } from '../pages/forgot-password';
 import { ResetPassword } from '../pages/reset-password';
@@ -19,6 +20,7 @@ export const App = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/auth/logout' element={<Logout/>} />
           <Route path='/register' element={<Register />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/reset-password' element={<ResetPassword />} />

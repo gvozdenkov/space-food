@@ -8,9 +8,13 @@ import { FormTitle } from '../../../../components/form/components/form-title';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
 import { ButtonLoader } from '../../../../components/button-loader';
 import { useLoginUserMutation } from '../../../../services/api-slice';
+import { useDispatch } from 'react-redux';
+import { userLogedIn } from '../../../../services/auth-slice';
+import { LOCAL_STORAGE } from '../../../../utils/config';
 
 export const LoginForm = () => {
   const intl = useIntl();
+  const dispatch = useDispatch();
   const [loginUser, { isLoading, isFetching, isSuccess, isError, error, data }] =
     useLoginUserMutation();
 
@@ -29,7 +33,18 @@ export const LoginForm = () => {
   const handleSubmit = async (values, actions) => {
     if (!isLoading && !isFetching) {
       try {
-        await loginUser(values).unwrap();
+        const userRaw = await loginUser(values).unwrap();
+        const user = {
+          accessToken: userRaw.accessToken,
+          refreshToken: userRaw.refreshToken,
+          user: {
+            name: userRaw.user.name,
+            email: userRaw.user.email,
+          },
+        };
+        console.log('user', user);
+        localStorage.setItem(LOCAL_STORAGE.USER, JSON.stringify(user));
+        dispatch(userLogedIn(user));
       } catch (err) {
         console.error('Failed to login: ', err);
       }

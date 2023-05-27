@@ -57,7 +57,7 @@ export const profileMenuItems = [
   },
   {
     title: 'profile.menu.logout',
-    to: '/logout',
+    to: '/auth/logout',
   },
 ];
 
@@ -79,6 +79,7 @@ export const ingredientPropTypes = PropTypes.shape({
 export const LOCAL_STORAGE = {
   CONSTRUCTOR_BUN: 'constructortBun',
   CONSTRUCTOR_INGREDIENTS: 'constructorIngredients',
+  USER: 'user',
 };
 
 export const DragTypes = {
