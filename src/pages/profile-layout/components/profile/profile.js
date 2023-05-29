@@ -3,12 +3,12 @@ import clsx from 'clsx';
 import { useIntl } from 'react-intl';
 import * as Yup from 'yup';
 import { Formik, Form, Field } from 'formik';
-import { useUpdateUserMutation } from '../../../../services/api-slice';
 import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useRef } from 'react';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
 import { ButtonLoader } from '../../../../components/button-loader';
 import { useAuth } from '../../../../common/hooks/useAuth';
+import { useUpdateUserMutation } from '../../../../services/api/user-api';
 
 export const Profile = () => {
   const intl = useIntl();

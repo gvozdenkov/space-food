@@ -27,38 +27,6 @@ export const apiSlice = createApi({
       }),
     }),
 
-    loginUser: builder.mutation({
-      query: ({ email, password }) => ({
-        url: '/auth/login',
-        method: 'POST',
-        body: { email, password },
-      }),
-    }),
-
-    logoutUser: builder.mutation({
-      query: (refreshToken) => ({
-        url: '/auth/logout',
-        method: 'POST',
-        body: refreshToken,
-      }),
-    }),
-
-    createUser: builder.mutation({
-      query: (user) => ({
-        url: '/auth/register',
-        method: 'POST',
-        body: user,
-      }),
-    }),
-
-    updateUser: builder.mutation({
-      query: (user) => ({
-        url: '/auth/user',
-        method: 'PATCH',
-        body: user,
-      }),
-    }),
-
     forgotPassword: builder.mutation({
       query: (email) => ({
         url: '/password-reset',
@@ -80,10 +48,6 @@ export const apiSlice = createApi({
 export const {
   useGetIngredientsQuery,
   useCreateOrderMutation,
-  useCreateUserMutation,
-  useUpdateUserMutation,
   useForgotPasswordMutation,
   useResetPasswordMutation,
-  useLoginUserMutation,
-  useLogoutUserMutation,
 } = apiSlice;

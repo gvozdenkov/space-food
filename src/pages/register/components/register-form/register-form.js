@@ -6,19 +6,19 @@ import { Formik, Form, Field } from 'formik';
 import { EmailInput, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { FormTitle } from '../../../../components/form/components/form-title';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
-import { useCreateUserMutation } from '../../../../services/api-slice';
 import { ButtonLoader } from '../../../../components/button-loader';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAuth } from '../../../../common/hooks/useAuth';
 import { PATH } from '../../../../utils/config';
+import { useRegisterUserMutation } from '../../../../services/api/auth-api';
 
 export const RegisterForm = () => {
   const intl = useIntl();
   const navigate = useNavigate();
   const { isAuth } = useAuth();
-  const [createUser, { isLoading, isFetching, isSuccess, isError, error, data: newUser }] =
-    useCreateUserMutation();
+  const [registerUser, { isLoading, isFetching, isSuccess, isError, error, data: newUser }] =
+    useRegisterUserMutation();
 
   const initialValues = {
     name: '',
@@ -41,7 +41,7 @@ export const RegisterForm = () => {
   const handleSubmit = async (values, actions) => {
     if (!isLoading && !isFetching) {
       try {
-        await createUser(values).unwrap();
+        await registerUser(values).unwrap();
       } catch (err) {
         console.error('Failed to create the user: ', err);
       }

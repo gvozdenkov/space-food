@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import { useLogoutUserMutation } from '../../services/api-slice';
 import { useDispatch } from 'react-redux';
 import { userLogedOut } from '../../services/auth-slice';
 import { useAuth } from '../../common/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { PATH } from '../../utils/config';
+import { useLogoutUserMutation } from '../../services/api/auth-api';
 
 export const Logout = () => {
   const dispatch = useDispatch();

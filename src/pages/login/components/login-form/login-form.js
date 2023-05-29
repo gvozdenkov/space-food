@@ -7,12 +7,11 @@ import { EmailInput, Input } from '@ya.praktikum/react-developer-burger-ui-compo
 import { FormTitle } from '../../../../components/form/components/form-title';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
 import { ButtonLoader } from '../../../../components/button-loader';
-import { useLoginUserMutation } from '../../../../services/api-slice';
 import { useDispatch } from 'react-redux';
 import { userLogedIn } from '../../../../services/auth-slice';
 import { LOCAL_STORAGE, PATH } from '../../../../utils/config';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../../../common/hooks/useAuth';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useLoginUserMutation } from '../../../../services/api/auth-api';
 
 export const LoginForm = () => {
   const intl = useIntl();
@@ -39,15 +38,7 @@ export const LoginForm = () => {
   const handleSubmit = async (values, actions) => {
     if (!isLoading && !isFetching) {
       try {
-        const userRaw = await loginUser(values).unwrap();
-        const user = {
-          accessToken: userRaw.accessToken,
-          refreshToken: userRaw.refreshToken,
-          user: {
-            name: userRaw.user.name,
-            email: userRaw.user.email,
-          },
-        };
+        const user = await loginUser(values).unwrap();
         localStorage.setItem(LOCAL_STORAGE.USER, JSON.stringify(user));
         dispatch(userLogedIn(user));
         navigate(fromPage);
