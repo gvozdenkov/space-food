@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useGetIngredientsQuery } from '../services/api-slice';
+import { useGetIngredientsQuery } from '../services/api/api';
 
 export const useApp = () => {
   const { isLoading, isSuccess, isError, error } = useGetIngredientsQuery();

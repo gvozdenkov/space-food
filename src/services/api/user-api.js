@@ -13,7 +13,6 @@ export const userApi = createApi({
     getMe: builder.query({
       query: () => ({
         url: 'user',
-        credentials: 'include',
       }),
 
       transformResponse: (response) => response.user,
@@ -31,7 +30,6 @@ export const userApi = createApi({
         url: 'user',
         method: 'PATCH',
         body: user,
-        credentials: 'include',
       }),
     }),
   }),

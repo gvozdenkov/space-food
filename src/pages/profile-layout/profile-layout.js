@@ -4,10 +4,12 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { profileMenuItems } from '../../utils/config';
 import { IntlConvert } from '../../utils/utils';
 import { useIntl } from 'react-intl';
+import { useProfileLayout } from './use-profile-layout';
 
 export const ProfileLayout = () => {
   const intl = useIntl();
   const intlProfileMenuItems = IntlConvert(profileMenuItems, 'title');
+  const { handleLogout } = useProfileLayout();
 
   return (
     <div className={clsx(s.profile)}>

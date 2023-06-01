@@ -22,7 +22,6 @@ export const authApi = createApi({
         url: 'login',
         method: 'POST',
         body: data,
-        credentials: 'include',
       }),
 
       transformResponse: (res) => {
@@ -47,7 +46,6 @@ export const authApi = createApi({
         url: 'logout',
         method: 'POST',
         body: refreshToken,
-        // credentials: 'include',
       }),
     }),
   }),

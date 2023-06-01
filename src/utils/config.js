@@ -88,3 +88,8 @@ export const DragTypes = {
   INGREDIENT: 'ingredient',
   CONSTRUCTOR_INGREDIENT: 'constructorIngredient',
 };
+
+export const JWT = {
+  ACCESS: 'access-token',
+  REFRESH: 'refresh-token',
+};

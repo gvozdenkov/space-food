@@ -2,19 +2,21 @@ import s from './login-form.module.scss';
 import { useIntl } from 'react-intl';
 import clsx from 'clsx';
 import * as Yup from 'yup';
+import Cookies from 'universal-cookie';
 import { Formik, Form, Field } from 'formik';
 import { EmailInput, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { FormTitle } from '../../../../components/form/components/form-title';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
 import { ButtonLoader } from '../../../../components/button-loader';
 import { useDispatch } from 'react-redux';
-import { userLogedIn } from '../../../../services/auth-slice';
-import { LOCAL_STORAGE, PATH } from '../../../../utils/config';
+import { JWT, PATH } from '../../../../utils/config';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useLoginUserMutation } from '../../../../services/api/auth-api';
+import { setUser } from '../../../../services/user-slice';
 
 export const LoginForm = () => {
   const intl = useIntl();
+  const cookies = new Cookies();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,9 +40,13 @@ export const LoginForm = () => {
   const handleSubmit = async (values, actions) => {
     if (!isLoading && !isFetching) {
       try {
-        const user = await loginUser(values).unwrap();
-        localStorage.setItem(LOCAL_STORAGE.USER, JSON.stringify(user));
-        dispatch(userLogedIn(user));
+        const { user, accessToken, refreshToken } = await loginUser(values).unwrap();
+        cookies.set(JWT.ACCESS, accessToken.split(' ')[1], {
+          maxAge: 1200,
+          path: '/',
+        });
+        cookies.set(JWT.REFRESH, refreshToken, { maxAge: 2400, path: '/' });
+        dispatch(setUser(user));
         navigate(fromPage);
       } catch (err) {
         console.error('Failed to login: ', err);

@@ -6,7 +6,7 @@ import { Formik, Form, Field } from 'formik';
 import { EmailInput, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { FormTitle } from '../../../../components/form/components/form-title';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
-import { useResetPasswordMutation } from '../../../../services/api-slice';
+import { useResetPasswordMutation } from '../../../../services/api/api';
 import { ButtonLoader } from '../../../../components/button-loader';
 
 export const ResetPasswordForm = () => {

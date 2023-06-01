@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useCreateOrderMutation } from '../../services/api-slice';
+import { useCreateOrderMutation } from '../../services/api/api';
 import { constructorReseted, totalPriceCaluclated } from '../../services/burger-constructor-slice';
 import { FETCH_STATUS } from '../../utils/constants';
 import { orderCreated } from '../../services/order-slice';

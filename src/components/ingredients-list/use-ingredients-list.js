@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useGetIngredientsQuery } from '../../services/api-slice';
+import { useGetIngredientsQuery } from '../../services/api/api';
 import { useTabContext } from '../../common/contexts/tab-context';
 
 export const useIngredientsList = () => {

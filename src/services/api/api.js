@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { serverConfig } from '../utils/config';
+import { serverConfig } from '../../utils/config';
 
-export const apiSlice = createApi({
+export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
     baseUrl: serverConfig.baseUrl,
@@ -50,4 +50,4 @@ export const {
   useCreateOrderMutation,
   useForgotPasswordMutation,
   useResetPasswordMutation,
-} = apiSlice;
+} = api;
