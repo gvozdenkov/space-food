@@ -46,7 +46,7 @@ export const LoginForm = () => {
           path: '/',
         });
         cookies.set(JWT.REFRESH, refreshToken, { maxAge: 2400, path: '/' });
-        dispatch(setUser(user));
+        dispatch(setUser({ user, accessToken: accessToken.split(' ')[1] }));
         navigate(fromPage);
       } catch (err) {
         console.error('Failed to login: ', err);
