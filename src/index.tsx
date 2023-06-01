@@ -6,16 +6,18 @@ import reportWebVitals from './reportWebVitals';
 import { IntelApp } from './components/intelApp';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
-import { BrowserRouter } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <IntelApp>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <Router>
+          <Routes>
+            <Route path='/*' element={<App />} />
+          </Routes>
+        </Router>
       </IntelApp>
     </Provider>
   </React.StrictMode>,

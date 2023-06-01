@@ -17,11 +17,11 @@ export const ingredientTypes = [
 export const PATH = {
   HOME: '/',
   LOGIN: '/login',
-  LOGOUT: '/auth/logout',
   REGISTER: '/register',
   FORGOT_PASSWORD: '/forgot-password',
   RESET_PASSWORD: '/reset-password',
   PROFILE: '/profile',
+  ORDERS: 'orders',
 };
 
 export const menuItems = [
