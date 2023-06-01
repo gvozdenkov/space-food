@@ -1,9 +1,10 @@
 import { useMemo } from 'react';
-import { useGetIngredientsQuery } from '../../services/api/api';
+import { selectAllIngredients } from '../../services/api/ingredients-api';
 import { useTabContext } from '../../common/contexts/tab-context';
+import { useSelector } from 'react-redux';
 
 export const useIngredientsList = () => {
-  const { data: ingredients } = useGetIngredientsQuery();
+  const ingredients = useSelector(selectAllIngredients);
   const { tabs } = useTabContext();
 
   // Return array of objects with this shape:
@@ -18,7 +19,7 @@ export const useIngredientsList = () => {
         (o, tab) => [
           ...o,
           {
-            ingredients: ingredients.data.filter((ingredient) => ingredient.type === tab.type),
+            ingredients: ingredients.filter((ingredient) => ingredient.type === tab.type),
             text: tab.text,
             type: tab.type,
           },

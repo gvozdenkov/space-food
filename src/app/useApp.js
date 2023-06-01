@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useGetIngredientsQuery } from '../services/api/api';
+import { useGetIngredientsQuery } from '../services/api/ingredients-api';
 
 export const useApp = () => {
   const { isLoading, isSuccess, isError, error } = useGetIngredientsQuery();

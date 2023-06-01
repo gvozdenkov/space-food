@@ -15,10 +15,6 @@ export const api = createApi({
     return headers;
   },
   endpoints: (builder) => ({
-    getIngredients: builder.query({
-      query: () => 'ingredients',
-    }),
-
     createOrder: builder.mutation({
       query: (initialOrder) => ({
         url: '/orders',
@@ -37,7 +33,7 @@ export const api = createApi({
 
     resetPassword: builder.mutation({
       query: (data) => ({
-        url: '/password-reset/reset',
+        url: '/password-reset/reset/Headers',
         method: 'POST',
         body: data,
       }),
@@ -45,9 +41,4 @@ export const api = createApi({
   }),
 });
 
-export const {
-  useGetIngredientsQuery,
-  useCreateOrderMutation,
-  useForgotPasswordMutation,
-  useResetPasswordMutation,
-} = api;
+export const { useCreateOrderMutation, useForgotPasswordMutation, useResetPasswordMutation } = api;

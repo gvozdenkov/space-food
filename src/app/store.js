@@ -6,6 +6,7 @@ import { ordersReducer } from '../services/order-slice';
 import { authApi } from '../services/api/auth-api';
 import { userApi } from '../services/api/user-api';
 import { userReducer } from '../services/user-slice';
+import { apiSlice } from './api/api-slice';
 
 export const store = configureStore({
   reducer: {
@@ -13,11 +14,8 @@ export const store = configureStore({
     ingredientDetails: ingredientDetailsReducer,
     burgerConstructor: burgerConstructorReducer,
     orders: ordersReducer,
-    [api.reducerPath]: api.reducer,
-    [authApi.reducerPath]: authApi.reducer,
-    [userApi.reducerPath]: userApi.reducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
   },
 
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({}).concat([api.middleware, authApi.middleware, userApi.middleware]),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
 });
