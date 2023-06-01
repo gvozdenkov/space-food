@@ -3,8 +3,10 @@ import s from './profile-layout.module.scss';
 import { NavLink, Outlet } from 'react-router-dom';
 import { profileMenuItems } from '../../utils/config';
 import { IntlConvert } from '../../utils/utils';
+import { useIntl } from 'react-intl';
 
 export const ProfileLayout = () => {
+  const intl = useIntl();
   const intlProfileMenuItems = IntlConvert(profileMenuItems, 'title');
 
   return (
@@ -30,6 +32,12 @@ export const ProfileLayout = () => {
             );
           })}
         </ul>
+        <button
+          onClick={handleLogout}
+          type='submit'
+          className={clsx(s.exitBtn, 'text text_type_main-medium')}>
+          {intl.formatMessage({ id: 'profile.menu.logout' })}
+        </button>
       </nav>
 
       <Outlet />

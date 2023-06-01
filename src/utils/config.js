@@ -48,10 +48,6 @@ export const menuItems = [
         title: 'nav.item.profile.history',
         url: 'order-history',
       },
-      {
-        title: 'nav.item.profile.logout',
-        url: 'logout',
-      },
     ],
   },
 ];
@@ -64,10 +60,6 @@ export const profileMenuItems = [
   {
     title: 'profile.menu.orders',
     to: '/profile/orders',
-  },
-  {
-    title: 'profile.menu.logout',
-    to: PATH.LOGOUT,
   },
 ];
 

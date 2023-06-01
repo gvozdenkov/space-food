@@ -1,3 +1,5 @@
+$profile-menu-height: 64px;
+
 .profile {
   display: grid;
   grid-template:
@@ -27,7 +29,7 @@
 }
 
 .navListItem {
-  min-height: 64px;
+  min-height: $profile-menu-height;
   height: 100%;
   display: flex;
   align-items: center;
@@ -46,4 +48,17 @@
 
 .link_active {
   color: var(--color-content-primary);
+}
+
+.exitBtn {
+  background-color: transparent;
+  color: var(--color-content-inactive);
+  border: 0;
+  cursor: pointer;
+  min-height: $profile-menu-height;
+  transition: color var(--transition-short) ease-out;
+
+  &:hover {
+    color: var(--color-content-primary);
+  }
 }
