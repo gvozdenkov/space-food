@@ -6,12 +6,15 @@ import { Heading } from './heading';
 import { Info } from './info';
 import { CardContext } from './context/card-context';
 import { Price } from './price';
-import { ingredientPropTypes } from '../../utils/config';
 import { Button } from './button';
 import { Counter } from './counter';
 import { forwardRef } from 'react';
+import { useSelector } from 'react-redux';
+import { selectIngredientById } from '../../services/api/ingredients-api';
 
-const Card = forwardRef(({ product, onClick, isDragging, children }, ref) => {
+const Card = forwardRef(({ productId, onClick, isDragging, children }, ref) => {
+  const product = useSelector((state) => selectIngredientById(state, productId));
+
   return (
     <CardContext.Provider value={product}>
       <article
@@ -25,7 +28,7 @@ const Card = forwardRef(({ product, onClick, isDragging, children }, ref) => {
 });
 
 Card.propTypes = {
-  product: ingredientPropTypes.isRequired,
+  productId: PropTypes.string.isRequired,
   children: PropTypes.any,
 };
 

@@ -16,7 +16,7 @@ export const IngredientsList = memo(() => {
         {ingredients.map((ingredient) => {
           return (
             <li key={ingredient._id}>
-              <IngredientCard ingredient={ingredient} />
+              <IngredientCard ingredientId={ingredient._id} />
             </li>
           );
         })}

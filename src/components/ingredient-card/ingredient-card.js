@@ -1,12 +1,14 @@
 import { Card } from '../card/card';
-import { DragTypes, ingredientPropTypes } from '../../utils/config';
-import { memo, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { selected } from '../../services/ingredient-details-slice';
 import { ingredientAdded } from '../../services/burger-constructor-slice';
+import { selectIngredientById } from '../../services/api/ingredients-api';
 
-export const IngredientCard = memo(({ ingredient }) => {
+export const IngredientCard = ({ ingredientId }) => {
   const dispatch = useDispatch();
+  const ingredient = useSelector((state) => selectIngredientById(state, ingredientId));
 
   const handleImageClick = useCallback(() => {
     dispatch(selected(ingredient));
@@ -17,7 +19,7 @@ export const IngredientCard = memo(({ ingredient }) => {
   }, [ingredient, dispatch]);
 
   return (
-    <Card isDragging={false} product={ingredient}>
+    <Card isDragging={false} productId={ingredientId}>
       <Card.Counter />
       <Card.Image onClick={handleImageClick} />
       <Card.Info>
@@ -27,8 +29,8 @@ export const IngredientCard = memo(({ ingredient }) => {
       </Card.Info>
     </Card>
   );
-});
+};
 
 IngredientCard.propTypes = {
-  ingredient: ingredientPropTypes.isRequired,
+  ingredientId: PropTypes.string.isRequired,
 };
