@@ -4,9 +4,15 @@ import { useCreateOrderMutation } from '../../services/api/api';
 import { constructorReseted, totalPriceCaluclated } from '../../services/burger-constructor-slice';
 import { FETCH_STATUS } from '../../utils/constants';
 import { orderCreated } from '../../services/order-slice';
+import { useAuth } from '../../common/hooks/useAuth';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { PATH } from '../../utils/config';
 
 export const useBurgerTotal = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { isAuth } = useAuth();
 
   const [createOrder, { isLoading, isFetching, isSuccess, isError, error, data: order }] =
     useCreateOrderMutation();
@@ -34,6 +40,11 @@ export const useBurgerTotal = () => {
   const closeModal = () => setOpenModal(null);
 
   const handleCreateOrder = async () => {
+    if (!isAuth) {
+      console.log(`You don't authorized. Pleae login`);
+      navigate(PATH.LOGIN, { state: { from: location.pathname } });
+    }
+    
     if (!isLoading && !isFetching) {
       try {
         await createOrder({ ingredients: cartIngredients }).unwrap();

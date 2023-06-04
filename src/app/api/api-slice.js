@@ -26,17 +26,16 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
 
   if (result.error && result?.error?.status === 401) {
-    console.log('sending refresh token');
+    console.log('sending refresh token...');
 
     const refreshToken = cookie.get(JWT.REFRESH);
-    console.log('refresh token', refreshToken);
+    console.log('current refresh token', refreshToken);
 
     const refreshResult = await api.dispatch(authApiSlice.endpoints.refresh.initiate(refreshToken));
 
     if (refreshResult?.data) {
       const refreshToken = refreshResult.data.refreshToken;
-      const token = refreshResult.data.accessToken;
-      const accessToken = token.split(' ')[1];
+      const accessToken = refreshResult.data.accessToken.split(' ')[1];
 
       console.log('new refresh token', refreshToken);
       console.log('new access token', accessToken);
@@ -47,7 +46,6 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 
       if (result?.data) {
         const { user } = result.data;
-        console.log('fetched user', user);
         api.dispatch(setUser({ user }));
       }
     } else {

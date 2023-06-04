@@ -44,7 +44,6 @@ export const LoginForm = () => {
     if (!isLoading && !isFetching) {
       try {
         const { accessToken: token, refreshToken, user } = await loginUser(values).unwrap();
-        console.log(user);
         const accessToken = token.split(' ')[1];
         dispatch(setCredentials({ accessToken }));
         dispatch(setUser({ user }));
