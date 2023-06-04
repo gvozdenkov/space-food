@@ -8,7 +8,6 @@ import { NotFound } from '../pages/not-found';
 import { ProfileLayout } from '../pages/profile-layout';
 import { Profile } from '../pages/profile-layout/components/profile';
 import { Orders } from '../pages/profile-layout/components/orders';
-import { ProtectedRoute } from '../components/protected-route/protected-route';
 import { PATH } from '../utils/config';
 import { useAuth } from '../common/hooks/useAuth';
 import { Layout } from '../components/layout';
@@ -19,22 +18,24 @@ export const App = () => {
 
   return (
     <Routes>
-      <Route path={PATH.HOME} element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path={PATH.LOGIN} element={<Login />} />
-        <Route path={PATH.REGISTER} element={<Register />} />
-        <Route path={PATH.FORGOT_PASSWORD} element={<ForgotPassword />} />
-        <Route path={PATH.RESET_PASSWORD} element={<ResetPassword />} />
-
-        <Route element={<Prefetch />}>
-          {/* Profile Layout */}
+      <Route element={<Prefetch />}>
+        <Route path={PATH.HOME} element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path={PATH.LOGIN} element={isAuth ? <Navigate to={PATH.HOME} /> : <Login />} />
           <Route
-            path={PATH.PROFILE}
-            element={
-              <ProtectedRoute>
-                <ProfileLayout />
-              </ProtectedRoute>
-            }>
+            path={PATH.REGISTER}
+            element={isAuth ? <Navigate to={PATH.HOME} /> : <Register />}
+          />
+          <Route
+            path={PATH.FORGOT_PASSWORD}
+            element={isAuth ? <Navigate to={PATH.HOME} /> : <ForgotPassword />}
+          />
+          <Route
+            path={PATH.RESET_PASSWORD}
+            element={isAuth ? <Navigate to={PATH.HOME} /> : <ResetPassword />}
+          />
+
+          <Route path={PATH.PROFILE} element={<ProfileLayout />}>
             <Route index element={<Profile />} />
             <Route path={PATH.ORDERS} element={<Orders />} />
           </Route>

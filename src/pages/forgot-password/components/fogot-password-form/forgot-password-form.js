@@ -7,7 +7,7 @@ import { EmailInput, Input } from '@ya.praktikum/react-developer-burger-ui-compo
 import { FormTitle } from '../../../../components/form/components/form-title';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
 import { ButtonLoader } from '../../../../components/button-loader';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { PATH } from '../../../../utils/config';
 import { useForgotPasswordMutation } from '../../../../services/api/reset-api';
 import { useRef, useState } from 'react';
@@ -15,6 +15,7 @@ import { useRef, useState } from 'react';
 export const ForgotPasswordForm = () => {
   const intl = useIntl();
   const navigate = useNavigate();
+  const location = useLocation();
   const [forgotPassword, { isLoading, isFetching, isSuccess, isError, error, data }] =
     useForgotPasswordMutation();
   const errRef = useRef();
@@ -34,7 +35,7 @@ export const ForgotPasswordForm = () => {
     if (!isLoading && !isFetching) {
       try {
         const { success } = await forgotPassword(values).unwrap();
-        navigate(PATH.RESET_PASSWORD);
+        navigate(PATH.RESET_PASSWORD, { state: { from: location.pathname } });
         if (success) {
         }
       } catch (err) {
