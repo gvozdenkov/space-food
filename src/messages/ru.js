@@ -71,4 +71,6 @@ export const messagesRu = {
   'profile.form.cancel': 'Отмена',
   'profile.comment': 'В этом разделе вы можете изменить свои персональные данные',
   'profile.orders.comment': 'В этом разделе вы можете просмотреть свою историю заказов',
+  'network.error.noStatus': 'Сервер не отвечает :(',
+  'network.error.500': 'Ошибка сервера :(',
 };

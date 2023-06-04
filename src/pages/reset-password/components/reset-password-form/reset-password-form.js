@@ -2,15 +2,18 @@ import s from './reset-password-form.module.scss';
 import { useIntl } from 'react-intl';
 import clsx from 'clsx';
 import * as Yup from 'yup';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, replace } from 'formik';
 import { EmailInput, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { FormTitle } from '../../../../components/form/components/form-title';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
-import { useResetPasswordMutation } from '../../../../services/api/api';
 import { ButtonLoader } from '../../../../components/button-loader';
+import { useResetPasswordMutation } from '../../../../services/api/reset-api';
+import { useNavigate } from 'react-router-dom';
+import { PATH } from '../../../../utils/config';
 
 export const ResetPasswordForm = () => {
   const intl = useIntl();
+  const navigate = useNavigate();
   const [resetPassword, { isLoading, isFetching, isSuccess, isError, error, data }] =
     useResetPasswordMutation();
 
@@ -21,7 +24,7 @@ export const ResetPasswordForm = () => {
 
   const validationSchema = Yup.object({
     password: Yup.string()
-      .min(7, intl.formatMessage({ id: 'form.errors.password.min' }))
+      .min(3, intl.formatMessage({ id: 'form.errors.password.min' }))
       .required(intl.formatMessage({ id: 'form.errors.input.required' })),
     token: Yup.string().required(intl.formatMessage({ id: 'form.errors.input.required' })),
   });
@@ -29,7 +32,11 @@ export const ResetPasswordForm = () => {
   const handleSubmit = async (values, actions) => {
     if (!isLoading && !isFetching) {
       try {
-        await resetPassword(values).unwrap();
+        const { success } = await resetPassword(values).unwrap();
+        console.log(success);
+        if (success) {
+          navigate(PATH.LOGIN, {replace: true});
+        }
       } catch (err) {
         console.error('Failed to send forgot password request: ', err);
       }

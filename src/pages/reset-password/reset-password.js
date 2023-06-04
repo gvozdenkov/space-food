@@ -13,8 +13,24 @@ export const ResetPassword = () => {
   const { isAuth } = useAuth();
 
   const fromForgotPage = location.state?.from?.pathname === PATH.FORGOT_PASSWORD;
+  const from = location.state?.from?.pathname || PATH.HOME;
 
-  return isAuth && fromForgotPage ? (
+  // return isAuth && fromForgotPage ? (
+  //   <FormView>
+  //     <ResetPasswordForm />
+  //     <TextWithLink
+  //       text={intl.formatMessage({ id: 'forgot-password.remember.password' })}
+  //       linkText={intl.formatMessage({ id: 'forgot-password.remember.password.link' })}
+  //       href={PATH.LOGIN}
+  //       extraClass='mt-20'
+  //     />
+  //   </FormView>
+  // ) : isAuth && !fromForgotPage ? (
+  //   <Navigate to={PATH.HOME} state={{ from: location }} />
+  // ) : (
+  //   <Navigate to={PATH.LOGIN} state={{ from: location }} />
+  // );
+  return (
     <FormView>
       <ResetPasswordForm />
       <TextWithLink
@@ -24,9 +40,5 @@ export const ResetPassword = () => {
         extraClass='mt-20'
       />
     </FormView>
-  ) : isAuth && !fromForgotPage ? (
-    <Navigate to={PATH.HOME} state={{ from: location }} />
-  ) : (
-    <Navigate to={PATH.LOGIN} state={{ from: location }} />
   );
 };

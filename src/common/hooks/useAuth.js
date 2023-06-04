@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
 import { useMemo } from 'react';
-import { selectCurrentUser } from '../../services/user-slice';
+import { selectCurrentToken } from '../../services/auth-slice';
 
 export const useAuth = () => {
-  const user = useSelector(selectCurrentUser);
-  const isAuth = !!user;
+  const token = useSelector(selectCurrentToken);
+  const isAuth = !!token;
 
-  return useMemo(() => ({ user, isAuth }), [user, isAuth]);
+  return useMemo(() => ({ isAuth }), [isAuth]);
 };

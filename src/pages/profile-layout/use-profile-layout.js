@@ -3,8 +3,8 @@ import { JWT, PATH } from '../../utils/config';
 import { useDispatch } from 'react-redux';
 import Cookies from 'universal-cookie';
 import { useLogoutUserMutation } from '../../services/api/auth-api';
-import { logout } from '../../services/user-slice';
 import { useEffect } from 'react';
+import { logOut } from '../../services/auth-slice';
 
 export const useProfileLayout = () => {
   const dispatch = useDispatch();
@@ -15,9 +15,8 @@ export const useProfileLayout = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      dispatch(logout());
+      dispatch(logOut());
       cookies.remove(JWT.REFRESH);
-      cookies.remove(JWT.ACCESS);
       navigate(PATH.LOGIN, { replace: true });
     }
   }, [isSuccess, dispatch, navigate]);

@@ -7,19 +7,23 @@ import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-component
 import { useRef } from 'react';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
 import { ButtonLoader } from '../../../../components/button-loader';
-import { useAuth } from '../../../../common/hooks/useAuth';
 import { useUpdateUserMutation } from '../../../../services/api/user-api';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCurrentUser, setUser } from '../../../../services/auth-slice';
 
 export const Profile = () => {
   const intl = useIntl();
-  const { user } = useAuth();
+  const dispatch = useDispatch();
+
   const [updateUser, { isLoading, isFetching, isSuccess, isError, error, data: newUser }] =
     useUpdateUserMutation();
 
-  const initialValues = {
-    name: user.name,
-    email: user.email,
-    password: '1234567',
+  const { name, email } = useSelector(selectCurrentUser);
+
+  let initialValues = {
+    name,
+    email,
+    password: '',
   };
 
   const validationSchema = Yup.object({
@@ -30,15 +34,19 @@ export const Profile = () => {
       .email(intl.formatMessage({ id: 'form.errors.email.incorrect' }))
       .required(intl.formatMessage({ id: 'form.errors.input.required' })),
     password: Yup.string()
-      .min(7, intl.formatMessage({ id: 'form.errors.password.min' }))
+      .min(3, intl.formatMessage({ id: 'form.errors.password.min' }))
       .required(intl.formatMessage({ id: 'form.errors.input.required' })),
   });
 
   const handleSubmit = async (values, actions) => {
-    console.log(values);
     if (!isLoading && !isFetching) {
       try {
-        await updateUser(values).unwrap();
+        const { user } = await updateUser(values).unwrap();
+        console.log('isSucess', newUser);
+        dispatch(setUser({ user }));
+        if (isSuccess) {
+        }
+        console.log('updated user', newUser);
       } catch (err) {
         console.error('Failed to update user data: ', err);
       }

@@ -72,4 +72,6 @@ export const messagesEn = {
   'profile.form.cancel': 'Cancel',
   'profile.comment': 'In this section you can change your personal data',
   'profile.orders.comment': 'In this section you can view your order history',
+  'network.error.noStatus': 'The server is not responding :(',
+  'network.error.500': 'Internal server error :(',
 };

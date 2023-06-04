@@ -12,7 +12,8 @@ import { useDispatch } from 'react-redux';
 import { JWT, PATH } from '../../../../utils/config';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useLoginUserMutation } from '../../../../services/api/auth-api';
-import { setUser } from '../../../../services/user-slice';
+import { useRef, useState } from 'react';
+import { setCredentials, setUser } from '../../../../services/auth-slice';
 
 export const LoginForm = () => {
   const intl = useIntl();
@@ -22,6 +23,8 @@ export const LoginForm = () => {
   const location = useLocation();
   const [loginUser, { isLoading, isFetching, isSuccess, isError, error, data }] =
     useLoginUserMutation();
+  const errRef = useRef();
+  const [errMsg, setErrMsg] = useState('');
 
   const fromPage = location.state?.from?.pathname || PATH.HOME;
 
@@ -40,52 +43,64 @@ export const LoginForm = () => {
   const handleSubmit = async (values, actions) => {
     if (!isLoading && !isFetching) {
       try {
-        const { user, accessToken, refreshToken } = await loginUser(values).unwrap();
-        cookies.set(JWT.ACCESS, accessToken.split(' ')[1], {
-          maxAge: 1200,
-          path: '/',
-        });
+        const { accessToken: token, refreshToken, user } = await loginUser(values).unwrap();
+        console.log(user);
+        const accessToken = token.split(' ')[1];
+        dispatch(setCredentials({ accessToken }));
+        dispatch(setUser({ user }));
         cookies.set(JWT.REFRESH, refreshToken, { maxAge: 2400, path: '/' });
-        dispatch(setUser({ user, accessToken: accessToken.split(' ')[1] }));
         navigate(fromPage);
       } catch (err) {
-        console.error('Failed to login: ', err);
+        if (!err.status) {
+          setErrMsg(intl.formatMessage({ id: 'network.error.noStatus' }));
+        } else {
+          setErrMsg(err.data?.message);
+        }
+        errRef.current.focus();
       }
     }
-
-    actions.resetForm();
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}>
-      {({ errors, isValid, touched, dirty }) => (
-        <Form className='form'>
-          <FormTitle>{intl.formatMessage({ id: 'login.form.title' })}</FormTitle>
-          <Field
-            name={'email'}
-            type={'email'}
-            as={EmailInput}
-            placeholder={intl.formatMessage({ id: 'form.placeholder.email' })}
-            error={touched.email && !!errors.email}
-            errorText={touched.email && errors.email}
-          />
-          <Field
-            name={'password'}
-            type={'password'}
-            icon={'ShowIcon'}
-            as={Input}
-            placeholder={intl.formatMessage({ id: 'form.placeholder.password' })}
-            error={touched.password && !!errors.password}
-            errorText={touched.password && errors.password}
-          />
-          <FormSubmitBtn disabled={!dirty || !isValid}>
-            {isLoading ? <ButtonLoader /> : intl.formatMessage({ id: 'login.form.submit' })}
-          </FormSubmitBtn>
-        </Form>
-      )}
-    </Formik>
+    <>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}>
+        {({ errors, isValid, touched, dirty }) => (
+          <Form className='form'>
+            <FormTitle>{intl.formatMessage({ id: 'login.form.title' })}</FormTitle>
+            <Field
+              name={'email'}
+              type={'email'}
+              as={EmailInput}
+              placeholder={intl.formatMessage({ id: 'form.placeholder.email' })}
+              error={touched.email && !!errors.email}
+              errorText={touched.email && errors.email}
+            />
+            <Field
+              name={'password'}
+              type={'password'}
+              icon={'ShowIcon'}
+              as={Input}
+              placeholder={intl.formatMessage({ id: 'form.placeholder.password' })}
+              error={touched.password && !!errors.password}
+              errorText={touched.password && errors.password}
+            />
+            <FormSubmitBtn disabled={!dirty || !isValid}>
+              {isLoading ? <ButtonLoader /> : intl.formatMessage({ id: 'login.form.submit' })}
+            </FormSubmitBtn>
+            {isError && (
+              <p
+                ref={errRef}
+                aria-live='assertive'
+                className='text text_type_main-default text_color_error mt-4'>
+                {errMsg}
+              </p>
+            )}
+          </Form>
+        )}
+      </Formik>
+    </>
   );
 };

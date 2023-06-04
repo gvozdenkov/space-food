@@ -6,13 +6,19 @@ import { Formik, Form, Field } from 'formik';
 import { EmailInput, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { FormTitle } from '../../../../components/form/components/form-title';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
-import { useForgotPasswordMutation } from '../../../../services/api/api';
 import { ButtonLoader } from '../../../../components/button-loader';
+import { useNavigate } from 'react-router-dom';
+import { PATH } from '../../../../utils/config';
+import { useForgotPasswordMutation } from '../../../../services/api/reset-api';
+import { useRef, useState } from 'react';
 
 export const ForgotPasswordForm = () => {
   const intl = useIntl();
+  const navigate = useNavigate();
   const [forgotPassword, { isLoading, isFetching, isSuccess, isError, error, data }] =
     useForgotPasswordMutation();
+  const errRef = useRef();
+  const [errMsg, setErrMsg] = useState('');
 
   const initialValues = {
     email: '',
@@ -27,9 +33,20 @@ export const ForgotPasswordForm = () => {
   const handleSubmit = async (values, actions) => {
     if (!isLoading && !isFetching) {
       try {
-        await forgotPassword(values).unwrap();
+        const { success } = await forgotPassword(values).unwrap();
+        navigate(PATH.RESET_PASSWORD);
+        if (success) {
+        }
       } catch (err) {
-        console.error('Failed to send forgot password request: ', err);
+        console.log(err);
+        if (!err.status) {
+          setErrMsg(intl.formatMessage({ id: 'network.error.noStatus' }));
+        } else if (err.status === 500 || err.originalStatus === 500) {
+          setErrMsg(intl.formatMessage({ id: 'network.error.500' }));
+        } else {
+          setErrMsg(err.data?.message);
+        }
+        errRef.current.focus();
       }
     }
 
@@ -55,6 +72,14 @@ export const ForgotPasswordForm = () => {
           <FormSubmitBtn disabled={!dirty || !isValid || isLoading}>
             {isLoading ? <ButtonLoader /> : intl.formatMessage({ id: 'forgot-password.submit' })}
           </FormSubmitBtn>
+          {isError && (
+            <p
+              ref={errRef}
+              aria-live='assertive'
+              className='text text_type_main-default text_color_error mt-4'>
+              {errMsg}
+            </p>
+          )}
         </Form>
       )}
     </Formik>

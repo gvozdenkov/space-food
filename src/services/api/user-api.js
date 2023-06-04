@@ -1,38 +1,24 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { serverConfig } from '../../utils/config';
-import { setUser } from '../user-slice';
+import { apiSlice } from '../../app/api/api-slice';
 
-export const userApi = createApi({
-  reducerPath: 'userApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${serverConfig.baseUrl}/auth/`,
-  }),
-  tagTypes: ['User'],
-
+export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getMe: builder.query({
-      query: () => ({
-        url: 'user',
-      }),
+      query: () => '/auth/user',
+      validateStatus: (res, result) => {
+        return res.status === 200 && !result.isError;
+      },
 
       transformResponse: (response) => response.user,
-
-      onQueryStarted: async (args, { dispatch, queryFulfilled }) => {
-        try {
-          const { user } = await queryFulfilled;
-          dispatch(setUser(user));
-        } catch (err) {}
-      },
     }),
 
     updateUser: builder.mutation({
       query: (user) => ({
-        url: 'user',
+        url: '/auth/user',
         method: 'PATCH',
         body: user,
-      }),
+      }), 
     }),
   }),
 });
 
-export const { useGetMeQuery, useUpdateUserMutation } = userApi;
+export const { useGetMeQuery, useUpdateUserMutation } = userApiSlice;

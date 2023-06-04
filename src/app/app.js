@@ -12,6 +12,7 @@ import { ProtectedRoute } from '../components/protected-route/protected-route';
 import { PATH } from '../utils/config';
 import { useAuth } from '../common/hooks/useAuth';
 import { Layout } from '../components/layout';
+import { Prefetch } from '../services/prefetch';
 
 export const App = () => {
   const { isAuth } = useAuth();
@@ -20,33 +21,23 @@ export const App = () => {
     <Routes>
       <Route path={PATH.HOME} element={<Layout />}>
         <Route index element={<Home />} />
-        <Route
-          path={PATH.LOGIN}
-          element={isAuth ? <Navigate to={PATH.HOME} replace={true} /> : <Login />}
-        />
-        <Route
-          path={PATH.REGISTER}
-          element={isAuth ? <Navigate to={PATH.HOME} replace={true} /> : <Register />}
-        />
-        <Route
-          path={PATH.FORGOT_PASSWORD}
-          element={isAuth ? <Navigate to={PATH.HOME} replace={true} /> : <ForgotPassword />}
-        />
-        <Route
-          path={PATH.RESET_PASSWORD}
-          element={isAuth ? <Navigate to={PATH.HOME} replace={true} /> : <ResetPassword />}
-        />
+        <Route path={PATH.LOGIN} element={<Login />} />
+        <Route path={PATH.REGISTER} element={<Register />} />
+        <Route path={PATH.FORGOT_PASSWORD} element={<ForgotPassword />} />
+        <Route path={PATH.RESET_PASSWORD} element={<ResetPassword />} />
 
-        {/* Profile Layout */}
-        <Route
-          path={PATH.PROFILE}
-          element={
-            <ProtectedRoute>
-              <ProfileLayout />
-            </ProtectedRoute>
-          }>
-          <Route index element={<Profile />} />
-          <Route path={PATH.ORDERS} element={<Orders />} />
+        <Route element={<Prefetch />}>
+          {/* Profile Layout */}
+          <Route
+            path={PATH.PROFILE}
+            element={
+              <ProtectedRoute>
+                <ProfileLayout />
+              </ProtectedRoute>
+            }>
+            <Route index element={<Profile />} />
+            <Route path={PATH.ORDERS} element={<Orders />} />
+          </Route>
         </Route>
 
         <Route path='*' element={<NotFound />} />

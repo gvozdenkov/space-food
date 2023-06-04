@@ -1,54 +1,60 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { serverConfig } from '../../utils/config';
-import { userApi } from './user-api';
+import { apiSlice } from '../../app/api/api-slice';
+import { logOut } from '../auth-slice';
 
-export const authApi = createApi({
+export const authApiSlice = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${serverConfig.baseUrl}/auth/`,
-  }),
-
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://norma.nomoreparties.space/api/auth' }),
   endpoints: (builder) => ({
     registerUser: builder.mutation({
-      query: (data) => ({
-        url: 'register',
+      query: ({ email, password, name }) => ({
+        url: '/register',
         method: 'POST',
-        body: data,
+        body: { email, password, name },
       }),
     }),
 
     loginUser: builder.mutation({
-      query: (data) => ({
-        url: 'login',
+      query: ({ email, password }) => ({
+        url: '/login',
         method: 'POST',
-        body: data,
+        body: { email, password },
       }),
-
-      transformResponse: (res) => {
-        const user = {
-          user: res.user,
-          accessToken: res.accessToken,
-          refreshToken: res.refreshToken,
-        };
-        return user;
-      },
-
-      async onQueryStarted(args, { dispatch, queryFulfilled }) {
-        try {
-          await queryFulfilled;
-          await dispatch(userApi.endpoints.getMe.initiate(null));
-        } catch (err) {}
-      },
     }),
 
     logoutUser: builder.mutation({
       query: (refreshToken) => ({
-        url: 'logout',
+        url: '/logout',
         method: 'POST',
         body: refreshToken,
+      }),
+
+      onQueryStarted: async (arg, { dispatch, queryFulfilled }) => {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(logOut());
+          setTimeout(() => {
+            dispatch(apiSlice.util.resetApiState());
+          }, 1000);
+        } catch (err) {
+          console.log(err);
+        }
+      },
+    }),
+
+    refresh: builder.mutation({
+      query: (refreshToken) => ({
+        url: '/token',
+        method: 'POST',
+        body: { token: refreshToken },
       }),
     }),
   }),
 });
 
-export const { useRegisterUserMutation, useLoginUserMutation, useLogoutUserMutation } = authApi;
+export const {
+  useRegisterUserMutation,
+  useLoginUserMutation,
+  useLogoutUserMutation,
+  useRefreshMutation,
+} = authApiSlice;

@@ -22,23 +22,7 @@ export const api = createApi({
         body: initialOrder,
       }),
     }),
-
-    forgotPassword: builder.mutation({
-      query: (email) => ({
-        url: '/password-reset',
-        method: 'POST',
-        body: email,
-      }),
-    }),
-
-    resetPassword: builder.mutation({
-      query: (data) => ({
-        url: '/password-reset/reset/Headers',
-        method: 'POST',
-        body: data,
-      }),
-    }),
   }),
 });
 
-export const { useCreateOrderMutation, useForgotPasswordMutation, useResetPasswordMutation } = api;
+export const { useCreateOrderMutation } = api;

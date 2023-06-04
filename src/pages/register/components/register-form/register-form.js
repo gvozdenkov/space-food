@@ -34,7 +34,7 @@ export const RegisterForm = () => {
       .email(intl.formatMessage({ id: 'form.errors.email.incorrect' }))
       .required(intl.formatMessage({ id: 'form.errors.input.required' })),
     password: Yup.string()
-      .min(7, intl.formatMessage({ id: 'form.errors.password.min' }))
+      .min(3, intl.formatMessage({ id: 'form.errors.password.min' }))
       .required(intl.formatMessage({ id: 'form.errors.input.required' })),
   });
 
@@ -42,6 +42,7 @@ export const RegisterForm = () => {
     if (!isLoading && !isFetching) {
       try {
         await registerUser(values).unwrap();
+        navigate(PATH.HOME, { replace: true });
       } catch (err) {
         console.error('Failed to create the user: ', err);
       }
