@@ -18,9 +18,9 @@ export const App = () => {
 
   return (
     <Routes>
-      <Route element={<Prefetch />}>
-        <Route path={PATH.HOME} element={<Layout />}>
-          <Route index element={<Home />} />
+      <Route path={PATH.HOME} element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route element={<Prefetch />}>
           <Route path={PATH.LOGIN} element={isAuth ? <Navigate to={PATH.HOME} /> : <Login />} />
           <Route
             path={PATH.REGISTER}

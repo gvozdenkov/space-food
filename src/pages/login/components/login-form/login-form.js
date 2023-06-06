@@ -26,7 +26,7 @@ export const LoginForm = () => {
   const errRef = useRef();
   const [errMsg, setErrMsg] = useState('');
 
-  const fromPage = location.state?.from?.pathname || PATH.HOME;
+  const fromPage = location.state?.from || PATH.HOME;
 
   const initialValues = {
     email: '',
@@ -48,6 +48,7 @@ export const LoginForm = () => {
         dispatch(setCredentials({ accessToken }));
         dispatch(setUser({ user }));
         cookies.set(JWT.REFRESH, refreshToken, { maxAge: 2400, path: '/' });
+        console.log('navigate to', fromPage);
         navigate(fromPage);
       } catch (err) {
         if (!err.status) {

@@ -10,12 +10,13 @@ import { ButtonLoader } from '../../../../components/button-loader';
 import { useGetMeQuery, useUpdateUserMutation } from '../../../../services/api/user-api';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../../../services/auth-slice';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { PATH } from '../../../../utils/config';
 
 export const Profile = () => {
   const intl = useIntl();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const [updateUser, { isLoading, isFetching, isSuccess, isError, error, data: newUser }] =
     useUpdateUserMutation();
@@ -39,7 +40,8 @@ export const Profile = () => {
   let content;
 
   if (isErrorUser) {
-    content = <Navigate to={PATH.LOGIN} />;
+    console.log('from', location.pathname);
+    content = <Navigate to={PATH.LOGIN} state={{ from: location.pathname }} />;
   }
 
   if (isSuccessUser) {
