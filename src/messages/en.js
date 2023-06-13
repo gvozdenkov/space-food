@@ -61,10 +61,13 @@ export const messagesEn = {
   'reset-form.placeholder.token': 'Enter the code from the letter',
   'reset-form.submit': 'Save',
   'reset-form.submit.loading': 'Saving',
-  'not-found.title': "Oh, there's nothing here :(",
-  'not-found.subtitle':
+  'error-page.common.title': 'Oops, something went wrong :(',
+  'error-page.common.text':
+    'Everything sucked into a black hole, we are already flying to repair :(',
+  'error-page.404.title': "Oh, there's nothing here :(",
+  'error-page.404.text':
     'There was an error in navigation and you are in an unknown sector of the galaxy',
-  'not-found.back': 'Make a burger',
+  'error-page.back': 'Make a burger',
   'profile.menu.profile': 'Profile',
   'profile.menu.orders': 'Order history',
   'profile.menu.logout': 'Logout',

@@ -9,11 +9,17 @@ import { Price } from './price';
 import { Button } from './button';
 import { Counter } from './counter';
 import { forwardRef } from 'react';
-import { useSelector } from 'react-redux';
-import { selectIngredientById } from '../../services/api/ingredients-api';
+import { useQuery } from '@tanstack/react-query';
+import { ingredientsQuery } from '../../routes/main/main-loader';
 
 const Card = forwardRef(({ productId, onClick, isDragging, children }, ref) => {
-  const product = useSelector((state) => selectIngredientById(state, productId));
+  const { queryKey, queryFn } = ingredientsQuery();
+  const { data: ingredientsObj } = useQuery({
+    queryKey,
+    queryFn,
+    refetchOnMount: false,
+  });
+  const product = ingredientsObj[productId]
 
   return (
     <CardContext.Provider value={product}>

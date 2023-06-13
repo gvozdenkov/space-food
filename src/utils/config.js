@@ -22,6 +22,7 @@ export const PATH = {
   RESET_PASSWORD: '/reset-password',
   PROFILE: '/profile',
   ORDERS: 'orders',
+  ORDER_FEED: '/order-feed',
 };
 
 export const menuItems = [

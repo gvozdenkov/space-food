@@ -9,6 +9,7 @@ import { useTabContext } from '../../common/contexts/tab-context';
 export const IngredientsList = memo(() => {
   const { getRefs, setCurrentTab } = useTabContext();
   const { categorys } = useIngredientsList();
+  // let categorys; 
 
   const List = ({ ingredients }) => {
     return (
@@ -26,7 +27,7 @@ export const IngredientsList = memo(() => {
 
   return (
     <ul className={clsx(s.categoryList, 'customScroll')}>
-      {categorys.map((category, index) => {
+      {categorys?.map((category, index) => {
         return (
           <InView
             as='li'

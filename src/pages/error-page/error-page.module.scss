@@ -1,0 +1,19 @@
+.errorPage {
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.subtitle {
+  max-width: 400px;
+  min-width: 0;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.link {
+  color: var(--color-content-primary);
+}

@@ -10,7 +10,7 @@ import { Profile } from '../pages/profile-layout/components/profile';
 import { Orders } from '../pages/profile-layout/components/orders';
 import { PATH } from '../utils/config';
 import { useAuth } from '../common/hooks/useAuth';
-import { Layout } from '../components/layout';
+import { Layout } from '../routes/root';
 import { Prefetch } from '../services/prefetch';
 
 export const App = () => {

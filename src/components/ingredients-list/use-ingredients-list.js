@@ -1,10 +1,21 @@
 import { useMemo } from 'react';
-import { selectAllIngredients } from '../../services/api/ingredients-api';
 import { useTabContext } from '../../common/contexts/tab-context';
-import { useSelector } from 'react-redux';
+import { useQuery } from '@tanstack/react-query';
+import { ingredientsQuery } from '../../routes/main/main-loader';
 
 export const useIngredientsList = () => {
-  const ingredients = useSelector(selectAllIngredients);
+  const { queryKey, queryFn } = ingredientsQuery();
+  const { data: ingredientsObj } = useQuery({
+    queryKey,
+    queryFn,
+    refetchOnMount: false,
+  });
+
+  const keys = Object.keys(ingredientsObj);
+  const ingredients = keys.reduce((arr, key) => {
+    arr.push(ingredientsObj[key]);
+    return arr;
+  }, []);
   const { tabs } = useTabContext();
 
   // Return array of objects with this shape:
