@@ -91,6 +91,5 @@ export const DragTypes = {
 };
 
 export const JWT = {
-  ACCESS: 'access-token',
   REFRESH: 'refresh-token',
 };

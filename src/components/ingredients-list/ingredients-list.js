@@ -9,7 +9,6 @@ import { useTabContext } from '../../common/contexts/tab-context';
 export const IngredientsList = memo(() => {
   const { getRefs, setCurrentTab } = useTabContext();
   const { categorys } = useIngredientsList();
-  // let categorys; 
 
   const List = ({ ingredients }) => {
     return (

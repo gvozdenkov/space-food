@@ -9,7 +9,7 @@ import { FormSubmitBtn } from '../../../../components/form/components/form-submi
 import { ButtonLoader } from '../../../../components/button-loader';
 import { useGetMeQuery, useUpdateUserMutation } from '../../../../services/api/user-api';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../../../services/auth-slice';
+import { selectCurrentUser, setUser } from '../../../../services/auth-slice';
 import { Navigate, useLocation } from 'react-router-dom';
 import { PATH } from '../../../../utils/config';
 
@@ -38,6 +38,7 @@ export const Profile = () => {
   });
 
   const { name, email } = { name: 'tmpName', email: 'tmpEmail' };
+  // const { name, email } = selectCurrentUser();
 
   const initialValues = {
     name,

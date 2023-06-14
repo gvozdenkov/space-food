@@ -4,7 +4,7 @@ import './index.scss';
 import { IntelApp } from './components/intelApp';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
-import { RouterProvider, createBrowserRouter, redirect } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { PATH } from './utils/config';
 import { Root } from './routes/root';
@@ -14,10 +14,12 @@ import { Main } from './components/main';
 import { ProfileLayout } from './pages/profile-layout';
 import { Orders } from './pages/profile-layout/components/orders';
 import { Profile } from './pages/profile-layout/components/profile';
-import { Login } from './pages/login';
+import { Login } from './routes/login';
 import { Register } from './pages/register';
 import { ForgotPassword } from './pages/forgot-password';
 import { ResetPassword } from './pages/reset-password';
+import { action as loginAction } from './routes/login/login-action';
+import { FormErrorElement } from './routes/form-error-element';
 
 const ReactQueryDevtools = React.lazy(async () => {
   const devtools = await import('@tanstack/react-query-devtools/build/lib/index.prod.js');
@@ -72,6 +74,8 @@ const router = createBrowserRouter([
           {
             path: PATH.LOGIN,
             element: <Login />,
+            errorElement: <Login outlet={<FormErrorElement />} />,
+            action: loginAction(store.dispatch),
           },
           {
             path: PATH.FORGOT_PASSWORD,

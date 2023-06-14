@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { apiSlice } from '../../app/api/api-slice';
 import { logOut } from '../auth-slice';
+import { api } from './api-axios';
 
 export const authApiSlice = createApi({
   reducerPath: 'authApi',
@@ -58,3 +59,16 @@ export const {
   useLogoutUserMutation,
   useRefreshMutation,
 } = authApiSlice;
+
+const login = async ({ email, password }) => {
+  const res = await api.post('/auth/login', {
+    email,
+    password,
+  });
+
+  return res.data;
+};
+
+export const AuthService = {
+  login,
+};
