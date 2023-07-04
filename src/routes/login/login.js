@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import { TextWithLink } from '../../components/text-with-link';
 import { FormView } from '../../components/form/components/form-view';
 import { PATH } from '../../utils/config';
-import { LoginForm } from '../../components/login-form';
+import { LoginForm } from '../../features/auth/components/login-form';
 import { Outlet } from 'react-router-dom';
 
 export const Login = (props) => {
@@ -14,7 +14,7 @@ export const Login = (props) => {
       <FormView>
         <LoginForm />
         {props.outlet ? props.outlet : <Outlet />}
-      
+
         <TextWithLink
           text={intl.formatMessage({ id: 'login.form.new.register' })}
           linkText={intl.formatMessage({ id: 'login.form.new.register.link' })}

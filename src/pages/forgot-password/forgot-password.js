@@ -2,7 +2,7 @@ import s from './forgot-password.module.scss';
 import { useIntl } from 'react-intl';
 import { TextWithLink } from '../../components/text-with-link';
 import { FormView } from '../../components/form/components/form-view';
-import { ForgotPasswordForm } from './components/fogot-password-form';
+import { ForgotPasswordForm } from '../../features/auth/components/fogot-password-form';
 import { PATH } from '../../utils/config';
 
 export const ForgotPassword = () => {

@@ -1,0 +1,18 @@
+@use '../../../../styles/mixins.scss' as *;
+
+.categoryList {
+  @include reset-list;
+  margin: 0;
+  overflow-y: scroll;
+  margin-top: 40px;
+  max-height: 716px;
+  box-sizing: border-box;
+}
+
+.ingredientList {
+  @include reset-list;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
+  gap: 32px 0px;
+  padding: 0 16px;
+}

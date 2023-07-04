@@ -8,11 +8,17 @@ export const serverConfig = {
   },
 };
 
-export const ingredientTypes = [
-  { type: 'bun', text: 'ingredient.type.bun' },
-  { type: 'main', text: 'ingredient.type.main' },
-  { type: 'sauce', text: 'ingredient.type.sauce' },
-];
+export const ingredientIds = {
+  BUN: 'bun',
+  MAIN: 'main',
+  SAUCE: 'sauce',
+};
+
+export const ingredientTabs = {
+  [ingredientIds.BUN]: 'ingredient.type.bun',
+  [ingredientIds.MAIN]: 'ingredient.type.main',
+  [ingredientIds.SAUCE]: 'ingredient.type.sauce',
+};
 
 export const PATH = {
   HOME: '/',
@@ -23,11 +29,26 @@ export const PATH = {
   PROFILE: '/profile',
   ORDERS: 'orders',
   ORDER_FEED: '/order-feed',
+  INGREDIENTS: 'ingredients',
 };
+
+export const QUERYKEY = {
+  INGREDIENTS: 'ingredients',
+  USER: 'user',
+};
+
+export const COOKIE = {
+  ACCESSTOKEN: 'accessToken',
+  REFRESHTOKEN: 'refreshToken',
+  LOGEDIN: 'logedIn',
+  RESET_PASSWORD: 'reset-password',
+};
+
+export const MODAL_PORTAL_EL = document.querySelector('#modal-portal');
 
 export const menuItems = [
   {
-    title: 'nav.item.constructor',
+    title: 'nav.item.home',
     icon: 'burger',
     url: PATH.HOME,
   },
@@ -40,16 +61,6 @@ export const menuItems = [
     title: 'nav.item.profile',
     icon: 'profile',
     url: PATH.PROFILE,
-    mobileSubmenu: [
-      {
-        title: 'nav.item.profile.profile',
-        url: 'profile',
-      },
-      {
-        title: 'nav.item.profile.history',
-        url: 'order-history',
-      },
-    ],
   },
 ];
 

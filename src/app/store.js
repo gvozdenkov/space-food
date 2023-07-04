@@ -1,25 +1,36 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { burgerConstructorReducer } from '../services/burger-constructor-slice';
-import { ingredientDetailsReducer } from '../services/ingredient-details-slice';
-import { ordersReducer } from '../services/order-slice';
-import { apiSlice } from './api/api-slice';
-import { authReducer } from '../services/auth-slice';
-import { setupListeners } from '@reduxjs/toolkit/dist/query';
-import { authApiSlice } from '../services/api/auth-api';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { userReducer } from '../features/user';
+import localforage from 'localforage';
+import {
+  persistReducer,
+  persistStore,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 
-export const store = configureStore({
-  reducer: {
-    ingredientDetails: ingredientDetailsReducer,
-    burgerConstructor: burgerConstructorReducer,
-    orders: ordersReducer,
+const persistConfig = {
+  key: 'root',
+  storage: localforage,
+};
 
-    [apiSlice.reducerPath]: apiSlice.reducer,
-    [authApiSlice.reducerPath]: authApiSlice.reducer,
-    auth: authReducer,
-  },
-
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat([apiSlice.middleware, authApiSlice.middleware]),
+const rootReducer = combineReducers({
+  user: userReducer,
 });
 
-setupListeners(store.dispatch);
+export const store = configureStore({
+  reducer: persistReducer(persistConfig, rootReducer),
+
+  // fix error: non-serializable values in the state
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+
+export const persistor = persistStore(store);
