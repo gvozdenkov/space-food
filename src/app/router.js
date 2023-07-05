@@ -7,6 +7,10 @@ import { RootErrorPage } from '../layouts/root-layout/root-error-page';
 import { ingredientsLoader } from '../layouts/root-layout/ingredients-loader';
 import { IngredientModal } from '../layouts/ingredient-modal';
 import { makeOrderAction } from '../pages/home/home-action';
+import { OnlyUnAuth } from '../features/auth';
+import { Login } from '../pages/login';
+import { loginAction } from '../pages/login/login-action';
+import { store } from './store';
 
 export const router = createBrowserRouter([
   {
@@ -53,11 +57,11 @@ export const router = createBrowserRouter([
           //   ],
           // },
 
-          // {
-          //   path: PATH.LOGIN,
-          //   element: <OnlyUnAuth component={<Login />} />,
-          //   action: Login.login(store.dispatch),
-          // },
+          {
+            path: PATH.LOGIN,
+            element: <OnlyUnAuth component={<Login />} />,
+            action: loginAction(store.dispatch),
+          },
           // {
           //   path: PATH.REGISTER,
           //   element: <OnlyUnAuth component={<Register />} />,

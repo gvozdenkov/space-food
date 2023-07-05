@@ -1,13 +1,13 @@
-import s from './login.module.scss';
-import { useIntl } from 'react-intl';
+
 import { TextWithLink } from '../../components/text-with-link';
 import { FormView } from '../../components/form/components/form-view';
 import { PATH } from '../../utils/config';
-import { LoginForm } from '../../features/auth/components/login-form';
 import { Outlet } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { LoginForm } from '../../features/auth';
 
 export const Login = (props) => {
-  const intl = useIntl();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -16,14 +16,14 @@ export const Login = (props) => {
         {props.outlet ? props.outlet : <Outlet />}
 
         <TextWithLink
-          text={intl.formatMessage({ id: 'login.form.new.register' })}
-          linkText={intl.formatMessage({ id: 'login.form.new.register.link' })}
+          text={t('login.form.new.register')}
+          linkText={t('login.form.new.register.link')}
           href={PATH.REGISTER}
           extraClass='mt-20'
         />
         <TextWithLink
-          text={intl.formatMessage({ id: 'login.form.forgot.password' })}
-          linkText={intl.formatMessage({ id: 'login.form.forgot.password.link' })}
+          text={t('login.form.forgot.password')}
+          linkText={t('login.form.forgot.password.link')}
           href={PATH.FORGOT_PASSWORD}
           extraClass='mt-4'
         />
