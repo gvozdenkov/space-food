@@ -40,8 +40,9 @@ export const QUERYKEY = {
 export const COOKIE = {
   ACCESSTOKEN: 'accessToken',
   REFRESHTOKEN: 'refreshToken',
-  LOGEDIN: 'logedIn',
   RESET_PASSWORD: 'reset-password',
+  ORDER_BUN: 'order-bun',
+  ORDER_INGREDIENTS: 'order-ingredients',
 };
 
 export const MODAL_PORTAL_EL = document.querySelector('#modal-portal');

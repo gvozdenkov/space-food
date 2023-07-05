@@ -4,8 +4,8 @@ const initialState = {
   orders: [],
 };
 
-export const orderSlice = createSlice({
-  name: 'order',
+export const activeOrdersSlice = createSlice({
+  name: 'activeOrders',
   initialState,
   reducers: {
     orderCreated(state, action) {
@@ -14,8 +14,8 @@ export const orderSlice = createSlice({
   },
 });
 
-export const { orderCreated } = orderSlice.actions;
+export const { orderCreated } = activeOrdersSlice.actions;
 
-const ordersReducer = orderSlice.reducer;
+const activeOrderReducer = activeOrdersSlice.reducer;
 
-export { ordersReducer };
+export { activeOrderReducer };

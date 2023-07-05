@@ -11,6 +11,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import { orderReducer } from '../features/burger-constructor';
 
 const persistConfig = {
   key: 'root',
@@ -19,6 +20,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   user: userReducer,
+  order: orderReducer,
 });
 
 export const store = configureStore({

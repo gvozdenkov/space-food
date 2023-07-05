@@ -1,23 +1,20 @@
 import s from './forgot-password-form.module.scss';
-import { useIntl } from 'react-intl';
 import clsx from 'clsx';
 import * as Yup from 'yup';
 import { Formik, Form, Field } from 'formik';
-import { EmailInput, Input } from '@ya.praktikum/react-developer-burger-ui-components';
+import { EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { FormTitle } from '../../../../components/form/components/form-title';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
 import { ButtonLoader } from '../../../../components/button-loader';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { PATH } from '../../../../utils/config';
-import { useForgotPasswordMutation } from '../../../../services/api/reset-api';
+import { useNavigation } from 'react-router-dom';
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const ForgotPasswordForm = () => {
-  const intl = useIntl();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [forgotPassword, { isLoading, isFetching, isSuccess, isError, error, data }] =
-    useForgotPasswordMutation();
+  const { t } = useTranslation();
+  const navigation = useNavigation();
+  const isLoading = navigation.state === 'loading' || 'submitting';
+
   const errRef = useRef();
   const [errMsg, setErrMsg] = useState('');
 
@@ -27,53 +24,50 @@ export const ForgotPasswordForm = () => {
 
   const validationSchema = Yup.object({
     email: Yup.string()
-      .email(intl.formatMessage({ id: 'form.errors.email.incorrect' }))
-      .required(intl.formatMessage({ id: 'form.errors.input.required' })),
+      .email(t('form.errors.email.incorrect'))
+      .required(t('form.errors.input.required')),
   });
 
-  const handleSubmit = async (values, actions) => {
-    if (!isLoading && !isFetching) {
-      try {
-        const { success } = await forgotPassword(values).unwrap();
-        navigate(PATH.RESET_PASSWORD, { state: { from: location.pathname } });
-        if (success) {
-        }
-      } catch (err) {
-        console.log(err);
-        if (!err.status) {
-          setErrMsg(intl.formatMessage({ id: 'network.error.noStatus' }));
-        } else if (err.status === 500 || err.originalStatus === 500) {
-          setErrMsg(intl.formatMessage({ id: 'network.error.500' }));
-        } else {
-          setErrMsg(err.data?.message);
-        }
-        errRef.current.focus();
-      }
-    }
+  // const handleSubmit = async (values, actions) => {
+  //   if (!isLoading && !isFetching) {
+  //     try {
+  //       const { success } = await forgotPassword(values).unwrap();
+  //       navigate(PATH.RESET_PASSWORD, { state: { from: location.pathname } });
+  //       if (success) {
+  //       }
+  //     } catch (err) {
+  //       console.log(err);
+  //       if (!err.status) {
+  //         setErrMsg(intl.formatMessage({ id: 'network.error.noStatus' }));
+  //       } else if (err.status === 500 || err.originalStatus === 500) {
+  //         setErrMsg(intl.formatMessage({ id: 'network.error.500' }));
+  //       } else {
+  //         setErrMsg(err.data?.message);
+  //       }
+  //       errRef.current.focus();
+  //     }
+  //   }
 
-    actions.resetForm();
-  };
+  //   actions.resetForm();
+  // };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}>
+    <Formik initialValues={initialValues} validationSchema={validationSchema}>
       {({ errors, isValid, touched, dirty }) => (
         <Form className='form'>
-          <FormTitle>{intl.formatMessage({ id: 'forgot-password.form.title' })}</FormTitle>
+          <FormTitle>{t('forgot-password.form.title')}</FormTitle>
           <Field
             name={'email'}
             type={'email'}
             as={EmailInput}
-            placeholder={intl.formatMessage({ id: 'forgot-form.placeholder.password' })}
+            placeholder={t('forgot-form.placeholder.password')}
             error={touched.email && !!errors.email}
             errorText={touched.email && errors.email}
           />
           <FormSubmitBtn disabled={!dirty || !isValid || isLoading}>
-            {isLoading ? <ButtonLoader /> : intl.formatMessage({ id: 'forgot-password.submit' })}
+            {isLoading ? <ButtonLoader /> : t('forgot-password.submit')}
           </FormSubmitBtn>
-          {isError && (
+          {false && (
             <p
               ref={errRef}
               aria-live='assertive'
