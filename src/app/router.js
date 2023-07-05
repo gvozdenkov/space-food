@@ -6,6 +6,7 @@ import { queryClient } from '../services/api-setup';
 import { RootErrorPage } from '../layouts/root-layout/root-error-page';
 import { ingredientsLoader } from '../layouts/root-layout/ingredients-loader';
 import { IngredientModal } from '../layouts/ingredient-modal';
+import { makeOrderAction } from '../pages/home/home-action';
 
 export const router = createBrowserRouter([
   {
@@ -20,10 +21,11 @@ export const router = createBrowserRouter([
           {
             path: PATH.HOME,
             element: <Home />,
+            action: makeOrderAction(queryClient),
             children: [
               {
                 path: `${PATH.INGREDIENTS}/:id`,
-              element: <IngredientModal />,
+                element: <IngredientModal />,
               },
             ],
           },

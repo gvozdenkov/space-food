@@ -14,18 +14,8 @@ export const useBurgerTotal = () => {
   const ingredientAdded = ingredients.length > 0;
   const isMinimalOrder = bunAdded && ingredientAdded;
 
-  const [openModal, setOpenModal] = useState(null);
-  const closeModal = () => setOpenModal(null);
-
-  const handleCreateOrder = async () => {
-    console.log('creating order...');
-  };
-
   return {
     isMinimalOrder,
     totalPrice,
-    handleCreateOrder,
-    openModal,
-    closeModal,
   };
 };

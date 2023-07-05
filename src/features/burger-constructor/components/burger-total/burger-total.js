@@ -9,13 +9,18 @@ import { FETCH_STATUS } from '../../../../utils/constants';
 import { AnimatePresence } from 'framer-motion';
 import { useBurgerTotal } from './hooks/use-burger-total';
 import { useTranslation } from 'react-i18next';
-import { Form, useNavigation } from 'react-router-dom';
+import { Form, useActionData, useNavigation } from 'react-router-dom';
 import { ButtonLoader } from '../../../../components/button-loader';
+import { useSelector } from 'react-redux';
+import { selectAllOrderItems } from '../../services/order-slice';
 
 export const BurgerTotal = () => {
   const { t } = useTranslation();
-  const { order, isMinimalOrder, handleCreateOrder, totalPrice, openModal, closeModal } =
-    useBurgerTotal();
+  const { isMinimalOrder, totalPrice } = useBurgerTotal();
+  const ingredients = useSelector(selectAllOrderItems);
+
+  const order = useActionData();
+  const isSuccess = order?.success;
 
   const navigation = useNavigation();
 
@@ -24,28 +29,27 @@ export const BurgerTotal = () => {
   return (
     <div className={clsx(s.burgerTotal, 'mt-10 pr-4')}>
       {<Price amount={totalPrice} size='medium' />}
-      <Form>
+      <Form method='POST'>
+        <input
+          type='hidden'
+          id='ingredients'
+          name='ingredients'
+          value={JSON.stringify(ingredients)}
+        />
         <Button
           type='primary'
           size='medium'
           htmlType='submit'
           extraClass={clsx('ml-10')}
-          onClick={handleCreateOrder}
           disabled={isLoading || !isMinimalOrder}>
           {isLoading ? <ButtonLoader /> : t('constructor.createOrder')}
         </Button>
       </Form>
 
       <AnimatePresence initial={false} mode='wait' onExitComplete={() => null}>
-        {openModal === isLoading && (
-          <Modal title={t('constructor.createOrder.loading')} handleClose={closeModal}>
-            <CheckoutOrderDetails />
-          </Modal>
-        )}
-
-        {openModal === FETCH_STATUS.SUCCESSED && (
-          <Modal ariaTitle='Идентификатор заказа' handleClose={closeModal}>
-            <OrderDetails orderNumber={456321} />
+        {isSuccess && (
+          <Modal ariaTitle='Идентификатор заказа'>
+            <OrderDetails number={order.order.number} />
           </Modal>
         )}
       </AnimatePresence>

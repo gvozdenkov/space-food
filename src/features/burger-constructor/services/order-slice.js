@@ -95,5 +95,6 @@ const orderReducer = orderSlice.reducer;
 
 export const selectOrder = (state) => state.order;
 export const selectOrderIngredients = (state) => state.order.ingredients;
+export const selectAllOrderItems = (state) => state.order.orderItems;
 
 export { orderReducer };
