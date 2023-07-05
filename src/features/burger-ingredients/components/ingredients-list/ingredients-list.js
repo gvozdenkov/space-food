@@ -17,7 +17,7 @@ export const IngredientsList = () => {
         {ingredients.map((ingredient) => {
           return (
             <li key={ingredient._id}>
-              <IngredientCard ingredientId={ingredient._id} />
+              <IngredientCard id={ingredient._id} />
             </li>
           );
         })}

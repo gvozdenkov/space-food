@@ -2,24 +2,30 @@ import { Card } from '../card/card';
 import PropTypes from 'prop-types';
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { ingredientAdded } from '../../features/burger-constructor/services/order-slice';
+import { bunAdded, ingredientAdded } from '../../features/burger-constructor/services/order-slice';
 import { useQuery } from '@tanstack/react-query';
 import { ingredientsQuery } from '../../layouts/root-layout/ingredients-loader';
+import { ingredientIds } from '../../utils/config';
 
-export const IngredientCard = ({ ingredientId }) => {
+export const IngredientCard = ({ id }) => {
   const dispatch = useDispatch();
   const { data: ingredientsObj } = useQuery(ingredientsQuery());
+  const selectedIngredient = ingredientsObj[id];
 
   const handleImageClick = useCallback(() => {
-    console.log('open modal for ingredient: ', ingredientId);
-  }, [ingredientId]);
+    console.log('open modal for ingredient: ', id);
+  }, [id]);
 
   const handleAddClick = useCallback(() => {
-    dispatch(ingredientAdded(ingredientsObj[ingredientId]));
-  }, [dispatch, ingredientsObj, ingredientId]);
+    if (selectedIngredient.type === ingredientIds.BUN) {
+      dispatch(bunAdded(id));
+    } else {
+      dispatch(ingredientAdded(id));
+    }
+  }, [dispatch, selectedIngredient, id]);
 
   return (
-    <Card isDragging={false} productId={ingredientId}>
+    <Card isDragging={false} productId={id}>
       <Card.Counter />
       <Card.Image onClick={handleImageClick} />
       <Card.Info>
@@ -32,5 +38,5 @@ export const IngredientCard = ({ ingredientId }) => {
 };
 
 IngredientCard.propTypes = {
-  ingredientId: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };

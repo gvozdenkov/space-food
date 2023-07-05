@@ -8,7 +8,7 @@ export const useCounter = () => {
   const { orderItems } = useSelector(selectOrder);
 
   const count = useMemo(() => {
-    return orderItems.filter((item) => item._id === product._id).length;
+    return orderItems.filter((item) => item === product._id).length;
   }, [orderItems, product._id]);
 
   return { count };

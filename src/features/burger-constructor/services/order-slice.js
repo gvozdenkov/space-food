@@ -1,5 +1,4 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
-import { INGREDIENT } from '../../../utils/constants';
 import { arrayMove } from '@dnd-kit/sortable';
 
 const initialState = {
@@ -10,7 +9,8 @@ const initialState = {
 };
 
 const setOrderItems = (state) => {
-  return [state.bun, ...state.ingredients, state.bun];
+  const ingredientIds = [...state.ingredients].map((item) => item._id);
+  return [state.bun, ...ingredientIds, state.bun];
 };
 
 const findIndex = (state, id) => {
@@ -22,26 +22,23 @@ export const orderSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {
+    bunAdded: {
+      reducer(state, action) {
+        state.bun = action.payload;
+        state.orderItems = setOrderItems(state);
+      },
+    },
+
     ingredientAdded: {
       reducer(state, action) {
-        if (action.payload.type === INGREDIENT.BUN && action.payload._id !== state.bun._id) {
-          state.bun = action.payload;
-          state.orderItems = setOrderItems(state);
-        } else if (action.payload.type !== INGREDIENT.BUN) {
-          state.ingredients.push(action.payload);
-
-          state.orderItems = setOrderItems(state);
-        }
+        state.ingredients.push(action.payload);
+        state.orderItems = setOrderItems(state);
       },
 
-      prepare(ingredient) {
+      prepare(id) {
         return {
           payload: {
-            type: ingredient.type,
-            thumbnail: ingredient.image_mobile,
-            text: ingredient.name,
-            price: ingredient.price,
-            _id: ingredient._id,
+            _id: id,
             _itemId: nanoid(),
           },
         };
@@ -90,6 +87,7 @@ export const orderSlice = createSlice({
 });
 
 export const {
+  bunAdded,
   ingredientAdded,
   ingredientRemoved,
   totalPriceCaluclated,
