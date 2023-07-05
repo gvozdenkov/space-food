@@ -2,11 +2,12 @@ import { createPortal } from 'react-dom';
 import s from './modal.module.scss';
 import clsx from 'clsx';
 import { getIcons } from '../../utils';
-import { ModalOverlay } from '../modal-overlay';
+import { ModalOverlay } from './components/modal-overlay';
 import PropTypes from 'prop-types';
 import { MODAL_PORTAL_EL } from '../../utils/constants';
 import { useEscKey } from './useEscKey';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const dropIn = {
   hidden: {
@@ -33,7 +34,13 @@ const dropIn = {
   },
 };
 
-export const Modal = ({ title, ariaTitle, children, handleClose }) => {
+export const Modal = ({ title, ariaTitle, children }) => {
+  const navigate = useNavigate();
+
+  const handleClose = () => {
+    navigate(-1);
+  };
+
   useEscKey(handleClose);
 
   return createPortal(
@@ -76,5 +83,4 @@ Modal.propTypes = {
   title: PropTypes.string,
   ariaTitle: PropTypes.string,
   children: PropTypes.node,
-  handleClose: PropTypes.func.isRequired,
 };

@@ -12,10 +12,6 @@ export const IngredientCard = ({ id }) => {
   const { data: ingredientsObj } = useQuery(ingredientsQuery());
   const selectedIngredient = ingredientsObj[id];
 
-  const handleImageClick = useCallback(() => {
-    console.log('open modal for ingredient: ', id);
-  }, [id]);
-
   const handleAddClick = useCallback(() => {
     const price = ingredientsObj[id].price;
 
@@ -29,7 +25,7 @@ export const IngredientCard = ({ id }) => {
   return (
     <Card isDragging={false} productId={id}>
       <Card.Counter />
-      <Card.Image onClick={handleImageClick} />
+      <Card.Image id={id} />
       <Card.Info>
         <Card.Price />
         <Card.Heading />

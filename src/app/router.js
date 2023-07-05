@@ -5,6 +5,7 @@ import { RootLayout } from '../layouts/root-layout/root-layout';
 import { queryClient } from '../services/api-setup';
 import { RootErrorPage } from '../layouts/root-layout/root-error-page';
 import { ingredientsLoader } from '../layouts/root-layout/ingredients-loader';
+import { IngredientModal } from '../layouts/ingredient-modal';
 
 export const router = createBrowserRouter([
   {
@@ -19,12 +20,12 @@ export const router = createBrowserRouter([
           {
             path: PATH.HOME,
             element: <Home />,
-            // children: [
-            //   {
-            //     path: `${PATH.INGREDIENTS}/:id`,
-            //     element: <IngredientModal />,
-            //   },
-            // ],
+            children: [
+              {
+                path: `${PATH.INGREDIENTS}/:id`,
+              element: <IngredientModal />,
+              },
+            ],
           },
 
           // {

@@ -45,8 +45,6 @@ export const COOKIE = {
   ORDER_INGREDIENTS: 'order-ingredients',
 };
 
-export const MODAL_PORTAL_EL = document.querySelector('#modal-portal');
-
 export const menuItems = [
   {
     title: 'nav.item.home',
