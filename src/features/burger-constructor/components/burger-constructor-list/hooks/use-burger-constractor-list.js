@@ -9,16 +9,20 @@ export const useBurgerConstructorList = () => {
   const { data: ingredientsObj } = useQuery(ingredientsQuery());
   const { bun, ingredients } = useSelector(selectOrder);
 
-  const isBun = Object.keys(bun).length !== 0;
-  const isIngredients = ingredients.length > 0;
+  const isBunAdded = Object.keys(bun).length !== 0;
+  const isIngredientsAdded = ingredients.length !== 0;
 
-  const bunProps = (type) => ({
-    type,
-    isLocked: true,
-    price: ingredientsObj[bun]?.price,
-    text: `${ingredientsObj[bun]?.name} (${t(`constructor.${type}.intredient`)})`,
-    thumbnail: ingredientsObj[bun]?.image_mobile,
-  });
+  const bunProps = (type) => {
+    const id = bun._id;
+
+    return {
+      type,
+      isLocked: true,
+      price: ingredientsObj[id]?.price,
+      text: `${ingredientsObj[id]?.name} (${t(`constructor.${type}.intredient`)})`,
+      thumbnail: ingredientsObj[id]?.image_mobile,
+    };
+  };
 
   const topBun = bunProps('top');
   const bottomBun = bunProps('bottom');
@@ -26,7 +30,7 @@ export const useBurgerConstructorList = () => {
   return {
     topBun,
     bottomBun,
-    isBun,
-    isIngredients,
+    isBunAdded,
+    isIngredientsAdded,
   };
 };

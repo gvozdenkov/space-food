@@ -1,16 +1,15 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit';
+import { createSlice, current, nanoid } from '@reduxjs/toolkit';
 import { arrayMove } from '@dnd-kit/sortable';
 
 const initialState = {
   bun: {},
   ingredients: [],
   orderItems: [],
-  totalPrice: 0,
 };
 
 const setOrderItems = (state) => {
   const ingredientIds = [...state.ingredients].map((item) => item._id);
-  return [state.bun, ...ingredientIds, state.bun];
+  return [state.bun._id, ...ingredientIds, state.bun._id];
 };
 
 const findIndex = (state, id) => {
@@ -27,6 +26,15 @@ export const orderSlice = createSlice({
         state.bun = action.payload;
         state.orderItems = setOrderItems(state);
       },
+
+      prepare(id, price) {
+        return {
+          payload: {
+            _id: id,
+            price,
+          },
+        };
+      },
     },
 
     ingredientAdded: {
@@ -35,10 +43,11 @@ export const orderSlice = createSlice({
         state.orderItems = setOrderItems(state);
       },
 
-      prepare(id) {
+      prepare(id, price) {
         return {
           payload: {
             _id: id,
+            price,
             _itemId: nanoid(),
           },
         };
@@ -50,13 +59,6 @@ export const orderSlice = createSlice({
 
       state.ingredients = state.ingredients.filter((item) => item._itemId !== deletedId);
       state.orderItems = setOrderItems(state);
-    },
-
-    totalPriceCaluclated(state, action) {
-      const ingredientsPrice = state.ingredients.reduce((total, item) => (total += item.price), 0);
-      const bunPrice = Object.keys(state.bun).length !== 0 ? state.bun.price * 2 : 0;
-
-      state.totalPrice = ingredientsPrice + bunPrice;
     },
 
     ingredientMoved: {
@@ -86,14 +88,8 @@ export const orderSlice = createSlice({
   },
 });
 
-export const {
-  bunAdded,
-  ingredientAdded,
-  ingredientRemoved,
-  totalPriceCaluclated,
-  ingredientMoved,
-  orderReseted,
-} = orderSlice.actions;
+export const { bunAdded, ingredientAdded, ingredientRemoved, ingredientMoved, orderReseted } =
+  orderSlice.actions;
 
 const orderReducer = orderSlice.reducer;
 

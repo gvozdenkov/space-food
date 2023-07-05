@@ -1,35 +1,18 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useCreateOrderMutation } from '../../../../../services/api/api';
-import { constructorReseted, totalPriceCaluclated } from '../../../services/order-slice';
-import { FETCH_STATUS } from '../../../../../utils/constants';
-import { orderCreated } from '../../../../../services/order-slice';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { PATH } from '../../../../../utils/config';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectOrder } from '../../../services/order-slice';
+import { useQuery } from '@tanstack/react-query';
+import { ingredientsQuery } from '../../../../../layouts/root-layout/ingredients-loader';
 
 export const useBurgerTotal = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const location = useLocation();
+  const { data: ingredientsObj } = useQuery(ingredientsQuery());
+  const { orderItems, bun, ingredients } = useSelector(selectOrder);
 
-  const { constructorItems, bun, ingredients, totalPrice } = useSelector(
-    (state) => state.burgerConstructor,
-  );
-  const cartIngredients = constructorItems.map((item) => item._id);
+  const totalPrice = orderItems.reduce((sum, id) => (sum += ingredientsObj[id].price), 0);
 
   const bunAdded = Object.keys(bun).length !== 0;
   const ingredientAdded = ingredients.length > 0;
   const isMinimalOrder = bunAdded && ingredientAdded;
-
-  useEffect(() => {
-    dispatch(totalPriceCaluclated());
-  }, [constructorItems, dispatch]);
-
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     dispatch(constructorReseted());
-  //   }
-  // }, [isSuccess, dispatch]);
 
   const [openModal, setOpenModal] = useState(null);
   const closeModal = () => setOpenModal(null);

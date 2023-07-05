@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 export const ForgotPasswordForm = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
-  const isLoading = navigation.state === 'loading' || 'submitting';
+  const isLoading = navigation.state === 'loading' || navigation.state === 'submitting';
 
   const errRef = useRef();
   const [errMsg, setErrMsg] = useState('');

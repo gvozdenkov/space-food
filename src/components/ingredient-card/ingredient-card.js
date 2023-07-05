@@ -17,12 +17,14 @@ export const IngredientCard = ({ id }) => {
   }, [id]);
 
   const handleAddClick = useCallback(() => {
+    const price = ingredientsObj[id].price;
+
     if (selectedIngredient.type === ingredientIds.BUN) {
-      dispatch(bunAdded(id));
+      dispatch(bunAdded(id, price));
     } else {
-      dispatch(ingredientAdded(id));
+      dispatch(ingredientAdded(id, price));
     }
-  }, [dispatch, selectedIngredient, id]);
+  }, [dispatch, selectedIngredient, ingredientsObj, id]);
 
   return (
     <Card isDragging={false} productId={id}>
