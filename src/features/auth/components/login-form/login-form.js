@@ -7,7 +7,7 @@ import { FormSubmitBtn } from '../../../../components/form/components/form-submi
 import { ButtonLoader } from '../../../../components/button-loader';
 import { useTranslation } from 'react-i18next';
 
-export const LoginForm = () => {
+export const LoginForm = ({ redirectTo }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting' || navigation.state === 'loading';
@@ -46,6 +46,7 @@ export const LoginForm = () => {
             error={touched.password && !!errors.password}
             errorText={touched.password && errors.password}
           />
+          <input type='hidden' id='path' value={redirectTo} name='redirectTo' />
           <FormSubmitBtn disabled={!dirty || !isValid}>
             {isSubmitting ? <ButtonLoader /> : t('login.form.submit')}
           </FormSubmitBtn>

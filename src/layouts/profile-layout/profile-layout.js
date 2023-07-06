@@ -1,21 +1,17 @@
 import clsx from 'clsx';
 import s from './profile-layout.module.scss';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Form, NavLink, Outlet } from 'react-router-dom';
 import { profileMenuItems } from '../../utils/config';
-import { IntlConvert } from '../../utils/utils';
-import { useIntl } from 'react-intl';
-import { useProfileLayout } from './use-profile-layout';
+import { useTranslation } from 'react-i18next';
 
 export const ProfileLayout = () => {
-  const intl = useIntl();
-  const intlProfileMenuItems = IntlConvert(profileMenuItems, 'title');
-  const { handleLogout } = useProfileLayout();
+  const { t } = useTranslation();
 
   return (
     <div className={clsx(s.profile)}>
       <nav className={clsx(s.nav)}>
         <ul className={clsx(s.navList)}>
-          {intlProfileMenuItems.map((menu, index) => {
+          {profileMenuItems.map((menu, index) => {
             return (
               <li className={clsx(s.navListItem)} key={index}>
                 <NavLink
@@ -28,18 +24,17 @@ export const ProfileLayout = () => {
                     )
                   }
                   end>
-                  {menu.title}
+                  {t(menu.title)}
                 </NavLink>
               </li>
             );
           })}
         </ul>
-        <button
-          onClick={handleLogout}
-          type='submit'
-          className={clsx(s.exitBtn, 'text text_type_main-medium')}>
-          {intl.formatMessage({ id: 'profile.menu.logout' })}
-        </button>
+        <Form method='POST'>
+          <button type='submit' className={clsx(s.exitBtn, 'text text_type_main-medium')}>
+            {t('profile.menu.logout')}
+          </button>
+        </Form>
       </nav>
 
       <Outlet />

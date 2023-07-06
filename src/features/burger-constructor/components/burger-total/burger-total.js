@@ -4,8 +4,6 @@ import clsx from 'clsx';
 import { Price } from '../../../../components/price';
 import { Modal } from '../../../../components/modal';
 import { OrderDetails } from './components/order-details';
-import { CheckoutOrderDetails } from './components/checkout-order-details';
-import { FETCH_STATUS } from '../../../../utils/constants';
 import { AnimatePresence } from 'framer-motion';
 import { useBurgerTotal } from './hooks/use-burger-total';
 import { useTranslation } from 'react-i18next';

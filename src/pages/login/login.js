@@ -4,13 +4,16 @@ import { PATH } from '../../utils/config';
 import { useTranslation } from 'react-i18next';
 import { LoginForm } from '../../features/auth';
 import { FormErrorMessage } from '../../components/form-error-message';
+import { useLocation } from 'react-router-dom';
 
 export const Login = (props) => {
   const { t } = useTranslation();
+  const location = useLocation();
+  const redirectAfterLogin = location?.state?.from?.pathname || PATH.HOME;
 
   return (
     <FormView>
-      <LoginForm />
+      <LoginForm redirectTo={redirectAfterLogin} />
 
       {props.outlet && <FormErrorMessage message={props.outlet} />}
 

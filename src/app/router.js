@@ -7,7 +7,7 @@ import { RootErrorPage } from '../layouts/root-layout/root-error-page';
 import { ingredientsLoader } from '../layouts/root-layout/ingredients-loader';
 import { IngredientModal } from '../layouts/ingredient-modal';
 import { makeOrderAction } from '../pages/home/home-action';
-import { OnlyUnAuth } from '../features/auth';
+import { OnlyAuth, OnlyUnAuth } from '../features/auth';
 import { Login } from '../pages/login';
 import { loginAction } from '../pages/login/login-action';
 import { store } from './store';
@@ -19,6 +19,12 @@ import { ResetPassword } from '../pages/reset-password';
 import { resetPasswordAction } from '../pages/reset-password/reset-password-action';
 import { resetPasswordLoader } from '../pages/reset-password/reset-password-loader';
 import { FormErrorElement } from '../pages/form-error-element';
+import { ProfileLayout } from '../layouts/profile-layout';
+import { Profile } from '../pages/profile';
+import { Orders } from '../pages/orders';
+import { updateUserAction } from '../pages/profile/update-user-action';
+import { userLoader } from '../layouts/profile-layout/user-loader';
+import { logoutAction } from '../layouts/profile-layout/logout-action';
 
 export const router = createBrowserRouter([
   {
@@ -42,28 +48,29 @@ export const router = createBrowserRouter([
             ],
           },
 
-          // {
-          //   path: PATH.PROFILE,
-          //   element: <OnlyAuth component={<ProfileLayout />} />,
-          //   action: ProfileLayout.logout(store.dispatch),
-          //   loader: userLoader(queryClient),
-          //   children: [
-          //     {
-          //       errorElement: <ProfileLayoutErrorPage />,
-          //       children: [
-          //         {
-          //           index: true,
-          //           element: <Profile />,
-          //           action: Profile.updateUser(store.dispatch),
-          //         },
-          //         {
-          //           path: PATH.ORDERS,
-          //           element: <Orders />,
-          //         },
-          //       ],
-          //     },
-          //   ],
-          // },
+          {
+            path: PATH.PROFILE,
+            element: <OnlyAuth component={<ProfileLayout />} />,
+            action: logoutAction(store.dispatch),
+            loader: userLoader(queryClient),
+            children: [
+              {
+                errorElement: <RootErrorPage />,
+                children: [
+                  {
+                    index: true,
+                    element: <Profile />,
+                    action: updateUserAction(store.dispatch),
+                    loader: userLoader(queryClient),
+                  },
+                  {
+                    path: PATH.ORDERS,
+                    element: <Orders />,
+                  },
+                ],
+              },
+            ],
+          },
 
           {
             path: PATH.LOGIN,

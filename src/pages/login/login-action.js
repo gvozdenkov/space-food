@@ -8,6 +8,7 @@ export const loginAction =
   async ({ request, params }) => {
     const formData = await request.formData();
     const { email, password, redirectTo } = Object.fromEntries(formData);
+    console.log('redirect after login to:', redirectTo);
 
     const { accessToken: token, refreshToken, user } = await AuthService.login({ email, password });
     const accessToken = token.split(' ')[1];
