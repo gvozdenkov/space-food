@@ -1,12 +1,10 @@
-import s from './reset-password-form.module.scss';
-import clsx from 'clsx';
 import * as Yup from 'yup';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Field } from 'formik';
 import { EmailInput, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { FormTitle } from '../../../../components/form/components/form-title';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
 import { ButtonLoader } from '../../../../components/button-loader';
-import { useNavigation } from 'react-router-dom';
+import { Form, useNavigation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 export const ResetPasswordForm = () => {
@@ -45,7 +43,7 @@ export const ResetPasswordForm = () => {
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema}>
       {({ errors, isValid, touched, dirty }) => (
-        <Form className='form'>
+        <Form method='POST' className='form'>
           <FormTitle>{t('reset-password.form.title')}</FormTitle>
           <Field
             name={'password'}

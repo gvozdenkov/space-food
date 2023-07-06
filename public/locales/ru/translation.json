@@ -59,7 +59,7 @@
   "reset-form.placeholder.token": "Введите код из письма",
   "reset-form.submit": "Сохранить",
   "reset-form.submit.loading": "Сохраняем",
-  "error-page.common.title": "Ой, что-то пошло не так :(",
+  "error-page.common.title": "Ой, что-то пошло не так:(",
   "error-page.common.text": "Всё засосало в чёрную дыру, уже летим чинить :(",
   "error-page.404.title": "Ой, тут ничего нет :(",
   "error-page.404.text": "Произошла ошибка в навигации и вы попали в неизвестный сектор галактики",

@@ -1,28 +1,25 @@
-import s from './reset-password.module.scss';
-import { useIntl } from 'react-intl';
 import { TextWithLink } from '../../components/text-with-link';
 import { FormView } from '../../components/form/components/form-view';
 import { ResetPasswordForm } from '../../features/auth/components/reset-password-form';
-import { Navigate, useLocation } from 'react-router-dom';
 import { PATH } from '../../utils/config';
+import { useTranslation } from 'react-i18next';
+import { FormErrorMessage } from '../../components/form-error-message';
 
-export const ResetPassword = () => {
-  const intl = useIntl();
-  const location = useLocation();
+export const ResetPassword = (props) => {
+  const { t } = useTranslation();
 
-  const fromForgotPage = location.state?.from === PATH.FORGOT_PASSWORD;
-
-  return fromForgotPage ? (
+  return (
     <FormView>
       <ResetPasswordForm />
+
+      {props.outlet && <FormErrorMessage message={props.outlet} />}
+
       <TextWithLink
-        text={intl.formatMessage({ id: 'forgot-password.remember.password' })}
-        linkText={intl.formatMessage({ id: 'forgot-password.remember.password.link' })}
+        text={t('forgot-password.remember.password')}
+        linkText={t('forgot-password.remember.password.link')}
         href={PATH.LOGIN}
         extraClass='mt-20'
       />
     </FormView>
-  ) : (
-    <Navigate to={PATH.HOME} replace={true} />
   );
 };

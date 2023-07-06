@@ -1,13 +1,11 @@
-import s from './forgot-password-form.module.scss';
-import clsx from 'clsx';
 import * as Yup from 'yup';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Field } from 'formik';
 import { EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { FormTitle } from '../../../../components/form/components/form-title';
 import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
 import { ButtonLoader } from '../../../../components/button-loader';
-import { useNavigation } from 'react-router-dom';
-import { useRef, useState } from 'react';
+import { Form, useNavigation } from 'react-router-dom';
+import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export const ForgotPasswordForm = () => {
@@ -16,7 +14,6 @@ export const ForgotPasswordForm = () => {
   const isLoading = navigation.state === 'loading' || navigation.state === 'submitting';
 
   const errRef = useRef();
-  const [errMsg, setErrMsg] = useState('');
 
   const initialValues = {
     email: '',
@@ -54,7 +51,7 @@ export const ForgotPasswordForm = () => {
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema}>
       {({ errors, isValid, touched, dirty }) => (
-        <Form className='form'>
+        <Form method='POST' className='form'>
           <FormTitle>{t('forgot-password.form.title')}</FormTitle>
           <Field
             name={'email'}
@@ -72,7 +69,7 @@ export const ForgotPasswordForm = () => {
               ref={errRef}
               aria-live='assertive'
               className='text text_type_main-default text_color_error mt-4'>
-              {errMsg}
+              {'errMsg'}
             </p>
           )}
         </Form>

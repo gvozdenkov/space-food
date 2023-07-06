@@ -1,5 +1,3 @@
-import s from './register-form.module.scss';
-import clsx from 'clsx';
 import * as Yup from 'yup';
 import { Formik, Field } from 'formik';
 import { EmailInput, Input } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -33,7 +31,7 @@ export const RegisterForm = () => {
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema}>
       {({ errors, isValid, touched, dirty }) => (
-        <Form className='form'>
+        <Form method='POST' className='form'>
           <FormTitle>{t('register.form.title')}</FormTitle>
           <Field
             name={'name'}

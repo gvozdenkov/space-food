@@ -8,11 +8,9 @@ export const loginAction =
   async ({ request, params }) => {
     const formData = await request.formData();
     const { email, password, redirectTo } = Object.fromEntries(formData);
-    console.log('cred:', { email, password });
 
     const { accessToken: token, refreshToken, user } = await AuthService.login({ email, password });
     const accessToken = token.split(' ')[1];
-    console.log('accessToken:', accessToken);
 
     // expires in days: accessToken expires at 20 min
     CookieService.setAccessToken(accessToken);

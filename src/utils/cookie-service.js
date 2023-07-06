@@ -1,7 +1,8 @@
 import Cookies from 'js-cookie';
 import { COOKIE } from './config';
 
-const expiresAccess = 1 / 2000;
+// expires in days: accessToken expires at 20 min: 1/72 of the day
+const expiresAccess = 1 / 72;
 const expiresRefresh = 7;
 
 const setAccessToken = (accessToken) => {
@@ -25,16 +26,16 @@ const removeTokens = () => {
   Cookies.remove(COOKIE.REFRESHTOKEN);
 };
 
-// for reset password - access to /reset-password route
-const setResetPasswordState = () => {
+// access to /reset-password route
+const setResetPasswordRights = () => {
   Cookies.set(COOKIE.RESET_PASSWORD, 1);
 };
 
-const getResetPasswordState = () => {
+const getResetPasswordRights = () => {
   return Cookies.get(COOKIE.RESET_PASSWORD);
 };
 
-const removeResetPasswordState = () => {
+const removeResetPasswordRights = () => {
   return Cookies.remove(COOKIE.RESET_PASSWORD);
 };
 
@@ -44,7 +45,7 @@ export const CookieService = {
   getAccessToken,
   getRefreshToken,
   removeTokens,
-  setResetPasswordState,
-  getResetPasswordState,
-  removeResetPasswordState,
+  setResetPasswordRights,
+  getResetPasswordRights,
+  removeResetPasswordRights,
 };

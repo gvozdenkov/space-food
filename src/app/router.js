@@ -11,6 +11,14 @@ import { OnlyUnAuth } from '../features/auth';
 import { Login } from '../pages/login';
 import { loginAction } from '../pages/login/login-action';
 import { store } from './store';
+import { Register } from '../pages/register';
+import { registerAction } from '../pages/register/register-action';
+import { ForgotPassword } from '../pages/forgot-password';
+import { forgotPasswordAction } from '../pages/forgot-password/forgot-password-action';
+import { ResetPassword } from '../pages/reset-password';
+import { resetPasswordAction } from '../pages/reset-password/reset-password-action';
+import { resetPasswordLoader } from '../pages/reset-password/reset-password-loader';
+import { FormErrorElement } from '../pages/form-error-element';
 
 export const router = createBrowserRouter([
   {
@@ -60,24 +68,28 @@ export const router = createBrowserRouter([
           {
             path: PATH.LOGIN,
             element: <OnlyUnAuth component={<Login />} />,
+            errorElement: <Login outlet={<FormErrorElement />} />,
             action: loginAction(store.dispatch),
           },
-          // {
-          //   path: PATH.REGISTER,
-          //   element: <OnlyUnAuth component={<Register />} />,
-          //   action: Register.register(store.dispatch),
-          // },
-          // {
-          //   path: PATH.FORGOT_PASSWORD,
-          //   element: <OnlyUnAuth component={<ForgotPassword />} />,
-          //   action: ForgotPassword.forgot(),
-          // },
-          // {
-          //   path: PATH.RESET_PASSWORD,
-          //   element: <OnlyUnAuth component={<ResetPassword />} />,
-          //   action: ResetPassword.reset(),
-          //   loader: ResetPassword.resetState(),
-          // },
+          {
+            path: PATH.REGISTER,
+            element: <OnlyUnAuth component={<Register />} />,
+            errorElement: <Register outlet={<FormErrorElement />} />,
+            action: registerAction(store.dispatch),
+          },
+          {
+            path: PATH.FORGOT_PASSWORD,
+            element: <OnlyUnAuth component={<ForgotPassword />} />,
+            errorElement: <ForgotPassword outlet={<FormErrorElement />} />,
+            action: forgotPasswordAction(),
+          },
+          {
+            path: PATH.RESET_PASSWORD,
+            element: <OnlyUnAuth component={<ResetPassword />} />,
+            errorElement: <ResetPassword outlet={<FormErrorElement />} />,
+            action: resetPasswordAction(),
+            loader: resetPasswordLoader(),
+          },
           // {
           //   path: PATH.ORDER_FEED,
           //   element: <OrderFeed />,
