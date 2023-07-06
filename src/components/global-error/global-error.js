@@ -1,11 +1,11 @@
 import clsx from 'clsx';
-import s from './root-error-page.module.scss';
+import s from './global-error.module.scss';
 import { Link, useRouteError, isRouteErrorResponse } from 'react-router-dom';
-import { LoaderShape } from '../../../components/loader-shape';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { PATH } from '../../../utils/config';
+import { LoaderShape } from '../loader-shape';
+import { PATH } from '../../utils/config';
 
-export const RootErrorPage = () => {
+export const GlobalError = () => {
   const error = useRouteError();
 
   const isErrorResponse = isRouteErrorResponse(error);

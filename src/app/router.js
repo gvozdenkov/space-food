@@ -3,7 +3,7 @@ import { Home } from '../pages/home';
 import { PATH } from '../utils/config';
 import { RootLayout } from '../layouts/root-layout/root-layout';
 import { queryClient } from '../services/api-setup';
-import { RootErrorPage } from '../layouts/root-layout/root-error-page';
+
 import { ingredientsLoader } from '../layouts/root-layout/ingredients-loader';
 import { IngredientModal } from '../layouts/ingredient-modal';
 import { makeOrderAction } from '../pages/home/home-action';
@@ -25,16 +25,17 @@ import { Orders } from '../pages/orders';
 import { updateUserAction } from '../pages/profile/update-user-action';
 import { userLoader } from '../layouts/profile-layout/user-loader';
 import { logoutAction } from '../layouts/profile-layout/logout-action';
+import { GlobalError } from '../components/global-error';
 
 export const router = createBrowserRouter([
   {
     path: PATH.HOME,
     element: <RootLayout />,
-    errorElement: <RootErrorPage />,
+    errorElement: <RootLayout outlet={<GlobalError />} />,
     loader: ingredientsLoader(queryClient),
     children: [
       {
-        errorElement: <RootErrorPage />,
+        errorElement: <GlobalError />,
         children: [
           {
             path: PATH.HOME,
@@ -51,11 +52,12 @@ export const router = createBrowserRouter([
           {
             path: PATH.PROFILE,
             element: <OnlyAuth component={<ProfileLayout />} />,
+            errorElement: <GlobalError />,
             action: logoutAction(store.dispatch),
             loader: userLoader(queryClient),
             children: [
               {
-                errorElement: <RootErrorPage />,
+                errorElement: <GlobalError />,
                 children: [
                   {
                     index: true,
