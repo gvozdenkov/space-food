@@ -9,7 +9,6 @@ export const updateUserAction =
     const { name, email, password } = Object.fromEntries(formData);
 
     const res = await UserService.editMe({ name, email, password });
-    console.log(res);
 
     const { user } = res;
 

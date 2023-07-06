@@ -1,8 +1,7 @@
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectOrder } from '../../../services/order-slice';
 import { useQuery } from '@tanstack/react-query';
-import { ingredientsQuery } from '../../../../../layouts/root-layout/ingredients-loader';
+import { ingredientsQuery } from '../../../../../routes/root-layout/ingredients-loader';
 
 export const useBurgerTotal = () => {
   const { data: ingredientsObj } = useQuery(ingredientsQuery());

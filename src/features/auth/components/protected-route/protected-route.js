@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { userQuery } from '../../../../layouts/profile-layout/user-loader';
+import { userQuery } from '../../../../routes/profile-layout/user-loader';
 import { PATH } from '../../../../utils/config';
 
 const ProtectedRoute = ({ onlyUnAuth = false, component }) => {

@@ -54,7 +54,7 @@ export const menuItems = [
   {
     title: 'nav.item.orderList',
     icon: 'list',
-    url: '/order-list',
+    url: '/order-feed',
   },
   {
     title: 'nav.item.profile',

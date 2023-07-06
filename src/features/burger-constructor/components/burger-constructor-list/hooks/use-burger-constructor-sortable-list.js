@@ -3,7 +3,7 @@ import { MouseSensor, TouchSensor, KeyboardSensor, useSensor, useSensors } from 
 import { useCallback, useMemo } from 'react';
 import { ingredientMoved, selectOrderIngredients } from '../../../services/order-slice';
 import { useQuery } from '@tanstack/react-query';
-import { ingredientsQuery } from '../../../../../layouts/root-layout/ingredients-loader';
+import { ingredientsQuery } from '../../../../../routes/root-layout/ingredients-loader';
 
 export const useBurgerConstructorSortableList = () => {
   const constructorIngredients = useSelector(selectOrderIngredients);

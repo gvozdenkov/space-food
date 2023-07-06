@@ -4,8 +4,8 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { bunAdded, ingredientAdded } from '../../features/burger-constructor/services/order-slice';
 import { useQuery } from '@tanstack/react-query';
-import { ingredientsQuery } from '../../layouts/root-layout/ingredients-loader';
 import { ingredientIds } from '../../utils/config';
+import { ingredientsQuery } from '../../routes/root-layout/ingredients-loader';
 
 export const IngredientCard = ({ id }) => {
   const dispatch = useDispatch();

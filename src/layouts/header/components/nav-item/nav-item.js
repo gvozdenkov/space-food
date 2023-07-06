@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import s from '../nav-item/nav-item.module.scss';
 import clsx from 'clsx';
-import { MenuItem } from '../../../../components/menu-item/menu-item';
+import { MenuItem } from '../menu-item/menu-item';
 import { NavLink } from 'react-router-dom';
 
 export const NavItem = ({ item }) => {

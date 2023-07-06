@@ -1,8 +1,8 @@
 import { Outlet, useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { Header } from '../header';
 import s from './root-layout.module.scss';
 import { GlobalError } from '../../components/global-error';
+import { Header } from '../../layouts/header';
 
 export const RootLayout = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();

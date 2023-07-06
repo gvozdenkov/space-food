@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { useTabContext } from '../context/tab-context';
 import { useQuery } from '@tanstack/react-query';
-import { ingredientsQuery } from '../../../layouts/root-layout/ingredients-loader';
 import { ingredientTabs } from '../../../utils/config';
+import { ingredientsQuery } from '../../../routes/root-layout/ingredients-loader';
 
 export const useIngredientsList = () => {
   const { data: ingredientsObj } = useQuery(ingredientsQuery());

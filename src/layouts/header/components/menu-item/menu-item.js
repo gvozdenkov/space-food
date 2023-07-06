@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { getIcons } from '../../utils/utils';
+import { getIcons } from '../../../../utils/utils';
 import PropTypes from 'prop-types';
 import s from './menu-item.module.scss';
 import { useTranslation } from 'react-i18next';

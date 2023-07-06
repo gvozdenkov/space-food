@@ -10,7 +10,7 @@ import { Button } from './button';
 import { Counter } from './counter';
 import { forwardRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { ingredientsQuery } from '../../layouts/root-layout/ingredients-loader';
+import { ingredientsQuery } from '../../routes/root-layout/ingredients-loader';
 
 const Card = forwardRef(({ productId, onClick, isDragging, children }, ref) => {
   const { data: ingredientsObj } = useQuery(ingredientsQuery());

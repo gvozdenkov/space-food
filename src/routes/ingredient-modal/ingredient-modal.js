@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { ingredientsQuery } from '../root-layout/ingredients-loader';
 import { useLocation, useParams } from 'react-router-dom';
 import { Modal } from '../../components/modal';
 import { useTranslation } from 'react-i18next';
 import { IngredientDetails } from './components/ingredient-details';
 import { ModalFullScreen } from '../../components/modal-fullscreen';
+import { ingredientsQuery } from '../../routes/root-layout/ingredients-loader';
 
 export const IngredientModal = () => {
   const { data: ingredientsObj } = useQuery(ingredientsQuery());

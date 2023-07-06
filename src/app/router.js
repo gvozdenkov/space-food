@@ -1,31 +1,31 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Home } from '../pages/home';
+import { Home } from '../routes/home';
 import { PATH } from '../utils/config';
-import { RootLayout } from '../layouts/root-layout/root-layout';
 import { queryClient } from '../services/api-setup';
-
-import { ingredientsLoader } from '../layouts/root-layout/ingredients-loader';
-import { IngredientModal } from '../layouts/ingredient-modal';
-import { makeOrderAction } from '../pages/home/home-action';
+import { makeOrderAction } from '../routes/home/home-action';
 import { OnlyAuth, OnlyUnAuth } from '../features/auth';
-import { Login } from '../pages/login';
-import { loginAction } from '../pages/login/login-action';
+import { Login } from '../routes/login';
+import { loginAction } from '../routes/login/login-action';
 import { store } from './store';
-import { Register } from '../pages/register';
-import { registerAction } from '../pages/register/register-action';
-import { ForgotPassword } from '../pages/forgot-password';
-import { forgotPasswordAction } from '../pages/forgot-password/forgot-password-action';
-import { ResetPassword } from '../pages/reset-password';
-import { resetPasswordAction } from '../pages/reset-password/reset-password-action';
-import { resetPasswordLoader } from '../pages/reset-password/reset-password-loader';
-import { FormErrorElement } from '../pages/form-error-element';
-import { ProfileLayout } from '../layouts/profile-layout';
-import { Profile } from '../pages/profile';
-import { Orders } from '../pages/orders';
-import { updateUserAction } from '../pages/profile/update-user-action';
-import { userLoader } from '../layouts/profile-layout/user-loader';
-import { logoutAction } from '../layouts/profile-layout/logout-action';
+import { Register } from '../routes/register';
+import { registerAction } from '../routes/register/register-action';
+import { ForgotPassword } from '../routes/forgot-password';
+import { forgotPasswordAction } from '../routes/forgot-password/forgot-password-action';
+import { ResetPassword } from '../routes/reset-password';
+import { resetPasswordAction } from '../routes/reset-password/reset-password-action';
+import { resetPasswordLoader } from '../routes/reset-password/reset-password-loader';
+import { FormErrorElement } from '../routes/form-error-element';
+import { Profile } from '../routes/profile';
+import { Orders } from '../routes/orders';
+import { updateUserAction } from '../routes/profile/update-user-action';
 import { GlobalError } from '../components/global-error';
+import { OrderFeed } from '../routes/order-feed/order-feed';
+import { RootLayout } from '../routes/root-layout/root-layout';
+import { ingredientsLoader } from '../routes/root-layout/ingredients-loader';
+import { ProfileLayout } from '../routes/profile-layout';
+import { logoutAction } from '../routes/profile-layout/logout-action';
+import { userLoader } from '../routes/profile-layout/user-loader';
+import { IngredientModal } from '../routes/ingredient-modal';
 
 export const router = createBrowserRouter([
   {
@@ -99,10 +99,10 @@ export const router = createBrowserRouter([
             action: resetPasswordAction(),
             loader: resetPasswordLoader(),
           },
-          // {
-          //   path: PATH.ORDER_FEED,
-          //   element: <OrderFeed />,
-          // },
+          {
+            path: PATH.ORDER_FEED,
+            element: <OrderFeed />,
+          },
         ],
       },
     ],
