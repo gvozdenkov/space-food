@@ -1,5 +1,3 @@
-import { redirect } from 'react-router-dom';
-import { PATH } from '../../utils/config';
 import { UserService, setUser } from '../../features/user';
 
 export const updateUserAction =
@@ -14,6 +12,5 @@ export const updateUserAction =
 
     dispatch(setUser({ user }));
 
-    // return res;
-    return redirect(PATH.PROFILE);
+    return res;
   };

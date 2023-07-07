@@ -62,8 +62,8 @@ export const router = createBrowserRouter([
                   {
                     index: true,
                     element: <Profile />,
+                    errorElement: <Profile outlet={<FormErrorElement />} />,
                     action: updateUserAction(store.dispatch),
-                    loader: userLoader(queryClient),
                   },
                   {
                     path: PATH.ORDERS,
