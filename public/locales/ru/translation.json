@@ -70,7 +70,7 @@
   "profile.menu.logout": "Выход",
   "profile.form.submit": "Сохранить",
   "profile.form.cancel": "Отмена",
-  "profile.form.sucess": "Успех! Сохранил твои изменения, бро!",
+  "profile.form.sucess": "Профиль успешно обновлён",
   "profile.comment": "В этом разделе вы можете изменить свои персональные данные",
   "profile.orders.comment": "В этом разделе вы можете просмотреть свою историю заказов",
   "network.error.noStatus": "Сервер не отвечает :(",

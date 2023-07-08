@@ -1,4 +1,4 @@
-import { api } from '../../services/api-setup';
+import { api } from '../../app/api-setup';
 import { QUERYKEY } from '../../utils/config';
 
 export const ingredientsQuery = () => ({

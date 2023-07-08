@@ -1,11 +1,11 @@
 import * as Yup from 'yup';
 import { Formik, Field } from 'formik';
 import { EmailInput, Input } from '@ya.praktikum/react-developer-burger-ui-components';
-import { FormTitle } from '../../../../components/form/components/form-title';
-import { FormSubmitBtn } from '../../../../components/form/components/form-submit-btn';
+import { FormSubmitBtn } from '../../../../components/form/form-submit-btn';
 import { ButtonLoader } from '../../../../components/button-loader';
 import { useTranslation } from 'react-i18next';
 import { Form, useNavigation } from 'react-router-dom';
+import { FormTitle } from '../../../../components/form/form-title';
 
 export const RegisterForm = () => {
   const { t } = useTranslation();

@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Home } from '../routes/home';
 import { PATH } from '../utils/config';
-import { queryClient } from '../services/api-setup';
+import { queryClient } from './api-setup';
 import { makeOrderAction } from '../routes/home/home-action';
 import { OnlyAuth, OnlyUnAuth } from '../features/auth';
 import { Login } from '../routes/login';

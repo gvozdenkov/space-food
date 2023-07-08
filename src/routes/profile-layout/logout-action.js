@@ -4,7 +4,7 @@ import { persistor } from '../../app/store';
 import { CookieService } from '../../utils/cookie-service';
 import { removeUser } from '../../features/user';
 import { AuthService } from '../../features/auth';
-import { queryClient } from '../../services/api-setup';
+import { queryClient } from '../../app/api-setup';
 
 // To use multiple actions on one rout you can assign for submit button
 // <button type='submit' name='intent' value='id-for-action'>Submit</button>

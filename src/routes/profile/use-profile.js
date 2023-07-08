@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useFetcher } from 'react-router-dom';
 import { selectUser } from '../../features/user';
@@ -14,20 +14,20 @@ export const useProfile = () => {
 
   const user = useSelector(selectUser);
 
-  const field = {
+  const input = {
     NAME: 'name',
     EMAIL: 'email',
     PASSWORD: 'password',
   };
 
   const defaultValues = {
-    [field.NAME]: user?.name,
-    [field.EMAIL]: user?.email,
-    [field.PASSWORD]: '',
+    [input.NAME]: user?.name,
+    [input.EMAIL]: user?.email,
+    [input.PASSWORD]: '',
   };
 
   const validationSchema = Yup.object({
-    [field.NAME]: Yup.string()
+    [input.NAME]: Yup.string()
       .min(
         2,
         t('form.errors.name.min', {
@@ -35,10 +35,10 @@ export const useProfile = () => {
         }),
       )
       .required(t('form.errors.input.required')),
-    [field.EMAIL]: Yup.string()
+    [input.EMAIL]: Yup.string()
       .email(t('form.errors.email.incorrect'))
       .required(t('form.errors.input.required')),
-    [field.PASSWORD]: Yup.string()
+    [input.PASSWORD]: Yup.string()
       .min(
         4,
         t('form.errors.password.min', {
@@ -71,37 +71,23 @@ export const useProfile = () => {
   useEffect(() => {
     if (isSubmitSuccessful) {
       form.reset({
-        password: '',
+        [input.NAME]: user?.name,
+        [input.EMAIL]: user?.email,
+        [input.PASSWORD]: '',
       });
     }
   }, [isSubmitSuccessful]);
 
-  const nameRef = useRef(null);
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
-  const successMsgRef = useRef(null);
-
-  const refs = {
-    nameRef,
-    emailRef,
-    passwordRef,
-    successMsgRef,
-  };
-
-  const onIconClick = (ref) => {
-    setTimeout(() => {
-      ref.current.focus();
-      ref.current.select();
-    }, 0);
+  const onIconClick = (name) => {
+    form.setFocus(name, { shouldSelect: true });
   };
 
   return {
     form,
     fetcher,
-    field,
-    onIconClick,
-    refs,
+    input,
     isSubmitting,
     isSubmitSuccessful,
+    onIconClick,
   };
 };

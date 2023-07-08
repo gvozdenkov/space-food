@@ -70,7 +70,7 @@
   "profile.menu.logout": "Logout",
   "profile.form.submit": "Save",
   "profile.form.cancel": "Cancel",
-  "profile.form.sucess": "Success! Saved your changes bro!",
+  "profile.form.sucess": "Profile updated successfully",
   "profile.comment": "In this section you can change your personal data",
   "profile.orders.comment": "In this section you can view your order history",
   "network.error.noStatus": "The server is not responding :(",

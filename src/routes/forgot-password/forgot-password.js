@@ -1,9 +1,9 @@
 import { TextWithLink } from '../../components/text-with-link';
-import { FormView } from '../../components/form/components/form-view';
 import { ForgotPasswordForm } from '../../features/auth/components/fogot-password-form';
 import { PATH } from '../../utils/config';
 import { useTranslation } from 'react-i18next';
 import { FormErrorMessage } from '../../components/form-error-message';
+import { FormView } from '../../components/form/form-view';
 
 export const ForgotPassword = (props) => {
   const { t } = useTranslation();

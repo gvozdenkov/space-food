@@ -1,6 +1,6 @@
 import { QueryClient } from '@tanstack/react-query';
 import axios from 'axios';
-import { store } from '../app/store';
+import { store } from './store';
 import { CookieService } from '../utils/cookie-service';
 import { AuthService } from '../features/auth';
 import { removeUser } from '../features/user';
