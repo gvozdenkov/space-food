@@ -1,4 +1,4 @@
-import { createSlice, current, nanoid } from '@reduxjs/toolkit';
+import { createSlice, nanoid } from '@reduxjs/toolkit';
 import { arrayMove } from '@dnd-kit/sortable';
 
 const initialState = {
@@ -9,7 +9,7 @@ const initialState = {
 
 const setOrderItems = (state) => {
   const ingredientIds = [...state.ingredients].map((item) => item._id);
-  return [state.bun._id, ...ingredientIds, state.bun._id];
+  return state.bun._id ? [state.bun._id, ...ingredientIds, state.bun._id] : [...ingredientIds];
 };
 
 const findIndex = (state, id) => {

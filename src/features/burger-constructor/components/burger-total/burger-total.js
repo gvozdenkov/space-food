@@ -11,8 +11,9 @@ import { Form, useActionData, useNavigation } from 'react-router-dom';
 import { ButtonLoader } from '../../../../components/button-loader';
 import { useSelector } from 'react-redux';
 import { selectAllOrderItems } from '../../services/order-slice';
+import { ErrorMessage } from '../../../../components/error-message';
 
-export const BurgerTotal = () => {
+export const BurgerTotal = (props) => {
   const { t } = useTranslation();
   const { isMinimalOrder, totalPrice } = useBurgerTotal();
   const ingredients = useSelector(selectAllOrderItems);
@@ -43,6 +44,8 @@ export const BurgerTotal = () => {
           {isLoading ? <ButtonLoader /> : t('constructor.createOrder')}
         </Button>
       </Form>
+
+      {props.outlet && <ErrorMessage message={props.outlet} extraClass='mt-8' />}
 
       <AnimatePresence initial={false} mode='wait' onExitComplete={() => null}>
         {isSuccess && (

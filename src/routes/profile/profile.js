@@ -4,7 +4,7 @@ import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-component
 import { useTranslation } from 'react-i18next';
 import { FormSubmitBtn } from '../../components/form/form-submit-btn';
 import { ButtonLoader } from '../../components/button-loader';
-import { FormErrorMessage } from '../../components/form-error-message';
+import { ErrorMessage } from '../../components/error-message';
 import { useProfile } from './use-profile';
 import { Controller } from 'react-hook-form';
 
@@ -87,7 +87,7 @@ export const Profile = (props) => {
             </>
           )}
 
-          {props.outlet && <FormErrorMessage message={props.outlet} />}
+          {props.outlet && <ErrorMessage message={props.outlet} extraClass='mt-8' />}
 
           {isSubmitSuccessful && !isDirty && (
             <p aria-live='assertive' className='text text_color_success'>

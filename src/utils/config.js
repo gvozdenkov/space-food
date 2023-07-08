@@ -28,6 +28,7 @@ export const PATH = {
   RESET_PASSWORD: '/reset-password',
   PROFILE: '/profile',
   ORDERS: 'orders',
+  ORDER: 'order',
   ORDER_FEED: '/order-feed',
   INGREDIENTS: 'ingredients',
 };

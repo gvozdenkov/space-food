@@ -24,22 +24,6 @@ export const ResetPasswordForm = () => {
     token: Yup.string().required(t('form.errors.input.required')),
   });
 
-  // const handleSubmit = async (values, actions) => {
-  //   if (!isLoading && !isFetching) {
-  //     try {
-  //       const { success } = await resetPassword(values).unwrap();
-  //       console.log(success);
-  //       if (success) {
-  //         navigate(PATH.LOGIN, { replace: true });
-  //       }
-  //     } catch (err) {
-  //       console.error('Failed to send forgot password request: ', err);
-  //     }
-  //   }
-
-  //   actions.resetForm();
-  // };
-
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema}>
       {({ errors, isValid, touched, dirty }) => (

@@ -26,6 +26,7 @@ import { ProfileLayout } from '../routes/profile-layout';
 import { logoutAction } from '../routes/profile-layout/logout-action';
 import { userLoader } from '../routes/profile-layout/user-loader';
 import { IngredientModal } from '../routes/ingredient-modal';
+import { OrderModal } from '../routes/order-modal';
 
 export const router = createBrowserRouter([
   {
@@ -40,11 +41,16 @@ export const router = createBrowserRouter([
           {
             path: PATH.HOME,
             element: <Home />,
-            action: makeOrderAction(queryClient),
+            errorElement: <Home outlet={<FormErrorElement />} />,
+            action: makeOrderAction(store.dispatch),
             children: [
               {
                 path: `${PATH.INGREDIENTS}/:id`,
                 element: <IngredientModal />,
+              },
+              {
+                path: `${PATH.ORDER}/:id`,
+                element: <OrderModal />,
               },
             ],
           },

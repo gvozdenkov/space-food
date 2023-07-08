@@ -4,7 +4,7 @@
   "popup.error.ingrdientsLoading.title": "Ошибка загрузки",
   "popup.error.ingrdientsLoading.message": "Ой, что-то пошло не так и все ингредиенты засосало в чёрную дыру. Уже возвращаем!",
   "popup.error.orderCreate.message": "Ой, что-то пошло не так и заказ засосало в чёрную дыру. Пытаемся вернуть :(",
-  "nav.item.constructor": "Конструктор",
+  "nav.item.home": "Конструктор",
   "nav.item.orderList": "Лента заказов",
   "nav.item.profile": "Личный кабинет",
   "nav.item.profile.profile": "Профиль",

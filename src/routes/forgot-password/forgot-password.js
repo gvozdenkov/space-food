@@ -2,7 +2,7 @@ import { TextWithLink } from '../../components/text-with-link';
 import { ForgotPasswordForm } from '../../features/auth/components/fogot-password-form';
 import { PATH } from '../../utils/config';
 import { useTranslation } from 'react-i18next';
-import { FormErrorMessage } from '../../components/form-error-message';
+import { ErrorMessage } from '../../components/error-message';
 import { FormView } from '../../components/form/form-view';
 
 export const ForgotPassword = (props) => {
@@ -12,7 +12,7 @@ export const ForgotPassword = (props) => {
     <FormView>
       <ForgotPasswordForm />
 
-      {props.outlet && <FormErrorMessage message={props.outlet} />}
+      {props.outlet && <ErrorMessage message={props.outlet} extraClass='mt-8' />}
 
       <TextWithLink
         text={t('forgot-password.remember.password')}
