@@ -22,6 +22,7 @@ export const ModalOverlay = ({ children, onClick }) => {
   );
 };
 
-// ModalOverlay.propTypes = {
-//   open: PropTypes.bool,
-// };
+ModalOverlay.propTypes = {
+  children: PropTypes.any,
+  onClick: PropTypes.func,
+};

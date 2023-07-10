@@ -109,7 +109,7 @@ export const {
 
 const orderReducer = orderSlice.reducer;
 
-export const selectOrder = (state) => state.order;
+export const selectOrderBun = (state) => state.order.bun;
 export const selectOrderIngredients = (state) => state.order.ingredients;
 export const selectAllOrderItems = (state) => state.order.orderItems;
 export const selectDragTarget = (state) => state.order.dragTarget;

@@ -3,12 +3,11 @@ import { BurgerIngredients } from '../../features/burger-ingredients';
 import { BurgerConstructor } from '../../features/burger-constructor';
 import { Outlet } from 'react-router-dom';
 import { DndContext, DragOverlay } from '@dnd-kit/core';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   bunAdded,
   ingredientAdded,
   removeDragTarget,
-  selectDragTarget,
   setDragTarget,
 } from '../../features/burger-constructor/services/order-slice';
 import { useQuery } from '@tanstack/react-query';

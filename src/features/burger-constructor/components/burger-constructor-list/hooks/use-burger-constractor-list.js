@@ -1,6 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { selectDragTarget, selectOrder } from '../../../services/order-slice';
+import {
+  selectDragTarget,
+  selectOrderBun,
+  selectOrderIngredients,
+} from '../../../services/order-slice';
 import { useQuery } from '@tanstack/react-query';
 import { ingredientsQuery } from '../../../../../routes/root-layout/ingredients-loader';
 import { ingredientIds, orderDropTarget } from '../../../../../utils/config';
@@ -9,7 +13,8 @@ import { useDroppable } from '@dnd-kit/core';
 export const useBurgerConstructorList = () => {
   const { t } = useTranslation();
   const { data: ingredientsObj } = useQuery(ingredientsQuery());
-  const { bun, ingredients } = useSelector(selectOrder);
+  const bun = useSelector(selectOrderBun);
+  const ingredients = useSelector(selectOrderIngredients);
 
   const isBunAdded = Object.keys(bun).length !== 0;
   const isIngredientsAdded = ingredients.length !== 0;

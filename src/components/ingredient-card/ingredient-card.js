@@ -29,7 +29,7 @@ export const IngredientCard = (props) => {
         <Card.Price />
         <Card.Heading />
       </Card.Info>
-      {/* <Card.Button onClick={handleAddClick} /> */}
+      <Card.Button onClick={handleAddClick} />
     </Card>
   );
 };

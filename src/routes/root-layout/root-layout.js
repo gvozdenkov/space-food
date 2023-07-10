@@ -13,7 +13,7 @@ export const RootLayout = (props) => {
     if (lng) {
       setSearchParams('', { replace: true });
     }
-  }, []);
+  }, [searchParams, setSearchParams]);
 
   return (
     <>

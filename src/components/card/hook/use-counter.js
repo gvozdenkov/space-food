@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import { useCardContext } from './use-card-context';
 import { useSelector } from 'react-redux';
-import { selectOrder } from '../../../features/burger-constructor/services/order-slice';
+import { selectAllOrderItems } from '../../../features/burger-constructor/services/order-slice';
 
 export const useCounter = () => {
   const product = useCardContext();
-  const { orderItems } = useSelector(selectOrder);
+  const orderItems = useSelector(selectAllOrderItems);
 
   const count = useMemo(() => {
     return orderItems.filter((item) => item === product._id).length;
