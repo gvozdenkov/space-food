@@ -14,6 +14,12 @@ export const ingredientIds = {
   SAUCE: 'sauce',
 };
 
+export const orderDropTarget = {
+  BUN: 'bunDropTarget',
+  MIDDLE: 'middleDropTarget',
+  DROP_ZONE: 'dropZone',
+};
+
 export const ingredientTabs = {
   [ingredientIds.BUN]: 'ingredient.type.bun',
   [ingredientIds.MAIN]: 'ingredient.type.main',

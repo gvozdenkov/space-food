@@ -5,6 +5,7 @@ const initialState = {
   bun: {},
   ingredients: [],
   orderItems: [],
+  dragTarget: null,
 };
 
 const setOrderItems = (state) => {
@@ -21,17 +22,26 @@ export const orderSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {
+    setDragTarget(state, action) {
+      const { type, id } = action.payload;
+
+      state.dragTarget = { type, id };
+    },
+
+    removeDragTarget(state, action) {
+      state.dragTarget = null;
+    },
+
     bunAdded: {
       reducer(state, action) {
         state.bun = action.payload;
         state.orderItems = setOrderItems(state);
       },
 
-      prepare(id, price) {
+      prepare(id) {
         return {
           payload: {
             _id: id,
-            price,
           },
         };
       },
@@ -43,11 +53,10 @@ export const orderSlice = createSlice({
         state.orderItems = setOrderItems(state);
       },
 
-      prepare(id, price) {
+      prepare(id) {
         return {
           payload: {
             _id: id,
-            price,
             _itemId: nanoid(),
           },
         };
@@ -88,13 +97,21 @@ export const orderSlice = createSlice({
   },
 });
 
-export const { bunAdded, ingredientAdded, ingredientRemoved, ingredientMoved, orderReseted } =
-  orderSlice.actions;
+export const {
+  setDragTarget,
+  removeDragTarget,
+  bunAdded,
+  ingredientAdded,
+  ingredientRemoved,
+  ingredientMoved,
+  orderReseted,
+} = orderSlice.actions;
 
 const orderReducer = orderSlice.reducer;
 
 export const selectOrder = (state) => state.order;
 export const selectOrderIngredients = (state) => state.order.ingredients;
 export const selectAllOrderItems = (state) => state.order.orderItems;
+export const selectDragTarget = (state) => state.order.dragTarget;
 
 export { orderReducer };

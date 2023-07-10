@@ -8,11 +8,12 @@ import { useTranslation } from 'react-i18next';
 
 export const BurgerConstructorList = () => {
   const { t } = useTranslation();
-  const { topBun, bottomBun, isBunAdded, isIngredientsAdded } = useBurgerConstructorList();
+  const { topBun, bottomBun, isBunAdded, isIngredientsAdded, setNodeRef, middleStyle, bunStyle } =
+    useBurgerConstructorList();
 
   return (
-    <ul ref={null} className={clsx(s.list)}>
-      <li key='top' className={clsx(s.bun)}>
+    <ul ref={setNodeRef} className={clsx(s.list)}>
+      <li style={bunStyle} key={`bun_top`} className={clsx(s.bun)}>
         {isBunAdded ? (
           <ConstructorElement {...topBun} />
         ) : (
@@ -20,7 +21,10 @@ export const BurgerConstructorList = () => {
         )}
       </li>
 
-      <li className={clsx(s.ingredients, 'customScroll')} key='middle'>
+      <li
+        style={middleStyle}
+        key={`ingredient_middle`}
+        className={clsx(s.ingredients, 'customScroll')}>
         {isIngredientsAdded ? (
           <BurgerConstructorSortableList />
         ) : (
@@ -28,7 +32,7 @@ export const BurgerConstructorList = () => {
         )}
       </li>
 
-      <li key='bottom' className={clsx(s.bun)}>
+      <li style={bunStyle} key={`bun_bottom`} className={clsx(s.bun)}>
         {isBunAdded ? (
           <ConstructorElement {...bottomBun} />
         ) : (

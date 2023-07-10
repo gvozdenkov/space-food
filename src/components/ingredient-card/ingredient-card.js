@@ -7,30 +7,29 @@ import { useQuery } from '@tanstack/react-query';
 import { ingredientIds } from '../../utils/config';
 import { ingredientsQuery } from '../../routes/root-layout/ingredients-loader';
 
-export const IngredientCard = ({ id }) => {
+export const IngredientCard = (props) => {
+  const { id, attributes, listeners } = props;
   const dispatch = useDispatch();
   const { data: ingredientsObj } = useQuery(ingredientsQuery());
   const selectedIngredient = ingredientsObj[id];
 
   const handleAddClick = useCallback(() => {
-    const price = ingredientsObj[id].price;
-
     if (selectedIngredient.type === ingredientIds.BUN) {
-      dispatch(bunAdded(id, price));
+      dispatch(bunAdded(id));
     } else {
-      dispatch(ingredientAdded(id, price));
+      dispatch(ingredientAdded(id));
     }
   }, [dispatch, selectedIngredient, ingredientsObj, id]);
 
   return (
-    <Card isDragging={false} productId={id}>
+    <Card productId={id}>
       <Card.Counter />
       <Card.Image id={id} />
-      <Card.Info>
+      <Card.Info attributes={attributes} listeners={listeners}>
         <Card.Price />
         <Card.Heading />
-        <Card.Button onClick={handleAddClick} />
       </Card.Info>
+      {/* <Card.Button onClick={handleAddClick} /> */}
     </Card>
   );
 };

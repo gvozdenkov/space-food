@@ -14,6 +14,7 @@ export const BurgerConstructorSortableList = () => {
       sensors={sensors}
       collisionDetection={closestCenter}
       onDragEnd={handleDragEnd}
+      
       modifiers={[restrictToVerticalAxis, restrictToParentElement]}>
       <SortableContext items={sortableItems} strategy={verticalListSortingStrategy}>
         <ul className={clsx(listStyle.list)}>
