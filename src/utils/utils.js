@@ -18,7 +18,6 @@ import {
   MenuIcon,
   Logo,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useIntl } from 'react-intl';
 
 export const getIcons = (type) => ({
   currency: <CurrencyIcon type={type} />,
@@ -40,30 +39,3 @@ export const getIcons = (type) => ({
   menu: <MenuIcon type={type} />,
   logo: <Logo />,
 });
-
-export const IntlConvert = (arr, param) => {
-  const intl = useIntl();
-
-  return arr.map((item) => ({
-    ...item,
-    [param]: intl.formatMessage({ id: item[param] }),
-  }));
-};
-
-export const findBy = (arr, param) => (value) => arr.find((item) => item[param] === value);
-
-export const log = (msg) => (param) => {
-  console.log(msg);
-  if (param) {
-    console.log(param);
-  }
-};
-
-export const findConstructorIngredient = (cards, id) => {
-  const card = cards.find((card) => card._itemId === id);
-
-  return {
-    card,
-    index: cards.indexOf(card),
-  };
-};

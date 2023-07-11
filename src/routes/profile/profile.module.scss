@@ -1,0 +1,44 @@
+.profile {
+  max-width: 480px;
+  display: flex;
+  flex-flow: column;
+  gap: 24px;
+  justify-self: start;
+  grid-area: content;
+}
+
+.form {
+  display: grid;
+  gap: 24px 0;
+  justify-items: end;
+  grid-template:
+    'name name'
+    'email email'
+    'pwd pwd'
+    'cancel submit'
+    / 1fr auto;
+}
+
+.input_name {
+  grid-area: name;
+}
+
+.input_email {
+  grid-area: email;
+}
+
+.input_password {
+  grid-area: pwd;
+}
+
+.input_cancel {
+  grid-area: cancel;
+}
+
+.input_submit {
+  grid-area: submit;
+}
+
+.comment {
+  grid-area: comment;
+}

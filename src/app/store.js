@@ -1,16 +1,38 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { burgerConstructorReducer } from '../services/burger-constructor-slice';
-import { ingredientDetailsReducer } from '../services/ingredient-details-slice';
-import { apiSlice } from '../services/api-slice';
-import { ordersReducer } from '../services/order-slice';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { userReducer } from '../features/user';
+import localforage from 'localforage';
+import {
+  persistReducer,
+  persistStore,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import { orderReducer } from '../features/burger-constructor';
+
+const persistConfig = {
+  key: 'root',
+  storage: localforage,
+};
+
+const rootReducer = combineReducers({
+  user: userReducer,
+  order: orderReducer,
+});
 
 export const store = configureStore({
-  reducer: {
-    ingredientDetails: ingredientDetailsReducer,
-    burgerConstructor: burgerConstructorReducer,
-    orders: ordersReducer,
-    [apiSlice.reducerPath]: apiSlice.reducer,
-  },
+  reducer: persistReducer(persistConfig, rootReducer),
 
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
+  // fix error: non-serializable values in the state
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
+
+export const persistor = persistStore(store);

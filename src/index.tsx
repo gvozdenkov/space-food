@@ -1,24 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
 import './index.scss';
-import { App } from './app';
-import reportWebVitals from './reportWebVitals';
-import { IntelApp } from './components/intelApp';
+import ReactDOM from 'react-dom/client';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './app/router';
+import { persistor, store } from './app/store';
+import { queryClient } from './app/api-setup';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Provider } from 'react-redux';
-import { store } from './app/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import './app/i18n';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <IntelApp>
-        <App />
-      </IntelApp>
-    </Provider>
-  </React.StrictMode>,
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+root.render(
+  <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
+      {/* Await rendering UI until the persisted data is available in the Redux store */}
+      <PersistGate loading={null} persistor={persistor}>
+        <RouterProvider router={router} />
+        <ReactQueryDevtools initialIsOpen={false} position='bottom-right' />
+      </PersistGate>
+    </Provider>
+  </QueryClientProvider>,
+);

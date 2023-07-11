@@ -1,34 +1,39 @@
 import { Card } from '../card/card';
-import { DragTypes, ingredientPropTypes } from '../../utils/config';
-import { memo, useCallback } from 'react';
+import PropTypes from 'prop-types';
+import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { selected } from '../../services/ingredient-details-slice';
-import { ingredientAdded } from '../../services/burger-constructor-slice';
+import { bunAdded, ingredientAdded } from '../../features/burger-constructor/services/order-slice';
+import { useQuery } from '@tanstack/react-query';
+import { ingredientIds } from '../../utils/config';
+import { ingredientsQuery } from '../../routes/root-layout/ingredients-loader';
 
-export const IngredientCard = memo(({ ingredient }) => {
+export const IngredientCard = (props) => {
+  const { id, attributes, listeners } = props;
   const dispatch = useDispatch();
-
-  const handleImageClick = useCallback(() => {
-    dispatch(selected(ingredient));
-  }, [dispatch, ingredient]);
+  const { data: ingredientsObj } = useQuery(ingredientsQuery());
+  const selectedIngredient = ingredientsObj[id];
 
   const handleAddClick = useCallback(() => {
-    dispatch(ingredientAdded(ingredient));
-  }, [ingredient, dispatch]);
+    if (selectedIngredient.type === ingredientIds.BUN) {
+      dispatch(bunAdded(id));
+    } else {
+      dispatch(ingredientAdded(id));
+    }
+  }, [dispatch, selectedIngredient, ingredientsObj, id]);
 
   return (
-    <Card isDragging={false} product={ingredient}>
+    <Card productId={id}>
       <Card.Counter />
-      <Card.Image onClick={handleImageClick} />
-      <Card.Info>
+      <Card.Image id={id} />
+      <Card.Info attributes={attributes} listeners={listeners}>
         <Card.Price />
         <Card.Heading />
-        <Card.Button onClick={handleAddClick} />
       </Card.Info>
+      <Card.Button onClick={handleAddClick} />
     </Card>
   );
-});
+};
 
 IngredientCard.propTypes = {
-  ingredient: ingredientPropTypes.isRequired,
+  id: PropTypes.string.isRequired,
 };

@@ -1,0 +1,64 @@
+$profile-menu-height: 64px;
+
+.profile {
+  display: grid;
+  grid-template:
+    'nav content'
+    '. content' 80px
+    'comment content'
+    / minmax(120px, 320px) 1fr;
+  align-content: start;
+  gap: 0 60px;
+  padding: 120px var(--gutter) 0;
+  box-sizing: border-box;
+  max-width: calc(1240px + var(--gutter) * 2);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.nav {
+  grid-area: nav;
+}
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: column;
+}
+
+.navListItem {
+  min-height: $profile-menu-height;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  min-width: 0;
+  word-wrap: break-word;
+  color: var(--color-content-inactive);
+  transition: color var(--transition-short) ease-out;
+
+  &:hover {
+    color: var(--color-content-primary);
+  }
+}
+
+.link_active {
+  color: var(--color-content-primary);
+}
+
+.exitBtn {
+  background-color: transparent;
+  color: var(--color-content-inactive);
+  border: 0;
+  cursor: pointer;
+  min-height: $profile-menu-height;
+  transition: color var(--transition-short) ease-out;
+
+  &:hover {
+    color: var(--color-content-primary);
+  }
+}

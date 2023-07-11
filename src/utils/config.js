@@ -8,41 +8,76 @@ export const serverConfig = {
   },
 };
 
-export const ingredientTypes = [
-  { type: 'bun', text: 'ingredient.type.bun' },
-  { type: 'main', text: 'ingredient.type.main' },
-  { type: 'sauce', text: 'ingredient.type.sauce' },
-];
+export const ingredientIds = {
+  BUN: 'bun',
+  MAIN: 'main',
+  SAUCE: 'sauce',
+};
+
+export const orderDropTarget = {
+  BUN: 'bunDropTarget',
+  MIDDLE: 'middleDropTarget',
+  DROP_ZONE: 'dropZone',
+};
+
+export const ingredientTabs = {
+  [ingredientIds.BUN]: 'ingredient.type.bun',
+  [ingredientIds.MAIN]: 'ingredient.type.main',
+  [ingredientIds.SAUCE]: 'ingredient.type.sauce',
+};
+
+export const PATH = {
+  HOME: '/',
+  LOGIN: '/login',
+  REGISTER: '/register',
+  FORGOT_PASSWORD: '/forgot-password',
+  RESET_PASSWORD: '/reset-password',
+  PROFILE: '/profile',
+  ORDERS: 'orders',
+  ORDER: 'order',
+  ORDER_FEED: '/order-feed',
+  INGREDIENTS: 'ingredients',
+};
+
+export const QUERYKEY = {
+  INGREDIENTS: 'ingredients',
+  USER: 'user',
+};
+
+export const COOKIE = {
+  ACCESSTOKEN: 'accessToken',
+  REFRESHTOKEN: 'refreshToken',
+  RESET_PASSWORD: 'reset-password',
+  ORDER_BUN: 'order-bun',
+  ORDER_INGREDIENTS: 'order-ingredients',
+};
 
 export const menuItems = [
   {
-    title: 'nav.item.constructor',
+    title: 'nav.item.home',
     icon: 'burger',
-    url: '/',
+    url: PATH.HOME,
   },
   {
     title: 'nav.item.orderList',
     icon: 'list',
-    url: '/order-list',
+    url: '/order-feed',
   },
   {
     title: 'nav.item.profile',
     icon: 'profile',
-    url: '/profile',
-    mobileSubmenu: [
-      {
-        title: 'nav.item.profile.profile',
-        url: 'profile',
-      },
-      {
-        title: 'nav.item.profile.history',
-        url: 'order-history',
-      },
-      {
-        title: 'nav.item.profile.logout',
-        url: 'logout',
-      },
-    ],
+    url: PATH.PROFILE,
+  },
+];
+
+export const profileMenuItems = [
+  {
+    title: 'profile.menu.profile',
+    to: PATH.PROFILE,
+  },
+  {
+    title: 'profile.menu.orders',
+    to: '/profile/orders',
   },
 ];
 
@@ -64,9 +99,14 @@ export const ingredientPropTypes = PropTypes.shape({
 export const LOCAL_STORAGE = {
   CONSTRUCTOR_BUN: 'constructortBun',
   CONSTRUCTOR_INGREDIENTS: 'constructorIngredients',
+  USER: 'user',
 };
 
 export const DragTypes = {
   INGREDIENT: 'ingredient',
   CONSTRUCTOR_INGREDIENT: 'constructorIngredient',
+};
+
+export const JWT = {
+  REFRESH: 'refresh-token',
 };

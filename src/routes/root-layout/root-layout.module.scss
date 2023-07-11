@@ -1,0 +1,16 @@
+@use '../../styles/variables.scss' as *;
+
+.main {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.errorPage {
+  height: calc(100vh - $headerHeight);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
