@@ -110,3 +110,15 @@ export const DragTypes = {
 export const JWT = {
   REFRESH: 'refresh-token',
 };
+
+export const orderStatusIds = {
+  PENDING: 'pending',
+  CANCELED: 'cancel',
+  DONE: 'done',
+};
+
+export const orderStatusTitle = {
+  [orderStatusIds.PENDING]: 'order.status.pending',
+  [orderStatusIds.CANCELED]: 'order.status.canceled',
+  [orderStatusIds.DONE]: 'order.status.done',
+};

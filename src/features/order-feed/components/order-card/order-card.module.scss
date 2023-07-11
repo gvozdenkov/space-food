@@ -1,0 +1,50 @@
+.card {
+  background-color: var(--color-background-modal);
+  border-radius: var(--border-radius);
+  display: grid;
+  grid-template:
+    'number date'
+    '. .' 24px
+    'title title'
+    '. .' 8px
+    'status .'
+    '. .' 24px
+    'icons price'
+    / 1fr auto;
+}
+
+.number {
+  grid-area: number;
+}
+
+.date {
+  grid-area: date;
+}
+
+.title {
+  grid-area: title;
+}
+
+.status {
+  grid-area: status;
+}
+
+.status_success {
+  color: var(--colors-interface-success);
+}
+
+.icons {
+  grid-area: icons;
+}
+
+.price {
+  grid-area: price;
+}
+
+.iconList {
+  list-style-type: none;
+}
+
+.test {
+  padding: 20px;
+}

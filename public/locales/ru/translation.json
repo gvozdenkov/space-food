@@ -74,5 +74,8 @@
   "profile.comment": "В этом разделе вы можете изменить свои персональные данные",
   "profile.orders.comment": "В этом разделе вы можете просмотреть свою историю заказов",
   "network.error.noStatus": "Сервер не отвечает :(",
-  "network.error.500": "Ошибка сервера :("
+  "network.error.500": "Ошибка сервера :(",
+  "order.status.pending": "Готовится",
+  "order.status.canceled": "Отменён",
+  "order.status.done": "Выполнен"
 }
