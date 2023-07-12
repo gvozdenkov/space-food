@@ -1,6 +1,9 @@
 .card {
   background-color: var(--color-background-modal);
   border-radius: var(--border-radius);
+  max-width: 844px;
+  width: 100%;
+  box-sizing: border-box;
   display: grid;
   grid-template:
     'number date'

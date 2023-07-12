@@ -1,11 +1,22 @@
+$topPadding: 40px;
+
 .orders {
   grid-area: content;
+  padding-top: $topPadding;
 }
 
 .comment {
   grid-area: comment;
 }
 
-.item {
+.orderList {
+  padding: 0;
+  margin: 0;
+
+  max-height: calc(100vh - var(--header-height) - $topPadding);
+  overflow-y: auto;
+}
+
+.orderItem {
   list-style-type: none;
 }
