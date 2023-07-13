@@ -4,7 +4,7 @@ export const useEscKey = (handleClose) => {
   useEffect(() => {
     const close = (e) => {
       if (e.key === 'Escape') {
-        handleClose(false);
+        handleClose();
       }
     };
 

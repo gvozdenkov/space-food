@@ -16,8 +16,15 @@ export const IngredientModal = () => {
   const ingredient = ingredientsObj[id];
 
   return isFromHome ? (
-    <Modal title={t('ingredients.detail.popup.title')}>
-      <IngredientDetails ingredient={ingredient} />
+    <Modal>
+      <Modal.Overlay>
+        <Modal.Dialog>
+          <Modal.Header>
+            <h3 className='text text_type_main-large'>{t('ingredients.detail.popup.title')}</h3>
+          </Modal.Header>
+          <IngredientDetails ingredient={ingredient} />
+        </Modal.Dialog>
+      </Modal.Overlay>
     </Modal>
   ) : (
     <ModalFullScreen title={t('ingredients.detail.popup.title')}>

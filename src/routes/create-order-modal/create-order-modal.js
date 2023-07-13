@@ -2,7 +2,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { Modal } from '../../components/modal';
 import { ModalFullScreen } from '../../components/modal-fullscreen';
 import s from './create-order-modal.module.scss';
-import { CreateOrderDetails } from '../../features/burger-constructor/components/burger-total/components/create-order-details';
+import { CreateOrderDetails } from '../../features/order-feed';
 
 export const CreateOrderModal = () => {
   const { id } = useParams();
@@ -12,7 +12,12 @@ export const CreateOrderModal = () => {
 
   return isFromHome ? (
     <Modal>
-      <CreateOrderDetails number={id} />
+      <Modal.Overlay>
+        <Modal.Dialog>
+          <Modal.Header>&nbsp;</Modal.Header>
+          <CreateOrderDetails number={id} />
+        </Modal.Dialog>
+      </Modal.Overlay>
     </Modal>
   ) : (
     <ModalFullScreen>

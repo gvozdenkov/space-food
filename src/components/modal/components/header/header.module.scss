@@ -1,0 +1,19 @@
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+}
+
+.modal__closeBtn {
+  border: 0;
+  padding: 3px;
+  background-color: transparent;
+  transition: opacity 0.3s ease-out;
+  grid-area: close;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.6;
+  }
+}

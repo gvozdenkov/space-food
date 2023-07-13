@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
-import s from './modal-overlay.module.scss';
+import s from './overlay.module.scss';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
+import { useModalContext } from '../../context/modal-context';
 
-export const ModalOverlay = ({ children, onClick }) => {
+export const Overlay = ({ children }) => {
+  const { handleClose } = useModalContext();
+
   return (
     <motion.div
       className={clsx(s.modalOverlay)}
-      onClick={onClick}
+      onClick={handleClose}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{
@@ -22,7 +25,7 @@ export const ModalOverlay = ({ children, onClick }) => {
   );
 };
 
-ModalOverlay.propTypes = {
+Overlay.propTypes = {
   children: PropTypes.any,
   onClick: PropTypes.func,
 };
