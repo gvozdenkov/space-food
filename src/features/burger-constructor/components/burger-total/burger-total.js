@@ -3,7 +3,7 @@ import s from './burger-total.module.scss';
 import clsx from 'clsx';
 import { Price } from '../../../../components/price';
 import { Modal } from '../../../../components/modal';
-import { OrderDetails } from './components/order-details';
+import { CreateOrderDetails } from './components/create-order-details';
 import { AnimatePresence } from 'framer-motion';
 import { useBurgerTotal } from './hooks/use-burger-total';
 import { useTranslation } from 'react-i18next';
@@ -50,7 +50,7 @@ export const BurgerTotal = (props) => {
       <AnimatePresence initial={false} mode='wait' onExitComplete={() => null}>
         {isSuccess && (
           <Modal ariaTitle='Идентификатор заказа'>
-            <OrderDetails number={order.order.number} />
+            <CreateOrderDetails number={order.order.number} />
           </Modal>
         )}
       </AnimatePresence>

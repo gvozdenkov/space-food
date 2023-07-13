@@ -32,8 +32,10 @@ export const PATH = {
   REGISTER: '/register',
   FORGOT_PASSWORD: '/forgot-password',
   RESET_PASSWORD: '/reset-password',
-  PROFILE: '/profile',
-  ORDERS: 'orders',
+  PROFILE: {
+    ROOT: '/profile',
+    ORDERS: 'orders',
+  },
   ORDER: 'order',
   ORDER_FEED: '/order-feed',
   INGREDIENTS: 'ingredients',
@@ -61,25 +63,27 @@ export const menuItems = [
   {
     title: 'nav.item.orderList',
     icon: 'list',
-    url: '/order-feed',
+    url: PATH.ORDER_FEED,
   },
   {
     title: 'nav.item.profile',
     icon: 'profile',
-    url: PATH.PROFILE,
+    url: PATH.PROFILE.ROOT,
   },
 ];
 
 export const profileMenuItems = [
   {
     title: 'profile.menu.profile',
-    to: PATH.PROFILE,
+    to: PATH.PROFILE.ROOT,
   },
   {
     title: 'profile.menu.orders',
-    to: '/profile/orders',
+    to: PATH.PROFILE.ORDERS,
   },
 ];
+
+export const profileMenuItemsLength = profileMenuItems.length;
 
 export const ingredientPropTypes = PropTypes.shape({
   _id: PropTypes.string,

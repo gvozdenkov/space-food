@@ -26,6 +26,7 @@ import { ProfileLayout } from '../routes/profile-layout';
 import { logoutAction } from '../routes/profile-layout/logout-action';
 import { userLoader } from '../routes/profile-layout/user-loader';
 import { IngredientModal } from '../routes/ingredient-modal';
+import { CreateOrderModal } from '../routes/create-order-modal';
 import { OrderModal } from '../routes/order-modal';
 
 export const router = createBrowserRouter([
@@ -50,13 +51,13 @@ export const router = createBrowserRouter([
               },
               {
                 path: `${PATH.ORDER}/:id`,
-                element: <OrderModal />,
+                element: <CreateOrderModal />,
               },
             ],
           },
 
           {
-            path: PATH.PROFILE,
+            path: PATH.PROFILE.ROOT,
             element: <OnlyAuth component={<ProfileLayout />} />,
             errorElement: <GlobalError />,
             action: logoutAction(store.dispatch),
@@ -72,8 +73,14 @@ export const router = createBrowserRouter([
                     action: updateUserAction(store.dispatch),
                   },
                   {
-                    path: PATH.ORDERS,
+                    path: PATH.PROFILE.ORDERS,
                     element: <Orders />,
+                    children: [
+                      {
+                        path: ':id',
+                        element: <OrderModal />,
+                      },
+                    ],
                   },
                 ],
               },

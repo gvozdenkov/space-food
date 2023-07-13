@@ -9,10 +9,9 @@ import { FormattedDate } from '@ya.praktikum/react-developer-burger-ui-component
 import { orderStatusIds, orderStatusTitle } from '../../../../utils/config';
 import { useTranslation } from 'react-i18next';
 
-export const OrderCard = ({ ingredients: ingredientIds, status, number, createdAt }) => {
+export const OrderCard = ({ ingredients: ingredientIds, name, status, number, createdAt }) => {
   const { data: ingredientsCatalog } = useQuery(ingredientsQuery());
   const { t } = useTranslation();
-  const title = 'Death Star Starship Main бургер';
 
   const ingredients = useMemo(
     () => ingredientIds.reduce((arr, id) => [...arr, ingredientsCatalog[id]], []),
@@ -29,11 +28,11 @@ export const OrderCard = ({ ingredients: ingredientIds, status, number, createdA
   return (
     <article className={clsx(s.card, 'p-6')}>
       <p className={clsx('text text_type_digits-default', s.number)}>#{number}</p>
-      <h2 className={clsx('text text_type_main-medium', s.title)}>{title}</h2>
+      <h2 className={clsx('text text_type_main-medium', s.title)}>{name}</h2>
       <p className={clsx('text text_type_main-default', s.status, { [s.status_success]: isDone })}>
         {t(orderStatusTitle[status])}
       </p>
-      <IngredientIcons ingredients={ingredients} extraClass={s.icons} />
+      <IngredientIcons ingredients={ingredients} maxVisible={6} extraClass={s.icons} />
       <Price amount={price} extraClass={s.price} />
       <FormattedDate
         date={new Date(createdAt)}

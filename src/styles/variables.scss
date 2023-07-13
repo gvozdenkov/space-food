@@ -1,6 +1,7 @@
 :root {
   --color-background: #131316;
   --color-background-modal: #1c1c21;
+  --color-background-modal-hover: #24242b;
   --color-overlay-modal: rgba(0 0 0 / 0.6);
   --color-modal-edge: rgba(76 76 76 / 0.2);
   --color-content-primary: #f2f2f3;
@@ -16,6 +17,7 @@
   --color-scroll-track: #2f2f37;
 
   --common-transition: all 0.3s ease-in;
+  --fast-transition: all 0.15s ease-in;
 
   --gutter: 20px;
   --header-height: 88px;
@@ -29,9 +31,6 @@
 $scrollWidth: 8px;
 
 $headerHeight: 88px;
-
-$ingrIconNumber: 6;
-$ingrIconOverlap: 16px;
 
 $burgerIngredientHeight: 80px;
 $burgerIngredientsGap: 16px;

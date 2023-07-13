@@ -8,7 +8,7 @@ export const ProfileLayout = () => {
   const { t } = useTranslation();
 
   return (
-    <div className={clsx(s.profile)}>
+    <section className={clsx(s.profile)}>
       <nav className={clsx(s.nav)}>
         <ul className={clsx(s.navList)}>
           {profileMenuItems.map((menu, index) => {
@@ -38,6 +38,6 @@ export const ProfileLayout = () => {
       </nav>
 
       <Outlet />
-    </div>
+    </section>
   );
 };

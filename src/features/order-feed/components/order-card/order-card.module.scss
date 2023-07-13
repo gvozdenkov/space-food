@@ -14,6 +14,12 @@
     '. .' 24px
     'icons price'
     / 1fr auto;
+
+  transition: var(--fast-transition);
+
+  &:hover {
+    background-color: var(--color-background-modal-hover);
+  }
 }
 
 .number {

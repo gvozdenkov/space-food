@@ -77,5 +77,6 @@
   "network.error.500": "Internal server error :(",
   "order.status.pending": "Pending",
   "order.status.canceled": "Canceled",
-  "order.status.done": "Done"
+  "order.status.done": "Done",
+  "order.modal.listTitle": "Compound:"
 }

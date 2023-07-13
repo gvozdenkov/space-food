@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { LoaderShape } from '../../../../../../components/loader-shape';
 import { useTranslation } from 'react-i18next';
-import s from './order-details.module.scss';
+import s from './create-order-details.module.scss';
 import clsx from 'clsx';
 
-export const OrderDetails = ({ number }) => {
+export const CreateOrderDetails = ({ number }) => {
   const { t } = useTranslation();
 
   return (
@@ -18,6 +18,6 @@ export const OrderDetails = ({ number }) => {
   );
 };
 
-OrderDetails.propTypes = {
+CreateOrderDetails.propTypes = {
   number: PropTypes.string,
 };
