@@ -1,12 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import { ingredientsQuery } from '../../../../routes/root-layout/ingredients-loader';
-import { orders } from '../../../../routes/orders/orders';
 import { orderStatusIds } from '../../../../utils/config';
+import { ordersQuery } from '../../../../routes/orders/orders';
 
 export const useOrderDetails = ({ number }) => {
   const { data: ingredientsCatalog } = useQuery(ingredientsQuery());
+  const { data: ordersData } = useQuery(ordersQuery());
+  const { orders } = ordersData;
 
-  const order = orders.find((order) => order.number === number);
+  const order = orders.find((order) => order.number === Number(number));
+
   const orderDate = new Date(order.createdAt);
 
   const isDone = order.status === orderStatusIds.DONE;

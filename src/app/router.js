@@ -28,6 +28,7 @@ import { userLoader } from '../routes/profile-layout/user-loader';
 import { IngredientModal } from '../routes/ingredient-modal';
 import { CreateOrderModal } from '../routes/create-order-modal';
 import { OrderModal } from '../routes/order-modal';
+import { ordersLoader } from '../routes/orders/orders';
 
 export const router = createBrowserRouter([
   {
@@ -75,6 +76,7 @@ export const router = createBrowserRouter([
                   {
                     path: PATH.PROFILE.ORDERS,
                     element: <Orders />,
+                    loader: ordersLoader(queryClient),
                     children: [
                       {
                         path: ':id',

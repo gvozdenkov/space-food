@@ -1,5 +1,5 @@
 import { redirect } from 'react-router-dom';
-import { api } from '../../app/api-setup';
+import { createOrderApi } from '../../app/api-setup';
 import { UserService } from '../../features/user';
 import { PATH } from '../../utils/config';
 import { orderReseted } from '../../features/burger-constructor/services/order-slice';
@@ -17,7 +17,7 @@ export const makeOrderAction =
         return redirect(PATH.LOGIN);
       }
 
-      const order = await api.post('orders', {
+      const order = await createOrderApi.post('orders', {
         ingredients: JSON.parse(ingredients),
       });
 

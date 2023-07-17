@@ -44,6 +44,7 @@ export const PATH = {
 export const QUERYKEY = {
   INGREDIENTS: 'ingredients',
   USER: 'user',
+  PROFILE_ORDERS: 'profile-orders',
 };
 
 export const COOKIE = {
