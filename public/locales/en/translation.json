@@ -78,5 +78,10 @@
   "order.status.pending": "Pending",
   "order.status.canceled": "Canceled",
   "order.status.done": "Done",
-  "order.modal.listTitle": "Compound:"
+  "order.modal.listTitle": "Compound:",
+  "orderFeed.title": "Order feed",
+  "orderFeed.doneTitle": "Ready:",
+  "orderFeed.pendingTitle": "Cooking:",
+  "orderFeed.totalTitle": "Completed for all time:",
+  "orderFeed.totalTodayTitle": "Completed today:"
 }

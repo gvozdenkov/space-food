@@ -1,9 +1,8 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { CookieService } from '../utils/cookie-service';
-import { QUERYKEY } from '../utils/config';
 
-export const useWebSocket = ({ url }) => {
+export const useWebSocket = ({ url, querykeys }) => {
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -17,11 +16,11 @@ export const useWebSocket = ({ url }) => {
     websocket.onmessage = (evt) => {
       const data = JSON.parse(evt.data);
 
-      queryClient.setQueryData([QUERYKEY.PROFILE_ORDERS], data);
+      queryClient.setQueryData(querykeys, data);
     };
 
     return () => {
       websocket.close(1000);
     };
-  }, [queryClient, url]);
+  }, [queryClient, url, querykeys]);
 };

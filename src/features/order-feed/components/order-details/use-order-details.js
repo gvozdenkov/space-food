@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { ingredientsQuery } from '../../../../routes/root-layout/ingredients-loader';
 import { orderStatusIds } from '../../../../utils/config';
-import { ordersQuery } from '../../../../routes/orders/orders';
+import { ordersQuery } from '../../../../routes/orders/orders-loader';
 
 export const useOrderDetails = ({ number }) => {
   const { data: ingredientsCatalog } = useQuery(ingredientsQuery());

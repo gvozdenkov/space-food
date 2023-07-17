@@ -28,7 +28,8 @@ import { userLoader } from '../routes/profile-layout/user-loader';
 import { IngredientModal } from '../routes/ingredient-modal';
 import { CreateOrderModal } from '../routes/create-order-modal';
 import { OrderModal } from '../routes/order-modal';
-import { ordersLoader } from '../routes/orders/orders';
+import { orderFeedLoader } from '../routes/order-feed/order-feed-loader';
+import { ordersLoader } from '../routes/orders/orders-loader';
 
 export const router = createBrowserRouter([
   {
@@ -117,6 +118,7 @@ export const router = createBrowserRouter([
           {
             path: PATH.ORDER_FEED,
             element: <OrderFeed />,
+            loader: orderFeedLoader(queryClient),
           },
         ],
       },

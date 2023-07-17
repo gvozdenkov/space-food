@@ -78,5 +78,10 @@
   "order.status.pending": "Готовится",
   "order.status.canceled": "Отменён",
   "order.status.done": "Выполнен",
-  "order.modal.listTitle": "Состав:"
+  "order.modal.listTitle": "Состав:",
+  "orderFeed.title": "Лента заказов",
+  "orderFeed.doneTitle": "Готовы:",
+  "orderFeed.pendingTitle": "В работе:",
+  "orderFeed.totalTitle": "Выполнено за все время:",
+  "orderFeed.totalTodayTitle": "Выполнено за сегодня:"
 }

@@ -45,6 +45,7 @@ export const QUERYKEY = {
   INGREDIENTS: 'ingredients',
   USER: 'user',
   PROFILE_ORDERS: 'profile-orders',
+  ORDER_FEED: 'order-feed',
 };
 
 export const COOKIE = {
@@ -127,3 +128,5 @@ export const orderStatusTitle = {
   [orderStatusIds.CANCELED]: 'order.status.canceled',
   [orderStatusIds.DONE]: 'order.status.done',
 };
+
+export const showMaximumOrders = 5;

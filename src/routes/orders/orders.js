@@ -3,30 +3,18 @@ import s from './orders.module.scss';
 import { useTranslation } from 'react-i18next';
 import { OrderCard } from '../../features/order-feed';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { useWebSocket } from '../../hooks/use-websocet';
+import { useWebSocket } from '../../hooks/use-websocket';
 import { QUERYKEY } from '../../utils/config';
 import { useQuery } from '@tanstack/react-query';
-
-export const ordersQuery = () => ({
-  queryKey: [QUERYKEY.PROFILE_ORDERS],
-  queryFn: async () => {
-    return Promise.resolve({
-      success: true,
-      orders: [],
-      total: 0,
-      totalToday: 0,
-    });
-  },
-});
-
-export const ordersLoader = (queryClient) => async () =>
-  await queryClient.ensureQueryData(ordersQuery());
+import { ordersQuery } from './orders-loader';
 
 export const Orders = () => {
   const { t } = useTranslation();
   const location = useLocation();
+  
   const url = 'wss://norma.nomoreparties.space/orders';
-  useWebSocket({ url });
+  const querykeys = [QUERYKEY.PROFILE_ORDERS];
+  useWebSocket({ url, querykeys });
 
   const { data: ordersData } = useQuery(ordersQuery());
   const { orders } = ordersData;
