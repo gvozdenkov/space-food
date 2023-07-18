@@ -7,10 +7,10 @@ import { FormattedDate } from '@ya.praktikum/react-developer-burger-ui-component
 import { Price } from '../../../../components/price';
 import { useOrderDetails } from './use-order-details';
 
-export const OrderDetails = ({ number, extraClass }) => {
+export const OrderDetails = ({ order, extraClass }) => {
   const { t } = useTranslation();
-  const { order, ingredientIds, ingredients, orderDate, totalPrice, isDone } = useOrderDetails({
-    number,
+  const { ingredientIds, ingredients, orderDate, totalPrice, isDone } = useOrderDetails({
+    order,
   });
 
   return (
@@ -37,7 +37,7 @@ export const OrderDetails = ({ number, extraClass }) => {
         date={orderDate}
         className={clsx(s.date, 'text text_type_main-default text_color_inactive')}
       />
-      <Price amount={totalPrice} extraClass={clsx(s.price, 'mr-8')} />
+      <Price amount={totalPrice} extraClass={clsx(s.price, 'mr-10')} />
     </section>
   );
 };

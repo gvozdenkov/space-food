@@ -15,12 +15,11 @@ export const useWebSocket = ({ url, querykeys }) => {
 
     websocket.onmessage = (evt) => {
       const data = JSON.parse(evt.data);
-
       queryClient.setQueryData(querykeys, data);
     };
 
     return () => {
-      websocket.close(1000);
+      websocket.close();
     };
   }, [queryClient, url, querykeys]);
 };

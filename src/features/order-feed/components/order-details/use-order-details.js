@@ -1,14 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { ingredientsQuery } from '../../../../routes/root-layout/ingredients-loader';
 import { orderStatusIds } from '../../../../utils/config';
-import { ordersQuery } from '../../../../routes/orders/orders-loader';
 
-export const useOrderDetails = ({ number }) => {
+export const useOrderDetails = ({ order }) => {
   const { data: ingredientsCatalog } = useQuery(ingredientsQuery());
-  const { data: ordersData } = useQuery(ordersQuery());
-  const { orders } = ordersData;
-
-  const order = orders.find((order) => order.number === Number(number));
 
   const orderDate = new Date(order.createdAt);
 
@@ -35,7 +30,6 @@ export const useOrderDetails = ({ number }) => {
   const totalPrice = ingredientsAll.reduce((sum, item) => (sum += item.price), 0);
 
   return {
-    order,
     ingredientIds: ingredientsCountIds,
     ingredients: ingredientsCount,
     orderDate,

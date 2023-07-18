@@ -46,6 +46,7 @@ export const QUERYKEY = {
   USER: 'user',
   PROFILE_ORDERS: 'profile-orders',
   ORDER_FEED: 'order-feed',
+  ORDER_DETAILS: 'order-details',
 };
 
 export const COOKIE = {

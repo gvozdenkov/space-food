@@ -27,7 +27,8 @@ export const IngredientModal = () => {
       </Modal.Overlay>
     </Modal>
   ) : (
-    <ModalFullScreen title={t('ingredients.detail.popup.title')}>
+    <ModalFullScreen>
+      <h1 className='mt-30 text text_type_main-large'>{t('ingredients.detail.popup.title')}</h1>
       <IngredientDetails ingredient={ingredient} />
     </ModalFullScreen>
   );

@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import s from './order-feed.module.scss';
 import { useTranslation } from 'react-i18next';
 import { OrderCard } from '../../features/order-feed';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useWebSocket } from '../../hooks/use-websocket';
 import { QUERYKEY, orderStatusIds, showMaximumOrders } from '../../utils/config';
 import { useQuery } from '@tanstack/react-query';
@@ -53,7 +53,7 @@ export const OrderFeed = () => {
 
       <section className={clsx(s.statistics, 'mt-25')}>
         <h2 className={clsx(s.done, 'text text_type_main-medium')}>{t('orderFeed.doneTitle')}</h2>
-        <OrderList orders={doneOrders} extraClass={s.doneList} />
+        <OrderList orders={doneOrders} extraClass={clsx(s.doneList, 'text_color_success')} />
         <h2 className={clsx(s.pending, 'text text_type_main-medium')}>
           {t('orderFeed.pendingTitle')}
         </h2>
@@ -67,6 +67,8 @@ export const OrderFeed = () => {
         </h2>
         <span className={clsx(s.totalToday, 'text text_type_digits-large')}>{totalToday}</span>
       </section>
+
+      <Outlet />
     </div>
   );
 };

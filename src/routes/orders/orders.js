@@ -11,7 +11,7 @@ import { ordersQuery } from './orders-loader';
 export const Orders = () => {
   const { t } = useTranslation();
   const location = useLocation();
-  
+
   const url = 'wss://norma.nomoreparties.space/orders';
   const querykeys = [QUERYKEY.PROFILE_ORDERS];
   useWebSocket({ url, querykeys });
@@ -25,7 +25,7 @@ export const Orders = () => {
         <ul className={clsx(s.orderList, 'customScroll')}>
           {orders?.map((order, index) => {
             return (
-              <li key={index} className={clsx(s.orderItem, 'mb-6')}>
+              <li key={index} className={clsx(s.orderItem, 'mb-6 pr-2')}>
                 <Link to={`${order.number}`} state={{ from: location }} className='reset-link'>
                   <OrderCard {...order} />
                 </Link>
