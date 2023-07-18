@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import s from './orders.module.scss';
 import { useTranslation } from 'react-i18next';
-import { OrderCard } from '../../features/order-feed';
+import { OrderCard } from '../../features/feed';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useWebSocket } from '../../hooks/use-websocket';
 import { QUERYKEY } from '../../utils/config';

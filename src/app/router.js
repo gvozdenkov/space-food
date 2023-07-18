@@ -19,7 +19,7 @@ import { Profile } from '../routes/profile';
 import { Orders } from '../routes/orders';
 import { updateUserAction } from '../routes/profile/update-user-action';
 import { GlobalError } from '../components/global-error';
-import { OrderFeed } from '../routes/order-feed/order-feed';
+import { Feed } from '../routes/feed/feed';
 import { RootLayout } from '../routes/root-layout/root-layout';
 import { ingredientsLoader } from '../routes/root-layout/ingredients-loader';
 import { ProfileLayout } from '../routes/profile-layout';
@@ -28,7 +28,7 @@ import { userLoader } from '../routes/profile-layout/user-loader';
 import { IngredientModal } from '../routes/ingredient-modal';
 import { CreateOrderModal } from '../routes/create-order-modal';
 import { OrderModal } from '../routes/order-modal';
-import { orderFeedLoader } from '../routes/order-feed/order-feed-loader';
+import { orderFeedLoader } from '../routes/feed/feed-loader';
 import { ordersLoader } from '../routes/orders/orders-loader';
 import { orderDetailsLoader } from '../routes/order-modal/order-modal-loader';
 
@@ -118,8 +118,8 @@ export const router = createBrowserRouter([
             loader: resetPasswordLoader(),
           },
           {
-            path: PATH.ORDER_FEED,
-            element: <OrderFeed />,
+            path: PATH.FEED,
+            element: <Feed />,
             loader: orderFeedLoader(queryClient),
             children: [
               {

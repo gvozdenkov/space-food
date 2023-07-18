@@ -1,7 +1,7 @@
 import { QUERYKEY } from '../../utils/config';
 
 export const orderFeedQuery = () => ({
-  queryKey: [QUERYKEY.ORDER_FEED],
+  queryKey: [QUERYKEY.FEED],
   queryFn: async () => {
     return Promise.resolve({
       success: true,

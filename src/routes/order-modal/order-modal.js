@@ -2,7 +2,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { Modal } from '../../components/modal';
 import { ModalFullScreen } from '../../components/modal-fullscreen';
 import s from './order-modal.module.scss';
-import { OrderDetails } from '../../features/order-feed';
+import { OrderDetails } from '../../features/feed';
 import clsx from 'clsx';
 import { useQuery } from '@tanstack/react-query';
 import { orderDetailsQuery } from './order-modal-loader';

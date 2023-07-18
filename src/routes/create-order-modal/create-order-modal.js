@@ -2,7 +2,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { Modal } from '../../components/modal';
 import { ModalFullScreen } from '../../components/modal-fullscreen';
 import s from './create-order-modal.module.scss';
-import { CreateOrderDetails } from '../../features/order-feed';
+import { CreateOrderDetails } from '../../features/burger-constructor';
 
 export const CreateOrderModal = () => {
   const { id } = useParams();

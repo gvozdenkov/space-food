@@ -1,19 +1,19 @@
 import clsx from 'clsx';
-import s from './order-feed.module.scss';
+import s from './feed.module.scss';
 import { useTranslation } from 'react-i18next';
-import { OrderCard } from '../../features/order-feed';
+import { OrderCard } from '../../features/feed';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useWebSocket } from '../../hooks/use-websocket';
 import { QUERYKEY, orderStatusIds, showMaximumOrders } from '../../utils/config';
 import { useQuery } from '@tanstack/react-query';
-import { orderFeedQuery } from './order-feed-loader';
+import { orderFeedQuery } from './feed-loader';
 
-export const OrderFeed = () => {
+export const Feed = () => {
   const { t } = useTranslation();
   const location = useLocation();
 
   const url = 'wss://norma.nomoreparties.space/orders/all';
-  const querykeys = [QUERYKEY.ORDER_FEED];
+  const querykeys = [QUERYKEY.FEED];
   useWebSocket({ url, querykeys });
 
   const { data: ordersData } = useQuery(orderFeedQuery());

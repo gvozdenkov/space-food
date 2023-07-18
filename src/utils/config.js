@@ -37,7 +37,7 @@ export const PATH = {
     ORDERS: 'orders',
   },
   ORDER: 'order',
-  ORDER_FEED: '/order-feed',
+  FEED: '/feed',
   INGREDIENTS: 'ingredients',
 };
 
@@ -45,7 +45,7 @@ export const QUERYKEY = {
   INGREDIENTS: 'ingredients',
   USER: 'user',
   PROFILE_ORDERS: 'profile-orders',
-  ORDER_FEED: 'order-feed',
+  FEED: 'feed',
   ORDER_DETAILS: 'order-details',
 };
 
@@ -66,7 +66,7 @@ export const menuItems = [
   {
     title: 'nav.item.orderList',
     icon: 'list',
-    url: PATH.ORDER_FEED,
+    url: PATH.FEED,
   },
   {
     title: 'nav.item.profile',
@@ -130,4 +130,4 @@ export const orderStatusTitle = {
   [orderStatusIds.DONE]: 'order.status.done',
 };
 
-export const showMaximumOrders = 5;
+export const showMaximumOrders = 10;
