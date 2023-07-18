@@ -1,11 +1,9 @@
 import clsx from 'clsx';
 import s from './feed.module.scss';
 import { useTranslation } from 'react-i18next';
-import { OrderCard } from '../../features/feed';
+import { OrderCard, useFeed } from '../../features/feed';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { useWebSocket } from '../../hooks/use-websocket';
-import { QUERYKEY, orderStatusIds, showMaximumOrders } from '../../utils/config';
-import { useQuery } from '@tanstack/react-query';
+import { QUERYKEY, showMaximumOrders } from '../../utils/config';
 import { orderFeedQuery } from './feed-loader';
 
 export const Feed = () => {
@@ -14,13 +12,12 @@ export const Feed = () => {
 
   const url = 'wss://norma.nomoreparties.space/orders/all';
   const querykeys = [QUERYKEY.FEED];
-  useWebSocket({ url, querykeys });
 
-  const { data: ordersData } = useQuery(orderFeedQuery());
-  const { orders, total, totalToday } = ordersData;
-
-  const doneOrders = orders.filter((order) => order.status === orderStatusIds.DONE);
-  const pendingOrders = orders.filter((order) => order.status === orderStatusIds.PENDING);
+  const { orders, total, totalToday, doneOrders, pendingOrders } = useFeed({
+    url,
+    querykeys,
+    query: orderFeedQuery,
+  });
 
   const OrderList = ({ orders, extraClass = '' }) => {
     return (

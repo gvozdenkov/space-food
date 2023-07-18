@@ -1,11 +1,9 @@
 import clsx from 'clsx';
 import s from './orders.module.scss';
 import { useTranslation } from 'react-i18next';
-import { OrderCard } from '../../features/feed';
+import { OrderCard, useFeed } from '../../features/feed';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { useWebSocket } from '../../hooks/use-websocket';
 import { QUERYKEY } from '../../utils/config';
-import { useQuery } from '@tanstack/react-query';
 import { ordersQuery } from './orders-loader';
 
 export const Orders = () => {
@@ -14,10 +12,8 @@ export const Orders = () => {
 
   const url = 'wss://norma.nomoreparties.space/orders';
   const querykeys = [QUERYKEY.PROFILE_ORDERS];
-  useWebSocket({ url, querykeys });
 
-  const { data: ordersData } = useQuery(ordersQuery());
-  const { orders } = ordersData;
+  const { orders } = useFeed({ url, querykeys, query: ordersQuery });
 
   return (
     <>
