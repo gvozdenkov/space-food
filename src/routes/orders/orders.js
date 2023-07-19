@@ -13,7 +13,7 @@ export const Orders = () => {
   const url = 'wss://norma.nomoreparties.space/orders';
   const querykeys = [QUERYKEY.PROFILE_ORDERS];
 
-  const { orders } = useFeed({ url, querykeys, query: ordersQuery });
+  const { orders } = useFeed({ url, useToken: true, querykeys, query: ordersQuery });
 
   return (
     <>

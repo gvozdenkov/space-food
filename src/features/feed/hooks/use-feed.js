@@ -3,8 +3,8 @@ import { useWebSocket } from '../../../hooks/use-websocket';
 import { useMemo } from 'react';
 import { orderStatusIds } from '../../../utils/config';
 
-export const useFeed = ({ url, querykeys, query }) => {
-  useWebSocket({ url, querykeys });
+export const useFeed = ({ url, useToken = false, querykeys, query }) => {
+  useWebSocket({ url, useToken, querykeys });
   const { data: ordersData } = useQuery(query());
   const { orders, total, totalToday } = ordersData;
 
