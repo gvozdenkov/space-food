@@ -37,7 +37,7 @@ export const OrderDetails = ({ order, extraClass }) => {
         date={orderDate}
         className={clsx(s.date, 'text text_type_main-default text_color_inactive')}
       />
-      <Price amount={totalPrice} extraClass={clsx(s.price, 'mr-10')} />
+      <Price amount={totalPrice} extraClass={clsx(s.price, 'mr-8')} />
     </section>
   );
 };
