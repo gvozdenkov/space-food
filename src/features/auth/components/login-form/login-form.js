@@ -29,7 +29,7 @@ export const LoginForm = ({ redirectTo }) => {
       />
 
       <input type='hidden' id='path' value={redirectTo} name='redirectTo' />
-      <FormSubmitBtn disabled={!isDirty || !isValid}>
+      <FormSubmitBtn disabled={!isDirty || !isValid || isSubmitting}>
         {isSubmitting ? <ButtonLoader /> : t('login.form.submit')}
       </FormSubmitBtn>
     </Form>

@@ -18,7 +18,7 @@ export const orderDetailsQuery = (number) => ({
 });
 
 // return data or fetch it
-export const orderDetailsLoader =
+export const orderModalLoader =
   (queryClient) =>
   async ({ params }) =>
     await queryClient.ensureQueryData(orderDetailsQuery(params.number));

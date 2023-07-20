@@ -12,5 +12,5 @@ export const orderFeedQuery = () => ({
   },
 });
 
-export const orderFeedLoader = (queryClient) => async () =>
+export const feedLoader = (queryClient) => async () =>
   await queryClient.ensureQueryData(orderFeedQuery());

@@ -37,18 +37,16 @@ const createApi = ({ baseURL, headers, withReAuth = false }) => {
       async (err) => {
         const originalRequest = err?.config;
         const errMessage = err.response?.data?.message;
-        console.log('errMessage:', errMessage);
 
         // Access Token was expired
         if (errMessage?.includes('should be authorised') && !originalRequest.retry) {
           try {
             originalRequest.retry = true;
-            console.log('try refresh token');
+            // refresh accessToken
             const rs = await AuthService.refreshAccessToken(CookieService.getRefreshToken());
 
             const { accessToken: token, refreshToken } = rs.data;
             const accessToken = token.split(' ')[1];
-            console.log('refresh ok');
 
             CookieService.setAccessToken(accessToken);
             CookieService.setRefreshToken(refreshToken);
@@ -59,7 +57,7 @@ const createApi = ({ baseURL, headers, withReAuth = false }) => {
               retry: true,
             });
           } catch (err) {
-            console.log('refresh token invalid - logout user');
+            // refresh token faild. Logout user
             store.dispatch(removeUser());
             CookieService.removeTokens();
           }

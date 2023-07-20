@@ -10,6 +10,7 @@ export const loginAction =
     const { email, password, redirectTo } = Object.fromEntries(formData);
 
     const { accessToken: token, refreshToken, user } = await AuthService.login({ email, password });
+
     const accessToken = token.split(' ')[1];
 
     // expires in days: accessToken expires at 20 min
