@@ -2,12 +2,11 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useFetcher } from 'react-router-dom';
 import { selectUser } from '../../features/user';
-import * as Yup from 'yup';
+import { object, string } from 'yup';
 import { useTranslation } from 'react-i18next';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { useReactHookForm } from '../../components/form/hooks/use-react-hook-form';
 
-export const useProfile = () => {
+export const useProfileForm = () => {
   const { t } = useTranslation();
   // for state mutation (update user) without navigation
   const fetcher = useFetcher();
@@ -26,8 +25,8 @@ export const useProfile = () => {
     [input.PASSWORD]: '',
   };
 
-  const validationSchema = Yup.object({
-    [input.NAME]: Yup.string()
+  const validationSchema = object({
+    [input.NAME]: string()
       .min(
         2,
         t('form.errors.name.min', {
@@ -35,10 +34,10 @@ export const useProfile = () => {
         }),
       )
       .required(t('form.errors.input.required')),
-    [input.EMAIL]: Yup.string()
+    [input.EMAIL]: string()
       .email(t('form.errors.email.incorrect'))
       .required(t('form.errors.input.required')),
-    [input.PASSWORD]: Yup.string()
+    [input.PASSWORD]: string()
       .min(
         4,
         t('form.errors.password.min', {
@@ -56,12 +55,14 @@ export const useProfile = () => {
       .transform((curr, orig) => (orig === '' ? null : curr)),
   });
 
-  // handle form state with react-hook-form
-  const form = useForm({
+  const { form } = useReactHookForm({
     defaultValues,
-    mode: 'onTouched',
-    resolver: yupResolver(validationSchema),
+    validationSchema,
   });
+
+  // form - object from react-hook-form
+  const { formState, control, reset } = form;
+  const { isDirty, isValid } = formState;
 
   // check success submit with fetcher
   // server return in res { success: true / false, user } object
@@ -76,6 +77,7 @@ export const useProfile = () => {
         [input.PASSWORD]: '',
       });
     }
+    // eslint-disable-next-line
   }, [isSubmitSuccessful]);
 
   const onIconClick = (name) => {
@@ -83,7 +85,10 @@ export const useProfile = () => {
   };
 
   return {
-    form,
+    control,
+    reset,
+    isDirty,
+    isValid,
     fetcher,
     input,
     isSubmitting,

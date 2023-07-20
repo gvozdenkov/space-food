@@ -1,75 +1,56 @@
 import s from './profile.module.scss';
 import clsx from 'clsx';
-import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useTranslation } from 'react-i18next';
 import { FormSubmitBtn } from '../../components/form/form-submit-btn';
 import { ButtonLoader } from '../../components/button-loader';
 import { ErrorMessage } from '../../components/error-message';
-import { useProfile } from './use-profile';
-import { Controller } from 'react-hook-form';
+import { useProfileForm } from './use-profile-form';
+import { TextInput } from '../../components/form/text-input';
+import { EmailInput } from '../../components/form/email-input';
+import { PasswordInput } from '../../components/form/password-input';
 
 export const Profile = (props) => {
   const { t } = useTranslation();
-  const { form, fetcher, input, isSubmitting, isSubmitSuccessful, onIconClick } = useProfile();
-
-  // form - object from react-hook-form
-  const { formState, control, reset } = form;
-  const { isDirty, isValid } = formState;
+  const {
+    control,
+    reset,
+    isDirty,
+    isValid,
+    fetcher,
+    input,
+    isSubmitting,
+    isSubmitSuccessful,
+    onIconClick,
+  } = useProfileForm();
 
   return (
     <>
       <section className={clsx(s.profile)}>
         <fetcher.Form method='POST' action='/profile?index' className={clsx(s.form)}>
-          <Controller
+          <TextInput
             control={control}
-            name={input.NAME}
-            render={({ field, fieldState }) => (
-              <Input
-                id={input.NAME}
-                type={'text'}
-                icon={'EditIcon'}
-                extraClass={clsx(s.input_name)}
-                placeholder={t('form.placeholder.name')}
-                error={fieldState?.invalid}
-                errorText={fieldState.error?.message}
-                onIconClick={() => onIconClick(input.NAME)}
-                {...field}
-              />
-            )}
+            inputName={input.NAME}
+            placeholder={t('form.placeholder.name')}
+            icon={'EditIcon'}
+            onIconClick={() => onIconClick(input.NAME)}
+            extraClass={clsx(s.input_name)}
           />
-          <Controller
+
+          <EmailInput
             control={control}
-            name={input.EMAIL}
-            render={({ field, fieldState }) => (
-              <Input
-                id={input.EMAIL}
-                type={'text'}
-                icon={'EditIcon'}
-                extraClass={clsx(s.input_email)}
-                placeholder={t('form.placeholder.email')}
-                error={fieldState?.invalid}
-                errorText={fieldState.error?.message}
-                onIconClick={() => onIconClick(input.EMAIL)}
-                {...field}
-              />
-            )}
+            inputName={input.EMAIL}
+            placeholder={t('form.placeholder.email')}
+            icon={'EditIcon'}
+            onIconClick={() => onIconClick(input.EMAIL)}
+            extraClass={clsx(s.input_email)}
           />
-          <Controller
+
+          <PasswordInput
             control={control}
-            name={input.PASSWORD}
-            render={({ field, fieldState }) => (
-              <Input
-                id={input.PASSWORD}
-                type={'password'}
-                icon={'EditIcon'}
-                extraClass={clsx(s.input_password)}
-                placeholder={t('form.placeholder.password')}
-                error={fieldState?.invalid}
-                errorText={fieldState.error?.message}
-                onIconClick={() => onIconClick(input.PASSWORD)}
-                {...field}
-              />
-            )}
+            inputName={input.PASSWORD}
+            placeholder={t('form.placeholder.password')}
+            extraClass={clsx(s.input_password)}
           />
 
           {isDirty && (
@@ -96,6 +77,7 @@ export const Profile = (props) => {
           )}
         </fetcher.Form>
       </section>
+
       <p className={clsx(s.comment, 'text text_type_main-default text_color_inactive')}>
         {t('profile.comment')}
       </p>

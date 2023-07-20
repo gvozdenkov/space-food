@@ -48,7 +48,7 @@ const createApi = ({ baseURL, headers, withReAuth = false }) => {
 
             const { accessToken: token, refreshToken } = rs.data;
             const accessToken = token.split(' ')[1];
-            console.log('refresh success, new successToken:', accessToken);
+            console.log('refresh ok');
 
             CookieService.setAccessToken(accessToken);
             CookieService.setRefreshToken(refreshToken);
