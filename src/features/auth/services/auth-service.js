@@ -1,14 +1,5 @@
 import { api } from '../../../app/api-setup';
 
-const login = async ({ email, password }) => {
-  const res = await api.post('/auth/login', {
-    email,
-    password,
-  });
-
-  return res.data;
-};
-
 const logout = async (refreshToken) => {
   return await api.post('/auth/logout', {
     token: refreshToken,
@@ -49,7 +40,6 @@ const refreshAccessToken = async (refreshToken) => {
 };
 
 export const AuthService = {
-  login,
   logout,
   register,
   forgotPassword,

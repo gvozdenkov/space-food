@@ -7,7 +7,6 @@ import { ButtonLoader } from '../../components/button-loader';
 import { ErrorMessage } from '../../components/error-message';
 import { useProfileForm } from './use-profile-form';
 import { TextInput } from '../../components/form/text-input';
-import { EmailInput } from '../../components/form/email-input';
 import { PasswordInput } from '../../components/form/password-input';
 
 export const Profile = (props) => {
@@ -37,7 +36,8 @@ export const Profile = (props) => {
             extraClass={clsx(s.input_name)}
           />
 
-          <EmailInput
+          <TextInput
+            type='email'
             control={control}
             inputName={input.EMAIL}
             placeholder={t('form.placeholder.email')}

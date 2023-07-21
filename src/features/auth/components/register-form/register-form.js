@@ -5,7 +5,6 @@ import { Form } from 'react-router-dom';
 import { FormTitle } from '../../../../components/form/form-title';
 import { PasswordInput } from '../../../../components/form/password-input';
 import { TextInput } from '../../../../components/form/text-input';
-import { EmailInput } from '../../../../components/form/email-input';
 import { useRegisterForm } from './use-register-form';
 
 export const RegisterForm = () => {
@@ -23,7 +22,8 @@ export const RegisterForm = () => {
         placeholder={t('form.placeholder.name')}
       />
 
-      <EmailInput
+      <TextInput
+        type='email'
         control={control}
         inputName={input.EMAIL}
         placeholder={t('form.placeholder.email')}

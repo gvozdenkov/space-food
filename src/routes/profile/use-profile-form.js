@@ -1,17 +1,17 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { useFetcher } from 'react-router-dom';
-import { selectUser } from '../../features/user';
 import { object, string } from 'yup';
 import { useTranslation } from 'react-i18next';
 import { useReactHookForm } from '../../components/form/hooks/use-react-hook-form';
+import { useQuery } from '@tanstack/react-query';
+import { userQuery } from '../profile-layout/user-loader';
 
 export const useProfileForm = () => {
   const { t } = useTranslation();
   // for state mutation (update user) without navigation
   const fetcher = useFetcher();
 
-  const user = useSelector(selectUser);
+  const { data: user } = useQuery(userQuery());
 
   const input = {
     NAME: 'name',

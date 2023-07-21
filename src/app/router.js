@@ -85,7 +85,6 @@ export const router = createBrowserRouter([
         path: PATH.LOGIN,
         lazy: async () => ({
           Component: (await import('../routes/login')).Login,
-          action: (await import('../routes/login/login-action')).loginAction(store.dispatch),
         }),
       },
       {

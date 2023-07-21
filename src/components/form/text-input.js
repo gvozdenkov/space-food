@@ -1,7 +1,15 @@
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Controller } from 'react-hook-form';
 
-export const TextInput = ({ control, inputName, placeholder, icon, onIconClick, extraClass }) => {
+export const TextInput = ({
+  control,
+  type = 'text',
+  inputName,
+  placeholder,
+  icon,
+  onIconClick,
+  extraClass,
+}) => {
   return (
     <Controller
       control={control}
@@ -9,7 +17,7 @@ export const TextInput = ({ control, inputName, placeholder, icon, onIconClick, 
       render={({ field, fieldState }) => (
         <Input
           id={inputName}
-          type='text'
+          type={type}
           icon={icon}
           onIconClick={onIconClick}
           extraClass={extraClass}
