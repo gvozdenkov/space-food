@@ -1,4 +1,3 @@
-import { Form } from 'react-router-dom';
 import { FormSubmitBtn } from '../../../../components/form/form-submit-btn';
 import { ButtonLoader } from '../../../../components/button-loader';
 import { useTranslation } from 'react-i18next';
@@ -16,7 +15,7 @@ export const LoginForm = ({ redirectTo }) => {
     });
 
   return (
-    <Form onSubmit={onSubmit()} className='form'>
+    <form onSubmit={onSubmit()} className='form'>
       <FormTitle>{t('login.form.title')}</FormTitle>
 
       <TextInput
@@ -41,6 +40,6 @@ export const LoginForm = ({ redirectTo }) => {
       <FormSubmitBtn disabled={!isDirty || !isValid || isLoading}>
         {isLoading ? <ButtonLoader /> : t('login.form.submit')}
       </FormSubmitBtn>
-    </Form>
+    </form>
   );
 };

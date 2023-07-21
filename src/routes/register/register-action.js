@@ -1,6 +1,6 @@
 import { redirect } from 'react-router-dom';
 import { AuthService } from '../../features/auth';
-import { setUser } from '../../features/user';
+import { setUser } from '../../features/profile';
 import { CookieService } from '../../utils/cookie-service';
 import { PATH } from '../../utils/config';
 

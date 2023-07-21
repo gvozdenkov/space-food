@@ -75,6 +75,7 @@
   "profile.form.submit": "Save",
   "profile.form.cancel": "Cancel",
   "profile.form.sucess": "Profile updated successfully",
+  "profile.form.error": "Profile update error",
   "profile.comment": "In this section you can change your personal data",
   "profile.orders.comment": "In this section you can view your order history",
   "network.error.noStatus": "The server is not responding",

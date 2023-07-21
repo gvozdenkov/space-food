@@ -2,7 +2,6 @@ import { createBrowserRouter } from 'react-router-dom';
 import { PATH } from '../utils/config';
 import { queryClient } from './api-setup';
 import { store } from './store';
-import { updateUserAction } from '../routes/profile/update-user-action';
 import { GlobalError } from '../components/global-error';
 import { RootLayout } from '../routes/root-layout/root-layout';
 import { ingredientsLoader } from '../routes/root-layout/ingredients-loader';
@@ -54,7 +53,6 @@ export const router = createBrowserRouter([
                 lazy: async () => ({
                   Component: (await import('../routes/profile')).Profile,
                 }),
-                action: updateUserAction(store.dispatch),
               },
               {
                 path: PATH.PROFILE.ORDERS,

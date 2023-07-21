@@ -3,7 +3,7 @@ import axios from 'axios';
 import { store } from './store';
 import { CookieService } from '../utils/cookie-service';
 import { AuthService } from '../features/auth';
-import { removeUser } from '../features/user';
+import { removeUser } from '../features/profile';
 
 const baseURL = 'https://norma.nomoreparties.space/api';
 const headers = {

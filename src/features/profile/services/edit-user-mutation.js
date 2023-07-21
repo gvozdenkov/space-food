@@ -1,9 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { authApi } from '../../../app/api-setup';
 import { QUERYKEY } from '../../../utils/config';
-import { api } from '../../../app/api-setup';
 
-export const logInMutation = async ({ email, password }) => {
-  const res = await api.post('/auth/login', {
+export const editUserMutation = async ({ name, email, password }) => {
+  const res = await authApi.patch('/user', {
+    name,
     email,
     password,
   });
@@ -11,12 +12,12 @@ export const logInMutation = async ({ email, password }) => {
   return res.data;
 };
 
-export const useLogInMutation = () => {
+export const useEditUserMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationKey: [QUERYKEY.USER],
-    mutationFn: logInMutation,
+    mutationFn: editUserMutation,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERYKEY.USER] });
     },

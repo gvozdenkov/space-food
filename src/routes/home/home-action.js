@@ -1,6 +1,6 @@
 import { redirect } from 'react-router-dom';
 import { createOrderApi } from '../../app/api-setup';
-import { UserService } from '../../features/user';
+import { UserService } from '../../features/profile';
 import { PATH } from '../../utils/config';
 import { orderReseted } from '../../features/burger-constructor/services/order-slice';
 

@@ -1,32 +1,30 @@
-import { useEffect } from 'react';
-import { useFetcher } from 'react-router-dom';
+import { useCallback, useEffect } from 'react';
 import { object, string } from 'yup';
 import { useTranslation } from 'react-i18next';
 import { useReactHookForm } from '../../components/form/hooks/use-react-hook-form';
 import { useQuery } from '@tanstack/react-query';
 import { userQuery } from '../profile-layout/user-loader';
+import { useEditUserMutation } from '../../features/profile/services/edit-user-mutation';
 
 export const useProfileForm = () => {
   const { t } = useTranslation();
-  // for state mutation (update user) without navigation
-  const fetcher = useFetcher();
 
   const { data: user } = useQuery(userQuery());
 
-  const input = {
+  const inputName = {
     NAME: 'name',
     EMAIL: 'email',
     PASSWORD: 'password',
   };
 
   const defaultValues = {
-    [input.NAME]: user?.name,
-    [input.EMAIL]: user?.email,
-    [input.PASSWORD]: '',
+    [inputName.NAME]: user?.name,
+    [inputName.EMAIL]: user?.email,
+    [inputName.PASSWORD]: '',
   };
 
   const validationSchema = object({
-    [input.NAME]: string()
+    [inputName.NAME]: string()
       .min(
         2,
         t('form.errors.name.min', {
@@ -34,10 +32,10 @@ export const useProfileForm = () => {
         }),
       )
       .required(t('form.errors.input.required')),
-    [input.EMAIL]: string()
+    [inputName.EMAIL]: string()
       .email(t('form.errors.email.incorrect'))
       .required(t('form.errors.input.required')),
-    [input.PASSWORD]: string()
+    [inputName.PASSWORD]: string()
       .min(
         4,
         t('form.errors.password.min', {
@@ -61,38 +59,63 @@ export const useProfileForm = () => {
   });
 
   // form - object from react-hook-form
-  const { formState, control, reset } = form;
+  const { formState, control, reset, handleSubmit } = form;
   const { isDirty, isValid } = formState;
 
-  // check success submit with fetcher
-  // server return in res { success: true / false, user } object
-  const isSubmitSuccessful = fetcher.data?.success;
-  const isSubmitting = fetcher.state === 'submitting';
+  // ============ Mutation ===============
+
+  const {
+    data: newUser,
+    mutate,
+    error: mutationError,
+    isError,
+    isLoading,
+    isSuccess,
+  } = useEditUserMutation();
+
+  const onSubmit = useCallback(
+    () =>
+      handleSubmit((data) => {
+        mutate(data, {
+          onSuccess: () => {},
+        });
+      }),
+    [handleSubmit, mutate],
+  );
+
+  const error = mutationError?.response?.data?.message ?? t('profile.form.error');
 
   useEffect(() => {
-    if (isSubmitSuccessful) {
+    if (isSuccess) {
+      const { user } = newUser;
+
       form.reset({
-        [input.NAME]: user?.name,
-        [input.EMAIL]: user?.email,
-        [input.PASSWORD]: '',
+        [inputName.NAME]: user?.name,
+        [inputName.EMAIL]: user?.email,
+        [inputName.PASSWORD]: '',
       });
     }
     // eslint-disable-next-line
-  }, [isSubmitSuccessful]);
+  }, [isSuccess]);
 
-  const onIconClick = (name) => {
-    form.setFocus(name, { shouldSelect: true });
-  };
+  const onIconClick = useCallback(
+    (name) => {
+      form.setFocus(name, { shouldSelect: true });
+    },
+    [form],
+  );
 
   return {
     control,
     reset,
     isDirty,
     isValid,
-    fetcher,
-    input,
-    isSubmitting,
-    isSubmitSuccessful,
+    inputName,
     onIconClick,
+    onSubmit,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
   };
 };

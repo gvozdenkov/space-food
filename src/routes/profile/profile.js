@@ -4,59 +4,60 @@ import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useTranslation } from 'react-i18next';
 import { FormSubmitBtn } from '../../components/form/form-submit-btn';
 import { ButtonLoader } from '../../components/button-loader';
-import { ErrorMessage } from '../../components/error-message';
 import { useProfileForm } from './use-profile-form';
 import { TextInput } from '../../components/form/text-input';
 import { PasswordInput } from '../../components/form/password-input';
 
-export const Profile = (props) => {
+export const Profile = () => {
   const { t } = useTranslation();
   const {
     control,
     reset,
     isDirty,
     isValid,
-    fetcher,
-    input,
-    isSubmitting,
-    isSubmitSuccessful,
+    inputName,
     onIconClick,
+    onSubmit,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
   } = useProfileForm();
 
   return (
     <>
       <section className={clsx(s.profile)}>
-        <fetcher.Form method='POST' action='/profile?index' className={clsx(s.form)}>
+        <form onSubmit={onSubmit()} className={clsx(s.form)}>
           <TextInput
             control={control}
-            inputName={input.NAME}
+            inputName={inputName.NAME}
             placeholder={t('form.placeholder.name')}
             icon={'EditIcon'}
-            onIconClick={() => onIconClick(input.NAME)}
+            onIconClick={() => onIconClick(inputName.NAME)}
             extraClass={clsx(s.input_name)}
           />
 
           <TextInput
             type='email'
             control={control}
-            inputName={input.EMAIL}
+            inputName={inputName.EMAIL}
             placeholder={t('form.placeholder.email')}
             icon={'EditIcon'}
-            onIconClick={() => onIconClick(input.EMAIL)}
+            onIconClick={() => onIconClick(inputName.EMAIL)}
             extraClass={clsx(s.input_email)}
           />
 
           <PasswordInput
             control={control}
-            inputName={input.PASSWORD}
+            inputName={inputName.PASSWORD}
             placeholder={t('form.placeholder.password')}
             extraClass={clsx(s.input_password)}
           />
 
           {isDirty && (
             <>
-              <FormSubmitBtn disabled={!isValid || isSubmitting} extraClass={clsx(s.input_submit)}>
-                {isSubmitting ? <ButtonLoader /> : t('profile.form.submit')}
+              <FormSubmitBtn disabled={!isValid || isLoading} extraClass={clsx(s.input_submit)}>
+                {isLoading ? <ButtonLoader /> : t('profile.form.submit')}
               </FormSubmitBtn>
               <Button
                 type='secondary'
@@ -68,14 +69,20 @@ export const Profile = (props) => {
             </>
           )}
 
-          {props.outlet && <ErrorMessage message={props.outlet} extraClass='mt-8' />}
+          {isError && (
+            <p
+              aria-live='assertive'
+              className={clsx(s.error, 'text text_type_main-default text_color_error')}>
+              {error}
+            </p>
+          )}
 
-          {isSubmitSuccessful && !isDirty && (
+          {isSuccess && !isDirty && (
             <p aria-live='assertive' className='text text_color_success'>
               {t('profile.form.sucess')}
             </p>
           )}
-        </fetcher.Form>
+        </form>
       </section>
 
       <p className={clsx(s.comment, 'text text_type_main-default text_color_inactive')}>

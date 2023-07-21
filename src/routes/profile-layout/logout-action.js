@@ -2,7 +2,7 @@ import { redirect } from 'react-router-dom';
 import { PATH, QUERYKEY } from '../../utils/config';
 import { persistor } from '../../app/store';
 import { CookieService } from '../../utils/cookie-service';
-import { removeUser } from '../../features/user';
+import { removeUser } from '../../features/profile';
 import { AuthService } from '../../features/auth';
 import { queryClient } from '../../app/api-setup';
 
