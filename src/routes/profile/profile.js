@@ -7,6 +7,7 @@ import { ButtonLoader } from '../../components/button-loader';
 import { useProfileForm } from './use-profile-form';
 import { TextInput } from '../../components/form/text-input';
 import { PasswordInput } from '../../components/form/password-input';
+import { ErrorMessage } from '../../components/error-message';
 
 export const Profile = () => {
   const { t } = useTranslation();
@@ -69,13 +70,7 @@ export const Profile = () => {
             </>
           )}
 
-          {isError && (
-            <p
-              aria-live='assertive'
-              className={clsx(s.error, 'text text_type_main-default text_color_error')}>
-              {error}
-            </p>
-          )}
+          {isError && <ErrorMessage message={error} extraClass={clsx(s.error)} />}
 
           {isSuccess && !isDirty && (
             <p aria-live='assertive' className='text text_color_success'>

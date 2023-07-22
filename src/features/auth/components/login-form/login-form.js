@@ -5,6 +5,7 @@ import { FormTitle } from '../../../../components/form/form-title';
 import { PasswordInput } from '../../../../components/form/password-input';
 import { useLoginForm } from './use-login-form';
 import { TextInput } from '../../../../components/form/text-input';
+import { ErrorMessage } from '../../../../components/error-message';
 
 export const LoginForm = ({ redirectTo }) => {
   const { t } = useTranslation();
@@ -31,11 +32,7 @@ export const LoginForm = ({ redirectTo }) => {
         placeholder={t('form.placeholder.password')}
       />
 
-      {isError && (
-        <p aria-live='assertive' className='text text_type_main-default text_color_error'>
-          {error}
-        </p>
-      )}
+      {isError && <ErrorMessage message={error} />}
 
       <FormSubmitBtn disabled={!isDirty || !isValid || isLoading}>
         {isLoading ? <ButtonLoader /> : t('login.form.submit')}
