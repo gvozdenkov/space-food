@@ -89,9 +89,6 @@ export const router = createBrowserRouter([
         path: PATH.REGISTER,
         lazy: async () => ({
           Component: (await import('../routes/register')).Register,
-          action: (await import('../routes/register/register-action')).registerAction(
-            store.dispatch,
-          ),
         }),
       },
       {
