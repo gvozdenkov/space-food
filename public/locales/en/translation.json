@@ -49,6 +49,7 @@
   "register.form.alreadyRegister": "Already registered?",
   "register.form.login.link": "Login",
   "register.form.submit": "Sign up",
+  "register.form.error": "Registration error. Please try later",
   "forgot-password.form.title": "Password recovery",
   "forgot-form.placeholder.password": "Enter e-mail",
   "forgot-password.remember.password": "Remembered the password?",

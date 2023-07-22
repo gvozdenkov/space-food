@@ -49,6 +49,7 @@
   "register.form.alreadyRegister": "Уже зарегистрированы?",
   "register.form.login.link": "Войти",
   "register.form.submit": "Зарегистрироваться",
+  "register.form.error": "Ошибка регистрации. Попробуйте позднее",
   "forgot-password.form.title": "Восстановление пароля",
   "forgot-form.placeholder.password": "Укажите e-mail",
   "forgot-password.remember.password": "Вспомнили пароль?",
