@@ -89,5 +89,6 @@
   "orderFeed.doneTitle": "Ready:",
   "orderFeed.pendingTitle": "Cooking:",
   "orderFeed.totalTitle": "Completed for all time:",
-  "orderFeed.totalTodayTitle": "Completed today:"
+  "orderFeed.totalTodayTitle": "Completed today:",
+  "orderFeed.empty": "You haven't ordered anything yet"
 }

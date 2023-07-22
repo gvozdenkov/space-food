@@ -89,5 +89,6 @@
   "orderFeed.doneTitle": "Готовы:",
   "orderFeed.pendingTitle": "В работе:",
   "orderFeed.totalTitle": "Выполнено за все время:",
-  "orderFeed.totalTodayTitle": "Выполнено за сегодня:"
+  "orderFeed.totalTodayTitle": "Выполнено за сегодня:",
+  "orderFeed.empty": "Вы ещё ничего не заказывали"
 }

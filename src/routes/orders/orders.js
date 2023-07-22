@@ -15,20 +15,32 @@ export const Orders = () => {
 
   const { orders } = useFeed({ url, useToken: true, querykeys, query: ordersQuery });
 
+  const OrdersList = () => {
+    return (
+      <ul className={clsx(s.orderList, 'customScroll')}>
+        {orders?.map((order, index) => {
+          return (
+            <li key={index} className={clsx(s.orderItem, 'mb-6 pr-2')}>
+              <Link to={`${order.number}`} state={{ from: location }} className='reset-link'>
+                <OrderCard {...order} />
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
+
+  const isOrderListEmpty = orders.length === 0;
+
   return (
     <>
-      <section className={clsx(s.orders)}>
-        <ul className={clsx(s.orderList, 'customScroll')}>
-          {orders?.map((order, index) => {
-            return (
-              <li key={index} className={clsx(s.orderItem, 'mb-6 pr-2')}>
-                <Link to={`${order.number}`} state={{ from: location }} className='reset-link'>
-                  <OrderCard {...order} />
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+      <section className={clsx(s.orders, { [s.orders_empty]: isOrderListEmpty })}>
+        {isOrderListEmpty ? (
+          <p className='text text_color_inactive text_type_main-medium'>{t('orderFeed.empty')}</p>
+        ) : (
+          <OrdersList />
+        )}
       </section>
 
       <p className={clsx(s.comment, 'text text_type_main-default text_color_inactive')}>
