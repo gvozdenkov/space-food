@@ -1,24 +1,25 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { QUERYKEY } from '../../../utils/config';
-import { api } from '../../../app/api-setup';
+import { AuthService } from './auth-service';
+import { CookieService } from '../../../utils/cookie-service';
+import { useNavigate } from 'react-router-dom';
 
-export const logInMutation = async ({ email, password }) => {
-  const res = await api.post('/auth/login', {
-    email,
-    password,
-  });
-
-  return res.data;
-};
-
-export const useLogInMutation = () => {
+export const useLogInMutation = ({ redirectTo }) => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   return useMutation({
     mutationKey: [QUERYKEY.USER],
-    mutationFn: logInMutation,
-    onSuccess: () => {
+    mutationFn: AuthService.login,
+    onSuccess: ({ accessToken: token, refreshToken }) => {
+      const accessToken = token.split(' ')[1];
+
+      CookieService.setAccessToken(accessToken);
+      CookieService.setRefreshToken(refreshToken);
+
       queryClient.invalidateQueries({ queryKey: [QUERYKEY.USER] });
+
+      navigate(redirectTo);
     },
   });
 };

@@ -5,7 +5,6 @@ import { store } from './store';
 import { GlobalError } from '../components/global-error';
 import { RootLayout } from '../routes/root-layout/root-layout';
 import { ingredientsLoader } from '../routes/root-layout/ingredients-loader';
-import { userLoader } from '../routes/profile-layout/user-loader';
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +17,6 @@ export const router = createBrowserRouter([
         path: PATH.HOME,
         lazy: async () => ({
           Component: (await import('../routes/home')).Home,
-          action: (await import('../routes/home/home-action')).makeOrderAction(store.dispatch),
         }),
         children: [
           {
@@ -43,8 +41,8 @@ export const router = createBrowserRouter([
           action: (await import('../routes/profile-layout/logout-action')).logoutAction(
             store.dispatch,
           ),
+          loader: (await import('../routes/profile-layout/user-loader')).userLoader(queryClient),
         }),
-        loader: userLoader(queryClient),
         children: [
           {
             children: [
@@ -95,18 +93,12 @@ export const router = createBrowserRouter([
         path: PATH.FORGOT_PASSWORD,
         lazy: async () => ({
           Component: (await import('../routes/forgot-password')).ForgotPassword,
-          action: (
-            await import('../routes/forgot-password/forgot-password-action')
-          ).forgotPasswordAction(),
         }),
       },
       {
         path: PATH.RESET_PASSWORD,
         lazy: async () => ({
           Component: (await import('../routes/reset-password')).ResetPassword,
-          action: (
-            await import('../routes/reset-password/reset-password-action')
-          ).resetPasswordAction(),
           loader: (
             await import('../routes/reset-password/reset-password-loader')
           ).resetPasswordLoader(),

@@ -59,17 +59,17 @@ export const COOKIE = {
 
 export const menuItems = [
   {
-    title: 'nav.item.home',
+    title: 'header.menu.constructor',
     icon: 'burger',
     url: PATH.HOME,
   },
   {
-    title: 'nav.item.orderList',
+    title: 'header.menu.feed',
     icon: 'list',
     url: PATH.FEED,
   },
   {
-    title: 'nav.item.profile',
+    title: 'header.menu.profile',
     icon: 'profile',
     url: PATH.PROFILE.ROOT,
   },
@@ -125,9 +125,9 @@ export const orderStatusIds = {
 };
 
 export const orderStatusTitle = {
-  [orderStatusIds.PENDING]: 'order.status.pending',
-  [orderStatusIds.CANCELED]: 'order.status.canceled',
-  [orderStatusIds.DONE]: 'order.status.done',
+  [orderStatusIds.PENDING]: 'feed.order.status.pending',
+  [orderStatusIds.CANCELED]: 'feed.order.status.canceled',
+  [orderStatusIds.DONE]: 'feed.order.status.done',
 };
 
 export const showMaximumOrders = 10;

@@ -1,38 +1,57 @@
 import { useTranslation } from 'react-i18next';
 import { object, string } from 'yup';
 import { useReactHookForm } from '../../../../components/form/hooks/use-react-hook-form';
+import { useForgotPasswordMutation } from '../../services/forgot-password-mutation';
+import { useCallback } from 'react';
 
-export const useForgotForm = () => {
+export const useForgotPasswordForm = () => {
   const { t } = useTranslation();
 
-  const input = {
+  const inputName = {
     EMAIL: 'email',
   };
 
   const defaultValues = {
-    [input.EMAIL]: '',
+    [inputName.EMAIL]: '',
   };
 
   const validationSchema = object({
-    [input.EMAIL]: string()
-      .email(t('form.errors.email.incorrect'))
-      .required(t('form.errors.input.required')),
+    [inputName.EMAIL]: string()
+      .email(t('form.input.email.error.incorrect'))
+      .required(t('form.input.common.error.required')),
   });
 
-  const { form, isSubmitting } = useReactHookForm({
+  const { form } = useReactHookForm({
     defaultValues,
     validationSchema,
   });
 
   // form - object from react-hook-form
-  const { formState, control } = form;
+  const { formState, control, handleSubmit } = form;
   const { isDirty, isValid } = formState;
+
+  // ============ Mutation ===============
+
+  const { mutate, error: mutationError, isError, isLoading } = useForgotPasswordMutation();
+
+  const error = mutationError?.response?.data?.message ?? t('forgot.error.forgot');
+
+  const onSubmit = useCallback(
+    () =>
+      handleSubmit((data) => {
+        mutate(data);
+      }),
+    [handleSubmit, mutate],
+  );
 
   return {
     control,
     isDirty,
     isValid,
-    input,
-    isSubmitting,
+    inputName,
+    onSubmit,
+    isLoading,
+    isError,
+    error,
   };
 };

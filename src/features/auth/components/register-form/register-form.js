@@ -20,26 +20,26 @@ export const RegisterForm = () => {
       <TextInput
         control={control}
         inputName={inputName.NAME}
-        placeholder={t('form.placeholder.name')}
+        placeholder={t('form.input.name.placeholder')}
       />
 
       <TextInput
         type='email'
         control={control}
         inputName={inputName.EMAIL}
-        placeholder={t('form.placeholder.email')}
+        placeholder={t('form.input.email.placeholder')}
       />
 
       <PasswordInput
         control={control}
         inputName={inputName.PASSWORD}
-        placeholder={t('form.placeholder.password')}
+        placeholder={t('form.input.password.placeholder')}
       />
 
       {isError && <ErrorMessage message={error} />}
 
       <FormSubmitBtn disabled={!isDirty || !isValid || isLoading}>
-        {isLoading ? <ButtonLoader /> : t('register.form.submit')}
+        {isLoading ? <ButtonLoader /> : t('register.form.button.submit')}
       </FormSubmitBtn>
     </form>
   );

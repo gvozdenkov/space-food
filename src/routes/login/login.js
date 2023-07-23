@@ -5,7 +5,7 @@ import { LoginForm, OnlyUnAuth } from '../../features/auth';
 import { useLocation } from 'react-router-dom';
 import { FormView } from '../../components/form/form-view';
 
-export const Login = (props) => {
+export const Login = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const redirectAfterLogin = location?.state?.from?.pathname || PATH.HOME;
@@ -16,14 +16,14 @@ export const Login = (props) => {
         <LoginForm redirectTo={redirectAfterLogin} />
 
         <TextWithLink
-          text={t('login.form.new.register')}
-          linkText={t('login.form.new.register.link')}
+          text={t('login.register.text')}
+          linkText={t('login.register.link')}
           href={PATH.REGISTER}
           extraClass='mt-20'
         />
         <TextWithLink
-          text={t('login.form.forgot.password')}
-          linkText={t('login.form.forgot.password.link')}
+          text={t('login.forgot.text')}
+          linkText={t('login.forgot.link')}
           href={PATH.FORGOT_PASSWORD}
           extraClass='mt-4'
         />

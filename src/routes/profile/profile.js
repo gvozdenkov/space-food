@@ -32,7 +32,7 @@ export const Profile = () => {
           <TextInput
             control={control}
             inputName={inputName.NAME}
-            placeholder={t('form.placeholder.name')}
+            placeholder={t('form.input.name.placeholder')}
             icon={'EditIcon'}
             onIconClick={() => onIconClick(inputName.NAME)}
             extraClass={clsx(s.input_name)}
@@ -42,7 +42,7 @@ export const Profile = () => {
             type='email'
             control={control}
             inputName={inputName.EMAIL}
-            placeholder={t('form.placeholder.email')}
+            placeholder={t('form.input.email.placeholder')}
             icon={'EditIcon'}
             onIconClick={() => onIconClick(inputName.EMAIL)}
             extraClass={clsx(s.input_email)}
@@ -51,21 +51,21 @@ export const Profile = () => {
           <PasswordInput
             control={control}
             inputName={inputName.PASSWORD}
-            placeholder={t('form.placeholder.password')}
+            placeholder={t('form.input.password.placeholder')}
             extraClass={clsx(s.input_password)}
           />
 
           {isDirty && (
             <>
               <FormSubmitBtn disabled={!isValid || isLoading} extraClass={clsx(s.input_submit)}>
-                {isLoading ? <ButtonLoader /> : t('profile.form.submit')}
+                {isLoading ? <ButtonLoader /> : t('profile.form.button.submit')}
               </FormSubmitBtn>
               <Button
                 type='secondary'
                 htmlType='reset'
                 onClick={() => reset()}
                 extraClass={clsx(s.input_cancel)}>
-                {t('profile.form.cancel')}
+                {t('profile.form.button.cancel')}
               </Button>
             </>
           )}

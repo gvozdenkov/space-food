@@ -3,9 +3,6 @@ import { object, string } from 'yup';
 import { useReactHookForm } from '../../../../components/form/hooks/use-react-hook-form';
 import { useRegisterMutation } from '../../services/register-mutation';
 import { useCallback } from 'react';
-import { CookieService } from '../../../../utils/cookie-service';
-import { Navigate } from 'react-router-dom';
-import { PATH } from '../../../../utils/config';
 
 export const useRegisterForm = () => {
   const { t } = useTranslation();
@@ -26,17 +23,22 @@ export const useRegisterForm = () => {
     [inputName.NAME]: string()
       .min(
         2,
-        t('form.errors.name.min', {
+        t('form.input.name.error.minLength', {
           length: 2,
         }),
       )
-      .required(t('form.errors.input.required')),
+      .required(t('form.input.common.error.required')),
     [inputName.EMAIL]: string()
-      .email(t('form.errors.email.incorrect'))
-      .required(t('form.errors.input.required')),
+      .email(t('form.input.email.error.incorrect'))
+      .required(t('form.input.common.error.required')),
     [inputName.PASSWORD]: string()
-      .min(3, t('form.errors.password.min'))
-      .required(t('form.errors.input.required')),
+      .min(
+        4,
+        t('form.input.password.error.minLength', {
+          length: 4,
+        }),
+      )
+      .required(t('form.input.common.error.required')),
   });
 
   const { form } = useReactHookForm({
@@ -55,21 +57,12 @@ export const useRegisterForm = () => {
   const onSubmit = useCallback(
     () =>
       handleSubmit((data) => {
-        mutate(data, {
-          onSuccess: ({ accessToken: token, refreshToken }) => {
-            const accessToken = token.split(' ')[1];
-
-            CookieService.setAccessToken(accessToken);
-            CookieService.setRefreshToken(refreshToken);
-
-            return <Navigate to={PATH.HOME} replace />;
-          },
-        });
+        mutate(data);
       }),
     [handleSubmit, mutate],
   );
 
-  const error = mutationError?.response?.data?.message ?? t('register.form.error');
+  const error = mutationError?.response?.data?.message ?? t('register.error.register');
 
   return {
     control,

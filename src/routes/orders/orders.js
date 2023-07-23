@@ -37,7 +37,9 @@ export const Orders = () => {
     <>
       <section className={clsx(s.orders, { [s.orders_empty]: isOrderListEmpty })}>
         {isOrderListEmpty ? (
-          <p className='text text_color_inactive text_type_main-medium'>{t('orderFeed.empty')}</p>
+          <p className='text text_color_inactive text_type_main-medium'>
+            {t('profile.orders.empty')}
+          </p>
         ) : (
           <OrdersList />
         )}

@@ -14,8 +14,8 @@ export const Register = () => {
         <RegisterForm />
 
         <TextWithLink
-          text={t('register.form.alreadyRegister')}
-          linkText={t('register.form.login.link')}
+          text={t('register.login.text')}
+          linkText={t('register.login.link')}
           href={PATH.LOGIN}
           extraClass='mt-20'
         />

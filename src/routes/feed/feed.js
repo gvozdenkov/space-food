@@ -1,8 +1,8 @@
 import clsx from 'clsx';
-import s from './feed.module.scss';
 import { useTranslation } from 'react-i18next';
-import { OrderCard, useFeed } from '../../features/feed';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import s from './feed.module.scss';
+import { OrderCard, useFeed } from '../../features/feed';
 import { QUERYKEY, showMaximumOrders } from '../../utils/config';
 import { orderFeedQuery } from './feed-loader';
 
@@ -34,7 +34,7 @@ export const Feed = () => {
   return (
     <div className={s.orderFeed}>
       <section className={clsx(s.orders)}>
-        <h1 className='text text_type_main-large mt-10 mb-5'>{t('orderFeed.title')}</h1>
+        <h1 className='text text_type_main-large mt-10 mb-5'>{t('feed.title')}</h1>
         <ul className={clsx(s.orderList, 'customScroll')}>
           {orders?.map((order, index) => {
             return (
@@ -49,18 +49,16 @@ export const Feed = () => {
       </section>
 
       <section className={clsx(s.statistics, 'mt-25')}>
-        <h2 className={clsx(s.done, 'text text_type_main-medium')}>{t('orderFeed.doneTitle')}</h2>
+        <h2 className={clsx(s.done, 'text text_type_main-medium')}>{t('feed.doneTitle')}:</h2>
         <OrderList orders={doneOrders} extraClass={clsx(s.doneList, 'text_color_success')} />
-        <h2 className={clsx(s.pending, 'text text_type_main-medium')}>
-          {t('orderFeed.pendingTitle')}
-        </h2>
+        <h2 className={clsx(s.pending, 'text text_type_main-medium')}>{t('feed.pendingTitle')}:</h2>
         <OrderList orders={pendingOrders} extraClass={clsx(s.pendingList, 'text_color_success')} />
         <h2 className={clsx(s.totalTitle, 'text text_type_main-medium')}>
-          {t('orderFeed.totalTitle')}
+          {t('feed.totalTitle')}:
         </h2>
         <span className={clsx(s.total, 'text text_type_digits-large')}>{total}</span>
         <h2 className={clsx(s.totalTodayTitle, 'text text_type_main-medium')}>
-          {t('orderFeed.totalTodayTitle')}
+          {t('feed.totalTodayTitle')}:
         </h2>
         <span className={clsx(s.totalToday, 'text text_type_digits-large')}>{totalToday}</span>
       </section>

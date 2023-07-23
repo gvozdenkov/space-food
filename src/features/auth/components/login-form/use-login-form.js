@@ -1,10 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { object, string } from 'yup';
-import { useReactHookForm } from '../../../../components/form/hooks/use-react-hook-form';
-import { CookieService } from '../../../../utils/cookie-service';
-import { Navigate } from 'react-router-dom';
-import { useLogInMutation } from '../../services/login-mutation';
 import { useCallback } from 'react';
+import { useReactHookForm } from '../../../../components/form/hooks/use-react-hook-form';
+import { useLogInMutation } from '../../services/login-mutation';
 
 export const useLoginForm = ({ redirectTo }) => {
   const { t } = useTranslation();
@@ -21,9 +19,9 @@ export const useLoginForm = ({ redirectTo }) => {
 
   const validationSchema = object({
     [inputName.EMAIL]: string()
-      .email(t('form.errors.email.incorrect'))
-      .required(t('form.errors.input.required')),
-    [inputName.PASSWORD]: string().required(t('form.errors.input.required')),
+      .email(t('form.input.email.error.incorrect'))
+      .required(t('form.input.common.error.required')),
+    [inputName.PASSWORD]: string().required(t('form.input.common.error.required')),
   });
 
   const { form } = useReactHookForm({
@@ -37,25 +35,16 @@ export const useLoginForm = ({ redirectTo }) => {
 
   // ============ Mutation ===============
 
-  const { mutate, error: mutationError, isError, isLoading } = useLogInMutation();
+  const { mutate, error: mutationError, isError, isLoading } = useLogInMutation({ redirectTo });
 
-  const error = mutationError?.response?.data?.message ?? t('error-page.401.text');
+  const error = mutationError?.response?.data?.message ?? t('login.error.login');
 
   const onSubmit = useCallback(
     () =>
       handleSubmit((data) => {
-        mutate(data, {
-          onSuccess: ({ accessToken: token, refreshToken }) => {
-            const accessToken = token.split(' ')[1];
-
-            CookieService.setAccessToken(accessToken);
-            CookieService.setRefreshToken(refreshToken);
-
-            return <Navigate to={redirectTo} replace />;
-          },
-        });
+        mutate(data);
       }),
-    [handleSubmit, mutate, redirectTo],
+    [handleSubmit, mutate],
   );
 
   return {

@@ -1,23 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { authApi } from '../../../app/api-setup';
 import { QUERYKEY } from '../../../utils/config';
-
-export const editUserMutation = async ({ name, email, password }) => {
-  const res = await authApi.patch('/user', {
-    name,
-    email,
-    password,
-  });
-
-  return res.data;
-};
+import { UserService } from './user-service';
 
 export const useEditUserMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationKey: [QUERYKEY.USER],
-    mutationFn: editUserMutation,
+    mutationFn: UserService.editUser,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERYKEY.USER] });
     },

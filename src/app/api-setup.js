@@ -1,9 +1,7 @@
 import { QueryClient } from '@tanstack/react-query';
 import axios from 'axios';
-import { store } from './store';
 import { CookieService } from '../utils/cookie-service';
 import { AuthService } from '../features/auth';
-import { removeUser } from '../features/profile';
 
 const baseURL = 'https://norma.nomoreparties.space/api';
 const headers = {
@@ -58,7 +56,6 @@ const createApi = ({ baseURL, headers, withReAuth = false }) => {
             });
           } catch (err) {
             // refresh token faild. Logout user
-            store.dispatch(removeUser());
             CookieService.removeTokens();
           }
         }

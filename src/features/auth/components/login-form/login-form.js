@@ -23,19 +23,19 @@ export const LoginForm = ({ redirectTo }) => {
         type='email'
         control={control}
         inputName={inputName.EMAIL}
-        placeholder={t('form.placeholder.email')}
+        placeholder={t('form.input.email.placeholder')}
       />
 
       <PasswordInput
         control={control}
         inputName={inputName.PASSWORD}
-        placeholder={t('form.placeholder.password')}
+        placeholder={t('form.input.password.placeholder')}
       />
 
       {isError && <ErrorMessage message={error} />}
 
       <FormSubmitBtn disabled={!isDirty || !isValid || isLoading}>
-        {isLoading ? <ButtonLoader /> : t('login.form.submit')}
+        {isLoading ? <ButtonLoader /> : t('login.form.button.submit')}
       </FormSubmitBtn>
     </form>
   );

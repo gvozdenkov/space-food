@@ -1,30 +1,33 @@
 import { FormSubmitBtn } from '../../../../components/form/form-submit-btn';
 import { ButtonLoader } from '../../../../components/button-loader';
-import { Form } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FormTitle } from '../../../../components/form/form-title';
-import { useForgotForm } from './use-forgot-password-form';
+import { useForgotPasswordForm } from './use-forgot-password-form';
 import { TextInput } from '../../../../components/form/text-input';
+import { ErrorMessage } from '../../../../components/error-message';
 
 export const ForgotPasswordForm = () => {
   const { t } = useTranslation();
 
-  const { control, isDirty, isValid, input, isSubmitting } = useForgotForm();
+  const { control, isDirty, isValid, inputName, onSubmit, isLoading, isError, error } =
+    useForgotPasswordForm();
 
   return (
-    <Form method='POST' className='form'>
-      <FormTitle>{t('forgot-password.form.title')}</FormTitle>
+    <form onSubmit={onSubmit()} className='form'>
+      <FormTitle>{t('forgot.form.title')}</FormTitle>
 
       <TextInput
         type='email'
         control={control}
-        inputName={input.EMAIL}
-        placeholder={t('form.placeholder.email')}
+        inputName={inputName.EMAIL}
+        placeholder={t('form.input.email.placeholder')}
       />
 
-      <FormSubmitBtn disabled={!isDirty || !isValid || isSubmitting}>
-        {isSubmitting ? <ButtonLoader /> : t('forgot-password.submit')}
+      {isError && <ErrorMessage message={error} />}
+
+      <FormSubmitBtn disabled={!isDirty || !isValid || isLoading}>
+        {isLoading ? <ButtonLoader /> : t('forgot.form.button.submit')}
       </FormSubmitBtn>
-    </Form>
+    </form>
   );
 };

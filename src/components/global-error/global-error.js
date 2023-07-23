@@ -19,25 +19,19 @@ export const GlobalError = () => {
 
   switch (status) {
     case 404: {
-      errorTitle = t('error-page.404.title');
-      errorText = t('error-page.404.text');
-      break;
-    }
-
-    case 401: {
-      errorTitle = t('error-page.401.title');
-      errorText = t('error-page.401.text');
+      errorTitle = t('errorElement.error.404.title');
+      errorText = t('errorElement.error.404.text');
       break;
     }
 
     case 500: {
-      errorTitle = t('error-page.500.title');
-      errorText = t('error-page.500.text');
+      errorTitle = t('errorElement.error.500.title');
+      errorText = t('errorElement.error.500.text');
       break;
     }
     default:
-      errorTitle = t('error-page.common.title');
-      errorText = t('error-page.common.text');
+      errorTitle = t('errorElement.error.common.title');
+      errorText = t('errorElement.error.common.text');
   }
 
   return (
@@ -61,7 +55,7 @@ export const GlobalError = () => {
 
       <Button htmlType='button' extraClass='mt-8'>
         <Link to={PATH.HOME} className={clsx(s.link, 'reset-link text text_type_main-default')}>
-          {t('error-page.back')}
+          {t('errorElement.button.home')}
         </Link>
       </Button>
     </div>

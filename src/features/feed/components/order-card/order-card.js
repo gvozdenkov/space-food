@@ -1,43 +1,32 @@
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 import s from './order-card.module.scss';
-import { useQuery } from '@tanstack/react-query';
-import { ingredientsQuery } from '../../../../routes/root-layout/ingredients-loader';
-import { useMemo } from 'react';
 import { IngredientIcons } from '../ingredient-icons';
 import { Price } from '../../../../components/price';
 import { FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
-import { orderStatusIds, orderStatusTitle } from '../../../../utils/config';
-import { useTranslation } from 'react-i18next';
+import { orderStatusTitle } from '../../../../utils/config';
+import { useOrderCard } from './use-order-card';
 
 export const OrderCard = ({ ingredients: ingredientIds, name, status, number, createdAt }) => {
-  const { data: ingredientsCatalog } = useQuery(ingredientsQuery());
   const { t } = useTranslation();
-
-  const ingredients = useMemo(
-    () => ingredientIds.reduce((arr, id) => [...arr, ingredientsCatalog[id]], []),
-    [ingredientIds, ingredientsCatalog],
-  );
-
-  const price = useMemo(
-    () => ingredients.reduce((sum, item) => (sum += item.price), 0),
-    [ingredients],
-  );
-
-  const isDone = status === orderStatusIds.DONE;
+  const { ingredients, isValid, price, isDone } = useOrderCard({ ingredientIds, status });
 
   return (
-    <article className={clsx(s.card, 'p-6')}>
-      <p className={clsx('text text_type_digits-default', s.number)}>#{number}</p>
-      <h2 className={clsx('text text_type_main-medium', s.title)}>{name}</h2>
-      <p className={clsx('text text_type_main-default', s.status, { [s.status_success]: isDone })}>
-        {t(orderStatusTitle[status])}
-      </p>
-      <IngredientIcons ingredients={ingredients} maxVisible={6} extraClass={s.icons} />
-      <Price amount={price} extraClass={s.price} />
-      <FormattedDate
-        date={new Date(createdAt)}
-        className={clsx(s.date, 'text text_type_main-default  text_color_inactive')}
-      />
-    </article>
+    isValid && (
+      <article className={clsx(s.card, 'p-6')}>
+        <p className={clsx('text text_type_digits-default', s.number)}>#{number}</p>
+        <h2 className={clsx('text text_type_main-medium', s.title)}>{name}</h2>
+        <p
+          className={clsx('text text_type_main-default', s.status, { [s.status_success]: isDone })}>
+          {t(orderStatusTitle[status])}
+        </p>
+        <IngredientIcons ingredients={ingredients} maxVisible={6} extraClass={s.icons} />
+        <Price amount={price} extraClass={s.price} />
+        <FormattedDate
+          date={new Date(createdAt)}
+          className={clsx(s.date, 'text text_type_main-default  text_color_inactive')}
+        />
+      </article>
+    )
   );
 };

@@ -27,24 +27,24 @@ export const useProfileForm = () => {
     [inputName.NAME]: string()
       .min(
         2,
-        t('form.errors.name.min', {
+        t('form.input.name.error.minLength', {
           length: 2,
         }),
       )
-      .required(t('form.errors.input.required')),
+      .required(t('form.input.common.error.required')),
     [inputName.EMAIL]: string()
-      .email(t('form.errors.email.incorrect'))
-      .required(t('form.errors.input.required')),
+      .email(t('form.input.email.error.incorrect'))
+      .required(t('form.input.common.error.required')),
     [inputName.PASSWORD]: string()
       .min(
         4,
-        t('form.errors.password.min', {
+        t('form.input.password.error.minLength', {
           length: 4,
         }),
       )
       .max(
         30,
-        t('form.errors.password.max', {
+        t('form.input.password.error.maxLength', {
           length: 30,
         }),
       )
@@ -76,14 +76,12 @@ export const useProfileForm = () => {
   const onSubmit = useCallback(
     () =>
       handleSubmit((data) => {
-        mutate(data, {
-          onSuccess: () => {},
-        });
+        mutate(data);
       }),
     [handleSubmit, mutate],
   );
 
-  const error = mutationError?.response?.data?.message ?? t('profile.form.error');
+  const error = mutationError?.response?.data?.message ?? t('profile.error.editProfile');
 
   useEffect(() => {
     if (isSuccess) {
