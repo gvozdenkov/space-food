@@ -1,9 +1,10 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { CookieService } from '../utils/cookie-service';
 
 export const useWebSocket = ({ url, useToken = false, querykeys }) => {
   const queryClient = useQueryClient();
+  const [status, setStatus] = useState('loading');
 
   useEffect(() => {
     const createWebSocket = (token) => {
@@ -16,6 +17,7 @@ export const useWebSocket = ({ url, useToken = false, querykeys }) => {
       websocket.onmessage = (evt) => {
         const data = JSON.parse(evt.data);
         queryClient.setQueryData(querykeys, data);
+        setStatus('idle');
       };
 
       return websocket;
@@ -28,5 +30,10 @@ export const useWebSocket = ({ url, useToken = false, querykeys }) => {
     return () => {
       websocket.close();
     };
-  }, [queryClient, url, querykeys, useToken]);
+    // eslint-disable-next-line
+  }, []);
+
+  const isLoading = status === 'loading';
+
+  return { isLoading };
 };

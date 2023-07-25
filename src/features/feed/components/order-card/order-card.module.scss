@@ -3,6 +3,7 @@
   border-radius: var(--border-radius);
   max-width: 844px;
   width: 100%;
+  padding: 24px;
   box-sizing: border-box;
   display: grid;
   grid-template:
@@ -53,8 +54,4 @@
 
 .iconList {
   list-style-type: none;
-}
-
-.test {
-  padding: 20px;
 }

@@ -4,7 +4,8 @@ import { useMemo } from 'react';
 import { orderStatusIds } from '../../../utils/config';
 
 export const useFeed = ({ url, useToken = false, querykeys, query }) => {
-  useWebSocket({ url, useToken, querykeys });
+  const { isLoading } = useWebSocket({ url, useToken, querykeys });
+
   const { data: ordersData } = useQuery(query());
   const { orders, total, totalToday } = ordersData;
 
@@ -17,5 +18,5 @@ export const useFeed = ({ url, useToken = false, querykeys, query }) => {
     [orders],
   );
 
-  return { orders, total, totalToday, doneOrders, pendingOrders };
+  return { orders, total, totalToday, doneOrders, pendingOrders, isLoading };
 };

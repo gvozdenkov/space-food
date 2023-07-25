@@ -1,5 +1,11 @@
 $topPadding: 40px;
 
+.wrapper {
+  max-height: calc(100vh - var(--header-height) - $topPadding);
+  height: 100%;
+  overflow-y: auto;
+}
+
 .orders {
   grid-area: content;
   margin-top: $topPadding;
@@ -19,16 +25,4 @@ $topPadding: 40px;
 
 .comment {
   grid-area: comment;
-}
-
-.orderList {
-  padding: 0;
-  margin: 0;
-
-  max-height: calc(100vh - var(--header-height) - $topPadding);
-  overflow-y: auto;
-}
-
-.orderItem {
-  list-style-type: none;
 }

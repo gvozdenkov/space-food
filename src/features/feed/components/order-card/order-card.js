@@ -13,7 +13,7 @@ export const OrderCard = ({ ingredients: ingredientIds, name, status, number, cr
 
   return (
     isValid && (
-      <article className={clsx(s.card, 'p-6')}>
+      <article className={s.card}>
         <p className={clsx('text text_type_digits-default', s.number)}>#{number}</p>
         <h2 className={clsx('text text_type_main-medium', s.title)}>{name}</h2>
         <p
