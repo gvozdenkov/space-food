@@ -10,7 +10,7 @@ export const BurgerIngredients = () => {
 
   return (
     <section className={clsx(s.burgerIngridients, 'pt-10')}>
-      <h1 className='text text_type_main-large'>{t('constructor.title')}</h1>
+      <h1 className='text text_type_main-large'>{t('burgerIngredients.title')}</h1>
       <TabContextProvider>
         <TabList />
         <IngredientsList />

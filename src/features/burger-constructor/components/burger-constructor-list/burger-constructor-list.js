@@ -1,10 +1,10 @@
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 import s from './burger-constructor-list.module.scss';
 import { useBurgerConstructorList } from './hooks/use-burger-constractor-list';
 import { BurgerConstructorSortableList } from './components/burger-constructor-sortable-list/burger-constructor-sortable-list';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import { EmptyElement } from './components/empty-constructor-element/empty-constructor-element';
-import { useTranslation } from 'react-i18next';
 
 export const BurgerConstructorList = () => {
   const { t } = useTranslation();
@@ -17,7 +17,7 @@ export const BurgerConstructorList = () => {
         {isBunAdded ? (
           <ConstructorElement {...topBun} />
         ) : (
-          <EmptyElement type='top' text={t('constructor.bun.empty')} />
+          <EmptyElement type='top' text={t('burgerConstructor.burger.emptyBun')} />
         )}
       </li>
 
@@ -28,7 +28,7 @@ export const BurgerConstructorList = () => {
         {isIngredientsAdded ? (
           <BurgerConstructorSortableList />
         ) : (
-          <EmptyElement extraClass='ml-8' text={t('constructor.middle.empty')} />
+          <EmptyElement extraClass='ml-8' text={t('burgerConstructor.burger.emptyMain')} />
         )}
       </li>
 
@@ -36,7 +36,7 @@ export const BurgerConstructorList = () => {
         {isBunAdded ? (
           <ConstructorElement {...bottomBun} />
         ) : (
-          <EmptyElement type='bottom' text={t('constructor.bun.empty')} />
+          <EmptyElement type='bottom' text={t('burgerConstructor.burger.emptyBun')} />
         )}
       </li>
     </ul>

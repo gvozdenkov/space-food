@@ -1,5 +1,4 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { userReducer } from '../features/user';
 import localforage from 'localforage';
 import {
   persistReducer,
@@ -19,7 +18,6 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  user: userReducer,
   order: orderReducer,
 });
 

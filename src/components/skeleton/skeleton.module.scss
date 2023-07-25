@@ -1,0 +1,61 @@
+.skeleton {
+  background-color: rgb(199, 199, 199);
+  border-radius: 0.25rem;
+}
+
+.skeleton.title {
+  height: 30px;
+}
+
+.skeleton.text {
+  height: 20px;
+}
+
+.skeleton.width-100 {
+  width: 100%;
+}
+
+.skeleton.width-75 {
+  width: 75%;
+}
+
+.skeleton.width-60 {
+  width: 60%;
+}
+
+.skeleton.width-50 {
+  width: 50%;
+}
+
+.skeleton.width-25 {
+  width: 25%;
+}
+
+.skeleton.width-15 {
+  width: 15%;
+}
+
+.skeleton.width-10 {
+  width: 10%;
+}
+
+.skeleton.width-5 {
+  width: 5%;
+}
+
+.skeleton.profile-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+/* animation */
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

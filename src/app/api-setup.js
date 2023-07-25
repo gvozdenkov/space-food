@@ -1,74 +1,74 @@
 import { QueryClient } from '@tanstack/react-query';
 import axios from 'axios';
-import { store } from './store';
 import { CookieService } from '../utils/cookie-service';
 import { AuthService } from '../features/auth';
-import { removeUser } from '../features/user';
 
 const baseURL = 'https://norma.nomoreparties.space/api';
 const headers = {
   'Content-Type': 'application/json',
 };
 
-export const api = axios.create({
-  baseURL,
-  headers,
-});
+const createApi = ({ baseURL, headers, withReAuth = false }) => {
+  const api = axios.create({
+    baseURL,
+    headers,
+  });
 
-export const authApi = axios.create({
-  baseURL: `${baseURL}/auth`,
-  headers,
-});
+  if (withReAuth) {
+    api.interceptors.request.use(
+      (config) => {
+        const accessToken = CookieService.getAccessToken();
 
-authApi.interceptors.request.use(
-  (config) => {
-    const accessToken = CookieService.getAccessToken();
+        if (accessToken) {
+          config.headers['Authorization'] = `Bearer ${accessToken}`;
+        }
 
-    if (accessToken) {
-      config.headers['Authorization'] = `Bearer ${accessToken}`;
-    }
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      },
+    );
 
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  },
-);
+    api.interceptors.response.use(
+      (res) => res,
+      async (err) => {
+        const originalRequest = err?.config;
+        const errMessage = err.response?.data?.message;
 
-authApi.interceptors.response.use(
-  (res) => res,
-  async (err) => {
-    const originalRequest = err?.config;
-    const errMessage = err.response?.data?.message;
-    console.log('errMessage:', errMessage);
+        // Access Token was expired
+        if (errMessage?.includes('should be authorised') && !originalRequest.retry) {
+          try {
+            originalRequest.retry = true;
+            // refresh accessToken
+            const rs = await AuthService.refreshAccessToken(CookieService.getRefreshToken());
 
-    // Access Token was expired
-    if (errMessage?.includes('should be authorised') && !originalRequest.retry) {
-      try {
-        originalRequest.retry = true;
-        console.log('try refresh token');
-        const rs = await AuthService.refreshAccessToken(CookieService.getRefreshToken());
+            const { accessToken: token, refreshToken } = rs.data;
+            const accessToken = token.split(' ')[1];
 
-        const { accessToken: token, refreshToken } = rs.data;
-        const accessToken = token.split(' ')[1];
-        console.log('refresh success, new successToken:', accessToken);
+            CookieService.setAccessToken(accessToken);
+            CookieService.setRefreshToken(refreshToken);
 
-        CookieService.setAccessToken(accessToken);
-        CookieService.setRefreshToken(refreshToken);
+            return api({
+              ...originalRequest,
+              headers: { ...originalRequest.headers, Authorization: `Bearer ${accessToken}` },
+              retry: true,
+            });
+          } catch (err) {
+            // refresh token faild. Logout user
+            CookieService.removeTokens();
+          }
+        }
+      },
+    );
+  }
 
-        return authApi({
-          ...originalRequest,
-          headers: { ...originalRequest.headers, Authorization: `Bearer ${accessToken}` },
-          retry: true,
-        });
-      } catch (err) {
-        console.log('refresh token invalid - logout user');
-        store.dispatch(removeUser());
-        CookieService.removeTokens();
-      }
-    }
-  },
-);
+  return api;
+};
+
+export const api = createApi({ baseURL, headers });
+export const authApi = createApi({ baseURL: `${baseURL}/auth`, headers, withReAuth: true });
+export const createOrderApi = createApi({ baseURL, headers, withReAuth: true });
 
 export const queryClient = new QueryClient({
   defaultOptions: {

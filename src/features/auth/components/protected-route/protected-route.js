@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { userQuery } from '../../../../routes/profile-layout/user-loader';
 import { PATH } from '../../../../utils/config';
 
-const ProtectedRoute = ({ onlyUnAuth = false, component }) => {
+const ProtectedRoute = ({ onlyUnAuth = false, children }) => {
   const { data: user } = useQuery(userQuery());
   const location = useLocation();
 
@@ -18,11 +18,11 @@ const ProtectedRoute = ({ onlyUnAuth = false, component }) => {
     return <Navigate to={from} />;
   }
 
-  return component;
+  return children;
 };
 
 export const OnlyAuth = ProtectedRoute;
 
-export const OnlyUnAuth = ({ component }) => (
-  <ProtectedRoute onlyUnAuth={true} component={component} />
+export const OnlyUnAuth = ({ children }) => (
+  <ProtectedRoute onlyUnAuth={true}>{children}</ProtectedRoute>
 );

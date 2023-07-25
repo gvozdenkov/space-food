@@ -1,78 +1,216 @@
 {
-  "loading.title": "Загрузка",
-  "loading.subTitle": "Спешим к вам с самого края вселенной!",
-  "popup.error.ingrdientsLoading.title": "Ошибка загрузки",
-  "popup.error.ingrdientsLoading.message": "Ой, что-то пошло не так и все ингредиенты засосало в чёрную дыру. Уже возвращаем!",
-  "popup.error.orderCreate.message": "Ой, что-то пошло не так и заказ засосало в чёрную дыру. Пытаемся вернуть :(",
-  "nav.item.home": "Конструктор",
-  "nav.item.orderList": "Лента заказов",
-  "nav.item.profile": "Личный кабинет",
-  "nav.item.profile.profile": "Профиль",
-  "nav.item.profile.history": "История заказов",
-  "nav.item.profile.logout": "Выход",
-  "constructor.title": "Собери бургер",
-  "constructor.top.intredient": "верх",
-  "constructor.bottom.intredient": "низ",
-  "constructor.bun.empty": "Добавь ароматную булочку",
-  "constructor.middle.empty": "Добавь вкуснейшую начинку",
-  "constructor.createOrder": "Оформить заказ",
-  "constructor.createOrder.loading": "Оформление заказа",
-  "constructor.emptyIngredint.text": "Добавьте ингредиенты, так будет вкуснее",
-  "constructor.createOrder.modal.loading.text": "Заказ улетает на край космоса",
-  "checkout.popup.title": "идентификатор заказа",
-  "checkout.popup.text1": "Ваш заказ начали готовить",
-  "checkout.popup.text2": "Дождитесь готовности на орбитальной станции",
-  "ingredientCard.addButton": "Добавить",
-  "ingredients.detail.popup.title": "Детали ингредиента",
-  "ingredients.detail.popup.calories": "Кал, ккал",
-  "ingredients.detail.popup.proteins": "Белки, г",
-  "ingredients.detail.popup.fat": "Жиры, г",
-  "ingredients.detail.popup.carbohydrates": "Углеводы, г",
-  "ingredient.type.bun": "Булки",
-  "ingredient.type.main": "Начинки",
-  "ingredient.type.sauce": "Соусы",
-  "form.placeholder.email": "Email",
-  "form.placeholder.password": "Пароль",
-  "form.placeholder.name": "Имя",
-  "form.errors.input.required": "Это обязательное поле",
-  "form.errors.email.incorrect": "Введите электронную почту",
-  "form.errors.name.min": "Минимальная длинна {{length}} символа",
-  "form.errors.password.min": "Минимальная длинна {{length}}",
-  "form.errors.password.max": "Максимальная длинна {{length}}",
-  "login.form.title": "Вход",
-  "login.form.submit": "Войти",
-  "login.form.new.register": "Вы — новый пользователь?",
-  "login.form.new.register.link": "Зарегистрироваться",
-  "login.form.forgot.password": "Забыли пароль?",
-  "login.form.forgot.password.link": "Восстановить пароль",
-  "register.form.title": "Регистрация",
-  "register.form.alreadyRegister": "Уже зарегистрированы?",
-  "register.form.login.link": "Войти",
-  "register.form.submit": "Зарегистрироваться",
-  "forgot-password.form.title": "Восстановление пароля",
-  "forgot-form.placeholder.password": "Укажите e-mail",
-  "forgot-password.remember.password": "Вспомнили пароль?",
-  "forgot-password.remember.password.link": "Войти",
-  "forgot-password.submit": "Восстановить",
-  "forgot-password.submit.loading": "Восстанавливаем",
-  "reset-password.form.title": "Восстановление пароля",
-  "reset-form.placeholder.password": "Введите новый пароль",
-  "reset-form.placeholder.token": "Введите код из письма",
-  "reset-form.submit": "Сохранить",
-  "reset-form.submit.loading": "Сохраняем",
-  "error-page.common.title": "Ой, что-то пошло не так:(",
-  "error-page.common.text": "Всё засосало в чёрную дыру, уже летим чинить :(",
-  "error-page.404.title": "Ой, тут ничего нет :(",
-  "error-page.404.text": "Произошла ошибка в навигации и вы попали в неизвестный сектор галактики",
-  "error-page.back": "Собрать бургер",
-  "profile.menu.profile": "Профиль",
-  "profile.menu.orders": "История заказов",
-  "profile.menu.logout": "Выход",
-  "profile.form.submit": "Сохранить",
-  "profile.form.cancel": "Отмена",
-  "profile.form.sucess": "Профиль успешно обновлён",
-  "profile.comment": "В этом разделе вы можете изменить свои персональные данные",
-  "profile.orders.comment": "В этом разделе вы можете просмотреть свою историю заказов",
-  "network.error.noStatus": "Сервер не отвечает :(",
-  "network.error.500": "Ошибка сервера :("
+  "form": {
+    "input": {
+      "name": {
+        "placeholder": "Имя",
+        "error": {
+          "minLength": "Минимальная длинна {{length}} символа",
+          "maxLength": "Максимальная длинна {{length}} символа"
+        }
+      },
+      "email": {
+        "placeholder": "Email",
+        "error": {
+          "incorrect": "Введите электронную почту"
+        }
+      },
+      "password": {
+        "placeholder": "Password",
+        "error": {
+          "incorrect": "Введите электронную почту",
+          "minLength": "Минимальная длинна {{length}} символа"
+        }
+      },
+      "common": {
+        "error": {
+          "required": "Это обязательное поле"
+        }
+      }
+    }
+  },
+
+  "errorElement": {
+    "error": {
+      "404": {
+        "title": "Ой, тут ничего нет",
+        "text": "Произошла ошибка в навигации и вы попали в неизвестный сектор галактики"
+      },
+      "500": {
+        "title": "Сервер не отвечает",
+        "text": "Заходи попозже, может починят"
+      },
+      "common": {
+        "title": "Ой, что-то пошло не так",
+        "text": "Всё засосало в чёрную дыру, уже летим чинить"
+      }
+    },
+    "button": {
+      "home": "Собрать бургер"
+    }
+  },
+
+  "ingredient": {
+    "type": {
+      "bun": "Белки",
+      "main": "Начинки",
+      "sauce": "Соусы"
+    },
+    "detail": {
+      "calories": "Кал, ккал",
+      "proteins": "Белки, г",
+      "fat": "Жиры, г",
+      "carbohydrates": "Углеводы, г"
+    }
+  },
+
+  "header": {
+    "menu": {
+      "constructor": "Конструктор",
+      "feed": "Лента заказов",
+      "profile": "Профиль"
+    }
+  },
+
+  "ingredientCard": {
+    "addButton": "Добавить"
+  },
+
+  "burgerIngredients": {
+    "title": "Собери бургер"
+  },
+
+  "burgerConstructor": {
+    "burger": {
+      "emptyBun": "Добавь булочку",
+      "emptyMain": "Добавь начинку",
+      "bunPosition": {
+        "top": "верх",
+        "bottom": "низ"
+      }
+    },
+    "total": {
+      "button": {
+        "submit": "Оформить заказ"
+      }
+    },
+    "error": {
+      "createOrder": "Не получилось оформить заказ"
+    },
+    "createOrderDetails": {
+      "title": "Идентификатор заказа",
+      "text1": "Ваш заказ начали готовить",
+      "text2": "Дождитесь готовности на орбитальной станции"
+    }
+  },
+
+  "profile": {
+    "error": {
+      "editProfile": "Не получилось обновить профиль"
+    },
+    "menu": {
+      "profile": "Профиль",
+      "orders": "История заказов",
+      "logout": "Выход"
+    },
+    "comment": "В этом разделе вы можете изменить свои персональные данные",
+    "form": {
+      "button": {
+        "submit": "Сохранить",
+        "cancel": "Отмена"
+      },
+      "sucess": "Профиль успешно обновлён"
+    },
+    "orders": {
+      "comment": "В этом разделе вы можете просмотреть свою историю заказов"
+    }
+  },
+
+  "feed": {
+    "title": "Лента заказов",
+    "doneTitle": "Готовы",
+    "pendingTitle": "В работе",
+    "totalTitle": "Выполнено за все время",
+    "totalTodayTitle": "Выполнено за сегодня",
+    "empty": "Вы ещё ничего не заказывали",
+    "order": {
+      "status": {
+        "pending": "Готовится",
+        "canceled": "Отменён",
+        "done": "Выполнен"
+      }
+    }
+  },
+
+  "login": {
+    "error": {
+      "login": "Не получилось войти в аккаунт"
+    },
+    "form": {
+      "title": "Вход",
+      "button": {
+        "submit": "Войти"
+      }
+    },
+    "register": {
+      "text": "Вы — новый пользователь?",
+      "link": "Зарегистрироваться"
+    },
+    "forgot": {
+      "text": "Забыли пароль?",
+      "link": "Восстановить пароль"
+    }
+  },
+
+  "register": {
+    "form": {
+      "title": "Регистрация",
+      "button": {
+        "submit": "Зарегистрироваться"
+      }
+    },
+    "error": {
+      "register": "Ошибка регистрации. Попробуйте позднее"
+    },
+    "login": {
+      "text": "Уже зарегистрированы?",
+      "link": "Войти"
+    }
+  },
+
+  "forgot": {
+    "form": {
+      "title": "Восстановление пароля",
+      "button": {
+        "submit": "Восстановить"
+      }
+    },
+    "error": {
+      "forgot": "Не получилось восстановить пароль"
+    },
+    "login": {
+      "text": "Вспомнили пароль?",
+      "link": "Войти"
+    }
+  },
+
+  "reset": {
+    "form": {
+      "title": "Восстановление пароля",
+      "input": {
+        "token": {
+          "placeholder": "Введите код из письма"
+        }
+      },
+      "button": {
+        "submit": "Сохранить"
+      }
+    },
+    "error": {
+      "forgot": "Не получилось восстановить пароль"
+    },
+    "login": {
+      "text": "Вспомнили пароль?",
+      "link": "Войти"
+    }
+  }
 }

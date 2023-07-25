@@ -23,7 +23,6 @@
     "@types/react-query": "^1.2.9",
     "@ya.praktikum/react-developer-burger-ui-components": "^1.14.0",
     "axios": "^1.4.0",
-    "formik": "^2.2.9",
     "framer-motion": "^10.12.4",
     "i18next": "^23.2.7",
     "i18next-browser-languagedetector": "^7.1.0",

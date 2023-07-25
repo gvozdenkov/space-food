@@ -32,16 +32,21 @@ export const PATH = {
   REGISTER: '/register',
   FORGOT_PASSWORD: '/forgot-password',
   RESET_PASSWORD: '/reset-password',
-  PROFILE: '/profile',
-  ORDERS: 'orders',
+  PROFILE: {
+    ROOT: '/profile',
+    ORDERS: 'orders',
+  },
   ORDER: 'order',
-  ORDER_FEED: '/order-feed',
+  FEED: '/feed',
   INGREDIENTS: 'ingredients',
 };
 
 export const QUERYKEY = {
   INGREDIENTS: 'ingredients',
   USER: 'user',
+  PROFILE_ORDERS: 'profile-orders',
+  FEED: 'feed',
+  ORDER_DETAILS: 'order-details',
 };
 
 export const COOKIE = {
@@ -54,32 +59,34 @@ export const COOKIE = {
 
 export const menuItems = [
   {
-    title: 'nav.item.home',
+    title: 'header.menu.constructor',
     icon: 'burger',
     url: PATH.HOME,
   },
   {
-    title: 'nav.item.orderList',
+    title: 'header.menu.feed',
     icon: 'list',
-    url: '/order-feed',
+    url: PATH.FEED,
   },
   {
-    title: 'nav.item.profile',
+    title: 'header.menu.profile',
     icon: 'profile',
-    url: PATH.PROFILE,
+    url: PATH.PROFILE.ROOT,
   },
 ];
 
 export const profileMenuItems = [
   {
     title: 'profile.menu.profile',
-    to: PATH.PROFILE,
+    to: PATH.PROFILE.ROOT,
   },
   {
     title: 'profile.menu.orders',
-    to: '/profile/orders',
+    to: PATH.PROFILE.ORDERS,
   },
 ];
+
+export const profileMenuItemsLength = profileMenuItems.length;
 
 export const ingredientPropTypes = PropTypes.shape({
   _id: PropTypes.string,
@@ -110,3 +117,17 @@ export const DragTypes = {
 export const JWT = {
   REFRESH: 'refresh-token',
 };
+
+export const orderStatusIds = {
+  PENDING: 'pending',
+  CANCELED: 'cancel',
+  DONE: 'done',
+};
+
+export const orderStatusTitle = {
+  [orderStatusIds.PENDING]: 'feed.order.status.pending',
+  [orderStatusIds.CANCELED]: 'feed.order.status.canceled',
+  [orderStatusIds.DONE]: 'feed.order.status.done',
+};
+
+export const showMaximumOrders = 10;

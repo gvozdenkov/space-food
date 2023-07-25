@@ -1,5 +1,5 @@
 import { QUERYKEY } from '../../utils/config';
-import { UserService } from '../../features/user';
+import { UserService } from '../../features/profile';
 
 export const userQuery = () => ({
   queryKey: [QUERYKEY.USER],

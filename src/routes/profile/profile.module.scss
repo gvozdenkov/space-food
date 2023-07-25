@@ -5,6 +5,7 @@
   gap: 24px;
   justify-self: start;
   grid-area: content;
+  padding-top: var(--top-padding);
 }
 
 .form {
@@ -16,6 +17,7 @@
     'email email'
     'pwd pwd'
     'cancel submit'
+    '. error'
     / 1fr auto;
 }
 
@@ -41,4 +43,8 @@
 
 .comment {
   grid-area: comment;
+}
+
+.error {
+  grid-area: error;
 }

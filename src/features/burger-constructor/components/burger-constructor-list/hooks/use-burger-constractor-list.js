@@ -1,14 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { useDroppable } from '@dnd-kit/core';
+import { useQuery } from '@tanstack/react-query';
 import {
   selectDragTarget,
   selectOrderBun,
   selectOrderIngredients,
 } from '../../../services/order-slice';
-import { useQuery } from '@tanstack/react-query';
 import { ingredientsQuery } from '../../../../../routes/root-layout/ingredients-loader';
 import { ingredientIds, orderDropTarget } from '../../../../../utils/config';
-import { useDroppable } from '@dnd-kit/core';
 
 export const useBurgerConstructorList = () => {
   const { t } = useTranslation();
@@ -21,12 +21,13 @@ export const useBurgerConstructorList = () => {
 
   const bunProps = (type) => {
     const id = bun._id;
+    const bunPositionText = t(`burgerConstructor.burger.bunPosition.${type}`);
 
     return {
       type,
       isLocked: true,
       price: ingredientsObj[id]?.price,
-      text: `${ingredientsObj[id]?.name} (${t(`constructor.${type}.intredient`)})`,
+      text: `${ingredientsObj[id]?.name} (${bunPositionText})`,
       thumbnail: ingredientsObj[id]?.image_mobile,
     };
   };

@@ -15,16 +15,16 @@ export const IngredientDetails = ({ ingredient }) => {
       <h4 className={clsx(s.title, 'text text_type_main-medium mt-4 mb-8')}>{ingredient.name}</h4>
       <div className={clsx(s.nutrition)}>
         <p className='text text_type_main-default text_color_inactive mb-4'>
-          {t('ingredients.detail.popup.calories')}
+          {t('ingredient.detail.calories')}
         </p>
         <p className='text text_type_main-default text_color_inactive mb-4'>
-          {t('ingredients.detail.popup.proteins')}
+          {t('ingredient.detail.proteins')}
         </p>
         <p className='text text_type_main-default text_color_inactive mb-4'>
-          {t('ingredients.detail.popup.fat')}
+          {t('ingredient.detail.fat')}
         </p>
         <p className='text text_type_main-default text_color_inactive mb-4'>
-          {t('ingredients.detail.popup.carbohydrates')}
+          {t('ingredient.detail.carbohydrates')}
         </p>
         <p className='text text_type_digits-default text_color_inactive'>{ingredient.calories}</p>
         <p className='text text_type_digits-default text_color_inactive'>{ingredient.proteins}</p>

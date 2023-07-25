@@ -19,7 +19,7 @@ export const IngredientCard = (props) => {
     } else {
       dispatch(ingredientAdded(id));
     }
-  }, [dispatch, selectedIngredient, ingredientsObj, id]);
+  }, [dispatch, selectedIngredient, id]);
 
   return (
     <Card productId={id}>

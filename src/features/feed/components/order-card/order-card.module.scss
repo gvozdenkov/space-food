@@ -1,0 +1,57 @@
+.card {
+  background-color: var(--color-background-modal);
+  border-radius: var(--border-radius);
+  max-width: 844px;
+  width: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template:
+    'number date'
+    '. .' 24px
+    'title title'
+    '. .' 8px
+    'status .'
+    '. .' 24px
+    'icons price'
+    / 1fr auto;
+
+  transition: var(--fast-transition);
+
+  &:hover {
+    background-color: var(--color-background-modal-hover);
+  }
+}
+
+.number {
+  grid-area: number;
+}
+
+.date {
+  grid-area: date;
+}
+
+.title {
+  grid-area: title;
+}
+
+.status {
+  grid-area: status;
+}
+
+.status_success {
+  color: var(--colors-interface-success);
+}
+
+.icons {
+  grid-area: icons;
+}
+
+.price {
+  grid-area: price;
+  justify-self: end;
+}
+
+.iconList {
+  list-style-type: none;
+}
