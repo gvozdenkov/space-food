@@ -13,7 +13,7 @@ Fantastic burger shop at the edge of space.
 
 ```
 yarn
-yarn start
+yarn dev
 ```
 
 ## tech stack
