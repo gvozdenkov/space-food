@@ -16,6 +16,30 @@ yarn
 yarn dev
 ```
 
+## Local Development with Docker & Docker Compose
+
+Commands in terminal:
+
+```sh
+#run dev container:
+docker compose -f compose-dev.yaml up -d --build
+
+#stop dev container:
+docker compose -f compose-dev.yaml down
+
+```
+
+Or use Makefile
+
+```sh
+#run
+make run_dev
+
+#stop
+make stop_dev
+
+```
+
 ## tech stack
 
 - React
