@@ -1,7 +1,18 @@
 .navItem {
   position: relative;
+
   &:last-child {
     margin-left: auto;
+  }
+
+  &:nth-of-type(1) {
+    order: 1;
+  }
+  &:nth-of-type(2) {
+    order: 2;
+  }
+  &:nth-of-type(3) {
+    order: 3;
   }
 }
 

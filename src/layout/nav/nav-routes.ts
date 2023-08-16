@@ -1,12 +1,15 @@
 import { IconName } from '#components/icons/types';
 import { ROUTES } from '#constants/routes';
 import { RouteURL } from '#types/route';
+import { RequireAtLeastOne } from '#types/utils';
 
-export type NavItem = {
-  title: string;
+type ItemProps = {
   url: RouteURL;
+  title?: string;
   icon?: IconName;
 };
+
+export type NavItem = RequireAtLeastOne<ItemProps, 'title' | 'icon'>;
 
 export const navRoutes: NavItem[] = [
   {
