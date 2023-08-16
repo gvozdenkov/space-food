@@ -1,0 +1,121 @@
+@font-face {
+  src: url(/fonts/JetBrainsMono-Regular.woff2) format('woff2');
+  font-family: 'Jet Brains Mono';
+  font-weight: normal;
+  font-display: swap;
+}
+
+@font-face {
+  src: url(/fonts/JetBrainsMono-Regular.woff) format('woff');
+  font-family: 'Jet Brains Mono';
+  font-weight: normal;
+  font-display: swap;
+}
+
+@font-face {
+  src: url(/fonts/JetBrainsMono-Bold.woff2) format('woff2');
+  font-family: 'Jet Brains Mono';
+  font-weight: bold;
+  font-display: swap;
+}
+
+@font-face {
+  src: url(/fonts/JetBrainsMono-Bold.woff) format('woff');
+  font-family: 'Jet Brains Mono';
+  font-weight: bold;
+  font-display: swap;
+}
+
+@font-face {
+  src: url(fonts/iceland.woff2) format('woff2');
+  font-family: 'Iceland';
+  font-weight: normal;
+  font-display: swap;
+}
+
+@font-face {
+  src: url(fonts/iceland.woff) format('woff');
+  font-family: 'Iceland';
+  font-weight: normal;
+  font-display: swap;
+}
+
+/* Typography classes */
+
+.text {
+  margin: 0;
+  padding: 0;
+}
+
+.text_type_main-default {
+  font-family: 'Jet Brains Mono';
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: normal;
+}
+
+.text_type_main-large {
+  font-family: 'Jet Brains Mono';
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+.text_type_main-medium {
+  font-family: 'Jet Brains Mono';
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.text_type_main-small {
+  font-family: 'Jet Brains Mono';
+  font-size: 14px;
+  line-height: 1.43;
+  font-weight: normal;
+}
+
+.text_color_inactive {
+  color: var(--text-inactive-color);
+}
+
+.text_type_digits-default {
+  font-family: 'Iceland';
+  font-weight: normal;
+  font-size: 28px;
+  line-height: 0.86;
+}
+
+.text_type_digits-medium {
+  font-family: 'Iceland';
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 0.75;
+}
+
+.text_type_digits-large {
+  font-family: 'Iceland';
+  font-weight: normal;
+  font-size: 144px;
+  line-height: 0.83;
+}
+
+.text_color_primary {
+  color: var(--text-primary-color);
+}
+
+.text_color_inactive {
+  color: var(--text-inactive-color);
+}
+
+.text_color_accent {
+  color: var(--colors-interface-accent);
+}
+
+.text_color_error {
+  color: var(--colors-interface-error);
+}
+
+.text_color_success {
+  color: var(--colors-interface-success);
+}

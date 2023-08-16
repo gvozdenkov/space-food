@@ -1,8 +1,10 @@
 @use './vendor/normalize.scss';
+@use './styles/fonts.scss';
 @use './styles/variables.scss';
+@use './styles/box.scss';
+@use './styles/common.scss';
 
 @use './styles/blocks/root/root.scss';
-@use './styles/blocks/common/common.scss';
 @use './styles/blocks/sr-only/sr-only.scss';
 @use './styles/blocks/reset-link/reset-link.scss';
 

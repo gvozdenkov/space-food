@@ -19,5 +19,16 @@ module.exports = {
   plugins: ['react-refresh'],
   rules: {
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+    'no-restricted-imports': [
+      'error',
+      {
+        patterns: [
+          {
+            group: ['/#feature/*/*'],
+            message: "Please use imports only from feautre's index.ts file",
+          },
+        ],
+      },
+    ],
   },
 };
