@@ -1,0 +1,66 @@
+.loader {
+  display: grid;
+  grid-template-columns: 1fr;
+  transition: scale 1.2s ease;
+
+  &:hover {
+    scale: 1.15;
+  }
+}
+
+.icon {
+  background-repeat: no-repeat;
+  background-position: center;
+  grid-area: 1 / 1 / 1 / 1;
+  place-self: center;
+}
+
+.check {
+  background-image: url('../../images/check.svg');
+  width: 48px;
+  height: 48px;
+  fill: #f2f2f3;
+}
+
+.shapeA {
+  background-image: url('../../images/poly-shape-01.svg');
+  width: 68px;
+  height: 65px;
+  animation: rotateShape 10s linear forwards infinite;
+}
+
+.shapeB {
+  background-image: url('../../images/poly-shape-02.svg');
+  width: 107px;
+  height: 100px;
+  animation: rotateShape 20s linear forwards infinite,
+    scaleShape 3s ease forwards alternate-reverse infinite;
+}
+
+.shapeC {
+  background-image: url('../../images/poly-shape-03.svg');
+  width: 98px;
+  height: 102px;
+  animation: rotateShape 20s linear reverse forwards infinite,
+    scaleShape 3s ease forwards alternate infinite;
+}
+
+@keyframes rotateShape {
+  from {
+    rotate: 0;
+  }
+
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes scaleShape {
+  from {
+    scale: 1;
+  }
+
+  to {
+    scale: 1.3;
+  }
+}
