@@ -10,14 +10,13 @@ export const Nav = () => {
     <nav className={s.nav}>
       <ul className={s.navList}>
         {navRoutes.map((item, i) => (
-          <NavItem key={i} title={item.title} url={item.url} icon={item.icon} />
+          <NavItem key={i} {...item} />
         ))}
-        <li className={s.logo}>
-          <Link to={ROUTES.HOME}>
-            <Logo />
-          </Link>
-        </li>
       </ul>
+
+      <Link to={ROUTES.HOME} className={s.logo}>
+        <Logo />
+      </Link>
     </nav>
   );
 };

@@ -12,7 +12,7 @@ export const NavItem = ({ title, icon, url }: NavItemProps) => {
     <li className={s.navItem}>
       <NavLink to={url} className='reset-link'>
         {({ isActive }) => (
-          <div className={clx(s.menuItem, { [s.active]: isActive })}>
+          <div className={clx(s.iconWithText, { [s.active]: isActive })}>
             {icon && primaryIcon(icon)}
             {title && <p className='text text_type_main-default'>{t(title)}</p>}
           </div>

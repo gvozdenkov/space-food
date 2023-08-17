@@ -15,7 +15,8 @@
 }
 
 .logo {
-  order: 2;
-  margin-left: auto;
-  margin-right: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
 }
