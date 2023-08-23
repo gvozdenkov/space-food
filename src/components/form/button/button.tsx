@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import { clx } from '#utils/clx';
 import s from './button.module.scss';
-import { ButtonProps } from '#types/common';
+import { ButtonProps } from '../form-types';
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (

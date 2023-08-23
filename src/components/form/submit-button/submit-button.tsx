@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
-import { Button } from '#components/button';
+import { Button } from '#components/form/button';
 import { clx } from '#utils/clx';
 import threeDots from '#images/three-dots.svg';
-import { ButtonProps } from '#types/common';
+import { ButtonProps } from '../form-types';
 import s from './submit-button.module.scss';
 
 type SubmitButtonProps = ButtonProps & {
