@@ -17,5 +17,5 @@ export type InputProps = ComponentPropsWithoutRef<'input'> & {
   errorText?: string;
   placeholder?: string;
   extraClass?: string;
-  onIconClick?: (e: MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  onIconClick?: (e: MouseEvent<HTMLDivElement>) => void;
 };
