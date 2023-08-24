@@ -4,7 +4,7 @@ import { LoaderShape } from '../loader-shape';
 import s from './global-error.module.scss';
 import { clx } from '#utils/clx';
 import { ROUTES } from '#constants/routes';
-import { Button } from '#components/button';
+import { Button } from '#components/form';
 
 export const GlobalError = () => {
   const { t } = useTranslation();

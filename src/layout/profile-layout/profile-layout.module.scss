@@ -1,0 +1,48 @@
+.profile {
+  display: grid;
+  grid-template:
+    'nav content' 272px
+    '. content' 80px
+    'comment content'
+    / minmax(120px, 320px) 1fr;
+  align-content: start;
+  gap: 0 60px;
+  padding: 0 var(--gutter) 0;
+  box-sizing: border-box;
+  max-width: calc(1240px + var(--gutter) * 2);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.nav {
+  grid-area: nav;
+  padding-top: var(--top-padding);
+}
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: column;
+}
+
+.navListItem {
+  min-height: var(--profile-menu-height);
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.logoutBtn {
+  background-color: transparent;
+  color: var(--color-content-inactive);
+  border: 0;
+  cursor: pointer;
+  min-height: var(--profile-menu-height);
+  transition: color var(--transition-short) ease-out;
+
+  &:hover {
+    color: var(--color-content-primary);
+  }
+}

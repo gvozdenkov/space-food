@@ -20,6 +20,14 @@
           "minLength": "Minimum {{length}} character length"
         }
       },
+      "confirm-password": {
+        "placeholder": "Confirm password",
+        "error": {
+          "minLength": "Minimum {{length}} character length",
+          "notEqual": "Passwords do not match"
+        }
+      },
+
       "common": {
         "error": {
           "required": "This is a required field"
@@ -192,7 +200,7 @@
     }
   },
 
-   "reset": {
+  "reset": {
     "form": {
       "title": "Password recovery",
       "input": {

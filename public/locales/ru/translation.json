@@ -15,10 +15,16 @@
         }
       },
       "password": {
-        "placeholder": "Password",
+        "placeholder": "Пароль",
         "error": {
-          "incorrect": "Введите электронную почту",
           "minLength": "Минимальная длинна {{length}} символа"
+        }
+      },
+      "confirm-password": {
+        "placeholder": "Подтвердите пароль",
+        "error": {
+          "minLength": "Минимальная длинна {{length}} символа",
+          "notEqual": "Введённые пароли не совпадают"
         }
       },
       "common": {

@@ -18,7 +18,10 @@
     // https://habr.com/ru/articles/738132/
     "baseUrl": "./",
     "paths": {
-      "#*": ["./src/*"]
+      "#*": ["./src/*"],
+      "#images": ["./src/images"],
+      "#layouts": ["./src/layouts"],
+      "#pages": ["./src/pages"]
     },
 
     /* Linting */
