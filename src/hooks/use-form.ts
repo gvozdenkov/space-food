@@ -6,7 +6,6 @@ type Props = {
 
 export const useForm = (initialState: Props) => {
   const [values, setValues] = useState(initialState);
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const map = new Map<keyof typeof initialState, HTMLInputElement>();
   const inputRef = useRef<typeof map>();
@@ -25,10 +24,6 @@ export const useForm = (initialState: Props) => {
     node?.focus();
   }
 
-  function toggleShowPassword() {
-    setIsPasswordVisible(!isPasswordVisible);
-  }
-
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
@@ -36,10 +31,8 @@ export const useForm = (initialState: Props) => {
 
   return {
     values,
-    isPasswordVisible,
     getRefs,
     handleFocusInput,
-    toggleShowPassword,
     handleInputChange,
   };
 };

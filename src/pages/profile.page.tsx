@@ -3,9 +3,9 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { clx } from '#utils/clx';
-import { Button, Input, SubmitButton } from '#components/form';
-import { useForm as useFormMy } from '#hooks/use-form';
+import { Button, Input, PasswordInput, SubmitButton } from '#components/form';
 import s from './profile.page.module.scss';
+import { useRef } from 'react';
 
 export const Profile = () => {
   const { t } = useTranslation();
@@ -70,10 +70,6 @@ export const Profile = () => {
     reset();
   };
 
-  const { isPasswordVisible, toggleShowPassword } = useFormMy(defaultValues);
-
-  // console.log('isValid', isValid('name'));
-
   return (
     <>
       <section className={clx(s.profile)}>
@@ -102,17 +98,15 @@ export const Profile = () => {
             onIconClick={() => setFocus('email')}
             autoComplete='email'
           />
-          <Input
+          <PasswordInput
             {...register('password')}
-            type={isPasswordVisible ? 'text' : 'password'}
-            icon={isPasswordVisible ? 'hide' : 'show'}
             error={!!errors.password}
             errorText={errors.password?.message}
             aria-invalid={errors.password ? 'true' : 'false'}
             placeholder={t('form.input.password.placeholder')}
             extraClass={s.input_password}
-            onIconClick={toggleShowPassword}
             autoComplete='off'
+            onIconClick={() => setFocus('password')}
           />
 
           {isDirty && (
