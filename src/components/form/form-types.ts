@@ -1,5 +1,5 @@
 import { IconName } from '#components/icons/types';
-import { ComponentPropsWithoutRef, MouseEvent, PropsWithChildren } from 'react';
+import { ComponentPropsWithoutRef, MouseEventHandler, PropsWithChildren } from 'react';
 
 export type ButtonProps = PropsWithChildren<ComponentPropsWithoutRef<'button'>> & {
   htmlType?: 'button' | 'submit' | 'reset';
@@ -17,5 +17,5 @@ export type InputProps = ComponentPropsWithoutRef<'input'> & {
   errorText?: string;
   placeholder?: string;
   extraClass?: string;
-  onIconClick?: (e: MouseEvent<HTMLDivElement>) => void;
+  onIconClick?: (e: MouseEventHandler<HTMLButtonElement>) => void;
 };

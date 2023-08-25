@@ -1,4 +1,13 @@
-import { FocusEvent, MouseEvent, forwardRef, useCallback, useId, useMemo, useState } from 'react';
+import {
+  FocusEvent,
+  MouseEvent,
+  MouseEventHandler,
+  forwardRef,
+  useCallback,
+  useId,
+  useMemo,
+  useState,
+} from 'react';
 import { clx } from '#utils/clx';
 import { primaryIcon, secondaryIcon } from '#utils/get-icon';
 import { useForwardRef } from '#hooks/use-forward-ref';
@@ -52,8 +61,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       const hasAction = typeof onIconClick === 'function';
       const dumbIcon = disabled || !hasAction;
 
-      const onIconClickProxy = (e: MouseEvent<HTMLDivElement>) => {
-        e.stopPropagation();
+      const onIconClickProxy = (e: MouseEventHandler<HTMLButtonElement>) => {
         if (typeof onIconClick === 'function') {
           onIconClick(e);
         } else {
@@ -63,13 +71,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
       return (
         icon && (
-          <div
+          <button
+            type='button'
             className={clx(s.field__icon, {
               [s['field__icon_type_action']]: hasAction,
             })}
             onClick={onIconClickProxy}>
             {dumbIcon ? secondaryIcon(icon) : primaryIcon(icon)}
-          </div>
+          </button>
         )
       );
     }, [icon, disabled, onIconClick, forceFocus]);

@@ -5,7 +5,6 @@ import { z } from 'zod';
 import { clx } from '#utils/clx';
 import { Button, Input, PasswordInput, SubmitButton } from '#components/form';
 import s from './profile.page.module.scss';
-import { useRef } from 'react';
 
 export const Profile = () => {
   const { t } = useTranslation();
@@ -106,11 +105,13 @@ export const Profile = () => {
             placeholder={t('form.input.password.placeholder')}
             extraClass={s.input_password}
             autoComplete='off'
-            onIconClick={() => setFocus('password')}
           />
 
           {isDirty && (
             <>
+              <SubmitButton disabled={!isValid || isSubmitting} extraClass={s.input_submit}>
+                {t('profile.form.button.submit')}
+              </SubmitButton>
               <Button
                 variant='secondary'
                 htmlType='reset'
@@ -119,10 +120,6 @@ export const Profile = () => {
                 extraClass={clx(s.input_cancel)}>
                 {t('profile.form.button.cancel')}
               </Button>
-
-              <SubmitButton disabled={!isValid || isSubmitting} extraClass={s.input_submit}>
-                {t('profile.form.button.submit')}
-              </SubmitButton>
             </>
           )}
         </form>
