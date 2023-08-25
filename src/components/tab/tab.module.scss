@@ -1,0 +1,22 @@
+.tab {
+  cursor: pointer;
+  background-color: var(--background-alt);
+  min-width: 200px;
+  text-align: center;
+  box-shadow: inset 0px -1px 0px #2f2f37;
+  color: var(--text-inactive-color);
+  transition: var(--common-transition);
+  box-sizing: border-box;
+
+  &:hover {
+    color: var(--text-primary-color);
+  }
+
+  &_type {
+    &_current {
+      box-shadow: inset 0px -2px 0px #4c4cff;
+      pointer-events: none;
+      color: var(--text-primary-color);
+    }
+  }
+}
