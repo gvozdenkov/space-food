@@ -6,3 +6,5 @@ services:
       dockerfile: Dockerfile.prod
     ports:
       - '8080:80'
+    environment:
+      - VITE_BASE_URL=https://norma.nomoreparties.space/api/

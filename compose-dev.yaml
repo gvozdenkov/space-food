@@ -8,3 +8,5 @@ services:
       - '8081:5173'
     volumes:
       - ./src:/app/src:ro
+    environment:
+      - VITE_BASE_URL=https://norma.nomoreparties.space/api/
