@@ -1,35 +1,35 @@
-import { PropsWithChildren } from 'react';
+import { ComponentPropsWithoutRef, PropsWithChildren } from 'react';
 import { clx } from '#utils/clx';
 import s from './tab.module.scss';
 
-type Tab = PropsWithChildren<{
+type Tab = Omit<
+  PropsWithChildren<ComponentPropsWithoutRef<'button'>>,
+  'type' | 'role' | 'aria-selected'
+> & {
   active: boolean;
   value: string;
   onClick: (value: string) => void;
-}>;
+};
 
-export const Tab = ({ active, value, children, onClick: handleClick }: Tab) => {
-  const className = clx(
-    s.tab,
-    {
-      [s.tab_type_current]: active,
-    },
-    'pt-4',
-    'pr-10',
-    'pb-4',
-    'pl-10',
-    'noselect',
-  );
-
-  const onClick = () => {
+export const Tab = ({ active, value, children, onClick, ...rest }: Tab) => {
+  const handleClick = () => {
     if (typeof handleClick === 'function') {
-      handleClick(value);
+      onClick(value);
     }
   };
 
   return (
-    <div className={className} onClick={onClick}>
-      <span className='text text_type_main-default'>{children}</span>
-    </div>
+    <button
+      className={clx(s.tab, 'pt-4 pb-4 pr-10 pl-10 noselect text text_type_main-default', {
+        [s.tab_type_current]: active,
+      })}
+      type='button'
+      role='tab'
+      aria-selected={active}
+      id={`tab-${value}`}
+      onClick={handleClick}
+      {...rest}>
+      {children}
+    </button>
   );
 };

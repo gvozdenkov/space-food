@@ -1,16 +1,20 @@
-import s from './tab-list.module.scss';
+import { useState } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 import { clx } from '#utils/clx';
 import { Tab } from '#components/tab';
-import { useState } from 'react';
+import s from './tab-list.module.scss';
 
-type TabList = {
-  tabs: string[];
+type TabList = ComponentPropsWithoutRef<'ul'> & {
+  tabs: { [key: string]: string };
   onTabClick?: () => void;
   extraClass?: string;
 };
 
 export const TabList = ({ tabs, onTabClick, extraClass = '' }: TabList) => {
-  const [currentTab, setCurrentTab] = useState(tabs[0]);
+  const tabNames = Object.keys(tabs);
+  const tabValues = Object.values(tabs).map((val) => val);
+
+  const [currentTab, setCurrentTab] = useState(tabValues[0]);
 
   const handleTabClick = (current: string, index: number) => {
     setCurrentTab(current);
@@ -22,15 +26,15 @@ export const TabList = ({ tabs, onTabClick, extraClass = '' }: TabList) => {
   };
 
   return (
-    <ul className={clx(s.tabList, { [extraClass]: !!extraClass })}>
-      {tabs.map((tab, index) => {
+    <ul className={clx(s.tabList, { [extraClass]: !!extraClass })} role='tablist'>
+      {tabValues.map((tabValue, i) => {
         return (
-          <li key={index}>
+          <li key={i} role='presentation'>
             <Tab
-              value={tab}
-              active={currentTab === tab}
-              onClick={(current) => handleTabClick(current, index)}>
-              {tab}
+              value={tabValue}
+              active={currentTab === tabValue}
+              onClick={(current) => handleTabClick(current, i)}>
+              {tabNames[i]}
             </Tab>
           </li>
         );
