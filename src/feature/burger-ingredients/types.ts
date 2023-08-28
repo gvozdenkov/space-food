@@ -1,5 +1,7 @@
-import { IngredientType } from '#api/ingredients.types';
+import { Ingredient, IngredientType } from '#api/ingredients.types';
 
-export type TabNames = {
-  [key: string]: IngredientType;
+export type IngrediensByTypes = {
+  title: string;
+  type: IngredientType;
+  list: Ingredient[];
 };

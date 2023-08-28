@@ -1,4 +1,6 @@
-export type IngredientType = 'bun' | 'main' | 'sauce';
+import { INGREDIENT_TYPES } from '#constants/ingredients';
+
+export type IngredientType = (typeof INGREDIENT_TYPES)[number];
 
 export type Ingredient = {
   readonly _id: string;

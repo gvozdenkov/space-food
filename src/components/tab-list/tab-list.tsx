@@ -5,16 +5,16 @@ import { Tab } from '#components/tab';
 import s from './tab-list.module.scss';
 
 type TabList = ComponentPropsWithoutRef<'ul'> & {
-  tabs: { [key: string]: string };
+  tabs: {
+    title: string;
+    type: string;
+  }[];
   onTabClick?: () => void;
   extraClass?: string;
 };
 
 export const TabList = ({ tabs, onTabClick, extraClass = '' }: TabList) => {
-  const tabNames = Object.keys(tabs);
-  const tabValues = Object.values(tabs).map((val) => val);
-
-  const [currentTab, setCurrentTab] = useState(tabValues[0]);
+  const [currentTab, setCurrentTab] = useState(tabs[0].type);
 
   const handleTabClick = (current: string, index: number) => {
     setCurrentTab(current);
@@ -27,14 +27,14 @@ export const TabList = ({ tabs, onTabClick, extraClass = '' }: TabList) => {
 
   return (
     <ul className={clx(s.tabList, { [extraClass]: !!extraClass })} role='tablist'>
-      {tabValues.map((tabValue, i) => {
+      {tabs.map((tab, i) => {
         return (
           <li key={i} role='presentation'>
             <Tab
-              value={tabValue}
-              active={currentTab === tabValue}
+              value={tab.type}
+              active={currentTab === tab.type}
               onClick={(current) => handleTabClick(current, i)}>
-              {tabNames[i]}
+              {tab.title}
             </Tab>
           </li>
         );

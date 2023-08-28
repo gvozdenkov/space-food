@@ -1,5 +1,5 @@
 import { BurgerIngredients } from './components/burger-ingredients/burger-ingredients';
 import { ingredientsLoader, useGetIngredientsQuery } from './api/use-ingredients-query';
-import { TabNames } from './types';
+import { IngrediensByTypes } from './types';
 
-export { type TabNames, useGetIngredientsQuery, BurgerIngredients, ingredientsLoader };
+export { type IngrediensByTypes, useGetIngredientsQuery, BurgerIngredients, ingredientsLoader };
