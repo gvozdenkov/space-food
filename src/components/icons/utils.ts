@@ -1,4 +1,5 @@
-import { IconType } from './types';
+import { ICON_SIZE } from './constants';
+import { IconSize, IconType } from './types';
 
 export const getIconColor = (type: IconType) => {
   return `${
@@ -10,4 +11,8 @@ export const getIconColor = (type: IconType) => {
       ? '#00CCCC'
       : '#F2F2F3'
   }`;
+};
+
+export const getIconSize = (size: IconSize) => {
+  return ICON_SIZE[size];
 };

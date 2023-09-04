@@ -1,14 +1,9 @@
 import { IconProps } from '../types';
-import { getIconColor } from '../utils';
+import { Icon } from './icon';
 
-export const DragIcon = ({ type }: IconProps) => {
+export const DragIcon = (props: IconProps) => {
   return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      width='24'
-      height='24'
-      viewBox='0 0 24 24'
-      fill={getIconColor(type)}>
+    <Icon {...props}>
       <path
         fillRule='evenodd'
         clipRule='evenodd'
@@ -19,6 +14,6 @@ export const DragIcon = ({ type }: IconProps) => {
         clipRule='evenodd'
         d='M18.5 5.15375C18.5 6.34325 17.6045 7.3075 16.5 7.3075C15.3954 7.3075 14.5 6.34325 14.5 5.15375C14.5 3.96427 15.3954 3 16.5 3C17.6045 3 18.5 3.96427 18.5 5.15375ZM16.5 14.3075C17.6045 14.3075 18.5 13.3433 18.5 12.1538C18.5 10.9643 17.6045 10 16.5 10C15.3954 10 14.5 10.9643 14.5 12.1538C14.5 13.3433 15.3954 14.3075 16.5 14.3075ZM16.5 21.3075C17.6045 21.3075 18.5 20.3433 18.5 19.1537C18.5 17.9642 17.6045 17 16.5 17C15.3954 17 14.5 17.9642 14.5 19.1537C14.5 20.3433 15.3954 21.3075 16.5 21.3075Z'
       />
-    </svg>
+    </Icon>
   );
 };
