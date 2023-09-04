@@ -2,7 +2,7 @@ import { useCallback, useMemo, useId } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TabList } from '#components/tab-list';
 import { IngrediensByTypes, useGetIngredientsQuery } from '#feature/burger-ingredients';
-import { IngredientList } from '../ingredients-list/ingredient-list';
+import { IngredientTypeList } from '../ingredient-type-list/ingredient-type-list';
 import { INGREDIENT_TYPES } from '#constants/ingredients';
 import s from './burger-ingredients.module.scss';
 
@@ -15,10 +15,13 @@ export const BurgerIngredients = () => {
 
   const ingredients: IngrediensByTypes[] = useMemo(
     () =>
-      INGREDIENT_TYPES.map((tabType) => ({
-        type: tabType,
-        title: t(`ingredient.type.${tabType}`),
-        list: ingredientsArray.filter((ingredient) => ingredient.type === tabType),
+      INGREDIENT_TYPES.map((type) => ({
+        type: type,
+        title: t(`ingredient.type.${type}`),
+        ingredientIds: ingredientsArray.reduce<string[]>((arr, ingredient) => {
+          if (ingredient.type === type) arr.push(ingredient._id);
+          return arr;
+        }, []),
       })),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [ingredientsArray],
@@ -26,11 +29,12 @@ export const BurgerIngredients = () => {
 
   const tabs = useMemo(
     () =>
-      ingredients.map((ingredient) => ({
-        title: ingredient.title,
-        type: ingredient.type,
+      INGREDIENT_TYPES.map((type) => ({
+        type: type,
+        title: t(`ingredient.type.${type}`),
       })),
-    [ingredients],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
   );
 
   const handleTabClick = useCallback(() => {
@@ -48,7 +52,7 @@ export const BurgerIngredients = () => {
         extraClass='mb-10'
         aria-labelledby={titleId}
       />
-      <IngredientList ingredients={ingredients} />
+      <IngredientTypeList ingredients={ingredients} />
     </section>
   );
 };

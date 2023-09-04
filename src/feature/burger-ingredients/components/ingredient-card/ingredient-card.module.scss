@@ -1,0 +1,42 @@
+.card {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  transition: opacity 0.4s ease-out;
+  cursor: grab;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  transition: scale 0.25s ease-out;
+  cursor: pointer;
+
+  &:hover {
+    scale: 1.08;
+  }
+}
+
+.price {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.body {
+  display: flex;
+  gap: 4px;
+  flex-flow: column;
+  align-items: center;
+}
+
+.header {
+  text-align: center;
+  display: flex;
+  align-items: flex-start;
+  min-height: 48px;
+}
