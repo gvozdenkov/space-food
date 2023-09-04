@@ -9,20 +9,19 @@ type TabList = ComponentPropsWithoutRef<'ul'> & {
     title: string;
     type: string;
   }[];
-  onTabClick?: () => void;
+  onTabClick?: (id: number) => void;
   extraClass?: string;
 };
 
 export const TabList = ({ tabs, onTabClick, extraClass = '' }: TabList) => {
   const [currentTab, setCurrentTab] = useState(tabs[0].type);
 
-  const handleTabClick = (current: string, index: number) => {
+  const handleTabClick = (current: string, i: number) => {
     setCurrentTab(current);
+
     if (typeof onTabClick === 'function') {
-      onTabClick();
+      onTabClick(i);
     }
-    // scrollToId(index);
-    // console.log('click', index, current);
   };
 
   return (
