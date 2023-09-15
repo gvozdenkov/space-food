@@ -12,12 +12,6 @@ type Tab = Omit<
 };
 
 export const Tab = ({ active, value, children, onClick, ...rest }: Tab) => {
-  const handleClick = () => {
-    if (typeof handleClick === 'function') {
-      onClick(value);
-    }
-  };
-
   return (
     <button
       className={clx(s.tab, 'pt-4 pb-4 pr-10 pl-10 noselect text text_type_main-default', {
@@ -27,7 +21,7 @@ export const Tab = ({ active, value, children, onClick, ...rest }: Tab) => {
       role='tab'
       aria-selected={active}
       id={`tab-${value}`}
-      onClick={handleClick}
+      onClick={() => onClick(value)}
       {...rest}>
       {children}
     </button>

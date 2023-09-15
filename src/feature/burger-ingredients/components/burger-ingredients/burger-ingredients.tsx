@@ -9,7 +9,8 @@ export const BurgerIngredients = () => {
   const { t } = useTranslation();
   const titleId = useId();
 
-  const { tabs, ingredients, scrollToIndex, listRef } = useBurgerIngredients();
+  const { tabs, activeTab, setActiveTab, ingredients, scrollToIndex, IngredientTypeListRef } =
+    useBurgerIngredients();
 
   return (
     <section className={s.burgerIngredients}>
@@ -19,11 +20,13 @@ export const BurgerIngredients = () => {
 
       <TabList
         tabs={tabs}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
         onTabClick={scrollToIndex}
         extraClass='mb-10'
         aria-labelledby={titleId}
       />
-      <IngredientTypeList ref={listRef} ingredients={ingredients} />
+      <IngredientTypeList ref={IngredientTypeListRef} ingredients={ingredients} />
     </section>
   );
 };

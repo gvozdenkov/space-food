@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { ComponentPropsWithoutRef } from 'react';
 import { clx } from '#utils/clx';
 import { Tab } from '#components/tab';
@@ -7,17 +6,23 @@ import s from './tab-list.module.scss';
 type TabList = ComponentPropsWithoutRef<'ul'> & {
   tabs: {
     title: string;
-    type: string;
+    value: string;
   }[];
+  activeTab: string;
+  setActiveTab: (current: string) => void;
   onTabClick?: (id: number) => void;
   extraClass?: string;
 };
 
-export const TabList = ({ tabs, onTabClick, extraClass = '' }: TabList) => {
-  const [currentTab, setCurrentTab] = useState(tabs[0].type);
-
+export const TabList = ({
+  tabs,
+  activeTab,
+  setActiveTab,
+  onTabClick,
+  extraClass = '',
+}: TabList) => {
   const handleTabClick = (current: string, i: number) => {
-    setCurrentTab(current);
+    setActiveTab(current);
 
     if (typeof onTabClick === 'function') {
       onTabClick(i);
@@ -30,8 +35,8 @@ export const TabList = ({ tabs, onTabClick, extraClass = '' }: TabList) => {
         return (
           <li key={i} role='presentation'>
             <Tab
-              value={tab.type}
-              active={currentTab === tab.type}
+              value={tab.value}
+              active={activeTab === tab.value}
               onClick={(current) => handleTabClick(current, i)}>
               {tab.title}
             </Tab>
