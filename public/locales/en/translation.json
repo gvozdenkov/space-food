@@ -67,7 +67,14 @@
       "proteins": "Protein, g",
       "fat": "Fat, g",
       "carbohydrates": "Carbs, g"
+    },
+    "popup": {
+      "title": "Ingredient details"
     }
+  },
+
+  "popup": {
+    "close": "Close popup"
   },
 
   "header": {

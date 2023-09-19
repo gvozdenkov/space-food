@@ -2,6 +2,7 @@ import { BurgerIngredients } from './components/burger-ingredients/burger-ingred
 import { ingredientsLoader, useGetIngredientsQuery } from './api/use-ingredients-query';
 import { IngrediensByTypes } from './types';
 import { useBurgerIngredients } from './hooks/use-burger-ingredients';
+import { IngredientDetails } from './components/ingredeint-details';
 
 export {
   type IngrediensByTypes,
@@ -9,4 +10,5 @@ export {
   BurgerIngredients,
   ingredientsLoader,
   useBurgerIngredients,
+  IngredientDetails,
 };

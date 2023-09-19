@@ -17,6 +17,14 @@ export const router = createBrowserRouter([
         lazy: async () => ({
           Component: (await import('../pages/home')).Home,
         }),
+        children: [
+          {
+            path: `${ROUTES.INGREDIENTS}/:id`,
+            lazy: async () => ({
+              Component: (await import('../pages/ingredient-modal')).IngredientModal,
+            }),
+          },
+        ],
       },
       {
         path: ROUTES.PROFILE,

@@ -1,4 +1,6 @@
+import { Link, useLocation } from 'react-router-dom';
 import { useCardContext } from '#components/card/context/card-context';
+import { ROUTES } from '#constants/routes';
 import { clx } from '#utils/clx';
 
 type Props = {
@@ -7,12 +9,15 @@ type Props = {
 
 export const Image = ({ extraClass = '' }: Props) => {
   const { ingredient } = useCardContext();
+  const location = useLocation();
 
   return (
-    <img
-      src={ingredient.image}
-      alt={ingredient.name}
-      className={clx({ [extraClass]: !!extraClass })}
-    />
+    <Link to={`${ROUTES.INGREDIENTS}/${ingredient._id}`} state={{ from: location }}>
+      <img
+        src={ingredient.image}
+        alt={ingredient.name}
+        className={clx({ [extraClass]: !!extraClass })}
+      />
+    </Link>
   );
 };
