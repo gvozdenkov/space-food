@@ -20,6 +20,7 @@ export const IngredientCard = ({ ingredientId, onClick }: Props) => {
 
   return (
     <Card productId={ingredientId} extraClass={clx(s.card)}>
+      <Card.Counter />
       <Card.Image extraClass={clx(s.image, 'pl-4 pr-4')} />
       <Card.Body extraClass={clx(s.body, 'mt-1')}>
         <Card.Price size='default' extraClass={clx(s.price)} />

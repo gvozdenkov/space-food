@@ -1,6 +1,6 @@
-export const debounce = (callee, timeoutMs: number) => {
-  return function perform(...args) {
-    let previousCall = this.lastCall;
+export const debounce = (callee: (...args: unknown[]) => void, timeoutMs: number) => {
+  return function perform(...args: unknown[]) {
+    const previousCall = this.lastCall;
 
     this.lastCall = Date.now();
 
