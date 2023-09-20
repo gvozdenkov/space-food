@@ -7,6 +7,7 @@ import { Price } from './components/price';
 import { Body } from './components/body';
 import { Header } from './components/header';
 import { Footer } from './components/footer';
+import { Counter } from './components/counter';
 
 type Props = PropsWithChildren<ComponentPropsWithoutRef<'article'>> & {
   productId: string;
@@ -26,6 +27,7 @@ const Card = ({ productId, extraClass = '', children }: Props) => {
 };
 
 Card.Image = Image;
+Card.Counter = Counter;
 Card.Price = Price;
 Card.Body = Body;
 Card.Header = Header;
