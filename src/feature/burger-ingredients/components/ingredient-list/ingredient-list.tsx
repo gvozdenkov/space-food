@@ -1,6 +1,6 @@
-import { useAppDispatch } from '#app/store';
-import { bunAdded, ingredientAdded } from '#app/store/order-slice';
+import { bunAdded, ingredientAdded } from '#entities/cart/model/slice';
 import { useGetIngredientsQuery } from '#feature/burger-ingredients';
+import { useAppDispatch } from '#shared/model/hooks';
 import { clx } from '#utils/clx';
 import { IngredientCard } from '../ingredient-card';
 import s from './ingredient-list.module.scss';
@@ -17,9 +17,9 @@ export const IngredientList = ({ ingredientIds }: Props) => {
 
   const handleAddClick = (id: string) => {
     if (ingredientsObj[id].type === 'bun') {
-      dispatch(bunAdded(id));
+      dispatch(bunAdded(ingredientsObj[id]));
     } else {
-      dispatch(ingredientAdded(id));
+      dispatch(ingredientAdded(ingredientsObj[id]));
     }
   };
 

@@ -29,6 +29,7 @@
     "@tanstack/react-query": "^4.33.0",
     "@tanstack/react-query-devtools": "^4.33.0",
     "axios": "^1.4.0",
+    "compose-function": "^3.0.3",
     "i18next": "^23.4.4",
     "i18next-browser-languagedetector": "^7.1.0",
     "i18next-http-backend": "^2.2.1",
@@ -42,6 +43,7 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
+    "@types/compose-function": "^0.0.31",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/react-router-dom": "^5.3.3",

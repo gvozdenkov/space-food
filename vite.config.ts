@@ -8,8 +8,4 @@ export default defineConfig({
     host: true,
     port: 5173,
   },
-  // rollup aliaces for scss @use
-  resolve: {
-    alias: { find: '#styles', replacement: './src/styles' },
-  },
 });

@@ -1,32 +1,21 @@
-import { IngredientType } from '#api/ingredients.types';
-import { RootState } from '#app/store/store';
 import { PayloadAction, createSlice, nanoid } from '@reduxjs/toolkit';
+import { type Cart } from './types';
+import { Ingredient } from '#api/ingredients.types';
 // import { arrayMove } from '@dnd-kit/sortable';
 
-type Order = {
-  bun: string | null;
-  ingredients: {
-    _id: string;
-    uuid: string;
-  }[];
-  orderItems: string[];
-  dragTarget: {
-    type: IngredientType;
-    id: string;
-  } | null;
-};
+type CartSliceState = Cart;
 
-const initialState: Order = {
+const initialState: CartSliceState = {
   bun: null,
   ingredients: [],
-  orderItems: [],
+  cartItems: [],
   dragTarget: null,
 };
 
-const setOrderItems = (state: Order) => {
-  const ingredientIds = [...state.ingredients].map((item) => item._id);
+const setCartItems = (state: CartSliceState) => {
+  const ingredients = [...state.ingredients].map((item) => item.ingredient);
 
-  return state.bun ? [state.bun, ...ingredientIds, state.bun] : [...ingredientIds];
+  return state.bun ? [state.bun, ...ingredients, state.bun] : [...ingredients];
 };
 
 // const findIndex = (state, id) => {
@@ -34,8 +23,8 @@ const setOrderItems = (state: Order) => {
 //   return state.ingredients.indexOf(element);
 // };
 
-const orderSlice = createSlice({
-  name: 'order',
+export const cartSlice = createSlice({
+  name: 'cart',
   initialState,
   reducers: {
     // setDragTarget(state, action) {
@@ -48,24 +37,24 @@ const orderSlice = createSlice({
     //   state.dragTarget = null;
     // },
 
-    bunAdded(state, action: PayloadAction<string>) {
+    bunAdded(state, action: PayloadAction<Ingredient>) {
       state.bun = action.payload;
-      state.orderItems = setOrderItems(state);
+      state.cartItems = setCartItems(state);
     },
 
-    ingredientAdded(state, action: PayloadAction<string>) {
+    ingredientAdded(state, action: PayloadAction<Ingredient>) {
       state.ingredients.push({
-        _id: action.payload,
+        ingredient: action.payload,
         uuid: nanoid(),
       });
-      state.orderItems = setOrderItems(state);
+      state.cartItems = setCartItems(state);
     },
 
     // ingredientRemoved(state, action) {
     //   const deletedId = action.payload;
 
     //   state.ingredients = state.ingredients.filter((item) => item._itemId !== deletedId);
-    //   state.orderItems = setOrderItems(state);
+    //   state.cartItems = setCartItems(state);
     // },
 
     // ingredientMoved: {
@@ -74,7 +63,7 @@ const orderSlice = createSlice({
     //     const activeIndex = findIndex(state, activeId);
     //     const overIndex = findIndex(state, overId);
     //     // state.ingredients = arrayMove(state.ingredients, activeIndex, overIndex);
-    //     state.orderItems = setOrderItems(state);
+    //     state.cartItems = setCartItems(state);
     //   },
 
     //   prepare(activeId, overId) {
@@ -87,10 +76,10 @@ const orderSlice = createSlice({
     //   },
     // },
 
-    orderReseted(state) {
+    cartReseted(state) {
       state.bun = null;
       state.ingredients = [];
-      state.orderItems = [];
+      state.cartItems = [];
     },
   },
 });
@@ -102,14 +91,12 @@ export const {
   // setDragTarget,
   // removeDragTarget,
   // ingredientMoved,
-  orderReseted,
-} = orderSlice.actions;
+  cartReseted,
+} = cartSlice.actions;
 
-const orderReducer = orderSlice.reducer;
-
-export const selectOrderBun = (state: RootState) => state.order.bun;
-export const selectOrderIngredients = (state: RootState) => state.order.ingredients;
-export const selectAllOrderItems = (state: RootState) => state.order.orderItems;
-export const selectDragTarget = (state: RootState) => state.order.dragTarget;
-
-export { orderReducer };
+export const selectCartBun = (state: RootState) => state.cart.bun;
+export const selectCartIngredients = (state: RootState) => state.cart.ingredients;
+export const selectAllCartItems = (state: RootState) => state.cart.cartItems;
+export const selectTotalPrice = (state: RootState) =>
+  Object.values(state.cart.cartItems).reduce((acc, item) => acc + item.price, 0);
+export const selectDragTarget = (state: RootState) => state.cart.dragTarget;

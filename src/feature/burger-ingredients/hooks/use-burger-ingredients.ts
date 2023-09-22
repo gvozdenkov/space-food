@@ -59,7 +59,6 @@ export const useBurgerIngredients = () => {
 
     const setActiveTabCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entrie) => {
-
         // set active Tab only when manual scrolling (not by Tab click)
         if (entrie.isIntersecting && observe) {
           setActiveTab(entrie.target.id);

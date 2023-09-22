@@ -1,15 +1,15 @@
 import { useMemo } from 'react';
 import { useCardContext } from '../context/card-context';
-import { useAppSelector } from '#app/store';
-import { selectAllOrderItems } from '#app/store/order-slice';
+import { useAppSelector } from '#shared/model/hooks';
+import { selectAllCartItems } from '#entities/cart';
 
 export const useCounter = () => {
   const { ingredient } = useCardContext();
-  const orderItems = useAppSelector(selectAllOrderItems);
+  const cartItems = useAppSelector(selectAllCartItems);
 
   const count = useMemo(() => {
-    return orderItems.filter((item) => item === ingredient._id).length;
-  }, [orderItems, ingredient]);
+    return cartItems.filter((item) => item._id === ingredient._id).length;
+  }, [cartItems, ingredient]);
 
   return { count };
 };

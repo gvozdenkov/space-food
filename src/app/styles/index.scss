@@ -1,0 +1,15 @@
+@use './normalize.scss';
+@use './fonts.scss';
+@use './variables.scss';
+@use './box.scss';
+@use './common.scss';
+
+@use './blocks/root/root.scss';
+@use './blocks/sr-only/sr-only.scss';
+@use './blocks/reset-link/reset-link.scss';
+
+@use './blocks/page/page.scss';
+@use './blocks/page/__section/page__section.scss';
+@use './blocks/custom-scroll/custom-scroll.scss';
+@use './blocks/form/form.scss';
+@use './blocks/animated-ellipsis/animated-ellipsis.scss';
