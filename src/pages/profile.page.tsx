@@ -2,8 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { clx } from '#utils/clx';
-import { Button, Input, PasswordInput, SubmitButton } from '#components/form';
+import { clx } from '#shared/lib';
+import { Button, Input, PasswordInput, SubmitButton } from '#shared/form';
 import s from './profile.page.module.scss';
 
 export const Profile = () => {

@@ -1,8 +1,8 @@
 import { Form, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { clx } from '#utils/clx';
+import { clx } from '#shared/lib';
 import { profileRoutes } from '#constants/routes';
-import { NavItem } from '#components/nav-item';
+import { NavItem } from '#shared/nav-item';
 import s from './profile-layout.module.scss';
 
 export const ProfileLayout = () => {

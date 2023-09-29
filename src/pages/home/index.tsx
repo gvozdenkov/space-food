@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { BurgerIngredients } from '#feature/burger-ingredients';
+import { BurgerIngredients } from '#widgets/burger-ingredients';
 import s from './home.module.scss';
 
 export const Home = () => {

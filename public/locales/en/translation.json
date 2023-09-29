@@ -81,7 +81,8 @@
     "menu": {
       "constructor": "Constructor",
       "feed": "Order feed",
-      "profile": "Profile"
+      "profile": "Profile",
+      "login": "Sign in"
     }
   },
 

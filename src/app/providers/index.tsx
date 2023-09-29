@@ -1,13 +1,12 @@
-import { RouterProvider } from 'react-router-dom';
+import { RouterProvider } from './router-provider';
 import { ReduxProvider } from './redux-provider';
 import { QueryClientProvider } from './query-client-provider';
-import { Router } from './router-provider';
 
 export const Providers = () => {
   return (
     <QueryClientProvider>
       <ReduxProvider>
-        <RouterProvider router={Router()} />
+        <RouterProvider />
       </ReduxProvider>
     </QueryClientProvider>
   );
