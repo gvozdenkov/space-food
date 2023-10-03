@@ -7,9 +7,8 @@
     / minmax(120px, 320px) 1fr;
   align-content: start;
   gap: 0 60px;
-  padding: 0 var(--gutter) 0;
+
   box-sizing: border-box;
-  max-width: calc(1240px + var(--gutter) * 2);
   width: 100%;
   margin: 0 auto;
 }
