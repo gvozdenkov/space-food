@@ -4,7 +4,7 @@ import { NavItem } from '#shared/ui';
 import s from './profile.module.scss';
 
 export const Profile = () => {
-  const isAuth = false;
+  const isAuth = true;
 
   if (!isAuth) {
     return (

@@ -6,10 +6,9 @@ export const ROUTE = {
   RESET_PASSWORD: '/reset-password',
   PROFILE: {
     root: '/profile',
-    orders: 'profile/orders',
+    orders: 'orders',
   },
-  ORDER: 'order',
+  ORDER: '/order',
   FEED: '/feed',
   INGREDIENTS: 'ingredients',
 } as const;
-

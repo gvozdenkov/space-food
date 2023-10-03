@@ -16,29 +16,30 @@ export const router = createBrowserRouter([
         lazy: async () => ({
           Component: (await import('../pages/home')).Home,
         }),
-        // children: [
-        //   {
-        //     path: `${ROUTE.INGREDIENTS}/:id`,
-        //     lazy: async () => ({
-        //       Component: (await import('../pages/ingredient-modal')).IngredientModal,
-        //     }),
-        //   },
-        // ],
+        children: [
+          {
+            path: `${ROUTE.INGREDIENTS}/:id`,
+            lazy: async () => ({
+              Component: (await import('../pages/ingredient-modal')).IngredientModal,
+            }),
+          },
+        ],
       },
-      // {
-      //   path: ROUTE.PROFILE,
-      //   lazy: async () => ({
-      //     Component: (await import('../layout/profile-layout')).ProfileLayout,
-      //   }),
-      //   children: [
-      //     {
-      //       index: true,
-      //       lazy: async () => ({
-      //         Component: (await import('../pages/profile.page')).Profile,
-      //       }),
-      //     },
-      //   ],
-      // },
+      {
+        path: ROUTE.PROFILE.root,
+        lazy: async () => ({
+          Component: (await import('./layouts/profile-layout')).ProfileLayout,
+        }),
+        action: (await import('../feature/logout')).logoutAction(),
+        children: [
+          {
+            index: true,
+            lazy: async () => ({
+              Component: (await import('../pages/profile')).Profile,
+            }),
+          },
+        ],
+      },
     ],
   },
 ]);

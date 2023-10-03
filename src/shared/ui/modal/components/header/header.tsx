@@ -1,9 +1,10 @@
 import { PropsWithChildren } from 'react';
-import { useModalContext } from '#shared/modal/context/modal-context';
-import { clx } from '#shared/lib';
-import s from './header.module.scss';
-import { CloseIcon } from '#shared/ui/icons';
 import { useTranslation } from 'react-i18next';
+import { clx } from '#shared/lib';
+import { CloseIcon } from '#shared/ui/icons';
+import { useModalContext } from '../../context/modal-context';
+
+import s from './header.module.scss';
 
 export const Header = ({ children }: PropsWithChildren) => {
   const { t } = useTranslation();

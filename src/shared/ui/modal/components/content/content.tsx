@@ -1,6 +1,7 @@
-import { useModalContext } from '#shared/modal/context/modal-context';
-import { clx } from '#shared/lib';
 import { PropsWithChildren } from 'react';
+import { clx } from '#shared/lib';
+import { useModalContext } from '../../context/modal-context';
+
 import s from './content.module.scss';
 
 export const Content = ({ children }: PropsWithChildren) => {

@@ -1,8 +1,8 @@
 import { useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Modal } from '#shared/modal/modal';
-import { IngredientDetails, useGetIngredientsQuery } from '#feature/burger-ingredients';
-import { ModalFullScreen } from '#shared/modal-fullscreen';
+import { IngredientDetails, useGetIngredientsQuery } from '#widgets/burger-ingredients';
+import { Modal } from '#shared/ui/modal';
+import { ModalFullScreen } from '#shared/ui/modal-fullscreen';
 
 export const IngredientModal = () => {
   const { t } = useTranslation();

@@ -15,8 +15,8 @@ export const Layout = (props: Props) => {
     <>
       {props.headerSlot}
       <main className={s.container}>
-        <div className={s.content}>{props.contentSlot ? contentSlot : <Outlet />}</div>
         {props.sidebarSlot && <div className={s.sidebar}>{props.sidebarSlot}</div>}
+        <div className={s.content}>{props.contentSlot ? contentSlot : <Outlet />}</div>
       </main>
     </>
   );
