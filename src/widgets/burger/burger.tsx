@@ -6,11 +6,18 @@ import { DragIcon } from '#shared/ui/icons';
 import { clx } from '#shared/lib';
 
 import s from './burger.module.scss';
+import { useBurger } from './model/use-burger';
 
-export const Burger = () => {
+type Props = {
+  extraClass?: string;
+};
+
+export const Burger = ({ extraClass = '' }: Props) => {
   const { t } = useTranslation();
   const bun = useAppSelector(selectCartBun);
   const ingredients = useAppSelector(selectCartIngredients);
+
+  const { removeElementFromBurger } = useBurger();
 
   const isIngredientsAdded = ingredients.length !== 0;
 
@@ -33,7 +40,7 @@ export const Burger = () => {
   };
 
   return (
-    <ul className={s['burger-list']}>
+    <ul className={clx(s['burger-list'], { [extraClass]: !!extraClass })}>
       <li className={s.burger__bun} key='top_bun'>
         <Bun type='top' />
       </li>
@@ -51,6 +58,7 @@ export const Burger = () => {
                     price={ingredient.price}
                     text={ingredient.name}
                     thumbnail={ingredient.image_mobile}
+                    handleDelete={() => removeElementFromBurger(item.uuid)}
                   />
                 </li>
               );

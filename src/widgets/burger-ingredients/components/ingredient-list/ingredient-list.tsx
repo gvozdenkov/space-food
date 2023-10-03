@@ -1,8 +1,9 @@
-import { bunAdded, ingredientAdded } from '#entities/cart/model/slice';
+import { cartModel } from '#entities/cart';
 import { useAppDispatch } from '#shared/model/hooks';
 import { clx } from '#shared/lib';
 import { IngredientCard } from '../ingredient-card';
 import { useGetIngredientsQuery } from '#widgets/burger-ingredients';
+
 import s from './ingredient-list.module.scss';
 
 type Props = {
@@ -17,9 +18,9 @@ export const IngredientList = ({ ingredientIds }: Props) => {
 
   const handleAddClick = (id: string) => {
     if (ingredientsObj[id].type === 'bun') {
-      dispatch(bunAdded(ingredientsObj[id]));
+      dispatch(cartModel.actions.bunAdded(ingredientsObj[id]));
     } else {
-      dispatch(ingredientAdded(ingredientsObj[id]));
+      dispatch(cartModel.actions.ingredientAdded(ingredientsObj[id]));
     }
   };
 

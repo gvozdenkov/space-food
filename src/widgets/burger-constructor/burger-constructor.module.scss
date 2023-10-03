@@ -1,4 +1,25 @@
-.burgerConstructor {
+.burger-constructor {
   box-sizing: border-box;
   width: 100%;
+  display: grid;
+  align-items: start;
+  align-content: start;
+  gap: 40px;
+  grid-template:
+    'burger burger'
+    'total checkout';
+}
+
+.burger-constructor__burger {
+  grid-area: burger;
+}
+
+.burger-constructor__total {
+  grid-area: total;
+  align-self: center;
+}
+
+.burger-constructor__checkout-btn {
+  grid-area: checkout;
+  min-height: 64px;
 }

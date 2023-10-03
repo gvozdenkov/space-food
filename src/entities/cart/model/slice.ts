@@ -50,12 +50,11 @@ export const cartSlice = createSlice({
       state.cartItems = setCartItems(state);
     },
 
-    // ingredientRemoved(state, action) {
-    //   const deletedId = action.payload;
-
-    //   state.ingredients = state.ingredients.filter((item) => item._itemId !== deletedId);
-    //   state.cartItems = setCartItems(state);
-    // },
+    ingredientRemoved(state, action) {
+      const deletedId = action.payload;
+      state.ingredients = state.ingredients.filter((item) => item.uuid !== deletedId);
+      state.cartItems = setCartItems(state);
+    },
 
     // ingredientMoved: {
     //   reducer(state, action) {
@@ -87,7 +86,7 @@ export const cartSlice = createSlice({
 export const {
   bunAdded,
   ingredientAdded,
-  // ingredientRemoved,
+  ingredientRemoved,
   // setDragTarget,
   // removeDragTarget,
   // ingredientMoved,

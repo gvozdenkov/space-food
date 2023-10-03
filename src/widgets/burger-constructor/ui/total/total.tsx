@@ -4,11 +4,15 @@ import { useAppSelector } from '#shared/model/hooks';
 import { Price } from '#shared/ui/price';
 import s from './total.module.scss';
 
-export const Total = () => {
+type Props = {
+  extraClass?: string;
+};
+
+export const Total = ({ extraClass = '' }: Props) => {
   const total = useAppSelector(selectTotalPrice);
 
   return (
-    <div className={clx(s.burgerTotal, 'mt-10 pr-4')}>
+    <div className={clx(s.burgerTotal, { [extraClass]: !!extraClass })}>
       <Price price={total} size='medium' />
     </div>
   );

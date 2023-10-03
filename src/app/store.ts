@@ -1,9 +1,9 @@
-import { cartSlice } from '#entities/cart';
+import { cartModel } from '#entities/cart';
 import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({
   reducer: {
-    [cartSlice.name]: cartSlice.reducer,
+    [cartModel.name]: cartModel.reducer,
   },
 });
 

@@ -8,7 +8,7 @@ import {
 } from './model/slice';
 
 export {
-  cartSlice,
+  cartSlice as cartModel,
   selectCartBun,
   selectCartIngredients,
   selectAllCartItems,
