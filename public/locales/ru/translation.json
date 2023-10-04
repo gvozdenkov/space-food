@@ -194,6 +194,11 @@
   "forgot": {
     "form": {
       "title": "Восстановление пароля",
+      "input": {
+        "email": {
+          "placeholder": "Укажите e-mail"
+        }
+      },
       "button": {
         "submit": "Восстановить"
       }

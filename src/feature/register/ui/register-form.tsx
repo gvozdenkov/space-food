@@ -55,6 +55,7 @@ export const RegisterForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={s['register-form']}>
+      <h1 className='text text_type_main-medium'>{t('register.form.title')}</h1>
       <Input
         type='text'
         icon='edit'

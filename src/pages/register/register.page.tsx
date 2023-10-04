@@ -14,7 +14,7 @@ export const RegisterPage = () => {
       <RegisterForm />
       <TextWithLink
         text={t('register.login.text')}
-        link={ROUTE.REGISTER}
+        link={ROUTE.LOGIN}
         linkText={t('register.login.link')}
         extraClass='mt-20'
       />

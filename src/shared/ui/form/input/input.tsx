@@ -74,7 +74,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       );
     }, [icon, disabled, onIconClick, forceFocus]);
 
-    console.log(`text_type_main-${variant}`);
     const errorToRender = useMemo(
       () =>
         error &&
