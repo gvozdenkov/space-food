@@ -12,9 +12,14 @@ type Props = {
 export const TextWithLink = ({ text, link, linkText, extraClass = '' }: Props) => {
   return (
     <p
-      className={clx('text text_type_main-default', s['text-with-link'], {
-        [extraClass]: !!extraClass,
-      })}>
+      className={clx(
+        'text text_type_main-default text_color_inactive',
+        s['text-with-link'],
+
+        {
+          [extraClass]: !!extraClass,
+        },
+      )}>
       {text}&nbsp;
       <Link to={link} className={clx('reset-link', s['text-with-link__link'])}>
         {linkText}
