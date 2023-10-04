@@ -1,5 +1,4 @@
-import { clx } from './clx';
-import { debounce } from './debounce';
-import { errorIcon, primaryIcon, secondaryIcon, successIcon } from './get-icon';
-
-export { clx, debounce, errorIcon, primaryIcon, secondaryIcon, successIcon };
+export { clx } from './clx';
+export { debounce } from './debounce';
+export { primaryIcon, secondaryIcon, successIcon, errorIcon } from './get-icon';
+export { CookieService } from './cookie-service';

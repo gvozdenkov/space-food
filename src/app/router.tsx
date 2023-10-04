@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
           {
             index: true,
             lazy: async () => ({
-              Component: (await import('../pages/profile')).Profile,
+              Component: (await import('../pages/profile')).ProfilePage,
             }),
           },
         ],
@@ -64,6 +64,24 @@ export const router = createBrowserRouter([
         lazy: async () => ({
           Component: (await import('../pages/reset-password')).ResetPasswordPage,
         }),
+      },
+      {
+        path: ROUTE.FEED,
+        lazy: async () => ({
+          Component: (await import('../pages/feed')).FeedPage,
+          loader: (await import('../entities/feed/')).feedLoader(queryClient),
+        }),
+        // children: [
+        //   {
+        //     path: ':number',
+        //     lazy: async () => ({
+        //       Component: (await import('../routes/order-modal')).OrderModal,
+        //       loader: (await import('../routes/order-modal/order-modal-loader')).orderModalLoader(
+        //         queryClient,
+        //       ),
+        //     }),
+        //   },
+        // ],
       },
     ],
   },

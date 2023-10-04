@@ -1,0 +1,16 @@
+import { QUERYKEY } from '#shared/config';
+
+export const orderFeedQuery = () => ({
+  queryKey: [QUERYKEY.FEED],
+  queryFn: async () => {
+    return Promise.resolve({
+      success: true,
+      orders: [],
+      total: 0,
+      totalToday: 0,
+    });
+  },
+});
+
+export const feedLoader = (queryClient) => async () =>
+  await queryClient.ensureQueryData(orderFeedQuery());

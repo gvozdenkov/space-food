@@ -7,7 +7,7 @@ import { Button, Input, PasswordInput, SubmitButton } from '#shared/ui/form';
 
 import s from './profile.page.module.scss';
 
-export const Profile = () => {
+export const ProfilePage = () => {
   const { t } = useTranslation();
 
   const formSchema = z.object({
