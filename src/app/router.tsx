@@ -47,6 +47,12 @@ export const router = createBrowserRouter([
           Component: (await import('../pages/login')).LoginPage,
         }),
       },
+      {
+        path: ROUTE.REGISTER,
+        lazy: async () => ({
+          Component: (await import('../pages/register')).RegisterPage,
+        }),
+      },
     ],
   },
 ]);

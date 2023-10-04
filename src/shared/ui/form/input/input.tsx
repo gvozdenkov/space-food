@@ -74,13 +74,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       );
     }, [icon, disabled, onIconClick, forceFocus]);
 
+    console.log(`text_type_main-${variant}`);
     const errorToRender = useMemo(
       () =>
         error &&
         errorText && (
           <p
             className={clx(s.fieldContainer__error, 'text', {
-              [s[`text_type_main-${variant}`]]: variant,
+              [`text_type_main-${variant}`]: variant,
             })}>
             {errorText}
           </p>
