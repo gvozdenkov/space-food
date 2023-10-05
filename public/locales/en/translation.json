@@ -232,5 +232,11 @@
       "text": "Remembered the password?",
       "link": "Sign in"
     }
+  },
+
+  "date": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "ago": "ago"
   }
 }

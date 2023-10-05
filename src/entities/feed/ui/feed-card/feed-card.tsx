@@ -8,6 +8,7 @@ import { useFeedCard } from './use-feed-card';
 
 import s from './feed-card.module.scss';
 import { OrderStatus } from '#shared/config/const';
+import { FormattedDate } from '#shared/ui';
 
 type Props = {
   ingredients: string[];
@@ -37,10 +38,10 @@ export const FeedCard = ({
         </p>
         <IngredientIconList ingredients={ingredients} maxVisible={6} extraClass={s.icons} />
         <Price price={price} size='default' extraClass={s.price} />
-        {/* <FormattedDate
+        <FormattedDate
           date={new Date(createdAt)}
           className={clx(s.date, 'text text_type_main-default  text_color_inactive')}
-        /> */}
+        />
       </article>
     )
   );
