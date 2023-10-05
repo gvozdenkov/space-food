@@ -3,3 +3,5 @@ export const orderStatus = {
   CANCELED: 'cancel',
   DONE: 'done',
 } as const;
+
+export type OrderStatus = 'pending' | 'cancel' | 'done';

@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import { useGetIngredientsQuery } from '#widgets/burger-ingredients';
-import { orderStatus } from '#shared/config';
 import { Ingredients } from '#api/ingredients.types';
+import { OrderStatus } from '#shared/config/const';
 
 type Props = {
   ingredientIds: string[];
-  status: typeof orderStatus;
+  status: OrderStatus;
 };
 
 export const useFeedCard = ({ ingredientIds: orderIngredientsIds, status }: Props) => {
@@ -32,7 +32,7 @@ export const useFeedCard = ({ ingredientIds: orderIngredientsIds, status }: Prop
     [ingredients],
   );
 
-  const isDone = status === orderStatus.DONE;
+  const isDone = status === 'done';
 
   return { ingredients, isValid, price, isDone };
 };

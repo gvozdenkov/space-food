@@ -1,17 +1,18 @@
 import { useTranslation } from 'react-i18next';
-// import { IngredientIcons } from '../ingredient-icons';
 
 // import { orderStatusTitle } from '../../../../utils/config';
+import { IngredientIconList } from '../ingredient-icon-list/ingredient-icon-list';
 import { clx } from '#shared/lib';
 import { Price } from '#shared/ui/price';
 import { useFeedCard } from './use-feed-card';
 
 import s from './feed-card.module.scss';
+import { OrderStatus } from '#shared/config/const';
 
 type Props = {
   ingredients: string[];
   name: string;
-  status: string;
+  status: OrderStatus;
   number: number;
   createdAt: string;
 };
@@ -34,7 +35,7 @@ export const FeedCard = ({
         <p className={clx('text text_type_main-default', s.status, { [s.status_success]: isDone })}>
           {/* {t(orderStatusTitle[status])} */}
         </p>
-        {/* <IngredientIcons ingredients={ingredients} maxVisible={6} extraClass={s.icons} /> */}
+        <IngredientIconList ingredients={ingredients} maxVisible={6} extraClass={s.icons} />
         <Price price={price} size='default' extraClass={s.price} />
         {/* <FormattedDate
           date={new Date(createdAt)}
