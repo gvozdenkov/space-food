@@ -1,10 +1,11 @@
 import { QueryClient, useQuery } from '@tanstack/react-query';
-import { queryKey } from '#api';
+
 import { Ingredient, Ingredients } from '#api/ingredients.types';
 import { getIngredients } from '#api/ingredients';
+import { QUERYKEY } from '#shared/config';
 
 const ingredientsQuery = () => ({
-  queryKey: [queryKey.INGREDIENTS],
+  queryKey: [QUERYKEY.INGREDIENTS],
   queryFn: getIngredients,
 });
 

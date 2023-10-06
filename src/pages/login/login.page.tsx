@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 
 import { LoginForm } from '#feature/login';
 import { ROUTE } from '#shared/config';
@@ -8,10 +9,12 @@ import s from './login.page.module.scss';
 
 export const LoginPage = () => {
   const { t } = useTranslation();
+  const location = useLocation();
+  const redirectAfterLogin = location?.state?.from?.pathname || ROUTE.HOME;
 
   return (
     <div className={s['login-page']}>
-      <LoginForm />
+      <LoginForm redierectTo={redirectAfterLogin} />
       <TextWithLink
         text={t('login.register.text')}
         link={ROUTE.REGISTER}

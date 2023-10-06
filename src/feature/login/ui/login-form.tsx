@@ -7,7 +7,11 @@ import { Input, PasswordInput, SubmitButton } from '#shared/ui/form';
 
 import s from './login-from.module.scss';
 
-export const LoginForm = () => {
+type Props = {
+  redierectTo: string;
+};
+
+export const LoginForm = ({ redierectTo }: Props) => {
   const { t } = useTranslation();
 
   const formSchema = z.object({
@@ -35,7 +39,7 @@ export const LoginForm = () => {
   });
 
   const onSubmit: SubmitHandler<FormSchema> = (data) => {
-    console.log(data);
+    console.log(redierectTo, data);
     reset();
   };
 

@@ -1,10 +1,10 @@
-import { axios } from './axios';
+import { publicApi } from '#shared/api';
 import { Ingredients, IngredientsRes } from './ingredients.types';
 
 const ENDPOINT = 'ingredients';
 
 export const getIngredients = async (options?: { signal?: AbortSignal }) => {
-  const { data } = await axios.get<IngredientsRes>(ENDPOINT, {
+  const { data } = await publicApi.get<IngredientsRes>(ENDPOINT, {
     signal: options?.signal,
   });
 
