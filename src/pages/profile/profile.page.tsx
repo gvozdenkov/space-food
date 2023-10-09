@@ -6,9 +6,11 @@ import { clx } from '#shared/lib';
 import { Button, Input, PasswordInput, SubmitButton } from '#shared/ui/form';
 
 import s from './profile.page.module.scss';
+import { useUserQuery } from '#entities/session';
 
 export const ProfilePage = () => {
   const { t } = useTranslation();
+  const { data: user } = useUserQuery();
 
   const formSchema = z.object({
     name: z
@@ -48,8 +50,8 @@ export const ProfilePage = () => {
   type FormSchema = z.infer<typeof formSchema>;
 
   const defaultValues: FormSchema = {
-    name: 'Arty',
-    email: 'gvozdenkov@gmail.com',
+    name: user?.name,
+    email: user?.email,
     password: '',
   };
 
