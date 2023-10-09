@@ -8,10 +8,10 @@ type ProfileMenuItems = {
 export const profileMenuItems: ProfileMenuItems[] = [
   {
     title: 'profile.menu.profile',
-    to: ROUTE.PROFILE.root,
+    to: ROUTE.PROFILE.ROOT,
   },
   {
     title: 'profile.menu.orders',
-    to: ROUTE.PROFILE.orders,
+    to: ROUTE.PROFILE.ORDERS,
   },
 ];

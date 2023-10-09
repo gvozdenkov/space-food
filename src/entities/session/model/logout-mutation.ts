@@ -4,18 +4,15 @@ import { QUERYKEY } from '#shared/config';
 import { CookieService } from '#shared/lib';
 import { AuthService } from '#shared/api';
 
-export const useLogInMutation = ({ redirectTo }: { redirectTo: string }) => {
+export const useLogOutMutation = ({ redirectTo }: { redirectTo: string }) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   return useMutation({
     mutationKey: [QUERYKEY.USER],
-    mutationFn: AuthService.login,
-    onSuccess: ({ accessToken: token, refreshToken }) => {
-      const accessToken = token.split(' ')[1];
-
-      CookieService.setAccessToken(accessToken);
-      CookieService.setRefreshToken(refreshToken);
+    mutationFn: AuthService.logout,
+    onSuccess: () => {
+      CookieService.removeTokens();
 
       queryClient.invalidateQueries({ queryKey: [QUERYKEY.USER] });
 

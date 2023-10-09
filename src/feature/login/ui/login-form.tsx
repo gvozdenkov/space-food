@@ -6,12 +6,13 @@ import { z } from 'zod';
 import { Input, PasswordInput, SubmitButton } from '#shared/ui/form';
 
 import s from './login-from.module.scss';
+import { useLogInMutation } from '#entities/session';
 
 type Props = {
-  redierectTo: string;
+  redirectTo: string;
 };
 
-export const LoginForm = ({ redierectTo }: Props) => {
+export const LoginForm = ({ redirectTo }: Props) => {
   const { t } = useTranslation();
 
   const formSchema = z.object({
@@ -38,8 +39,15 @@ export const LoginForm = ({ redierectTo }: Props) => {
     resolver: zodResolver(formSchema),
   });
 
+  const {
+    mutate: loginMutation,
+    error: mutationError,
+    isError,
+    isLoading,
+  } = useLogInMutation({ redirectTo });
+
   const onSubmit: SubmitHandler<FormSchema> = (data) => {
-    console.log(redierectTo, data);
+    loginMutation(data);
     reset();
   };
 

@@ -26,17 +26,35 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: ROUTE.PROFILE.root,
+        path: ROUTE.PROFILE.ROOT,
         lazy: async () => ({
           Component: (await import('./layouts/profile-layout')).ProfileLayout,
+          loader: (await import('../entities/session')).userLoader(queryClient),
         }),
-        action: (await import('../feature/logout')).logoutAction(),
         children: [
           {
             index: true,
             lazy: async () => ({
               Component: (await import('../pages/profile')).ProfilePage,
             }),
+          },
+          {
+            path: ROUTE.PROFILE.ORDERS,
+            lazy: async () => ({
+              Component: (await import('../pages/profile-feed')).ProfileFeedPage,
+              loader: (await import('../entities/feed')).profileFeedLoader(queryClient),
+            }),
+            // children: [
+            //   {
+            //     path: ':number',
+            //     lazy: async () => ({
+            //       Component: (await import('../routes/order-modal')).OrderModal,
+            //       loader: (
+            //         await import('../routes/order-modal/order-modal-loader')
+            //       ).orderModalLoader(queryClient),
+            //     }),
+            //   },
+            // ],
           },
         ],
       },

@@ -15,7 +15,7 @@ export const Profile = () => {
   return (
     <NavItem
       extraClass={s.profile}
-      url={ROUTE.PROFILE.root}
+      url={ROUTE.PROFILE.ROOT}
       icon='profile'
       title='header.menu.profile'
     />

@@ -147,6 +147,7 @@
     "pendingTitle": "In work",
     "totalTitle": "Completed for all time",
     "totalTodayTitle": "Completed today",
+    "loading": "Loading order history",
     "order": {
       "status": {
         "pending": "Cooking",

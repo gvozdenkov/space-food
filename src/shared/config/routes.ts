@@ -5,8 +5,8 @@ export const ROUTE = {
   FORGOT_PASSWORD: '/forgot-password',
   RESET_PASSWORD: '/reset-password',
   PROFILE: {
-    root: '/profile',
-    orders: 'orders',
+    ROOT: '/profile',
+    ORDERS: 'orders',
   },
   ORDER: '/order',
   FEED: '/feed',

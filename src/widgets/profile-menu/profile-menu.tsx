@@ -1,10 +1,12 @@
-import { Form } from 'react-router-dom';
+import { FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LogoutButton } from '#feature/logout';
-import { clx } from '#shared/lib';
-import { NavItem } from '#shared/ui';
-import { profileMenuItems } from './config/menu-items';
 
+import { CookieService, clx } from '#shared/lib';
+import { NavItem } from '#shared/ui';
+import { useLogOutMutation } from '#entities/session';
+import { LogoutButton } from '#feature/logout';
+
+import { profileMenuItems } from './config/menu-items';
 import s from './profile-menu.module.scss';
 
 type Props = {
@@ -13,6 +15,13 @@ type Props = {
 
 export const ProfileMenu = ({ extraClass = '' }: Props) => {
   const { t } = useTranslation();
+
+  const { mutate: logoutMutation } = useLogOutMutation({ redirectTo: '/' });
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    logoutMutation(CookieService.getRefreshToken());
+  };
 
   return (
     <nav className={clx(s.nav, { [extraClass]: !!extraClass })}>
@@ -25,9 +34,9 @@ export const ProfileMenu = ({ extraClass = '' }: Props) => {
           );
         })}
       </ul>
-      <Form method='POST'>
+      <form onSubmit={onSubmit}>
         <LogoutButton title={t('profile.menu.logout')} />
-      </Form>
+      </form>
     </nav>
   );
 };
