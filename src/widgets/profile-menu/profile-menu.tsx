@@ -26,10 +26,20 @@ export const ProfileMenu = ({ extraClass = '' }: Props) => {
   return (
     <nav className={clx(s.nav, { [extraClass]: !!extraClass })}>
       <ul className={clx(s['nav-list'])}>
-        {profileMenuItems.map((item, index) => {
-          return (
+        {profileMenuItems.map((item, index, arr) => {
+          console.log(arr.length);
+          return index === arr.length - 1 ? (
             <li className={clx(s['nav-list__item'])} key={index}>
               <NavItem title={t(item.title)} url={item.to} textStyle='text text_type_main-medium' />
+            </li>
+          ) : (
+            <li className={clx(s['nav-list__item'])} key={index}>
+              <NavItem
+                title={t(item.title)}
+                url={item.to}
+                textStyle='text text_type_main-medium'
+                isEnd
+              />
             </li>
           );
         })}

@@ -10,6 +10,7 @@ type NavItem = RequireAtLeastOne<
     url: string;
     title?: string;
     icon?: IconName;
+    isEnd?: boolean;
     textStyle?: string;
     extraClass?: string;
   },
@@ -20,13 +21,14 @@ export const NavItem = ({
   title,
   icon,
   url,
+  isEnd = false,
   textStyle = 'text text_type_main-default',
   extraClass = '',
 }: NavItem) => {
   const { t } = useTranslation();
 
   return (
-    <NavLink to={url} className={clx('reset-link', { [extraClass]: !!extraClass })}>
+    <NavLink to={url} className={clx('reset-link', { [extraClass]: !!extraClass })} end={isEnd}>
       {({ isActive }) => {
         const getIcon = isActive ? primaryIcon : secondaryIcon;
         return (
