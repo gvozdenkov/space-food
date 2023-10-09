@@ -2,9 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
 import { clx } from '#shared/lib';
 
-import { FeedList, profileFeedQuery, useFeed } from '#entities/feed';
+import { FeedList, FeedLoaderMessage, profileFeedQuery, useFeed } from '#entities/feed';
 import { QUERYKEY } from '#shared/config';
-import { LoaderShape } from '#shared/ui/loader-shape';
 
 import s from './profile-feed.page.module.scss';
 
@@ -27,10 +26,7 @@ export const ProfileFeedPage = () => {
     <>
       <section className={clx(s.orders, { [s.orders_empty]: isOrderListEmpty || isLoading })}>
         {isLoading ? (
-          <div className={s.orders__loading}>
-            <LoaderShape />
-            <p className='text text_type_main-default mt-10'>{t('feed.loading')}</p>
-          </div>
+          <FeedLoaderMessage message={t('feed.loading')} />
         ) : isOrderListEmpty ? (
           <p className='text text_color_inactive text_type_main-medium'>{t('feed.empty')}</p>
         ) : (

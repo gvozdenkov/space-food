@@ -5,4 +5,5 @@ export {
   profileFeedQuery,
   profileFeedLoader,
 } from './model/feed-query';
+export { FeedLoaderMessage } from './ui/feed-loader/feed-loader';
 export { FeedList } from './ui/feed-list/feed-list';

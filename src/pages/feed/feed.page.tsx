@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
 
 import { clx } from '#shared/lib';
-import { FeedList, orderFeedQuery, useFeed } from '#entities/feed';
+import { FeedList, FeedLoaderMessage, orderFeedQuery, useFeed } from '#entities/feed';
 import { QUERYKEY } from '#shared/config';
 
 import { OrderNumberList } from './ui/order-number-list';
@@ -21,18 +21,18 @@ export const FeedPage = () => {
   });
 
   return (
-    <div className={s.feedPage}>
-      <section className={s.feedList}>
-        <h1 className='text text_type_main-large mt-10 mb-5'>{t('feed.title')}</h1>
-        <div className={clx(s.wrapper, 'customScroll')}>
-          <FeedList orders={orders} />
-        </div>
-      </section>
-      <section className={clx('mt-25', s.statistics)}>
-        {isLoading ? (
-          <p className={clx(s.statistics__loading, 'text text_type_main-default')}>loading...</p>
-        ) : (
-          <>
+    <div className={clx(s.feedPage)}>
+      {isLoading ? (
+        <FeedLoaderMessage message='Loading' extraClass={s.feedPage__loader} />
+      ) : (
+        <>
+          <section className={s.feedList}>
+            <h1 className='text text_type_main-large mt-10 mb-5'>{t('feed.title')}</h1>
+            <div className={clx(s.wrapper, 'customScroll')}>
+              <FeedList orders={orders} />
+            </div>
+          </section>
+          <section className={clx('mt-25', s.statistics)}>
             <h2 className={clx(s.statistics__done, 'text text_type_main-medium')}>
               {t('feed.doneTitle')}:
             </h2>
@@ -57,11 +57,11 @@ export const FeedPage = () => {
             <span className={clx(s.statistics__totalToday, 'text text_type_digits-large')}>
               {totalToday}
             </span>
-          </>
-        )}
-      </section>
+          </section>
 
-      <Outlet />
+          <Outlet />
+        </>
+      )}
     </div>
   );
 };
