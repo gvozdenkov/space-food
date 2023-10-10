@@ -7,7 +7,7 @@ export const QueryClientProvider = ({ children }: PropsWithChildren) => {
   return (
     <TanStackQueryClientProvider client={queryClient}>
       {children}
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      <ReactQueryDevtools initialIsOpen={false} />
     </TanStackQueryClientProvider>
   );
 };

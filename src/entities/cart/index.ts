@@ -1,3 +1,5 @@
+export { useOrderDetailsQuery } from './model/get-order-query';
+
 export {
   cartSlice as cartModel,
   selectCartBun,

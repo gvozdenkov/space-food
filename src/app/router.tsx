@@ -50,17 +50,15 @@ export const router = createBrowserRouter([
               Component: (await import('../pages/profile-feed')).ProfileFeedPage,
               loader: (await import('../entities/feed')).profileFeedLoader(queryClient),
             }),
-            // children: [
-            //   {
-            //     path: ':number',
-            //     lazy: async () => ({
-            //       Component: (await import('../routes/order-modal')).OrderModal,
-            //       loader: (
-            //         await import('../routes/order-modal/order-modal-loader')
-            //       ).orderModalLoader(queryClient),
-            //     }),
-            //   },
-            // ],
+            children: [
+              {
+                path: ':number',
+                lazy: async () => ({
+                  Component: (await import('../pages/order-details')).OrderDetailsPage,
+                  loader: (await import('../entities/cart')).orderModalLoader(queryClient),
+                }),
+              },
+            ],
           },
         ],
       },
@@ -95,15 +93,15 @@ export const router = createBrowserRouter([
           Component: (await import('../pages/feed')).FeedPage,
           loader: (await import('../entities/feed/')).feedLoader(queryClient),
         }),
-        // children: [
-        //   {
-        //     path: ':number',
-        //     lazy: async () => ({
-        //       Component: (await import('../pages/order-details')).OrderDetailsPage,
-        //       loader: (await import('../entities/cart')).orderModalLoader(queryClient),
-        //     }),
-        //   },
-        // ],
+        children: [
+          {
+            path: ':number',
+            lazy: async () => ({
+              Component: (await import('../pages/order-details')).OrderDetailsPage,
+              loader: (await import('../entities/cart')).orderModalLoader(queryClient),
+            }),
+          },
+        ],
       },
     ],
   },

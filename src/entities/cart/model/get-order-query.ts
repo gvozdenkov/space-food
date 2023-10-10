@@ -1,8 +1,8 @@
 import { publicApi } from '#shared/api';
 import { QUERYKEY } from '#shared/config';
-import { QueryClient } from '@tanstack/react-query';
+import { QueryClient, useQuery } from '@tanstack/react-query';
 
-export const orderDetailsQuery = (number: number) => ({
+export const orderDetailsQuery = (number: string) => ({
   queryKey: [QUERYKEY.ORDER_DETAILS, number],
   queryFn: async () => {
     const order = await publicApi.get(`orders/${number}`);
@@ -13,10 +13,14 @@ export const orderDetailsQuery = (number: number) => ({
         statusText: 'Order Not Found',
       });
     }
-    console.log('get order: ', order);
+
     return order?.data?.orders[0];
   },
 });
+
+export const useOrderDetailsQuery = (number: string) => {
+  return useQuery(orderDetailsQuery(number));
+};
 
 // return data or fetch it
 export const orderModalLoader =

@@ -149,9 +149,12 @@
     "totalTodayTitle": "Completed today",
     "loading": "Loading order history",
     "order": {
+      "modal": {
+        "listTitle": "Compound"
+      },
       "status": {
         "pending": "Cooking",
-        "canceled": "Canceled",
+        "cancele": "Canceled",
         "done": "Done"
       }
     }
