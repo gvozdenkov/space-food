@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { Input, PasswordInput, SubmitButton } from '#shared/ui/form';
 
 import s from './register-from.module.scss';
+import { useRegisterMutation } from '#entities/session';
 
 export const RegisterForm = () => {
   const { t } = useTranslation();
@@ -48,8 +49,10 @@ export const RegisterForm = () => {
     resolver: zodResolver(formSchema),
   });
 
+  const { mutate: registerMutation } = useRegisterMutation();
+
   const onSubmit: SubmitHandler<FormSchema> = (data) => {
-    console.log('user registered', data);
+    registerMutation(data);
     reset();
   };
 

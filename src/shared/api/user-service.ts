@@ -1,7 +1,12 @@
 import { authApi } from './api-setup';
-import { Credentials, User } from './types';
+import { User } from './types';
 
-type Props = Pick<Credentials, 'name' | 'email' | 'password'>;
+type Props = {
+  name?: string;
+  email?: string;
+  password?: string;
+};
+
 type UserRes = {
   success: boolean;
   user: User;

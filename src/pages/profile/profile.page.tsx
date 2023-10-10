@@ -2,11 +2,13 @@ import { useTranslation } from 'react-i18next';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+
 import { clx } from '#shared/lib';
 import { Button, Input, PasswordInput, SubmitButton } from '#shared/ui/form';
+import { useUserQuery } from '#entities/session';
+import { useEditUserMutation } from '#entities/session';
 
 import s from './profile.page.module.scss';
-import { useUserQuery } from '#entities/session';
 
 export const ProfilePage = () => {
   const { t } = useTranslation();
@@ -67,9 +69,15 @@ export const ProfilePage = () => {
     resolver: zodResolver(formSchema),
   });
 
+  const { mutate: editUserMutation } = useEditUserMutation();
+
   const onSubmit: SubmitHandler<FormSchema> = (data) => {
-    console.log(data);
-    reset();
+    editUserMutation(data);
+    reset({
+      name: data.name,
+      email: data.email,
+      password: '',
+    });
   };
 
   return (
