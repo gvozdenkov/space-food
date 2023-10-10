@@ -4,12 +4,18 @@ import { clx } from '#shared/lib';
 
 type Props = {
   extraClass?: string;
+  isLoading?: boolean;
+  disabled?: boolean;
 };
 
-export const Checkout = ({ extraClass = '' }: Props) => {
+export const Checkout = ({ disabled, isLoading = false, extraClass = '' }: Props) => {
   const { t } = useTranslation();
+
   return (
-    <SubmitButton extraClass={clx({ [extraClass]: !!extraClass })}>
+    <SubmitButton
+      isLoading={isLoading}
+      extraClass={clx({ [extraClass]: !!extraClass })}
+      disabled={disabled}>
       {t('burgerConstructor.total.button.submit')}
     </SubmitButton>
   );

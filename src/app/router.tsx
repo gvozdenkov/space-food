@@ -23,6 +23,12 @@ export const router = createBrowserRouter([
               Component: (await import('../pages/ingredient-modal')).IngredientModal,
             }),
           },
+          {
+            path: `${ROUTE.ORDER}/:number`,
+            lazy: async () => ({
+              Component: (await import('../pages/order-modal')).OrderModal,
+            }),
+          },
         ],
       },
       {
@@ -93,10 +99,8 @@ export const router = createBrowserRouter([
         //   {
         //     path: ':number',
         //     lazy: async () => ({
-        //       Component: (await import('../routes/order-modal')).OrderModal,
-        //       loader: (await import('../routes/order-modal/order-modal-loader')).orderModalLoader(
-        //         queryClient,
-        //       ),
+        //       Component: (await import('../pages/order-details')).OrderDetailsPage,
+        //       loader: (await import('../entities/cart')).orderModalLoader(queryClient),
         //     }),
         //   },
         // ],

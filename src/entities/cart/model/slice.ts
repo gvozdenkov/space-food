@@ -98,4 +98,8 @@ export const selectCartIngredients = (state: RootState) => state.cart.ingredient
 export const selectAllCartItems = (state: RootState) => state.cart.cartItems;
 export const selectTotalPrice = (state: RootState) =>
   Object.values(state.cart.cartItems).reduce((acc, item) => acc + item.price, 0);
+export const selectAllCartIds = (state: RootState) =>
+  Object.values(state.cart.cartItems).map((item) => item._id);
+export const selectIsMinimalOrder = (state: RootState) =>
+  Boolean(state.cart.bun?.name && state.cart.ingredients.length > 0);
 export const selectDragTarget = (state: RootState) => state.cart.dragTarget;

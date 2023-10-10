@@ -15,7 +15,7 @@ export const Header = ({ children }: PropsWithChildren) => {
       {children}
 
       <button
-        className={clx(s.modal__closeBtn, 'ml-9')}
+        className={clx(s.modal__closeBtn, 'pl-9')}
         aria-label={t('popup.close')}
         type='button'
         onClick={handleClose}>

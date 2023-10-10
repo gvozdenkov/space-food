@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { LoginForm } from '#feature/login';
 import { ROUTE } from '#shared/config';
 import { TextWithLink } from '#shared/ui';
-import { OnlyUnAuth } from '#entities/session';
+import { OnlyUnAuth } from '#entities/session'
 
 import s from './login.page.module.scss';
 

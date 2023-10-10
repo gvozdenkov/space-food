@@ -1,12 +1,3 @@
-import {
-  cartSlice,
-  selectAllCartItems,
-  selectCartBun,
-  selectCartIngredients,
-  selectDragTarget,
-  selectTotalPrice,
-} from './model/slice';
-
 export {
   cartSlice as cartModel,
   selectCartBun,
@@ -14,4 +5,9 @@ export {
   selectAllCartItems,
   selectDragTarget,
   selectTotalPrice,
-};
+  selectAllCartIds,
+  selectIsMinimalOrder,
+} from './model/slice';
+
+export { orderModalLoader } from './model/get-order-query';
+export { CreateOrderDetails } from './ui/create-order-details/create-order-details';
