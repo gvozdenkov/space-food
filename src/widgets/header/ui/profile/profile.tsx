@@ -1,23 +1,20 @@
+import { useUserQuery } from '#entities/session';
 import { ROUTE } from '#shared/config';
+import { clx } from '#shared/lib';
 import { NavItem } from '#shared/ui';
 
 import s from './profile.module.scss';
 
 export const Profile = () => {
-  const isAuth = true;
+  const { data: user } = useUserQuery();
 
-  if (!isAuth) {
-    return (
-      <NavItem extraClass={s.profile} url={ROUTE.LOGIN} icon='profile' title='header.menu.login' />
-    );
+  let url: string = ROUTE.PROFILE.ROOT;
+  let title = 'header.menu.profile';
+
+  if (!user) {
+    url = ROUTE.LOGIN;
+    title = 'header.menu.login';
   }
 
-  return (
-    <NavItem
-      extraClass={s.profile}
-      url={ROUTE.PROFILE.ROOT}
-      icon='profile'
-      title='header.menu.profile'
-    />
-  );
+  return <NavItem extraClass={clx(s.profile, 'mr-4')} url={url} icon='profile' title={title} />;
 };
