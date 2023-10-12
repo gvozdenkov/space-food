@@ -9,6 +9,13 @@ export {
   selectTotalPrice,
   selectAllCartIds,
   selectIsMinimalOrder,
+  bunAdded,
+  ingredientAdded,
+  ingredientRemoved,
+  setDragTarget,
+  removeDragTarget,
+  ingredientMoved,
+  cartReseted,
 } from './model/slice';
 
 export { orderModalLoader } from './model/get-order-query';

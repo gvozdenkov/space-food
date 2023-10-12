@@ -1,12 +1,16 @@
 import { useTranslation } from 'react-i18next';
+import { DndContext, closestCenter } from '@dnd-kit/core';
+import { restrictToVerticalAxis, restrictToParentElement } from '@dnd-kit/modifiers';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { selectCartBun, selectCartIngredients } from '#entities/cart';
 import { useAppSelector } from '#shared/model/hooks';
 import { ConstructorElement, EmptyConstructorElement } from '#shared/ui';
-import { DragIcon } from '#shared/ui/icons';
 import { clx } from '#shared/lib';
+import { useBurger } from './model/use-burger';
+import { useBurgerDnD } from './model/use-burger-dnd';
+import { BurgerSortableItem } from './burger-sortable-item/burger-sortable-item';
 
 import s from './burger.module.scss';
-import { useBurger } from './model/use-burger';
 
 type Props = {
   extraClass?: string;
@@ -20,6 +24,9 @@ export const Burger = ({ extraClass = '' }: Props) => {
   const { removeElementFromBurger } = useBurger();
 
   const isIngredientsAdded = ingredients.length !== 0;
+
+  const { droppableRef, bunStyle, middleStyle, sortableItems, handleDragEnd, sensors } =
+    useBurgerDnD();
 
   type Bun = {
     type: 'top' | 'bottom';
@@ -40,30 +47,40 @@ export const Burger = ({ extraClass = '' }: Props) => {
   };
 
   return (
-    <ul className={clx(s['burger-list'], { [extraClass]: !!extraClass })}>
-      <li className={s.burger__bun} key='top_bun'>
+    <ul ref={droppableRef} className={clx(s['burger-list'], { [extraClass]: !!extraClass })}>
+      <li style={bunStyle} className={s.burger__bun} key='top_bun'>
         <Bun type='top' />
       </li>
 
-      <li className={clx(s.burger__middle, 'customScroll')} key='middle_ingredients'>
+      <li
+        style={middleStyle}
+        className={clx(s.burger__middle, 'customScroll')}
+        key='middle_ingredients'>
         {isIngredientsAdded ? (
-          <ul className={s['burger-list']}>
-            {ingredients.map((item) => {
-              const ingredient = item.ingredient;
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+            modifiers={[restrictToVerticalAxis, restrictToParentElement]}>
+            <SortableContext items={sortableItems} strategy={verticalListSortingStrategy}>
+              <ul className={s['burger-list']}>
+                {ingredients.map((item) => {
+                  const ingredient = item.ingredient;
 
-              return (
-                <li className={clx(s.withDrag)} key={item.uuid}>
-                  <div className={clx(s.drag)}>{<DragIcon type='primary' />}</div>
-                  <ConstructorElement
-                    price={ingredient.price}
-                    text={ingredient.name}
-                    thumbnail={ingredient.image_mobile}
-                    handleDelete={() => removeElementFromBurger(item.uuid)}
-                  />
-                </li>
-              );
-            })}
-          </ul>
+                  return (
+                    <BurgerSortableItem
+                      text={ingredient.name}
+                      price={ingredient.price}
+                      thumbnail={ingredient.image_mobile}
+                      uuid={item.uuid}
+                      key={item.uuid}
+                      handleDelete={() => removeElementFromBurger(item.uuid)}
+                    />
+                  );
+                })}
+              </ul>
+            </SortableContext>
+          </DndContext>
         ) : (
           <EmptyConstructorElement
             text={t('burgerConstructor.burger.emptyMain')}
@@ -72,7 +89,7 @@ export const Burger = ({ extraClass = '' }: Props) => {
         )}
       </li>
 
-      <li className={s.burger__bun} key='bottom_bun'>
+      <li style={bunStyle} className={s.burger__bun} key='bottom_bun'>
         <Bun type='bottom' />
       </li>
     </ul>

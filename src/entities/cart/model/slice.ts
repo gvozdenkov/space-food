@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice, nanoid } from '@reduxjs/toolkit';
 import { type Cart } from './types';
 import { Ingredient } from '#api/ingredients.types';
-// import { arrayMove } from '@dnd-kit/sortable';
+import { arrayMove } from '@dnd-kit/sortable';
 
 type CartSliceState = Cart;
 
@@ -18,24 +18,29 @@ const setCartItems = (state: CartSliceState) => {
   return state.bun ? [state.bun, ...ingredients, state.bun] : [...ingredients];
 };
 
-// const findIndex = (state, id) => {
-//   const element = state.ingredients.find((element) => element._itemId === id);
-//   return state.ingredients.indexOf(element);
-// };
+const findIndex = (state: CartSliceState, id: string) => {
+  const element = state.ingredients.find((element) => element.uuid === id);
+
+  if (element) {
+    return state.ingredients.indexOf(element);
+  }
+
+  return undefined;
+};
 
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    // setDragTarget(state, action) {
-    //   const { type, id } = action.payload;
+    setDragTarget(state, action) {
+      const { type, id } = action.payload;
 
-    //   state.dragTarget = { type, id };
-    // },
+      state.dragTarget = { type, id };
+    },
 
-    // removeDragTarget(state, action) {
-    //   state.dragTarget = null;
-    // },
+    removeDragTarget(state) {
+      state.dragTarget = null;
+    },
 
     bunAdded(state, action: PayloadAction<Ingredient>) {
       state.bun = action.payload;
@@ -56,24 +61,24 @@ export const cartSlice = createSlice({
       state.cartItems = setCartItems(state);
     },
 
-    // ingredientMoved: {
-    //   reducer(state, action) {
-    //     const { activeId, overId } = action.payload;
-    //     const activeIndex = findIndex(state, activeId);
-    //     const overIndex = findIndex(state, overId);
-    //     // state.ingredients = arrayMove(state.ingredients, activeIndex, overIndex);
-    //     state.cartItems = setCartItems(state);
-    //   },
+    ingredientMoved: {
+      reducer(state, action) {
+        const { activeId, overId } = action.payload;
+        const activeIndex = findIndex(state, activeId)!;
+        const overIndex = findIndex(state, overId)!;
+        state.ingredients = arrayMove(state.ingredients, activeIndex, overIndex);
+        state.cartItems = setCartItems(state);
+      },
 
-    //   prepare(activeId, overId) {
-    //     return {
-    //       payload: {
-    //         activeId,
-    //         overId,
-    //       },
-    //     };
-    //   },
-    // },
+      prepare(activeId, overId) {
+        return {
+          payload: {
+            activeId,
+            overId,
+          },
+        };
+      },
+    },
 
     cartReseted(state) {
       state.bun = null;
@@ -87,9 +92,9 @@ export const {
   bunAdded,
   ingredientAdded,
   ingredientRemoved,
-  // setDragTarget,
-  // removeDragTarget,
-  // ingredientMoved,
+  setDragTarget,
+  removeDragTarget,
+  ingredientMoved,
   cartReseted,
 } = cartSlice.actions;
 

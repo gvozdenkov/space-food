@@ -7,6 +7,7 @@ import { Body } from './components/body';
 import { Header } from './components/header';
 import { Footer } from './components/footer';
 import { Counter } from './components/counter';
+import { Overlay } from './components/overlay';
 import { useGetIngredientsQuery } from '#widgets/burger-ingredients';
 
 type Props = PropsWithChildren<ComponentPropsWithoutRef<'article'>> & {
@@ -32,5 +33,6 @@ Card.Price = Price;
 Card.Body = Body;
 Card.Header = Header;
 Card.Footer = Footer;
+Card.Overlay = Overlay;
 
 export { Card };
