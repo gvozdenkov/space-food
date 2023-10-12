@@ -6,20 +6,19 @@ import { z } from 'zod';
 import { Input, SubmitButton } from '#shared/ui/form';
 
 import s from './forgot-pasword-from.module.scss';
+import { useForgotPasswordMutation } from '#entities/session';
 
 export const ForgotPaswordForm = () => {
   const { t } = useTranslation();
 
   const formSchema = z.object({
     email: z.string().email({ message: t('form.input.email.error.incorrect') }),
-    password: z.string().nonempty(t('form.input.common.error.required')),
   });
 
   type FormSchema = z.infer<typeof formSchema>;
 
   const defaultValues: FormSchema = {
     email: '',
-    password: '',
   };
 
   const {
@@ -34,8 +33,10 @@ export const ForgotPaswordForm = () => {
     resolver: zodResolver(formSchema),
   });
 
+  const { mutate: forgotPasswordMutation } = useForgotPasswordMutation();
+
   const onSubmit: SubmitHandler<FormSchema> = (data) => {
-    console.log('send forgot password code to email', data);
+    forgotPasswordMutation(data);
     reset();
   };
 

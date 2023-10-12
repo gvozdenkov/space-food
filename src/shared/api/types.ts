@@ -3,7 +3,7 @@ export type Credentials = {
   email: string;
   password: string;
   refreshToken: string;
-  token: number;
+  token: string;
 };
 
 export type User = {

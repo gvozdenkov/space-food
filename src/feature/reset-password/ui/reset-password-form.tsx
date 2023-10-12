@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { Input, PasswordInput, SubmitButton } from '#shared/ui/form';
 
 import s from './reset-password-form.module.scss';
+import { useResetPasswordMutation } from '#entities/session';
 
 export const ResetPasswordForm = () => {
   const { t } = useTranslation();
@@ -34,8 +35,11 @@ export const ResetPasswordForm = () => {
     resolver: zodResolver(formSchema),
   });
 
+  const { mutate: resetPasswordMutation } = useResetPasswordMutation();
+
   const onSubmit: SubmitHandler<FormSchema> = (data) => {
     console.log('password updated', data);
+    resetPasswordMutation(data);
     reset();
   };
 
