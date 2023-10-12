@@ -4,9 +4,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 import { Input, PasswordInput, SubmitButton } from '#shared/ui/form';
+import { useLogInMutation } from '#entities/session';
+import { ErrorMessage } from '#shared/ui/error-message';
 
 import s from './login-from.module.scss';
-import { useLogInMutation } from '#entities/session';
 
 type Props = {
   redirectTo: string;
@@ -32,19 +33,16 @@ export const LoginForm = ({ redirectTo }: Props) => {
     handleSubmit,
     reset,
     setFocus,
-    formState: { isValid, isSubmitting, errors },
+    formState: { isValid, errors },
   } = useForm<FormSchema>({
     defaultValues,
     mode: 'onTouched',
     resolver: zodResolver(formSchema),
   });
 
-  const {
-    mutate: loginMutation,
-    error: mutationError,
-    isError,
-    isLoading,
-  } = useLogInMutation({ redirectTo });
+  const { mutate: loginMutation, isError, isLoading } = useLogInMutation({ redirectTo });
+
+  const mutationErrorText = t('login.error.login');
 
   const onSubmit: SubmitHandler<FormSchema> = (data) => {
     loginMutation(data);
@@ -76,9 +74,11 @@ export const LoginForm = ({ redirectTo }: Props) => {
         autoComplete='off'
       />
 
-      <SubmitButton disabled={!isValid || isSubmitting} extraClass={s.input_submit}>
+      <SubmitButton disabled={!isValid || isLoading} extraClass={s.input_submit}>
         {t('login.form.button.submit')}
       </SubmitButton>
+
+      {isError && <ErrorMessage message={mutationErrorText} />}
     </form>
   );
 };
