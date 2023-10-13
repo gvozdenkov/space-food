@@ -1,6 +1,6 @@
-import { Order } from './feed-card-details';
 import { useGetIngredientsQuery } from '#widgets/burger-ingredients';
 import { Ingredient } from '#api/ingredients.types';
+import { Order } from '#entities/feed/types';
 
 export const useOrderDetails = ({ order }: Order) => {
   const { data } = useGetIngredientsQuery();
@@ -15,7 +15,14 @@ export const useOrderDetails = ({ order }: Order) => {
     [],
   );
 
-  const ingredientsCount = ingredientsAll.reduce(
+  type IngredientCount = {
+    [key: string]: {
+      ingredient: Ingredient;
+      count: number;
+    };
+  };
+
+  const ingredientsCount = ingredientsAll.reduce<IngredientCount>(
     (res, item) => ({
       ...res,
       [item._id]: {

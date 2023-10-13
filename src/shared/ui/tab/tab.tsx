@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, PropsWithChildren } from 'react';
+import { ComponentPropsWithoutRef, MouseEvent, PropsWithChildren } from 'react';
 import { clx } from '#shared/lib';
 import s from './tab.module.scss';
 
@@ -8,7 +8,7 @@ type Tab = Omit<
 > & {
   active: boolean;
   value: string;
-  onClick: (value: string) => void;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 };
 
 export const Tab = ({ active, value, children, onClick, ...rest }: Tab) => {
@@ -21,7 +21,8 @@ export const Tab = ({ active, value, children, onClick, ...rest }: Tab) => {
       role='tab'
       aria-selected={active}
       id={`tab-${value}`}
-      onClick={() => onClick(value)}
+      name={value}
+      onClick={onClick}
       {...rest}>
       {children}
     </button>

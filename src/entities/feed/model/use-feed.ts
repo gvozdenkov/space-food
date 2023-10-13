@@ -2,25 +2,21 @@ import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useWebSocket, WebSocketProps } from '#shared/api';
 import { orderStatus } from '#shared/config';
+import { FeedQuery } from '../types';
 
 type Props = WebSocketProps & {
   query: () => {
     queryKey: string[];
-    queryFn: () => Promise<{
-      success: boolean;
-      orders: never[];
-      total: number;
-      totalToday: number;
-    }>;
+    queryFn: () => Promise<FeedQuery>;
   };
 };
 
 export const useFeed = ({ url, useToken = false, querykeys, query }: Props) => {
   const { isLoading } = useWebSocket({ url, useToken, querykeys });
 
-  const { data: ordersData } = useQuery(query());
+  const { data } = useQuery<FeedQuery, Error>(query());
 
-  const { orders, total, totalToday } = ordersData;
+  const { orders, total, totalToday } = data!;
 
   const doneOrders = useMemo(
     () => orders.filter((order) => order.status === orderStatus.DONE),

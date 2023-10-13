@@ -19,9 +19,6 @@
     "baseUrl": "./",
     "paths": {
       "#*": ["./src/*"],
-      "#images": ["./src/images"],
-      "#layouts": ["./src/layouts"],
-      "#pages": ["./src/pages"]
     },
 
     /* Linting */

@@ -1,6 +1,8 @@
 import { publicApi } from '#shared/api';
+import { GetOrderRes } from '#shared/api/types';
 import { QUERYKEY } from '#shared/config';
 import { QueryClient, useQuery } from '@tanstack/react-query';
+import { LoaderFunction } from 'react-router-dom';
 
 export const orderDetailsQuery = (number: string) => ({
   queryKey: [QUERYKEY.ORDER_DETAILS, number],
@@ -23,7 +25,14 @@ export const useOrderDetailsQuery = (number: string) => {
 };
 
 // return data or fetch it
+
+type Params = {
+  number: string;
+};
+
 export const orderModalLoader =
-  (queryClient: QueryClient) =>
-  async ({ params }) =>
-    await queryClient.ensureQueryData(orderDetailsQuery(params.number));
+  (queryClient: QueryClient): LoaderFunction =>
+  async ({ params }): Promise<GetOrderRes> => {
+    const typedParams = params as unknown as Params;
+    return await queryClient.ensureQueryData(orderDetailsQuery(typedParams.number));
+  };

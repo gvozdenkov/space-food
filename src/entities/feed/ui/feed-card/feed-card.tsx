@@ -1,22 +1,13 @@
-import { useTranslation } from 'react-i18next';
-
-// import { orderStatusTitle } from '../../../../utils/config';
 import { IngredientIconList } from '../ingredient-icon-list/ingredient-icon-list';
 import { clx } from '#shared/lib';
 import { Price } from '#shared/ui/price';
 import { useFeedCard } from './use-feed-card';
-
-import s from './feed-card.module.scss';
-import { OrderStatus } from '#shared/config/const';
 import { FormattedDate } from '#shared/ui';
 
-type Props = {
-  ingredients: string[];
-  name: string;
-  status: OrderStatus;
-  number: number;
-  createdAt: string;
-};
+import s from './feed-card.module.scss';
+import { FeedOrder } from '#shared/api/types';
+
+type Props = Pick<FeedOrder, 'ingredients' | 'name' | 'status' | 'number' | 'createdAt'>;
 
 export const FeedCard = ({
   ingredients: ingredientIds,
@@ -25,7 +16,6 @@ export const FeedCard = ({
   number,
   createdAt,
 }: Props) => {
-  const { t } = useTranslation();
   const { ingredients, isValid, price, isDone } = useFeedCard({ ingredientIds, status });
 
   return (

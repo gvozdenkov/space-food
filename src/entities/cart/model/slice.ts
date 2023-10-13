@@ -1,5 +1,6 @@
 import { PayloadAction, createSelector, createSlice, nanoid } from '@reduxjs/toolkit';
 import { arrayMove } from '@dnd-kit/sortable';
+import { UniqueIdentifier } from '@dnd-kit/core';
 import { type Cart } from './types';
 import { Ingredient } from '#api/ingredients.types';
 
@@ -18,7 +19,7 @@ const setCartItems = (state: CartSliceState) => {
   return state.bun ? [state.bun, ...ingredients, state.bun] : [...ingredients];
 };
 
-const findIndex = (state: CartSliceState, id: string) => {
+const findIndex = (state: CartSliceState, id: UniqueIdentifier) => {
   const element = state.ingredients.find((element) => element.uuid === id);
 
   if (element) {
@@ -26,6 +27,11 @@ const findIndex = (state: CartSliceState, id: string) => {
   }
 
   return undefined;
+};
+
+type IngredientMoved = {
+  activeId: UniqueIdentifier;
+  overId: UniqueIdentifier;
 };
 
 export const cartSlice = createSlice({
@@ -55,14 +61,14 @@ export const cartSlice = createSlice({
       state.cartItems = setCartItems(state);
     },
 
-    ingredientRemoved(state, action) {
+    ingredientRemoved(state, action: PayloadAction<string>) {
       const deletedId = action.payload;
       state.ingredients = state.ingredients.filter((item) => item.uuid !== deletedId);
       state.cartItems = setCartItems(state);
     },
 
     ingredientMoved: {
-      reducer(state, action) {
+      reducer(state, action: PayloadAction<IngredientMoved>) {
         const { activeId, overId } = action.payload;
         const activeIndex = findIndex(state, activeId)!;
         const overIndex = findIndex(state, overId)!;

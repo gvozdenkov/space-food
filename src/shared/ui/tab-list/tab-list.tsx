@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithoutRef, MouseEvent } from 'react';
 import { clx } from '#shared/lib';
 import { Tab } from '#shared/ui/tab';
 import s from './tab-list.module.scss';
@@ -10,7 +10,7 @@ type TabList = ComponentPropsWithoutRef<'ul'> & {
   }[];
   activeTab: string;
   setActiveTab: (current: string) => void;
-  onTabClick?: (id: number) => void;
+  onTabClick?: (id: string) => void;
   extraClass?: string;
 };
 
@@ -21,11 +21,12 @@ export const TabList = ({
   onTabClick,
   extraClass = '',
 }: TabList) => {
-  const handleTabClick = (current: string, i: number) => {
-    setActiveTab(current);
+  const handleTabClick = (event: MouseEvent<HTMLButtonElement>) => {
+    const button: HTMLButtonElement = event.currentTarget;
+    setActiveTab(button.name);
 
     if (typeof onTabClick === 'function') {
-      onTabClick(i);
+      onTabClick(button.name);
     }
   };
 
@@ -34,10 +35,7 @@ export const TabList = ({
       {tabs.map((tab, i) => {
         return (
           <li key={i} role='presentation'>
-            <Tab
-              value={tab.value}
-              active={activeTab === tab.value}
-              onClick={(current) => handleTabClick(current, i)}>
+            <Tab value={tab.value} active={activeTab === tab.value} onClick={handleTabClick}>
               {tab.title}
             </Tab>
           </li>

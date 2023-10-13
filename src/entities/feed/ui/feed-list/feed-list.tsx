@@ -2,19 +2,12 @@ import { Link, useLocation } from 'react-router-dom';
 
 import { clx } from '#shared/lib';
 import { FeedCard } from '../feed-card/feed-card';
+import { FeedOrder } from '#shared/api/types';
 
 import s from './feed-list.module.scss';
 
 type Props = {
-  orders: {
-    createdAt: string;
-    ingredients: string[];
-    name: string;
-    number: number;
-    status: string;
-    updatedAt: string;
-    _id: string;
-  }[];
+  orders: FeedOrder[];
 };
 
 export const FeedList = ({ orders }: Props) => {

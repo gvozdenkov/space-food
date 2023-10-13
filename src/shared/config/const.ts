@@ -4,8 +4,6 @@ export const orderStatus = {
   DONE: 'done',
 } as const;
 
-export type OrderStatus = 'pending' | 'cancel' | 'done';
-
 export const orderDropTarget = {
   BUN: 'bunDropTarget',
   MIDDLE: 'middleDropTarget',

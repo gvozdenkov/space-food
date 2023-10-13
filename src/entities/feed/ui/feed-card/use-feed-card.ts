@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useGetIngredientsQuery } from '#widgets/burger-ingredients';
-import { Ingredients } from '#api/ingredients.types';
-import { OrderStatus } from '#shared/config/const';
+import { Ingredient } from '#api/ingredients.types';
+import { OrderStatus } from '#shared/api/types';
 
 type Props = {
   ingredientIds: string[];
@@ -14,7 +14,7 @@ export const useFeedCard = ({ ingredientIds: orderIngredientsIds, status }: Prop
 
   const ingredients = useMemo(
     () =>
-      orderIngredientsIds.reduce<Ingredients>((arr, id) => [...arr, ingredientsCatalog[id]], []),
+      orderIngredientsIds.reduce<Ingredient[]>((arr, id) => [...arr, ingredientsCatalog[id]], []),
     [orderIngredientsIds, ingredientsCatalog],
   );
 

@@ -1,7 +1,7 @@
 import { useId } from 'react';
-import { Ingredient } from '#api/ingredients.types';
 import { clx } from '#shared/lib';
 import { IngredientIcon } from '../ingredient-icon/ingredient-icon';
+import { Ingredient } from '#api/ingredients.types';
 
 import s from './ingredient-icon-list.module.scss';
 

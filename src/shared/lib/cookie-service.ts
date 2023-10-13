@@ -35,7 +35,7 @@ const removeTokens = () => {
 
 // access to /reset-password route
 const setResetPasswordRights = () => {
-  Cookies.set(COOKIE.RESET_PASSWORD, 1);
+  Cookies.set(COOKIE.RESET_PASSWORD, '1');
 };
 
 const getResetPasswordRights = () => {

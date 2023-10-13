@@ -1,28 +1,13 @@
-import { OrderStatus } from '#shared/config/const';
-import { clx } from '#shared/lib';
-import { useOrderDetails } from './use-feed-card-details';
-
-import s from './feed-card-details.module.scss';
 import { useTranslation } from 'react-i18next';
+
+import { clx } from '#shared/lib';
 import { FormattedDate } from '#shared/ui';
 import { Price } from '#shared/ui/price';
-import { useAppSelector } from '#shared/model/hooks';
-import { selectTotalPrice } from '#entities/cart';
+import { useOrderDetails } from './use-feed-card-details';
 import { IngredientRow } from './ingredient-row';
+import { Order } from '../../types';
 
-export type Order = {
-  order: {
-    ingredients: string[];
-    name: string;
-    owner: string;
-    status: OrderStatus;
-    createdAt: string;
-    updatedAt: string;
-    __v: number;
-    _id: string;
-  };
-  extraClass?: string;
-};
+import s from './feed-card-details.module.scss';
 
 export const FeedCardDetails = ({ order, extraClass }: Order) => {
   const { t } = useTranslation();

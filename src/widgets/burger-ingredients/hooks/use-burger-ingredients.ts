@@ -37,7 +37,7 @@ export const useBurgerIngredients = () => {
   function getTitleNodes() {
     if (IngredientTypeListRef.current) {
       const listNode = IngredientTypeListRef.current;
-      const titleNodes = listNode.querySelectorAll('li > h2');
+      const titleNodes = [...listNode.querySelectorAll('li > h2')];
       return titleNodes;
     }
 
@@ -80,9 +80,11 @@ export const useBurgerIngredients = () => {
     };
   }, [observe]);
 
-  const scrollToIndex = (index: number) => {
+  const scrollToIndex = (index: string) => {
     const titleNodes = getTitleNodes();
-    const titleNode = titleNodes[index];
+
+    const titleNode = titleNodes.filter((item) => item.id === index)[0];
+    console.log(titleNode);
 
     // disable observe when scroll by clicking Tab button
     // This prevent flash Tab active when switch first and last Tab
