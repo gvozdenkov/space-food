@@ -4,7 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 import { clx } from '#shared/lib';
-import { Button, Input, PasswordInput, SubmitButton } from '#shared/ui/form';
+import { Button, Input, SubmitButton } from '#shared/ui/form';
+import { PasswordInput } from '#shared/ui/form/password-input';
 import { useUserQuery } from '#entities/session';
 import { useEditUserMutation } from '#entities/session';
 

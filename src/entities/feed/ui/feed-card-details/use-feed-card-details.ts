@@ -1,6 +1,6 @@
 import { useGetIngredientsQuery } from '#widgets/burger-ingredients';
-import { Ingredient } from '#api/ingredients.types';
 import { Order } from '#entities/feed/types';
+import { Ingredient } from '#shared/api/types';
 
 export const useOrderDetails = ({ order }: Order) => {
   const { data } = useGetIngredientsQuery();

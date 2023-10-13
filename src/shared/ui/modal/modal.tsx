@@ -4,8 +4,8 @@ import { PropsWithChildren } from 'react';
 import { Overlay } from './components/overlay';
 import { Content } from './components/content';
 import { Header } from './components/header';
-import { MODAL_PORTAL_EL } from '#constants/layout';
 import { ModalContext } from './context/modal-context';
+import { MODAL_PORTAL_EL } from '#shared/config/const';
 
 const Modal = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();

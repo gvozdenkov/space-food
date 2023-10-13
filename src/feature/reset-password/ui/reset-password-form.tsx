@@ -3,8 +3,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-import { Input, PasswordInput, SubmitButton } from '#shared/ui/form';
-
+import { Input, SubmitButton } from '#shared/ui/form';
+import { PasswordInput } from '#shared/ui/form/password-input';
 import s from './reset-password-form.module.scss';
 import { useResetPasswordMutation } from '#entities/session';
 

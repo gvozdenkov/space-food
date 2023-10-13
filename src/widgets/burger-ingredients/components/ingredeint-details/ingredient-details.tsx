@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { Ingredient } from '#api/ingredients.types';
 import { clx } from '#shared/lib';
 import s from './ingredient-details.module.scss';
+import { Ingredient } from '#shared/api/types';
 
 type Props = {
   ingredient: Ingredient;

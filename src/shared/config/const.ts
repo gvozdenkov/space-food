@@ -15,3 +15,7 @@ export const ingredientIds = {
   MAIN: 'main',
   SAUCE: 'sauce',
 };
+
+export const INGREDIENT_TYPES = ['bun', 'main', 'sauce'] as const;
+
+export const MODAL_PORTAL_EL = document.querySelector('#modal-portal');

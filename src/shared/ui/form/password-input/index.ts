@@ -1,3 +1,1 @@
-import { PasswordInput } from './password-input';
-
-export { PasswordInput };
+export { PasswordInput } from './password-input';

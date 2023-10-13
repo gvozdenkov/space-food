@@ -1,4 +1,3 @@
-import { ValueOf } from '#types/utils';
 import { ICON_SIZE } from './constants';
 
 export type IconName =

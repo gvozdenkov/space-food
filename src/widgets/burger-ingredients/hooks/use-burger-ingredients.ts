@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IngrediensByTypes, useGetIngredientsQuery } from '..';
-import { INGREDIENT_TYPES } from '#constants/ingredients';
+
 import { debounce } from '#shared/lib';
+import { INGREDIENT_TYPES } from '#shared/config/const';
 
 export const useBurgerIngredients = () => {
   const { t } = useTranslation();

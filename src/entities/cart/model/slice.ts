@@ -2,7 +2,7 @@ import { PayloadAction, createSelector, createSlice, nanoid } from '@reduxjs/too
 import { arrayMove } from '@dnd-kit/sortable';
 import { UniqueIdentifier } from '@dnd-kit/core';
 import { type Cart } from './types';
-import { Ingredient } from '#api/ingredients.types';
+import { Ingredient } from '#shared/api/types';
 
 type CartSliceState = Cart;
 

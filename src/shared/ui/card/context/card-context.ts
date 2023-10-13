@@ -1,5 +1,5 @@
+import { Ingredient } from '#shared/api/types';
 import { createContext, useContext } from 'react';
-import { Ingredient } from '#api/ingredients.types';
 
 type CardContext = {
   ingredient: Ingredient;

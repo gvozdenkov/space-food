@@ -1,9 +1,9 @@
 import { useId } from 'react';
 import { clx } from '#shared/lib';
 import { IngredientIcon } from '../ingredient-icon/ingredient-icon';
-import { Ingredient } from '#api/ingredients.types';
 
 import s from './ingredient-icon-list.module.scss';
+import { Ingredient } from '#shared/api/types';
 
 type Props = {
   ingredients: Ingredient[];

@@ -1,12 +1,25 @@
 import { QueryClient, useQuery } from '@tanstack/react-query';
 
-import { Ingredient, Ingredients } from '#api/ingredients.types';
-import { getIngredients } from '#api/ingredients';
+import { Ingredient, Ingredients, IngredientsRes } from '#shared/api/types';
 import { QUERYKEY } from '#shared/config';
+import { publicApi } from '#shared/api';
 
 const ingredientsQuery = () => ({
   queryKey: [QUERYKEY.INGREDIENTS],
-  queryFn: getIngredients,
+  queryFn: async (options?: { signal?: AbortSignal }) => {
+    const { data } = await publicApi.get<IngredientsRes>('ingredients', {
+      signal: options?.signal,
+    });
+
+    const ingredientsArray = data.data;
+
+    const ingredientsObj = ingredientsArray.reduce<Ingredients>(
+      (obj, item) => ({ ...obj, [item._id]: item }),
+      {},
+    );
+
+    return { ingredientsArray, ingredientsObj };
+  },
 });
 
 type GetIngredientsQuery = {

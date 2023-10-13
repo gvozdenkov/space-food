@@ -1,4 +1,4 @@
-import { IngredientType } from '#api/ingredients.types';
+import { IngredientType } from '#shared/api/types';
 
 export type IngrediensByTypes = {
   title: string;

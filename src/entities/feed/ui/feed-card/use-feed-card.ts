@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import { useGetIngredientsQuery } from '#widgets/burger-ingredients';
-import { Ingredient } from '#api/ingredients.types';
-import { OrderStatus } from '#shared/api/types';
+import { Ingredient, OrderStatus } from '#shared/api/types';
 
 type Props = {
   ingredientIds: string[];

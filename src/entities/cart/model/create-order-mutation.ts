@@ -5,8 +5,7 @@ import { useAppDispatch } from '#shared/model/hooks';
 import { UserService, createOrderApi } from '#shared/api';
 import { ROUTE } from '#shared/config';
 import { cartReseted } from './slice';
-import { Ingredient } from '#api/ingredients.types';
-import { User } from '#shared/api/types';
+import { Ingredient, User } from '#shared/api/types';
 
 type CreateOrderRes = {
   success: boolean;

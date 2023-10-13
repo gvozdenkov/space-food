@@ -1,4 +1,4 @@
-import { Ingredient, IngredientType } from '#api/ingredients.types';
+import { Ingredient, IngredientType } from '#shared/api/types';
 
 export type Cart = {
   bun: Ingredient | null;
