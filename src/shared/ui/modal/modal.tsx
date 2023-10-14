@@ -6,6 +6,7 @@ import { Content } from './components/content';
 import { Header } from './components/header';
 import { ModalContext } from './context/modal-context';
 import { MODAL_PORTAL_EL } from '#shared/config/const';
+import { useEscKey } from './hooks/use-esc-key';
 
 const Modal = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Modal = ({ children }: PropsWithChildren) => {
     navigate(-1);
   };
 
-  // useEscKey(handleClose);
+  useEscKey(handleClose);
 
   return createPortal(
     <ModalContext.Provider value={{ handleClose }}>{children}</ModalContext.Provider>,
