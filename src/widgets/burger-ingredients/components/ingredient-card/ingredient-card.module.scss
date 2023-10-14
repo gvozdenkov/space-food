@@ -14,7 +14,7 @@
   width: 100%;
   box-sizing: border-box;
   transition: scale 0.25s ease-out;
-  cursor: pointer;
+  cursor: grab;
 
   &:hover {
     scale: 1.08;
@@ -32,6 +32,7 @@
   gap: 4px;
   flex-flow: column;
   align-items: center;
+  color: var(--color-content-primary);
 }
 
 .header {
