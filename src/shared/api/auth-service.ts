@@ -6,7 +6,7 @@ type Tokens = {
   refreshToken: string;
 };
 
-type Login = Pick<Credentials, 'email' | 'password'>;
+export type Login = Pick<Credentials, 'email' | 'password'>;
 type Register = Pick<Credentials, 'email' | 'password' | 'name'>;
 type ForgotPassword = Pick<Credentials, 'email'>;
 type ResetPassword = Pick<Credentials, 'password' | 'token'>;

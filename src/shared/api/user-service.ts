@@ -1,20 +1,20 @@
 import { authApi } from './api-setup';
 import { User } from './types';
 
-type Props = {
+export type EditUser = {
   name?: string;
   email?: string;
   password?: string;
 };
 
-type UserRes = {
+export type UserRes = {
   success: boolean;
   user: User;
 };
 
 const ENDPOINT = 'auth/user';
 
-const editUser = async ({ name, email, password }: Props) => {
+const editUser = async ({ name, email, password }: EditUser) => {
   const res = await authApi.patch<UserRes>(`/${ENDPOINT}`, {
     name,
     email,

@@ -10,6 +10,7 @@ import { useUserQuery } from '#entities/session';
 import { useEditUserMutation } from '#entities/session';
 
 import s from './profile.page.module.scss';
+import { ErrorMessage } from '#shared/ui/error-message';
 
 export const ProfilePage = () => {
   const { t } = useTranslation();
@@ -70,7 +71,9 @@ export const ProfilePage = () => {
     resolver: zodResolver(formSchema),
   });
 
-  const { mutate: editUserMutation } = useEditUserMutation();
+  const { mutate: editUserMutation, isError, error, isSuccess } = useEditUserMutation();
+
+  const errorText = error?.response?.data.message || 'blblblb';
 
   const onSubmit: SubmitHandler<FormSchema> = (data) => {
     editUserMutation(data);
@@ -134,6 +137,11 @@ export const ProfilePage = () => {
               </Button>
             </>
           )}
+
+          {isSuccess && (
+            <ErrorMessage message={t('profile.form.sucess')} extraClass='text_color_success' />
+          )}
+          {isError && <ErrorMessage message={errorText} />}
         </form>
       </section>
 
