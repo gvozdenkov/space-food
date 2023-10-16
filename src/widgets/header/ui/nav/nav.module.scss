@@ -1,0 +1,14 @@
+.nav {
+  max-width: 1240px;
+  width: 100%;
+}
+
+.navList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: row;
+  gap: 48px;
+  align-items: center;
+}

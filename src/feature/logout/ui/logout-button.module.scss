@@ -1,0 +1,12 @@
+.logout-btn {
+  background-color: transparent;
+  color: var(--color-content-inactive);
+  border: 0;
+  cursor: pointer;
+  min-height: 64px;
+  transition: color var(--transition-short) ease-out;
+
+  &:hover {
+    color: var(--color-content-primary);
+  }
+}

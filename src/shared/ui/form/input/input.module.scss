@@ -1,0 +1,116 @@
+.fieldContainer {
+  display: flex;
+  flex-flow: column;
+  gap: 2px;
+  width: 100%;
+
+  &__error {
+    margin-left: 24px !important;
+    margin-top: 2px;
+    color: var(--colors-interface-error);
+  }
+}
+
+.field {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: text;
+  box-sizing: border-box;
+  background-color: var(--background-element);
+  border: 2px solid var(--background-element);
+  border-radius: var(--common-border-radius-s);
+  transition: 0.3s;
+  position: relative;
+
+  &_status {
+    &_active {
+      border: 2px solid var(--colors-interface-accent);
+    }
+
+    &_error {
+      border: 2px solid var(--colors-interface-error);
+    }
+
+    &_disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &_size {
+    &_default {
+      min-height: 64px;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    &_small {
+      min-height: 48px;
+      padding-left: calc(var(--offset-base-variable) * 10);
+      padding-right: calc(var(--offset-base-variable) * 10);
+    }
+  }
+
+  &__input {
+    width: 100%;
+    color: var(--text-primary-color);
+    background-color: transparent;
+    border: none;
+    margin-top: 16px !important;
+    cursor: text;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:disabled,
+    &:disabled ~ .field__label,
+    &:disabled ~ .field__icon {
+      cursor: not-allowed;
+      color: var(--text-inactive-color);
+    }
+
+    &:-webkit-autofill {
+      -webkit-text-fill-color: var(--text-primary-color) !important;
+    }
+  }
+
+  &__label {
+    display: block;
+    position: absolute;
+    cursor: text;
+    top: 18px;
+    text-align: left;
+    color: var(--text-inactive-color);
+    transition: 0.3s;
+  }
+
+  &__icon {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    border: none;
+    cursor: not-allowed;
+    line-height: 0;
+
+    &_type {
+      &_action {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.field__input:focus ~ .field__label,
+.field__input:not(:placeholder-shown).field__input:not(:focus) ~ .field__label {
+  top: 8px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--background-element) inset !important;
+  caret-color: var(--text-primary-color);
+}

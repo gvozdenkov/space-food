@@ -1,0 +1,44 @@
+$burgerIngredientHeight: 80px;
+$burgerIngredientsGap: 16px;
+$burgerIngredientsMax: 5;
+
+.burger-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-flow: column;
+  gap: 16px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.burger__bun {
+  padding-right: calc(2 * var(--scroll-width));
+  margin-left: 32px;
+}
+
+.burger__middle {
+  max-height: calc(
+    ($burgerIngredientsMax * $burgerIngredientHeight) +
+      (($burgerIngredientsMax - 1) * $burgerIngredientsGap)
+  );
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.withDrag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 1;
+  transition: opacity 0.2s ease-out, scale 0.35s ease-out;
+  touch-action: pinch-zoom;
+}
+
+.drag {
+  &:hover {
+    cursor: grab;
+  }
+}

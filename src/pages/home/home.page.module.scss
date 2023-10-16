@@ -1,0 +1,39 @@
+.home {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  gap: 40px;
+  box-sizing: border-box;
+  max-width: calc(1240px + var(--gutter) * 2);
+  height: calc(100vh - var(--header-height));
+  width: 100%;
+  margin: 0 auto;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-content-primary);
+}
+
+.card__body {
+  display: flex;
+  gap: 4px;
+  flex-flow: column;
+  align-items: center;
+  color: var(--color-content-primary);
+}
+
+.card__header {
+  text-align: center;
+  display: flex;
+  align-items: flex-start;
+  min-height: 48px;
+}
+
+.card__price {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}

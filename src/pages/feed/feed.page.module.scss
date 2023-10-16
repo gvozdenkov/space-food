@@ -1,0 +1,75 @@
+.feedPage {
+  display: grid;
+  grid-template-columns: 608fr 580fr;
+  gap: 60px;
+}
+
+.feedPage__loader {
+  grid-area: 1 / 1 / -1 / -1;
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.statistics {
+  display: grid;
+  align-content: start;
+  grid-template:
+    'done . pending'
+    '. . .' 24px
+    'doneList . pendingList'
+    '. . .' 60px
+    'totalTitle totalTitle totalTitle'
+    'total total total'
+    '. . .' 60px
+    'totalTodayTitle totalTodayTitle totalTodayTitle'
+    'totalToday totalToday totalToday'
+    / auto 36px auto;
+}
+
+.statistics__done {
+  grid-area: done;
+}
+
+.statistics__doneList {
+  columns: 2;
+  grid-area: doneList;
+}
+
+.statistics__pending {
+  grid-area: pending;
+}
+
+.statistics__pendingList {
+  grid-area: pendingList;
+}
+
+.statistics__totalTitle {
+  grid-area: totalTitle;
+}
+
+.statistics__total {
+  grid-area: total;
+}
+
+.statistics__totalTodayTitle {
+  grid-area: totalTodayTitle;
+}
+
+.statistics__totalToday {
+  grid-area: totalToday;
+}
+
+.statistics__loading {
+  grid-area: 1 / 1 / -1 / -1;
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feedList {
+  display: grid;
+  height: calc(100vh - var(--header-height));
+}

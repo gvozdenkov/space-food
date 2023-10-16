@@ -1,0 +1,8 @@
+@use '#app/styles/mixins.scss' as *;
+
+.ingredientList {
+  @include reset-list;
+  margin: 0;
+  overflow-y: scroll;
+  box-sizing: border-box;
+}

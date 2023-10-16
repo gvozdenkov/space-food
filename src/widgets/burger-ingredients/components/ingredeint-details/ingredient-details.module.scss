@@ -1,0 +1,25 @@
+.ingredientDetails {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  max-width: 520px;
+  padding: 0 60px;
+  color: var(--color-content-primary);
+}
+
+.image {
+  display: block;
+  max-width: 480px;
+  object-fit: contain;
+}
+
+.title {
+  text-align: center;
+}
+
+.nutrition {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0 20px;
+  justify-items: center;
+}

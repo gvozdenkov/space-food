@@ -1,0 +1,9 @@
+@use '#app/styles/mixins' as *;
+
+.ingredientList {
+  @include reset-list;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
+  gap: 32px 0px;
+  padding: 0 16px;
+}

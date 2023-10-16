@@ -1,0 +1,14 @@
+.orderFullScreen {
+  margin-top: 120px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  color: var(--color-content-primary);
+}
+
+.number {
+  display: flex;
+  align-items: center;
+  min-height: 64px;
+  margin-bottom: 20px;
+}

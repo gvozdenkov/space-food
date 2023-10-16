@@ -20,6 +20,14 @@
           "minLength": "Minimum {{length}} character length"
         }
       },
+      "confirm-password": {
+        "placeholder": "Confirm password",
+        "error": {
+          "minLength": "Minimum {{length}} character length",
+          "notEqual": "Passwords do not match"
+        }
+      },
+
       "common": {
         "error": {
           "required": "This is a required field"
@@ -59,14 +67,22 @@
       "proteins": "Protein, g",
       "fat": "Fat, g",
       "carbohydrates": "Carbs, g"
+    },
+    "popup": {
+      "title": "Ingredient details"
     }
+  },
+
+  "popup": {
+    "close": "Close popup"
   },
 
   "header": {
     "menu": {
       "constructor": "Constructor",
       "feed": "Order feed",
-      "profile": "Profile"
+      "profile": "Profile",
+      "login": "Sign in"
     }
   },
 
@@ -131,10 +147,14 @@
     "pendingTitle": "In work",
     "totalTitle": "Completed for all time",
     "totalTodayTitle": "Completed today",
+    "loading": "Loading order history",
     "order": {
+      "modal": {
+        "listTitle": "Compound"
+      },
       "status": {
         "pending": "Cooking",
-        "canceled": "Canceled",
+        "cancele": "Canceled",
         "done": "Done"
       }
     }
@@ -179,6 +199,11 @@
   "forgot": {
     "form": {
       "title": "Password recovery",
+      "input": {
+        "email": {
+          "placeholder": "Enter your email"
+        }
+      },
       "button": {
         "submit": "Restore"
       }
@@ -192,7 +217,7 @@
     }
   },
 
-   "reset": {
+  "reset": {
     "form": {
       "title": "Password recovery",
       "input": {
@@ -205,11 +230,17 @@
       }
     },
     "error": {
-      "forgot": "Failed to recover password"
+      "reset": "Failed to recover password"
     },
     "login": {
       "text": "Remembered the password?",
       "link": "Sign in"
     }
+  },
+
+  "date": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "ago": "ago"
   }
 }

@@ -1,0 +1,20 @@
+@use '#app/styles/mixins.scss' as *;
+
+.row {
+  @include reset-list;
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+.name {
+  margin-left: 16px;
+  margin-right: auto;
+}
+
+.price {
+  margin-left: 95px;
+}

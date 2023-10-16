@@ -1,0 +1,33 @@
+.main {
+  font-family: 'Jet Brains Mono', monospace;
+  background-color: var(--color-background);
+  color: var(--color-content-primary);
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - var(--header-height));
+}
+
+.errorPage {
+  height: calc(100vh - var(--header-height));
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  max-width: calc(1240px + var(--gutter) * 2);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+  padding: 0 var(--gutter);;
+}

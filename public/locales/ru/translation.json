@@ -15,10 +15,16 @@
         }
       },
       "password": {
-        "placeholder": "Password",
+        "placeholder": "Пароль",
         "error": {
-          "incorrect": "Введите электронную почту",
           "minLength": "Минимальная длинна {{length}} символа"
+        }
+      },
+      "confirm-password": {
+        "placeholder": "Подтвердите пароль",
+        "error": {
+          "minLength": "Минимальная длинна {{length}} символа",
+          "notEqual": "Введённые пароли не совпадают"
         }
       },
       "common": {
@@ -51,7 +57,7 @@
 
   "ingredient": {
     "type": {
-      "bun": "Белки",
+      "bun": "Булки",
       "main": "Начинки",
       "sauce": "Соусы"
     },
@@ -60,14 +66,22 @@
       "proteins": "Белки, г",
       "fat": "Жиры, г",
       "carbohydrates": "Углеводы, г"
+    },
+    "popup": {
+      "title": "Детали ингредиента"
     }
+  },
+
+  "popup": {
+    "close": "Закрыть попап"
   },
 
   "header": {
     "menu": {
       "constructor": "Конструктор",
       "feed": "Лента заказов",
-      "profile": "Профиль"
+      "profile": "Профиль",
+      "login": "Войти"
     }
   },
 
@@ -132,10 +146,14 @@
     "totalTitle": "Выполнено за все время",
     "totalTodayTitle": "Выполнено за сегодня",
     "empty": "Вы ещё ничего не заказывали",
+    "loading": "Загружаем историю заказов",
     "order": {
+      "modal": {
+        "listTitle": "Состав"
+      },
       "status": {
         "pending": "Готовится",
-        "canceled": "Отменён",
+        "cancele": "Отменён",
         "done": "Выполнен"
       }
     }
@@ -180,6 +198,11 @@
   "forgot": {
     "form": {
       "title": "Восстановление пароля",
+      "input": {
+        "email": {
+          "placeholder": "Укажите e-mail"
+        }
+      },
       "button": {
         "submit": "Восстановить"
       }
@@ -206,11 +229,17 @@
       }
     },
     "error": {
-      "forgot": "Не получилось восстановить пароль"
+      "reset": "Не получилось восстановить пароль"
     },
     "login": {
       "text": "Вспомнили пароль?",
       "link": "Войти"
     }
+  },
+
+  "date": {
+    "today": "Сегодня",
+    "yesterday": "Вчера",
+    "ago": "назад"
   }
 }
