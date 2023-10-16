@@ -230,7 +230,7 @@
       }
     },
     "error": {
-      "forgot": "Failed to recover password"
+      "reset": "Failed to recover password"
     },
     "login": {
       "text": "Remembered the password?",

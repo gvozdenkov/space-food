@@ -7,11 +7,11 @@ type Tokens = {
 };
 
 export type Login = Pick<Credentials, 'email' | 'password'>;
-type Register = Pick<Credentials, 'email' | 'password' | 'name'>;
-type ForgotPassword = Pick<Credentials, 'email'>;
-type ResetPassword = Pick<Credentials, 'password' | 'token'>;
+export type Register = Pick<Credentials, 'email' | 'password' | 'name'>;
+export type ForgotPassword = Pick<Credentials, 'email'>;
+export type ResetPassword = Pick<Credentials, 'password' | 'token'>;
 
-type ResWithMessage = {
+export type ResWithMessage = {
   success: boolean;
   message: string;
 };

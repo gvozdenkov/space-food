@@ -5,8 +5,10 @@ import { z } from 'zod';
 
 import { Input, SubmitButton } from '#shared/ui/form';
 import { PasswordInput } from '#shared/ui/form/password-input';
-import s from './register-from.module.scss';
 import { useRegisterMutation } from '#entities/session';
+import { ErrorMessage } from '#shared/ui/error-message';
+
+import s from './register-from.module.scss';
 
 export const RegisterForm = () => {
   const { t } = useTranslation();
@@ -40,20 +42,26 @@ export const RegisterForm = () => {
   const {
     register,
     handleSubmit,
-    reset,
     setFocus,
-    formState: { isValid, isSubmitting, errors },
+    formState: { isValid, errors },
   } = useForm<FormSchema>({
     defaultValues,
     mode: 'onTouched',
     resolver: zodResolver(formSchema),
   });
 
-  const { mutate: registerMutation } = useRegisterMutation();
+  const {
+    mutate: registerMutation,
+    isError: isRegisterMutationError,
+    error: registerMutationError,
+    isLoading,
+  } = useRegisterMutation();
+
+  const registerMutationErrorText =
+    registerMutationError?.response?.data.message || t('register.error');
 
   const onSubmit: SubmitHandler<FormSchema> = (data) => {
     registerMutation(data);
-    reset();
   };
 
   return (
@@ -93,9 +101,11 @@ export const RegisterForm = () => {
         autoComplete='off'
       />
 
-      <SubmitButton disabled={!isValid || isSubmitting} extraClass={s.input_submit}>
+      <SubmitButton disabled={!isValid || isLoading} extraClass={s.input_submit}>
         {t('register.form.button.submit')}
       </SubmitButton>
+
+      {isRegisterMutationError && <ErrorMessage message={registerMutationErrorText} />}
     </form>
   );
 };

@@ -4,9 +4,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 import { Input, SubmitButton } from '#shared/ui/form';
+import { useForgotPasswordMutation } from '#entities/session';
+import { ErrorMessage } from '#shared/ui/error-message';
 
 import s from './forgot-pasword-from.module.scss';
-import { useForgotPasswordMutation } from '#entities/session';
 
 export const ForgotPaswordForm = () => {
   const { t } = useTranslation();
@@ -24,20 +25,26 @@ export const ForgotPaswordForm = () => {
   const {
     register,
     handleSubmit,
-    reset,
     setFocus,
-    formState: { isValid, isSubmitting, errors },
+    formState: { isValid, errors },
   } = useForm<FormSchema>({
     defaultValues,
     mode: 'onTouched',
     resolver: zodResolver(formSchema),
   });
 
-  const { mutate: forgotPasswordMutation } = useForgotPasswordMutation();
+  const {
+    mutate: forgotPasswordMutation,
+    isError: isForgotPasswordMutationError,
+    error: forgotPasswordMutationError,
+    isLoading,
+  } = useForgotPasswordMutation();
+
+  const mutationErrorText =
+    forgotPasswordMutationError?.response?.data.message || t('forgot.error.forgot');
 
   const onSubmit: SubmitHandler<FormSchema> = (data) => {
     forgotPasswordMutation(data);
-    reset();
   };
 
   return (
@@ -56,9 +63,11 @@ export const ForgotPaswordForm = () => {
         autoComplete='email'
       />
 
-      <SubmitButton disabled={!isValid || isSubmitting} extraClass={s.input_submit}>
+      <SubmitButton disabled={!isValid || isLoading} extraClass={s.input_submit}>
         {t('forgot.form.button.submit')}
       </SubmitButton>
+
+      {isForgotPasswordMutationError && <ErrorMessage message={mutationErrorText} />}
     </form>
   );
 };

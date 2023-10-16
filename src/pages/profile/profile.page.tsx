@@ -8,9 +8,9 @@ import { Button, Input, SubmitButton } from '#shared/ui/form';
 import { PasswordInput } from '#shared/ui/form/password-input';
 import { useUserQuery } from '#entities/session';
 import { useEditUserMutation } from '#entities/session';
+import { ErrorMessage } from '#shared/ui/error-message';
 
 import s from './profile.page.module.scss';
-import { ErrorMessage } from '#shared/ui/error-message';
 
 export const ProfilePage = () => {
   const { t } = useTranslation();
@@ -64,16 +64,23 @@ export const ProfilePage = () => {
     handleSubmit,
     reset,
     setFocus,
-    formState: { isValid, isDirty, isSubmitting, errors },
+    formState: { isValid, isDirty, errors },
   } = useForm<FormSchema>({
     defaultValues,
     mode: 'onTouched',
     resolver: zodResolver(formSchema),
   });
 
-  const { mutate: editUserMutation, isError, error, isSuccess } = useEditUserMutation();
+  const {
+    mutate: editUserMutation,
+    isError: isResetPasswordMutationError,
+    error: resetPasswordMutationError,
+    isLoading,
+    isSuccess,
+  } = useEditUserMutation();
 
-  const errorText = error?.response?.data.message || 'blblblb';
+  const errorText =
+    resetPasswordMutationError?.response?.data.message || t('profile.error.editProfile');
 
   const onSubmit: SubmitHandler<FormSchema> = (data) => {
     editUserMutation(data);
@@ -122,15 +129,18 @@ export const ProfilePage = () => {
             autoComplete='off'
           />
 
-          {isDirty && (
+          {(isDirty || isLoading) && (
             <>
-              <SubmitButton disabled={!isValid || isSubmitting} extraClass={s.input_submit}>
+              <SubmitButton
+                disabled={!isValid || isLoading}
+                extraClass={s.input_submit}
+                isLoading={isLoading}>
                 {t('profile.form.button.submit')}
               </SubmitButton>
               <Button
                 variant='secondary'
                 htmlType='reset'
-                disabled={isSubmitting}
+                disabled={isLoading}
                 onClick={() => reset()}
                 extraClass={clx(s.input_cancel)}>
                 {t('profile.form.button.cancel')}
@@ -138,10 +148,11 @@ export const ProfilePage = () => {
             </>
           )}
 
-          {isSuccess && (
+          {isSuccess && !isDirty && (
             <ErrorMessage message={t('profile.form.sucess')} extraClass='text_color_success' />
           )}
-          {isError && <ErrorMessage message={errorText} />}
+
+          {isResetPasswordMutationError && <ErrorMessage message={errorText} />}
         </form>
       </section>
 

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { publicApi } from '#shared/api';
+import { AuthRes, Register, ResponseError, publicApi } from '#shared/api';
 import { Credentials, User } from '#shared/api/types';
 import { QUERYKEY, ROUTE } from '#shared/config';
 import { CookieService } from '#shared/lib';
@@ -27,7 +27,7 @@ export const useRegisterMutation = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation({
+  return useMutation<AuthRes, ResponseError, Register>({
     mutationKey: [QUERYKEY.USER],
     mutationFn: registerMutation,
     onSuccess: ({ accessToken: token, refreshToken }) => {

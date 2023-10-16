@@ -5,8 +5,10 @@ import { z } from 'zod';
 
 import { Input, SubmitButton } from '#shared/ui/form';
 import { PasswordInput } from '#shared/ui/form/password-input';
-import s from './reset-password-form.module.scss';
 import { useResetPasswordMutation } from '#entities/session';
+import { ErrorMessage } from '#shared/ui/error-message';
+
+import s from './reset-password-form.module.scss';
 
 export const ResetPasswordForm = () => {
   const { t } = useTranslation();
@@ -28,14 +30,22 @@ export const ResetPasswordForm = () => {
     handleSubmit,
     reset,
     setFocus,
-    formState: { isValid, isSubmitting, errors },
+    formState: { isValid, errors },
   } = useForm<FormSchema>({
     defaultValues,
     mode: 'onTouched',
     resolver: zodResolver(formSchema),
   });
 
-  const { mutate: resetPasswordMutation } = useResetPasswordMutation();
+  const {
+    mutate: resetPasswordMutation,
+    isError: isResetPasswordMutationError,
+    error: resetPasswordMutationError,
+    isLoading,
+  } = useResetPasswordMutation();
+
+  const mutationErrorText =
+    resetPasswordMutationError?.response?.data.message || t('reset.error.reset');
 
   const onSubmit: SubmitHandler<FormSchema> = (data) => {
     console.log('password updated', data);
@@ -67,9 +77,12 @@ export const ResetPasswordForm = () => {
         onIconClick={() => setFocus('token')}
         autoComplete='off'
       />
-      <SubmitButton disabled={!isValid || isSubmitting} extraClass={s.input_submit}>
+
+      <SubmitButton disabled={!isValid || isLoading} extraClass={s.input_submit}>
         {t('reset.form.button.submit')}
       </SubmitButton>
+
+      {isResetPasswordMutationError && <ErrorMessage message={mutationErrorText} />}
     </form>
   );
 };

@@ -1,6 +1,7 @@
-import axios, { RawAxiosRequestHeaders } from 'axios';
+import axios, { AxiosError, RawAxiosRequestHeaders } from 'axios';
 import { CookieService } from '#shared/lib';
 import { AuthService } from './auth-service';
+import { ApiError } from './types';
 
 type Headers = RawAxiosRequestHeaders;
 
@@ -76,3 +77,5 @@ const headers = {
 export const publicApi = createApi({ baseURL, headers });
 export const authApi = createApi({ baseURL, headers, withReAuth: true });
 export const createOrderApi = createApi({ baseURL, headers, withReAuth: true });
+
+export type ResponseError = AxiosError<ApiError>;

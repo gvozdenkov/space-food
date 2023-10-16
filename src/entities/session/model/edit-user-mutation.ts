@@ -1,14 +1,12 @@
-import { AxiosError } from 'axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { UserService } from '#shared/api';
+import { ResponseError, UserService } from '#shared/api';
 import { QUERYKEY } from '#shared/config';
-import { ApiError } from '#shared/api/types';
 import { EditUser, UserRes } from '#shared/api';
 
 export const useEditUserMutation = () => {
   const queryClient = useQueryClient();
 
-  return useMutation<UserRes, AxiosError<ApiError>, EditUser>({
+  return useMutation<UserRes, ResponseError, EditUser>({
     mutationKey: [QUERYKEY.USER],
     mutationFn: UserService.editUser,
     onSuccess: () => {
