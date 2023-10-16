@@ -1,4 +1,4 @@
-import { authApi } from './api-setup';
+import { publicApi } from './api-setup';
 import { Credentials, User } from './types';
 
 type Tokens = {
@@ -16,7 +16,7 @@ type ResWithMessage = {
   message: string;
 };
 
-type AuthRes = Tokens & {
+export type AuthRes = Tokens & {
   success: boolean;
   user: User;
 };
@@ -28,7 +28,7 @@ type RefreshRes = Tokens & {
 const ENDPOINT = 'auth';
 
 export const login = async ({ email, password }: Login) => {
-  const res = await authApi.post<AuthRes>(`/${ENDPOINT}/login`, {
+  const res = await publicApi.post<AuthRes>(`/${ENDPOINT}/login`, {
     email,
     password,
   });
@@ -37,13 +37,13 @@ export const login = async ({ email, password }: Login) => {
 };
 
 const logout = async (refreshToken?: string) => {
-  return await authApi.post<ResWithMessage>(`/${ENDPOINT}/logout`, {
+  return await publicApi.post<ResWithMessage>(`/${ENDPOINT}/logout`, {
     token: refreshToken,
   });
 };
 
 const register = async ({ name, email, password }: Register) => {
-  const res = await authApi.post<AuthRes>(`/${ENDPOINT}/register`, {
+  const res = await publicApi.post<AuthRes>(`/${ENDPOINT}/register`, {
     name,
     email,
     password,
@@ -53,7 +53,7 @@ const register = async ({ name, email, password }: Register) => {
 };
 
 const forgotPassword = async ({ email }: ForgotPassword) => {
-  const res = await authApi.post<ResWithMessage>(`/password-reset`, {
+  const res = await publicApi.post<ResWithMessage>(`/password-reset`, {
     email,
   });
 
@@ -61,7 +61,7 @@ const forgotPassword = async ({ email }: ForgotPassword) => {
 };
 
 const resetPassword = async ({ password, token }: ResetPassword) => {
-  const res = await authApi.post<ResWithMessage>(`/password-reset/reset`, {
+  const res = await publicApi.post<ResWithMessage>(`/password-reset/reset`, {
     password,
     token,
   });
@@ -70,7 +70,7 @@ const resetPassword = async ({ password, token }: ResetPassword) => {
 };
 
 const refreshAccessToken = async (refreshToken: string | undefined) => {
-  return await authApi.post<RefreshRes>(`/${ENDPOINT}/token`, {
+  return await publicApi.post<RefreshRes>(`/${ENDPOINT}/token`, {
     token: refreshToken,
   });
 };

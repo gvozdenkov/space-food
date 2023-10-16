@@ -32,7 +32,6 @@ export const LoginForm = ({ redirectTo }: Props) => {
   const {
     register,
     handleSubmit,
-    reset,
     setFocus,
     formState: { isValid, errors },
   } = useForm<FormSchema>({
@@ -41,13 +40,17 @@ export const LoginForm = ({ redirectTo }: Props) => {
     resolver: zodResolver(formSchema),
   });
 
-  const { mutate: loginMutation, isError, isLoading } = useLogInMutation({ redirectTo });
+  const {
+    mutate: loginMutation,
+    isError: isLoginMutationError,
+    error: loginMutationError,
+    isLoading,
+  } = useLogInMutation({ redirectTo });
 
-  const mutationErrorText = t('login.error.login');
+  const mutationErrorText = loginMutationError?.response?.data.message || t('login.error.login');
 
   const onSubmit: SubmitHandler<FormSchema> = (data) => {
     loginMutation(data);
-    reset();
   };
 
   return (
@@ -79,7 +82,7 @@ export const LoginForm = ({ redirectTo }: Props) => {
         {t('login.form.button.submit')}
       </SubmitButton>
 
-      {isError && <ErrorMessage message={mutationErrorText} />}
+      {isLoginMutationError && <ErrorMessage message={mutationErrorText} />}
     </form>
   );
 };
