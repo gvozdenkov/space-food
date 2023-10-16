@@ -1,8 +1,9 @@
-import { ProfileMenu } from '#widgets/profile-menu';
 import { Outlet } from 'react-router-dom';
 
-import s from './profile-layout.module.scss';
+import { ProfileMenu } from '#widgets/profile-menu';
 import { OnlyAuth } from '#entities/session';
+
+import s from './profile-layout.module.scss';
 
 export const ProfileLayout = () => {
   return (
