@@ -71,9 +71,9 @@ Query при использовании с Data API роутера.
 ## Local Development with Docker
 
 ```sh
-git clone git@github.com:gvozdenkov/stellar-burgers.git
+git clone git@github.com:gvozdenkov/space-food.git
 
-cd stellar-burgers
+cd space-food
 
 cp .env.example .env
 
