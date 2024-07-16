@@ -8,7 +8,7 @@
 использовал самые новые инструменты и подходы.
 [Макет figma](<https://www.figma.com/file/ocw9a6hNGeAejl4F3G9fp8/React-_-%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BD%D1%8B%D0%B5-%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B8-(3-%D0%BC%D0%B5%D1%81%D1%8F%D1%86%D0%B0)_external_link?node-id=849%3A1315&t=LLydQv2OA4D4NX2L-0>)
 
-<video controls src="README_static/video.mp4" title="Демонстрация работы фронтенда"></video>
+<video controls src="https://github.com/user-attachments/assets/9e3cad75-9249-457f-ba85-abd0f42b73b8" title="Демонстрация работы фронтенда"></video>
 
 ![stellar burger main screen](README_static/home-burger.png)
 
@@ -46,20 +46,21 @@ Query при использовании с Data API роутера.
 как квери запрос. Переводы приходят в виде `json` файла Доступа к бэкенду не было, поэтому
 локализовать ингредиенты не вышло, но знаю, как сделать это на стороне сервера. Есть опыт.
 
-<video controls src="README_static/i18n.mp4" title="i18n"></video>
+<video controls src="https://github.com/user-attachments/assets/52236756-ea50-4113-bf91-fe45fb3e6673" title="i18n"></video>
 
 :boom: Использую [`Zod`](https://zod.dev/) и [`React Hook Form`](https://www.react-hook-form.com/)
 для валидации и отправки форм. Мощные и гибкие инструменты. `React Hook Form` понравился больше, чем
 `Formic`.
 
-<video controls src="README_static/react-hook-form.mp4" title="Zod & React Hook Form"></video>
+<video controls src="https://github.com/user-attachments/assets/24666a44-68eb-4cc7-b968-1346d3f36c24" title="Zod & React Hook Form"></video>
 
 :boom: Попробовал современный пакет для Drag & Drop [`dnd kit`](https://dndkit.com/). Много
 настроек, красивый визуал получается.
 
 ## Планы по развитию
 
-1. Добавить отдельное приложение для мобильной версии, потому что вёрстка очень сильно оличается. Дотюнить тач скрин Drag & drop.
+1. Добавить отдельное приложение для мобильной версии, потому что вёрстка очень сильно оличается.
+   Дотюнить тач скрин Drag & drop.
 2. Создать монорепозиторий на основе `Nx`, чтобы вынести общие типы и компоненты в отдельные пакеты
    и переиспользовать в приложениях.
 3. Внедрить [линтер FSD](https://github.com/feature-sliced/steiger) и дотюнить структуру проекта.
